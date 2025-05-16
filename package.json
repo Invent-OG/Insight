@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "drizzle-kit migrate:dev",
+    "migrate:create": "drizzle-kit migrate:create"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -29,14 +31,14 @@
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.29.5",
     "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.29.5",
     "framer-motion": "^11.0.8",
     "gsap": "^3.12.5",
     "lucide-react": "^0.510.0",
     "next": "15.3.2",
     "next-themes": "^0.2.1",
-    "pg": "^8.15.6",
+    "pg": "^8.16.0",
     "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
