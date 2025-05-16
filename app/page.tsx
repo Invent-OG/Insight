@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div>
       <Button variant={"destructive"}>kjkj</Button>
-      sdfsdf
     </div>
   );
 }
