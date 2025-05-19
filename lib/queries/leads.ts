@@ -1,45 +1,48 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-// Types
+// ✅ Correct Lead type
 export interface Lead {
   id: string;
   name: string;
-  whatsappNumber: string;
-  electricityBill: number;
-  city: string;
-  companyName?: string;
-  type: 'residential' | 'housing_society' | 'commercial';
+  email: string;
+  phone: string;
+  interest: string;
   createdAt: string;
 }
 
-// API Functions
+// ✅ Fetch all leads
 const fetchLeads = async (): Promise<{ leads: Lead[] }> => {
-  const response = await fetch('/api/leads');
-  if (!response.ok) throw new Error('Failed to fetch leads');
+  const response = await fetch("/api/leads");
+  if (!response.ok) throw new Error("Failed to fetch leads");
   return response.json();
 };
 
-const createLead = async (data: Omit<Lead, 'id' | 'createdAt'>): Promise<Lead> => {
-  const response = await fetch('/api/leads', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+// ✅ Create a new lead
+const createLead = async (
+  data: Omit<Lead, "id" | "createdAt">
+): Promise<Lead> => {
+  const response = await fetch("/api/leads", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if (!response.ok) throw new Error('Failed to create lead');
-  return response.json();
+  if (!response.ok) throw new Error("Failed to create lead");
+  const result = await response.json();
+  return result.lead;
 };
 
+// ✅ Delete lead by ID
 const deleteLead = async (id: string): Promise<void> => {
   const response = await fetch(`/api/leads?id=${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
-  if (!response.ok) throw new Error('Failed to delete lead');
+  if (!response.ok) throw new Error("Failed to delete lead");
 };
 
-// Hooks
+// ✅ React Query hooks
 export function useLeads() {
   return useQuery({
-    queryKey: ['leads'],
+    queryKey: ["leads"],
     queryFn: fetchLeads,
   });
 }
@@ -49,7 +52,7 @@ export function useCreateLead() {
   return useMutation({
     mutationFn: createLead,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['leads'] });
+      queryClient.invalidateQueries({ queryKey: ["leads"] });
     },
   });
 }
@@ -59,7 +62,7 @@ export function useDeleteLead() {
   return useMutation({
     mutationFn: deleteLead,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['leads'] });
+      queryClient.invalidateQueries({ queryKey: ["leads"] });
     },
   });
 }

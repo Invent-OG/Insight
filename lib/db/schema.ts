@@ -1,11 +1,4 @@
-import {
-  pgTable,
-  uuid,
-  text,
-  timestamp,
-  integer,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { pgTable, uuid, text, timestamp } from "drizzle-orm/pg-core";
 
 export const blogs = pgTable("blogs", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -29,12 +22,8 @@ export const testimonials = pgTable("testimonials", {
 export const leads = pgTable("leads", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
-  whatsappNumber: varchar("whatsapp_number", { length: 15 }).notNull(),
-  electricityBill: integer("electricity_bill").notNull(),
-  city: text("city").notNull(),
-  companyName: text("company_name"),
-  type: text("type", {
-    enum: ["residential", "housing_society", "commercial"],
-  }).notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  interest: text("interest").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
