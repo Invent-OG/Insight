@@ -74,12 +74,21 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
             <div className="p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="relative h-16 w-16 rounded-full overflow-hidden">
-                  <Image
-                    src={testimonial.imageUrl}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
+                  {testimonial.imageUrl?.startsWith("http") ? (
+                    <Image
+                      src={testimonial.imageUrl}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <Image
+                      src="/default-avatar.png"
+                      alt="Default"
+                      fill
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div>
                   <h3 className="font-semibold">{testimonial.name}</h3>
