@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,11 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
 import {
   useCreateTestimonial,
   useUpdateTestimonial,
 } from "@/lib/queries/testimonials";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase/client";
 
 const testimonialSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -30,7 +33,7 @@ const testimonialSchema = z.object({
     .url("Please enter a valid YouTube URL")
     .optional()
     .or(z.literal("")),
-  imageUrl: z.string().url("Please enter a valid image URL"),
+  imageUrl: z.string().url("Profile image is required"),
 });
 
 type TestimonialFormData = z.infer<typeof testimonialSchema>;
@@ -45,6 +48,8 @@ export default function TestimonialForm({
   initialData,
 }: TestimonialFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
   const createTestimonialMutation = useCreateTestimonial();
   const updateTestimonialMutation = useUpdateTestimonial();
 
@@ -58,6 +63,38 @@ export default function TestimonialForm({
       imageUrl: "",
     },
   });
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}.${fileExt}`;
+    const filePath = `testimonials/${fileName}`;
+
+    const { error } = await supabase.storage
+      .from("testimonials")
+      .upload(filePath, file);
+
+    if (error) {
+      toast.error("Image upload failed");
+      setUploading(false);
+      return;
+    }
+
+    const { data: publicUrlData } = supabase.storage
+      .from("testimonials")
+      .getPublicUrl(filePath);
+
+    const imageUrl = publicUrlData?.publicUrl;
+    if (imageUrl) {
+      form.setValue("imageUrl", imageUrl);
+      toast.success("Image uploaded successfully");
+    }
+
+    setUploading(false);
+  };
 
   const onSubmit = async (data: TestimonialFormData) => {
     setIsSubmitting(true);
@@ -145,19 +182,22 @@ export default function TestimonialForm({
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Profile Image URL</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Enter profile image URL" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <FormItem>
+            <FormLabel>Profile Image</FormLabel>
+            <FormControl>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={uploading}
+              />
+            </FormControl>
+            {uploading && <p className="text-sm text-muted">Uploading...</p>}
+            <FormMessage />
+          </FormItem>
+
+          {/* Hidden input to store uploaded image URL */}
+          <input type="hidden" {...form.register("imageUrl")} />
 
           <FormField
             control={form.control}
@@ -178,6 +218,7 @@ export default function TestimonialForm({
               type="submit"
               disabled={
                 isSubmitting ||
+                uploading ||
                 createTestimonialMutation.isPending ||
                 updateTestimonialMutation.isPending
               }

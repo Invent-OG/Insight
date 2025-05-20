@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Edit2, Trash2, Youtube } from "lucide-react";
+import { Edit2, Plus, Trash2, Youtube } from "lucide-react";
 import {
   useTestimonials,
   useDeleteTestimonial,
@@ -25,6 +25,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
   const [editingTestimonial, setEditingTestimonial] = useState<any | null>(
     null
   );
+  const [formVisible, setFormVisible] = useState(false);
 
   const { data, isLoading } = useTestimonials();
   const deleteTestimonialMutation = useDeleteTestimonial();
@@ -36,6 +37,21 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
     } catch (error) {
       toast.error("Failed to delete testimonial");
     }
+  };
+
+  const openAddForm = () => {
+    setEditingTestimonial(null);
+    setFormVisible(true);
+  };
+
+  const openEditForm = (testimonial: any) => {
+    setEditingTestimonial(testimonial);
+    setFormVisible(true);
+  };
+
+  const closeForm = () => {
+    setEditingTestimonial(null);
+    setFormVisible(false);
   };
 
   if (isLoading) {
@@ -57,17 +73,17 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
     currentPage * ITEMS_PER_PAGE
   );
 
-  if (editingTestimonial) {
-    return (
-      <TestimonialForm
-        onClose={() => setEditingTestimonial(null)}
-        initialData={editingTestimonial}
-      />
-    );
-  }
-
   return (
     <div>
+      {/* Add New Testimonial Button */}
+      <div className="flex justify-end mb-4">
+        <Button onClick={openAddForm} className="flex items-center gap-2">
+          <Plus className="w-4 h-4" />
+          Add Testimonial
+        </Button>
+      </div>
+
+      {/* Testimonials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedTestimonials.map((testimonial) => (
           <Card key={testimonial.id} className="relative">
@@ -117,7 +133,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => setEditingTestimonial(testimonial)}
+                    onClick={() => openEditForm(testimonial)}
                   >
                     <Edit2 className="h-4 w-4" />
                   </Button>
@@ -133,6 +149,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
         ))}
       </div>
 
+      {/* Pagination */}
       {totalPages > 1 && (
         <div className="mt-8">
           <Pagination
@@ -140,6 +157,18 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
+        </div>
+      )}
+
+      {/* Testimonial Form Drawer / Modal */}
+      {formVisible && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-background rounded-lg w-full max-w-xl mx-auto shadow-lg p-6">
+            <TestimonialForm
+              onClose={closeForm}
+              initialData={editingTestimonial || undefined}
+            />
+          </div>
         </div>
       )}
     </div>

@@ -24,11 +24,11 @@ const navItems = [
     href: "/admin/testimonials",
     icon: <MessageSquare className="h-5 w-5" />,
   },
-  {
-    label: "Careers",
-    href: "/admin/careers",
-    icon: <Briefcase className="h-5 w-5" />,
-  },
+  // {
+  //   label: "Careers",
+  //   href: "/admin/careers",
+  //   icon: <Briefcase className="h-5 w-5" />,
+  // },
   {
     label: "Blog",
     href: "/admin/blog",
@@ -47,7 +47,7 @@ export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('isAuthenticated');
+    sessionStorage.removeItem("isAuthenticated");
     router.push("/admin/login");
   };
 
@@ -80,7 +80,7 @@ export default function Sidebar() {
       >
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
-            <Image src={"/nigaran-logo.png"} alt={""} width={50} height={50} />
+            {/* <Image src={"/nigaran-logo.png"} alt={""} width={50} height={50} /> */}
             <span className="font-semibold">Admin Panel</span>
           </div>
 
