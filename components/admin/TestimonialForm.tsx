@@ -23,18 +23,7 @@ import {
 } from "@/lib/queries/testimonials";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase/client";
-
-const testimonialSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  role: z.string().min(2, "Role must be at least 2 characters"),
-  content: z.string().min(10, "Content must be at least 10 characters"),
-  youtubeUrl: z
-    .string()
-    .url("Please enter a valid YouTube URL")
-    .optional()
-    .or(z.literal("")),
-  imageUrl: z.string().url("Profile image is required"),
-});
+import { testimonialSchema } from "@/lib/types/testimonials";
 
 type TestimonialFormData = z.infer<typeof testimonialSchema>;
 
@@ -71,28 +60,33 @@ export default function TestimonialForm({
     setUploading(true);
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}.${fileExt}`;
-    const filePath = `testimonials/${fileName}`;
+    const filePath = `testimonials/${fileName}`; // Correct subpath
 
-    const { error } = await supabase.storage
-      .from("testimonials")
+    // ✅ Upload to the "images" bucket
+    const { error: uploadError } = await supabase.storage
+      .from("images")
       .upload(filePath, file);
 
-    if (error) {
+    if (uploadError) {
+      console.error("Upload error:", uploadError.message);
       toast.error("Image upload failed");
       setUploading(false);
       return;
     }
 
+    // ✅ Get public URL
     const { data: publicUrlData } = supabase.storage
-      .from("testimonials")
+      .from("images")
       .getPublicUrl(filePath);
 
-    const imageUrl = publicUrlData?.publicUrl;
-    if (imageUrl) {
-      form.setValue("imageUrl", imageUrl);
-      toast.success("Image uploaded successfully");
+    if (!publicUrlData?.publicUrl) {
+      toast.error("Failed to get public image URL");
+      setUploading(false);
+      return;
     }
 
+    form.setValue("imageUrl", publicUrlData.publicUrl);
+    toast.success("Image uploaded successfully");
     setUploading(false);
   };
 
@@ -136,6 +130,7 @@ export default function TestimonialForm({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {/* Name */}
           <FormField
             control={form.control}
             name="name"
@@ -150,6 +145,7 @@ export default function TestimonialForm({
             )}
           />
 
+          {/* Role */}
           <FormField
             control={form.control}
             name="role"
@@ -164,6 +160,7 @@ export default function TestimonialForm({
             )}
           />
 
+          {/* Content */}
           <FormField
             control={form.control}
             name="content"
@@ -182,8 +179,9 @@ export default function TestimonialForm({
             )}
           />
 
+          {/* Image Upload */}
           <FormItem>
-            <FormLabel>Profile Image</FormLabel>
+            <FormLabel>Upload Image</FormLabel>
             <FormControl>
               <Input
                 type="file"
@@ -193,12 +191,20 @@ export default function TestimonialForm({
               />
             </FormControl>
             {uploading && <p className="text-sm text-muted">Uploading...</p>}
+            {form.watch("imageUrl") && (
+              <img
+                src={form.watch("imageUrl")}
+                alt="Uploaded"
+                className="h-20 w-20 object-cover rounded-md mt-2"
+              />
+            )}
             <FormMessage />
           </FormItem>
 
-          {/* Hidden input to store uploaded image URL */}
+          {/* Hidden image URL input */}
           <input type="hidden" {...form.register("imageUrl")} />
 
+          {/* YouTube URL */}
           <FormField
             control={form.control}
             name="youtubeUrl"
@@ -213,6 +219,7 @@ export default function TestimonialForm({
             )}
           />
 
+          {/* Submit */}
           <div className="flex justify-end gap-4">
             <Button
               type="submit"

@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Lock } from "lucide-react";
 import { useLogin } from "@/lib/queries/auth";
 
@@ -23,7 +29,7 @@ export default function AdminLoginPage() {
     try {
       const response = await loginMutation.mutateAsync({ email, password });
       if (response.success) {
-        sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem("isAuthenticated", "true");
         router.push("/admin/leads");
       }
     } catch (error) {
@@ -45,7 +51,9 @@ export default function AdminLoginPage() {
               <Lock className="h-6 w-6 text-primary-foreground" />
             </div>
             <CardTitle className="text-2xl">Admin Login</CardTitle>
-            <CardDescription>Enter your credentials to access the admin panel</CardDescription>
+            <CardDescription>
+              Enter your credentials to access the admin panel
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">

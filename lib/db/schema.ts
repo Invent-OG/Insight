@@ -15,7 +15,7 @@ export const testimonials = pgTable("testimonials", {
   name: text("name").notNull(),
   role: text("role").notNull(),
   content: text("content").notNull(),
-  imageUrl: text("image_url").notNull(), // 👈 this is imageUrl in Drizzle, even though it's snake_case in DB
+  imageUrl: text("image_url"), // 👈 this is imageUrl in Drizzle, even though it's snake_case in DB
   youtubeUrl: text("youtube_url"), // 👈 this is youtubeUrl in Drizzle
 });
 

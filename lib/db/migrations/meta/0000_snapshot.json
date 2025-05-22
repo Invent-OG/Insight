@@ -1,5 +1,5 @@
 {
-  "id": "f3c5e3ce-1983-4ce2-b75f-057ed2d736c6",
+  "id": "ad297462-e321-428a-9e98-d37ebca2a4ef",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -75,32 +75,20 @@
           "primaryKey": false,
           "notNull": true
         },
-        "whatsapp_number": {
-          "name": "whatsapp_number",
-          "type": "varchar(15)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "electricity_bill": {
-          "name": "electricity_bill",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "city": {
-          "name": "city",
+        "email": {
+          "name": "email",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "company_name": {
-          "name": "company_name",
+        "phone": {
+          "name": "phone",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "type": {
-          "name": "type",
+        "interest": {
+          "name": "interest",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -151,7 +139,7 @@
           "name": "image_url",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "youtube_url": {
           "name": "youtube_url",

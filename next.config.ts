@@ -3,9 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     domains: [
-      "inkxnijaveazwuplldwu.supabase.co",
-      "example.com",
-      "images.pexels.com", // ✅ Add this line
+      "inkxnijaveazwuplldwu.supabase.co", // Supabase
+      "example.com", // (Optional) if still used
+      "images.pexels.com", // ✅ Pexels image domain
     ],
   },
 };

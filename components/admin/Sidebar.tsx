@@ -80,7 +80,12 @@ export default function Sidebar() {
       >
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
-            {/* <Image src={"/nigaran-logo.png"} alt={""} width={50} height={50} /> */}
+            <Image
+              src="https://inkxnijaveazwuplldwu.supabase.co/storage/v1/object/public/insight//INSIGHT.R.png"
+              alt={"logo"}
+              width={50}
+              height={50}
+            />
             <span className="font-semibold">Admin Panel</span>
           </div>
 
