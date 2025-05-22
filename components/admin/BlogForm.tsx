@@ -16,13 +16,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreateBlog, useUpdateBlog } from "@/lib/queries/blogs";
-import { toast } from "sonner"; // ✅ Replaced custom useToast with Sonner
+import { toast } from "sonner";
+import { supabase } from "@/lib/supabase/client"; // ✅ Your initialized client
 
 const blogSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
   excerpt: z.string().min(10, "Excerpt must be at least 10 characters"),
   content: z.string().min(50, "Content must be at least 50 characters"),
-  imageUrl: z.string().url("Please enter a valid image URL"),
+  imageUrl: z.string().url("Image upload is required"),
   category: z.string().min(2, "Category must be at least 2 characters"),
 });
 
@@ -49,6 +50,22 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
     },
   });
 
+  const handleImageUpload = async (file: File) => {
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}.${fileExt}`;
+    const filePath = `blogs/${fileName}`;
+
+    const { error } = await supabase.storage
+      .from("images")
+      .upload(filePath, file);
+    if (error) {
+      throw new Error("Image upload failed");
+    }
+
+    const { data } = supabase.storage.from("blogs").getPublicUrl(filePath);
+    return data.publicUrl;
+  };
+
   const onSubmit = async (data: BlogFormData) => {
     setIsSubmitting(true);
     try {
@@ -57,14 +74,10 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
       } else {
         await createBlogMutation.mutateAsync(data);
       }
-      toast.success(
-        initialData ? "Blog updated successfully" : "Blog created successfully"
-      );
+      toast.success(initialData ? "Blog updated" : "Blog created");
       onClose();
-    } catch (error) {
-      toast.error(
-        initialData ? "Failed to update blog" : "Failed to create blog"
-      );
+    } catch {
+      toast.error("Failed to submit blog");
     } finally {
       setIsSubmitting(false);
     }
@@ -83,6 +96,7 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Title */}
           <FormField
             control={form.control}
             name="title"
@@ -97,6 +111,7 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
             )}
           />
 
+          {/* Category */}
           <FormField
             control={form.control}
             name="category"
@@ -111,6 +126,7 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
             )}
           />
 
+          {/* Excerpt */}
           <FormField
             control={form.control}
             name="excerpt"
@@ -129,6 +145,7 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
             )}
           />
 
+          {/* Content */}
           <FormField
             control={form.control}
             name="content"
@@ -147,20 +164,37 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image URL</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Enter image URL" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+          {/* File Upload */}
+          <FormItem>
+            <FormLabel>Upload Image</FormLabel>
+            <FormControl>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const url = await handleImageUpload(file);
+                    form.setValue("imageUrl", url);
+                    toast.success("Image uploaded successfully");
+                  } catch (error) {
+                    toast.error("Image upload failed");
+                  }
+                }}
+              />
+            </FormControl>
+            {form.watch("imageUrl") && (
+              <img
+                src={form.watch("imageUrl")}
+                alt="Preview"
+                className="mt-4 w-full max-h-48 object-cover rounded-md"
+              />
             )}
-          />
+            <FormMessage />
+          </FormItem>
 
+          {/* Submit Button */}
           <div className="flex justify-end gap-4">
             <Button
               type="submit"

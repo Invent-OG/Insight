@@ -54,6 +54,12 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
     setFormVisible(false);
   };
 
+  // New handler: called on successful add/update
+  const handleFormSuccess = () => {
+    setCurrentPage(1); // reset pagination to first page
+    closeForm();
+  };
+
   if (isLoading) {
     return <div className="text-center py-8">Loading testimonials...</div>;
   }
@@ -167,6 +173,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
             <TestimonialForm
               onClose={closeForm}
               initialData={editingTestimonial || undefined}
+              onSuccess={handleFormSuccess} // <-- pass callback here
             />
           </div>
         </div>

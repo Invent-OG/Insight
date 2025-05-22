@@ -30,14 +30,17 @@ type TestimonialFormData = z.infer<typeof testimonialSchema>;
 interface TestimonialFormProps {
   onClose: () => void;
   initialData?: TestimonialFormData & { id: string };
+  onSuccess?: () => void; // <-- New prop for notifying parent on success
 }
 
 export default function TestimonialForm({
   onClose,
   initialData,
+  onSuccess,
 }: TestimonialFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [fileToUpload, setFileToUpload] = useState<File | null>(null);
 
   const createTestimonialMutation = useCreateTestimonial();
   const updateTestimonialMutation = useUpdateTestimonial();
@@ -53,59 +56,73 @@ export default function TestimonialForm({
     },
   });
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${Date.now()}.${fileExt}`;
-    const filePath = `testimonials/${fileName}`; // Correct subpath
-
-    // ✅ Upload to the "images" bucket
-    const { error: uploadError } = await supabase.storage
-      .from("images")
-      .upload(filePath, file);
-
-    if (uploadError) {
-      console.error("Upload error:", uploadError.message);
-      toast.error("Image upload failed");
-      setUploading(false);
-      return;
-    }
-
-    // ✅ Get public URL
-    const { data: publicUrlData } = supabase.storage
-      .from("images")
-      .getPublicUrl(filePath);
-
-    if (!publicUrlData?.publicUrl) {
-      toast.error("Failed to get public image URL");
-      setUploading(false);
-      return;
-    }
-
-    form.setValue("imageUrl", publicUrlData.publicUrl);
-    toast.success("Image uploaded successfully");
-    setUploading(false);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setFileToUpload(file);
   };
 
   const onSubmit = async (data: TestimonialFormData) => {
     setIsSubmitting(true);
+
     try {
+      let imageUrl = data.imageUrl;
+
+      if (fileToUpload) {
+        setUploading(true);
+        const fileExt = fileToUpload.name.split(".").pop();
+        const fileName = `${Date.now()}.${fileExt}`;
+        const filePath = `testimonials/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("images")
+          .upload(filePath, fileToUpload);
+
+        if (uploadError) {
+          toast.error("Image upload failed");
+          setUploading(false);
+          setIsSubmitting(false);
+          return;
+        }
+
+        const { data: publicUrlData } = supabase.storage
+          .from("images")
+          .getPublicUrl(filePath);
+
+        if (!publicUrlData?.publicUrl) {
+          toast.error("Failed to get public image URL");
+          setUploading(false);
+          setIsSubmitting(false);
+          return;
+        }
+
+        imageUrl = publicUrlData.publicUrl;
+        setUploading(false);
+      }
+
+      const payload = {
+        ...data,
+        imageUrl,
+      };
+
       if (initialData?.id) {
         await updateTestimonialMutation.mutateAsync({
           id: initialData.id,
-          data,
+          data: payload,
         });
         toast.success("Testimonial updated successfully");
       } else {
-        await createTestimonialMutation.mutateAsync(data);
+        await createTestimonialMutation.mutateAsync(payload);
         toast.success("Testimonial created successfully");
       }
 
       form.reset();
-      onClose();
+      setFileToUpload(null);
+
+      if (onSuccess) {
+        onSuccess(); // Notify parent to reset page and close form
+      } else {
+        onClose();
+      }
     } catch (error) {
       toast.error(
         initialData
@@ -186,12 +203,21 @@ export default function TestimonialForm({
               <Input
                 type="file"
                 accept="image/*"
-                onChange={handleFileUpload}
-                disabled={uploading}
+                onChange={handleFileChange}
+                disabled={uploading || isSubmitting}
               />
             </FormControl>
             {uploading && <p className="text-sm text-muted">Uploading...</p>}
-            {form.watch("imageUrl") && (
+
+            {fileToUpload && (
+              <img
+                src={URL.createObjectURL(fileToUpload)}
+                alt="Preview"
+                className="h-20 w-20 object-cover rounded-md mt-2"
+              />
+            )}
+
+            {!fileToUpload && form.watch("imageUrl") && (
               <img
                 src={form.watch("imageUrl")}
                 alt="Uploaded"
@@ -201,7 +227,7 @@ export default function TestimonialForm({
             <FormMessage />
           </FormItem>
 
-          {/* Hidden image URL input */}
+          {/* Hidden input for imageUrl */}
           <input type="hidden" {...form.register("imageUrl")} />
 
           {/* YouTube URL */}
@@ -219,7 +245,7 @@ export default function TestimonialForm({
             )}
           />
 
-          {/* Submit */}
+          {/* Submit Button */}
           <div className="flex justify-end gap-4">
             <Button
               type="submit"
