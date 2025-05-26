@@ -1,10 +1,23 @@
 import "./globals.css";
-import Navbar from "@/components/sections/Navbar"; // Make sure the path is correct
+import type { Metadata } from "next";
+import { Outfit } from "next/font/google";
+import { Providers } from "./providers";
+import { LenisProvider } from "@/components/LenisProvider";
+import Navbar from "@/components/sections/Navbar";
+import { Footer } from "@/components/footer-section";
 
-export const metadata = {
-  title: "Insight | Expert Study Abroad Consultants for Global Education",
+const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+
+export const metadata: Metadata = {
+  title:
+    "Leading Solar Energy Solutions in Coimbatore | Nigaran Solar Tamil Nadu",
   description:
-    "Turn your study abroad dreams into reality with Insight. Insight’s expert guidance, trusted support, and global opportunities await!",
+    "Nigaran Solar offers top-quality solar panel solutions in Coimbatore and Tamil Nadu. We specialize in On-Grid, Off-Grid, and Hybrid Solar Systems for residential and commercial installations. Get your free solar consultation today!",
+  keywords:
+    "solar energy, solar panels, solar power systems, on-grid solar, off-grid solar, hybrid solar systems, residential solar, commercial solar, solar solutions Tamil Nadu, solar companies in TamilNadu",
+  icons: {
+    icon: "/favicon.png", // path to your PNG logo
+  },
 };
 
 export default function RootLayout({
@@ -14,9 +27,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Navbar />
-        {children}
+      <body className={`${inter.variable} font-sans`}>
+        <Providers>
+          <LenisProvider />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

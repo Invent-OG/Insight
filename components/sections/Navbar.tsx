@@ -1,114 +1,264 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { Phone, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Menu,
+  X,
+  Calculator,
+  Briefcase,
+  Sun,
+  Building,
+  DollarSign,
+  Newspaper,
+  ShieldCheck,
+  HomeIcon,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-const Navbar = () => {
+import type { LucideIcon } from "lucide-react";
+
+interface NavSubItem {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+  submenu?: NavSubItem[];
+}
+
+// Add icons to submenu items
+const navItems: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About Us", href: "/about" },
+  { label: "Courses", href: "/courses" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedSubmenus, setExpandedSubmenus] = useState<
+    Record<string, boolean>
+  >({});
+  const router = useRouter();
+  const pathName = usePathname();
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen((prev) => !prev);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const toggleSubmenu = (label: string) => {
+    setExpandedSubmenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
   };
 
   return (
-    <header className="bg-black text-white">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        {/* Logo wrapped with Link for redirect */}
-        <Link href="/" className="flex items-center space-x-2">
-          <Image
-            src="https://inkxnijaveazwuplldwu.supabase.co/storage/v1/object/public/images/testimonials/1747896131969.png"
-            alt="Insight Logo"
-            width={40}
-            height={40}
-          />
-          <span className="font-bold text-xl">Insight</span>
-        </Link>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ",
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md py-3 shadow-lg"
+          : "bg-transparent py-5"
+      )}
+    >
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between  ">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-2"
+        >
+          <Link href="/" className="text-xl font-bold flex items-center">
+            <Image
+              src="/assets/insight_logo.png"
+              alt=""
+              width={50}
+              height={50}
+            />
+            <span
+              className={cn(
+                "ml-2",
+                (!isScrolled && pathName === "/") ||
+                  (!isScrolled && pathName === "/consultation")
+                  ? "text-white"
+                  : ""
+              )}
+            >
+              Insight
+            </span>
+          </Link>
+        </motion.div>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex space-x-6 text-sm uppercase font-semibold">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/courses">Courses</Link>
-          <Link href="/testimonials">Testimonials</Link>
-          <Link href="/contact">Contact Us</Link>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8 ml-60 ">
+          {navItems.map((item, index) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="relative group flex items-center space-x-1"
+            >
+              {item.icon && (
+                <item.icon className="w-4 h-4 text-foreground/80" />
+              )}
+              <Link
+                href={item.href}
+                className={cn(
+                  "text-foreground/80 hover:text-primary transition-colors font-medium",
+                  (!isScrolled && pathName === "/") ||
+                    (!isScrolled && pathName === "/consultation")
+                    ? "text-white"
+                    : ""
+                )}
+              >
+                {item.label}
+              </Link>
+              {item.submenu && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-background p-2 border rounded-md shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  {item.submenu.map((subItem) => (
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href}
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-primary text-sm text-foreground/80 hover:text-foreground rounded-sm hover:text-white  transition-colors"
+                    >
+                      {subItem.icon && <subItem.icon className="w-4 h-4" />}
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          ))}
         </nav>
 
-        {/* Call Info (lg and above) */}
-        <div className="hidden lg:flex items-center space-x-2 text-sm">
-          <Phone className="w-5 h-5 text-yellow-400" />
-          <span>Call Us Now</span>
-          <span className="font-bold text-yellow-400">+91 7593 000 094</span>
+        <div className="flex items-center gap-4">
+          {/* Mobile menu toggle */}
+          <div className="md:hidden ">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu
+                  className={cn(
+                    "h-5 w-5 bg",
+                    !isScrolled && pathName === "/" ? "text-white" : ""
+                  )}
+                />
+              )}
+            </Button>
+          </div>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMobileMenu}
-          className="md:hidden text-white focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <nav className="md:hidden bg-black px-6 pb-4 uppercase font-semibold text-sm flex flex-col text-center">
-          {/* Each Link gets a bottom border except the last */}
-          <Link
-            href="/"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            Home
-          </Link>
-          <Link
-            href="/services"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            Services
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            About Us
-          </Link>
-          <Link
-            href="/courses"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            Courses
-          </Link>
-          <Link
-            href="/testimonials"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            Testimonials
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-3 border-b border-gray-600 last:border-none"
-          >
-            Contact Us
-          </Link>
-
-          <div className="flex items-center space-x-2 text-yellow-400 pt-4">
-            <Phone className="w-5 h-5" />
-            <span>Call Us Now</span>
-            <span className="font-bold ">+91 7593 000 094</span>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed  inset-0 z-40 h-screen w-screen bg-primary md:hidden overflow-y-auto"
+        >
+          {/* Close Button */}
+          <div className="flex justify-end p-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-white"
+            >
+              <X className="h-6 w-6" />
+            </Button>
           </div>
-        </nav>
+
+          <div className="px-6 pb-6 space-y-6 min-h-screen flex flex-col justify-start">
+            {navItems.map((item) => (
+              <div key={item.label}>
+                <div
+                  className="flex items-center justify-between px-4 py-3 text-lg font-medium text-white cursor-pointer hover:bg-white/20 rounded-md transition"
+                  onClick={() =>
+                    item.submenu
+                      ? toggleSubmenu(item.label)
+                      : setMobileMenuOpen(false)
+                  }
+                >
+                  <div className="flex items-center gap-2 flex-1">
+                    {item.icon && <item.icon className="w-5 h-5" />}
+                    <Link
+                      href={item.href}
+                      onClick={(e) => {
+                        if (item.submenu) {
+                          e.preventDefault();
+                        } else {
+                          setMobileMenuOpen(false);
+                        }
+                      }}
+                      className="flex-1"
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                  {item.submenu && (
+                    <span className="text-xl select-none text-white">
+                      {expandedSubmenus[item.label] ? "−" : "+"}
+                    </span>
+                  )}
+                </div>
+
+                {item.submenu && expandedSubmenus[item.label] && (
+                  <div className="ml-8 mt-2 space-y-2">
+                    {item.submenu.map((subItem) => (
+                      <Link
+                        key={subItem.label}
+                        href={subItem.href}
+                        className="flex items-center gap-2 text-white text-base py-2 px-4 rounded-md hover:bg-white/20 transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {subItem.icon && <subItem.icon className="w-4 h-4" />}
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
       )}
     </header>
   );
-};
-
-export default Navbar;
+}
