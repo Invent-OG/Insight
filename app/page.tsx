@@ -10,12 +10,14 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Countries />
-      <Knowaboutus />
-      <ServicesSection />
-      <UniversitiesSection />
-      <ContactSection />
-      <Testimonial />
+      <div className="relative z-10">
+        <Countries />
+        <Knowaboutus />
+        <ServicesSection />
+        <UniversitiesSection />
+        <ContactSection />
+        <Testimonial />
+      </div>
     </>
   );
 }

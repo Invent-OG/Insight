@@ -1,124 +1,148 @@
 "use client";
 
-import { useState } from "react";
+import Head from "next/head";
+import contact from "@/public/assets/contact.png"; // 👈 Adjust the path as needed
 
-const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Submit form logic here (e.g., POST request or integration with Formspree/Netlify)
-    alert("Form submitted!");
-  };
-
+export default function Contact() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-12 text-gray-800">
-      <h1 className="text-4xl font-bold mb-4 text-center">
-        Get in touch with the Best Study Abroad Consultancy in Coimbatore
-      </h1>
-      <p className="text-center mb-8 text-lg">
-        Expert advice. Just a message away. Plan smarter, go further—talk to us
-        today.
-      </p>
+    <>
+      <Head>
+        <title>
+          Contact Us | Expert Abroad Study Consultancy – Get in Touch Today
+        </title>
+        <meta
+          name="description"
+          content="Contact our expert abroad study consultants for guidance and support to start your international education journey today. Get in touch with the Best Study Abroad Consultancy in Coimbatore. Expert advice. Just a message away."
+        />
+      </Head>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 bg-white p-6 shadow rounded-md"
-      >
-        <div>
-          <label className="block font-medium">
-            Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            name="name"
-            required
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">
-            Email address <span className="text-red-500">*</span>
-          </label>
-          <input
-            name="email"
-            required
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">
-            Phone Number <span className="text-red-500">*</span>
-          </label>
-          <input
-            name="phone"
-            required
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">Interest</label>
-          <textarea
-            name="interest"
-            rows={4}
-            value={formData.interest}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded font-semibold"
+      <main className="min-h-screen flex flex-col md:flex-row">
+        {/* Left Side — Background Image with Overlay */}
+        <div
+          className="relative bg-black text-white flex items-center justify-center px-8 py-20 md:w-1/2 bg-cover bg-center"
+          style={{ backgroundImage: `url(${contact.src})` }}
         >
-          Submit
-        </button>
-      </form>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
-      <div className="mt-12 bg-gray-50 p-6 rounded shadow">
-        <h2 className="text-2xl font-semibold mb-4">Contact Details</h2>
-        <p>
-          <strong>Phone:</strong> +91 82708 83451
-        </p>
-        <p>
-          <strong>Email:</strong> admin@insightabroadservices.org
-        </p>
-        <p>
-          <strong>Location:</strong> Tharani complex 3, 8th street, Cross Cut
-          Road, Gandhipuram, Coimbatore, Tamil Nadu 641012
-        </p>
+          {/* Content */}
+          <div className="relative text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Plan smarter, go further.
+            </h1>
+            <p className="text-lg max-w-md mx-auto">
+              Let our experts guide you towards your international education
+              journey. Connect with us today.
+            </p>
+          </div>
+        </div>
 
-        <h3 className="text-xl font-semibold mt-6 mb-2">Office Hours</h3>
-        <ul className="list-disc list-inside">
-          <li>Monday to Friday: 9.00 AM - 5.00 PM</li>
-          <li>Saturday: 10.00 AM - 3.00 PM</li>
-          <li>Sunday: Closed</li>
-        </ul>
-      </div>
-    </main>
+        {/* Right Side — Contact Form with Slide-in Animation */}
+        <div className="flex items-center justify-center bg-black w-full md:w-1/2 px-8 py-20 animate-slideIn">
+          <div className="w-full max-w-lg">
+            <h2 className="text-2xl font-bold mb-6 text-red-700">
+              Get in Touch
+            </h2>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-300">
+                  Name <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300">
+                  Email Address <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300">
+                  Phone Number <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="tel"
+                  required
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300">
+                  Interest
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition transform hover:scale-105 active:scale-95"
+              >
+                Submit Inquiry
+              </button>
+            </form>
+
+            {/* Contact Info */}
+            <div className="mt-8 text-gray-600">
+              <p className="mb-3">
+                <strong>Phone:</strong>{" "}
+                <a href="tel:+918270883451" className="text-red-600">
+                  +91 82708 83451
+                </a>
+              </p>
+              <p className="mb-3">
+                <strong>Email:</strong>{" "}
+                <a
+                  href="mailto:admin@insightabroadservices.org"
+                  className="text-red-600"
+                >
+                  admin@insightabroadservices.org
+                </a>
+              </p>
+              <p className="mb-6">
+                <strong>Location:</strong> <br />
+                Tharani Complex 3, 8th Street, Cross Cut Road,
+                <br />
+                Gandhipuram, Coimbatore, Tamil Nadu 641012
+              </p>
+              <h3 className="text-lg font-semibold mb-2 text-red-700">
+                Office Hours
+              </h3>
+              <ul className="text-sm space-y-1">
+                <li>Monday – Friday: 9:00 AM – 5:00 PM</li>
+                <li>Saturday: 10:00 AM – 3:00 PM</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Slide-in Animation */}
+      <style jsx>{`
+        @keyframes slideIn {
+          0% {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-slideIn {
+          animation: slideIn 1s ease forwards;
+        }
+      `}</style>
+    </>
   );
-};
-
-export default ContactPage;
+}

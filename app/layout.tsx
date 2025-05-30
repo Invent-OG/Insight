@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Providers } from "./providers";
 import { LenisProvider } from "@/components/LenisProvider";
-import Navbar from "@/components/sections/Navbar";
+import Nav from "@/components/sections/Nav";
 import { Footer } from "@/components/footer-section";
+
 
 const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans`}>
         <Providers>
           <LenisProvider />
-          <Navbar />
+          <Nav />
           <main>{children}</main>
           <Footer />
         </Providers>

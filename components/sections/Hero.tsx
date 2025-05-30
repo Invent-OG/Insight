@@ -1,114 +1,266 @@
 "use client";
-import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import * as React from "react";
+import { VariantProps, cva } from "class-variance-authority";
+import {
+  HTMLMotionProps,
+  MotionValue,
+  motion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
+import hero1 from "@/public/assets/hero1.webp";
+import hero2 from "@/public/assets/hero2.webp";
+import hero3 from "@/public/assets/hero3.webp";
+import hero4 from "@/public/assets/hero4.webp";
+import hero5 from "@/public/assets/hero5.webp";
+import VerticalCutReveal from "@/fancy/components/text/vertical-cut-reveal";
 
-// Background images
-const backgroundImages = [
-  "https://images.pexels.com/photos/2325447/pexels-photo-2325447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/886521/pexels-photo-886521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1213447/pexels-photo-1213447.jpeg?auto=compress&cs=tinysrgb&w=600",
-];
+const bentoGridVariants = cva(
+  "relative grid gap-4 [&>*:first-child]:origin-top-right [&>*:nth-child(3)]:origin-bottom-right [&>*:nth-child(4)]:origin-top-right",
+  {
+    variants: {
+      variant: {
+        default: `
+          grid-cols-4 grid-rows-[1fr_1fr_1fr]
+          [&>*:first-child]:col-span-4 [&>*:first-child]:row-span-1
+          [&>*:nth-child(2)]:col-span-2
+          [&>*:nth-child(3)]:col-span-2
+          [&>*:nth-child(4)]:col-span-2
+          [&>*:nth-child(5)]:col-span-2
+          md:grid-cols-8 md:grid-rows-[1fr_0.5fr_0.5fr_1fr]
+          md:[&>*:first-child]:col-span-6 md:[&>*:first-child]:row-span-3
+          md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(2)]:row-span-2
+          md:[&>*:nth-child(3)]:col-span-2 md:[&>*:nth-child(3)]:row-span-2
+          md:[&>*:nth-child(4)]:col-span-3
+          md:[&>*:nth-child(5)]:col-span-3
+        `,
+        threeCells: `grid-cols-2 grid-rows-2
+          [&>*:first-child]:col-span-2`,
+        fourCells: `grid-cols-3 grid-rows-2
+          [&>*:first-child]:col-span-1
+          [&>*:nth-child(2)]:col-span-2
+          [&>*:nth-child(3)]:col-span-2`,
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
-// Side illustration images
-const sideImages = [
-  "https://images.pexels.com/photos/1526713/pexels-photo-1526713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/18160413/pexels-photo-18160413/free-photo-of-a-person-paddling-a-paddle-board-in-the-water.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/19568896/pexels-photo-19568896/free-photo-of-a-large-church-with-a-clock-tower-in-the-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-];
-
-export default function HeroSection() {
-  const [currentImage, setCurrentImage] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const goToPrev = () => {
-    setCurrentImage(
-      (prev) => (prev - 1 + backgroundImages.length) % backgroundImages.length
+interface ContainerScrollContextValue {
+  scrollYProgress: MotionValue<number>;
+}
+const ContainerScrollContext = React.createContext<
+  ContainerScrollContextValue | undefined
+>(undefined);
+function useContainerScrollContext() {
+  const context = React.useContext(ContainerScrollContext);
+  if (!context) {
+    throw new Error(
+      "useContainerScrollContext must be used within a ContainerScroll Component"
     );
-  };
-
-  const goToNext = () => {
-    setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-  };
-
+  }
+  return context;
+}
+const ContainerScroll = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+  });
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-32">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={backgroundImages[currentImage]}
-          alt="Background"
-          className="w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+    <ContainerScrollContext.Provider value={{ scrollYProgress }}>
+      <div
+        ref={scrollRef}
+        className={cn("relative min-h-screen w-full", className)}
+        {...props}
+      >
+        {children}
       </div>
+    </ContainerScrollContext.Provider>
+  );
+};
 
-      {/* Foreground Content */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 px-6 text-white text-center md:text-left max-w-6xl w-full">
-        {/* Text Content + Nav buttons container */}
-        <div className="max-w-xl flex flex-col md:items-start items-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Empowering Your{" "}
-            <span className="text-primary inline-block">
-              <AnimatedTextCycle
-                words={[
-                  "Digital",
-                  "Cloud",
-                  "AI",
-                  "Next-Gen",
-                  "Scalable",
-                  "Smart",
-                  "Futuristic",
-                ]}
-                interval={3000}
-                className="text-primary font-extrabold"
-              />
-            </span>{" "}
-            Journey
-          </h1>
-          <p className="text-lg md:text-xl mb-8">
-            Build, scale, and launch faster with our modern tech solutions.
-          </p>
-          <button className="bg-primary hover:bg-red-900 text-white font-bold px-8 py-3 rounded-xl transition-all mb-8 md:mb-12">
-            Get Started
-          </button>
+const BentoGrid = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof bentoGridVariants>
+>(({ variant, className, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(bentoGridVariants({ variant }), className)}
+      {...props}
+    />
+  );
+});
+BentoGrid.displayName = "BentoGrid";
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-center md:justify-start gap-6">
-            <button
-              onClick={goToPrev}
-              className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition"
-              aria-label="Previous"
+const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
+  ({ className, style, ...props }, ref) => {
+    const { scrollYProgress } = useContainerScrollContext();
+    const translate = useTransform(scrollYProgress, [0.1, 0.9], ["-35%", "0%"]);
+    const scale = useTransform(scrollYProgress, [0, 0.9], [0.5, 1]);
+
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        style={{ translate, scale, ...style }}
+        {...props}
+      />
+    );
+  }
+);
+BentoCell.displayName = "BentoCell";
+
+const ContainerScale = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
+  ({ className, style, ...props }, ref) => {
+    const { scrollYProgress } = useContainerScrollContext();
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+    const position = useTransform(scrollYProgress, (pos) =>
+      pos >= 0.6 ? "absolute" : "fixed"
+    );
+    return (
+      <motion.div
+        ref={ref}
+        className={cn("left-1/2 top-1/2  size-fit", className)}
+        style={{
+          translate: "-50% -50%",
+          scale,
+          position,
+          opacity,
+          ...style,
+        }}
+        {...props}
+      />
+    );
+  }
+);
+ContainerScale.displayName = "ContainerScale";
+
+// Your default exported Hero component
+const Hero = () => {
+  return (
+    <ContainerScroll className="bg-black text-white overflow-hidden relative ">
+      <ContainerScale className="z-10 text-left md:text-center px-6 md:px-0">
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold uppercase tracking-wide text-primary flex flex-col space-y-2 sm:space-y-4">
+          <div>
+            <VerticalCutReveal
+              splitBy="characters"
+              staggerDuration={0.025}
+              staggerFrom="first"
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 21,
+              }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition"
-              aria-label="Next"
+              {`Achieve Your`}
+            </VerticalCutReveal>
+          </div>
+
+          <div>
+            <VerticalCutReveal
+              splitBy="characters"
+              staggerDuration={0.025}
+              staggerFrom="last"
+              reverse={true}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 21,
+                delay: 0.5,
+              }}
             >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+              {`Abroad Study`}
+            </VerticalCutReveal>
+          </div>
+
+          <div>
+            <VerticalCutReveal
+              splitBy="characters"
+              staggerDuration={0.025}
+              staggerFrom="center"
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 21,
+                delay: 1.1,
+              }}
+            >
+              {`Dreams With Us`}
+            </VerticalCutReveal>
           </div>
         </div>
 
-        {/* Side Image */}
-        <Image
-          className="w-full sm:w-72 md:w-80 h-96 rounded-2xl shadow-lg object-cover"
-          width={320}
-          height={384}
-          src={sideImages[currentImage]}
-          alt="Hero Illustration"
-          priority
-        />
-      </div>
-    </section>
+        <div className="mt-8 hidden sm:flex justify-center items-center gap-4">
+          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-900 transition">
+            Get Started
+          </button>
+          <button className="text-white font-semibold hover:underline">
+            Learn more
+          </button>
+        </div>
+      </ContainerScale>
+
+      <BentoGrid className="z-0">
+        <BentoCell className="rounded-xl overflow-hidden">
+          <Image
+            src={hero1}
+            alt="Hero 1"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </BentoCell>
+        <BentoCell className="rounded-xl overflow-hidden">
+          <Image
+            src={hero2}
+            alt="Hero 2"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </BentoCell>
+        <BentoCell className="rounded-xl overflow-hidden">
+          <Image
+            src={hero3}
+            alt="Hero 3"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </BentoCell>
+        <BentoCell className="rounded-xl overflow-hidden">
+          <Image
+            src={hero4}
+            alt="Hero 4"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </BentoCell>
+        <BentoCell className="rounded-xl overflow-hidden">
+          <Image
+            src={hero5}
+            alt="Hero 5"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </BentoCell>
+      </BentoGrid>
+    </ContainerScroll>
   );
-}
+};
+
+export default Hero;
