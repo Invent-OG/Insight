@@ -157,7 +157,8 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           animate="visible"
           className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold leading-tight text-white p-2"
         >
-          Start Your Global Journey With Expert Guidance
+          Start Your <span className="text-primary">Global Journey</span> With
+          Expert Guidance
         </motion.h1>
 
         <motion.p

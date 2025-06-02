@@ -7,8 +7,8 @@ import {
   motion,
   useScroll,
   useTransform,
+  useAnimation,
 } from "motion/react";
-
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import hero1 from "@/public/assets/hero1.webp";
@@ -79,7 +79,10 @@ const ContainerScroll = ({
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
       <div
         ref={scrollRef}
-        className={cn("relative min-h-screen w-full", className)}
+        className={cn(
+          "relative min-h-screen w-full overflow-scroll",
+          className
+        )}
         {...props}
       >
         {children}
@@ -105,14 +108,23 @@ BentoGrid.displayName = "BentoGrid";
 const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
   ({ className, style, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext();
-    const translate = useTransform(scrollYProgress, [0.1, 0.9], ["-35%", "0%"]);
+
+    const translateX = useTransform(
+      scrollYProgress,
+      [0.1, 0.9],
+      ["-35%", "0%"]
+    );
     const scale = useTransform(scrollYProgress, [0, 0.9], [0.5, 1]);
 
     return (
       <motion.div
         ref={ref}
         className={className}
-        style={{ translate, scale, ...style }}
+        style={{
+          x: translateX,
+          scale,
+          ...style,
+        }}
         {...props}
       />
     );
@@ -132,7 +144,7 @@ const ContainerScale = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
     return (
       <motion.div
         ref={ref}
-        className={cn("left-1/2 top-1/2  size-fit", className)}
+        className={cn("left-1/2 top-1/2 size-fit", className)}
         style={{
           translate: "-50% -50%",
           scale,
@@ -147,12 +159,46 @@ const ContainerScale = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
 );
 ContainerScale.displayName = "ContainerScale";
 
-// Your default exported Hero component
+const AnimatedBackground = () => {
+  const controls = useAnimation();
+
+  React.useEffect(() => {
+    controls.start({
+      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+      transition: {
+        duration: 20,
+        ease: "linear",
+        repeat: Infinity,
+      },
+    });
+  }, [controls]);
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="absolute  z-10 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900"
+      style={{ backgroundSize: "200% 200%", height: "100%" }}
+      animate={controls}
+    />
+  );
+};
+
 const Hero = () => {
   return (
-    <ContainerScroll className="bg-black text-white overflow-hidden relative ">
-      <ContainerScale className="z-10 text-left md:text-center px-6 md:px-0">
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold uppercase tracking-wide text-primary flex flex-col space-y-2 sm:space-y-4">
+    <ContainerScroll className="bg-black overflow-hidden relative">
+      {/* Animated Background */}
+      {/* <AnimatedBackground /> */}
+
+      <Image
+        src={hero2}
+        alt="Hero 1"
+        className="absolute w-full h-full object-cover opacity-10"
+        width={800}
+        height={600}
+      />
+
+      <ContainerScale className="z-10  md:text-center px-6 md:px-0">
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold uppercase tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
           <div>
             <VerticalCutReveal
               splitBy="characters"
@@ -164,7 +210,7 @@ const Hero = () => {
                 damping: 21,
               }}
             >
-              {`Achieve Your`}
+              {`Achieve\u00A0Your`}
             </VerticalCutReveal>
           </div>
 
@@ -181,41 +227,47 @@ const Hero = () => {
                 delay: 0.5,
               }}
             >
-              {`Abroad Study`}
+              {`Abroad\u00A0Study`}
             </VerticalCutReveal>
           </div>
 
           <div>
-            <VerticalCutReveal
-              splitBy="characters"
-              staggerDuration={0.025}
-              staggerFrom="center"
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 21,
-                delay: 1.1,
-              }}
-            >
-              {`Dreams With Us`}
-            </VerticalCutReveal>
+            <div className="text-primary flex flex-row">
+              <VerticalCutReveal
+                splitBy="characters"
+                staggerDuration={0.025}
+                staggerFrom="center"
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 21,
+                  delay: 1.1,
+                }}
+              >
+                {"Dreams\u00A0"}
+              </VerticalCutReveal>
+              <VerticalCutReveal
+                splitBy="characters"
+                staggerDuration={0.025}
+                staggerFrom="center"
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 21,
+                  delay: 1.1,
+                }}
+              >
+                {"With\u00A0Us"}
+              </VerticalCutReveal>
+            </div>
           </div>
-        </div>
-
-        <div className="mt-8 hidden sm:flex justify-center items-center gap-4">
-          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-900 transition">
-            Get Started
-          </button>
-          <button className="text-white font-semibold hover:underline">
-            Learn more
-          </button>
         </div>
       </ContainerScale>
 
       <BentoGrid className="z-0">
         <BentoCell className="rounded-xl overflow-hidden">
           <Image
-            src={hero1}
+            src={hero2}
             alt="Hero 1"
             width={800}
             height={600}
@@ -224,7 +276,7 @@ const Hero = () => {
         </BentoCell>
         <BentoCell className="rounded-xl overflow-hidden">
           <Image
-            src={hero2}
+            src={hero1}
             alt="Hero 2"
             width={800}
             height={600}

@@ -35,7 +35,7 @@ export default function Services() {
         />
       </Head>
 
-      <main className="bg-black w-full min-h-screen pb-20 bg-white">
+      <main className="bg-black w-full min-h-screen ">
         {/* Hero Section */}
         <section
           className="min-h-screen flex items-center justify-center text-center"
@@ -47,7 +47,7 @@ export default function Services() {
         {/* Services Section */}
         <section className="w-full bg-black">
           <div className="max-w-7xl mx-auto px-6 py-16">
-            <h2 className="text-3xl font-bold text-center text-white mb-12">
+            <h2 className="text-3xl font-bold text-center text-primary mb-12">
               What We Offer
             </h2>
 
@@ -63,7 +63,6 @@ export default function Services() {
                 </AnimatedBackground>
               ))}
             </div>
-
             {/* CTA */}
             <div className="mt-20 text-center">
               <button
@@ -79,7 +78,6 @@ export default function Services() {
     </>
   );
 }
-
 const services = [
   {
     icon: <MdSupportAgent size={28} className="text-red-600" />,

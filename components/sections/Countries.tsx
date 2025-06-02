@@ -1,12 +1,10 @@
 "use client";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import uk from "@/public/assets/UK.png";
 import usa from "@/public/assets/country/Usa.jpg";
 import ireland from "@/public/assets/country/Ireland.jpg";
@@ -26,8 +24,11 @@ import malta from "@/public/assets/country/malta.jpg";
 import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
 import europe from "@/public/assets/country/europe.jpg";
-import { useRouter } from "next/navigation";
-// Your full countries data
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { motion, useInView } from "framer-motion";
+
+
+// Countries data
 const countries = [
   {
     title: "Study in the United Kingdom",
@@ -127,62 +128,84 @@ const countries = [
 ];
 
 export default function StudyAbroadDestinations() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "",
-  });
-
-  // use for routing 
-  // const router = useRouter();
-
-  // Track which cards are expanded
   const [expandedCards, setExpandedCards] = useState<{
     [key: number]: boolean;
   }>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-    alert("Form submitted!");
-  };
-
-  // Toggle read more for a card
   const toggleReadMore = (idx: number) => {
-    // router.push("/about");
-
     setExpandedCards((prev) => ({
       ...prev,
       [idx]: !prev[idx],
     }));
   };
 
-  return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white py-12 px-0">
-      <div className="px-4 max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-6">
-          Study Abroad Destinations
-        </h1>
-        <p className="text-center text-lg mb-10 text-white/90">
-          Explore top countries to begin your global education journey.
-        </p>
+  // Animation variants
+  const textVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
-        {/* Swiper Slider */}
+  const slideVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <div className="w-full min-h-screen bg-black text-white">
+      <h4 className="text-primary uppercase tracking-wide text-sm text-center -my-4">
+        — Countries —
+      </h4>
+      <div className="py-10 px-4 max-w-7xl mx-auto">
+        <motion.h1
+          className="text-5xl font-bold text-center mb-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          variants={textVariants}
+        >
+          Study Abroad Destinations
+        </motion.h1>
+        <motion.p
+          className="text-center text-lg mb-10 text-white/90"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          variants={textVariants}
+          transition={{ delay: 0.2 }}
+        >
+          Explore top countries to begin your global education journey.
+        </motion.p>
+
         <div className="relative">
+          {/* Custom Navigation Buttons */}
+          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-10">
+            <button className="swiper-button-prev-custom text-4xl text-primary hover:text-red-700">
+              <FaArrowAltCircleLeft />
+            </button>
+          </div>
+          <div className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-10">
+            <button className="swiper-button-next-custom text-4xl text-primary hover:text-red-700">
+              <FaArrowAltCircleRight />
+            </button>
+          </div>
+
           <Swiper
-            modules={[Pagination, Navigation]}
-            // pagination={{ clickable: true }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
+            modules={[Navigation]}
             spaceBetween={24}
             slidesPerView={1}
+            navigation={{
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
+            }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -191,99 +214,100 @@ export default function StudyAbroadDestinations() {
           >
             {countries.map((country, idx) => (
               <SwiperSlide key={idx}>
-                <div className="bg-zinc-900 rounded-2xl p-5 shadow-md border border-zinc-800 hover:shadow-lg transition-all h-full flex flex-col">
-                  <div className="mb-4">
-                    <Image
-                      src={country.image}
-                      alt={country.title}
-                      width={400}
-                      height={250}
-                      className="w-full h-48 object-cover rounded-xl"
-                    />
-                  </div>
-                  <h2 className="text-xl font-semibold mb-3 text-white">
-                    {country.title}
-                  </h2>
-                  <p className="text-zinc-300 flex-grow">
-                    {expandedCards[idx]
-                      ? country.description
-                      : country.description.length > 150
-                      ? country.description.slice(0, 150) + "..."
-                      : country.description}
-                  </p>
-                  {country.description.length > 150 && (
-                    <button
-                      onClick={() => toggleReadMore(idx)}
-                      className="mt-3 text-blue-500 hover:text-blue-600 font-semibold self-start"
-                    >
-                      {expandedCards[idx] ? "Read Less" : "Read More"}
-                    </button>
-                  )}
-                </div>
+                <AnimatedCard
+                  idx={idx}
+                  country={country}
+                  expanded={!!expandedCards[idx]}
+                  onToggle={() => toggleReadMore(idx)}
+                  slideVariants={slideVariants}
+                  textVariants={textVariants}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
-          {/* Navigation Arrows */}
-          <button className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 z-10 text-primary bg-zinc-800 p-3 rounded-full shadow hover:text-red-500">
-            <ChevronLeftIcon className="h-6 w-6" />
-          </button>
-
-          <button className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 z-10 text-primary bg-zinc-800 p-3 rounded-full shadow hover:text-red-500">
-            <ChevronRightIcon className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Form */}
-        <div className="mt-16 bg-gradient-to-r from-black via-red-900 to-black p-8 rounded-2xl shadow-2xl max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4 text-center text-white">
-            Find Your Ideal Course & Country
-          </h2>
-          <p className="text-center text-red-400 mb-6">
-            Submit your details, and let’s explore your study abroad options
-            together.
-          </p>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              required
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg bg-black border border-red-600 text-white placeholder-red-500 focus:ring-2 focus:ring-red-500"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg bg-black border border-red-600 text-white placeholder-red-500 focus:ring-2 focus:ring-red-500"
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone No"
-              required
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg bg-black border border-red-600 text-white placeholder-red-500 focus:ring-2 focus:ring-red-500"
-            />
-            <input
-              type="text"
-              name="interest"
-              placeholder="Your Interest (e.g., Country or Course)"
-              required
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg bg-black border border-red-600 text-white placeholder-red-500 focus:ring-2 focus:ring-red-500"
-            />
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-red-700 to-black hover:from-red-800 hover:to-black text-white py-3 rounded-lg font-semibold"
-            >
-              Find Your Ideal Course & Country
-            </button>
-          </form>
         </div>
       </div>
     </div>
+  );
+}
+
+// Separate component for each animated card
+function AnimatedCard({
+  idx,
+  country,
+  expanded,
+  onToggle,
+  slideVariants,
+  textVariants,
+}: {
+  idx: number;
+  country: (typeof countries)[number];
+  expanded: boolean;
+  onToggle: () => void;
+  slideVariants: any;
+  textVariants: any;
+}) {
+  // ref for inView tracking
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  // Track if card has been viewed at least once to prevent animation reset on scroll
+  const [hasBeenInView, setHasBeenInView] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setHasBeenInView(true);
+    }
+  }, [isInView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="bg-zinc-900 rounded-2xl p-5 shadow-md border border-zinc-800 hover:shadow-lg transition-all h-full flex flex-col"
+      initial="hidden"
+      animate={hasBeenInView ? "visible" : "hidden"}
+      variants={slideVariants}
+      transition={{ delay: idx * 0.1 }}
+    >
+      <div className="mb-4">
+        <Image
+          src={country.image}
+          alt={country.title}
+          width={400}
+          height={250}
+          className="w-full h-48 object-cover rounded-xl"
+        />
+      </div>
+      <motion.h2
+        className="text-xl font-semibold mb-3 text-white"
+        initial="hidden"
+        animate={hasBeenInView ? "visible" : "hidden"}
+        variants={textVariants}
+        transition={{ delay: idx * 0.1 + 0.1 }}
+      >
+        {country.title}
+      </motion.h2>
+      <motion.p
+        className="text-zinc-300 flex-grow"
+        initial="hidden"
+        animate={hasBeenInView ? "visible" : "hidden"}
+        variants={textVariants}
+        transition={{ delay: idx * 0.15 + 0.2 }}
+      >
+        {expanded
+          ? country.description
+          : country.description.length > 150
+          ? country.description.slice(0, 150) + "..."
+          : country.description}
+      </motion.p>
+      {country.description.length > 150 && (
+        <button
+          onClick={onToggle}
+          className="mt-3 text-primary hover:text-red-700 font-semibold self-start"
+        >
+          {expanded ? "Read Less" : "Read More"}
+        </button>
+      )}
+    </motion.div>
   );
 }

@@ -5,19 +5,19 @@ import ServicesSection from "@/components/sections/Services";
 import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Testimonial from "@/components/sections/Testimonial";
+import Herocontent from "@/components/sections/Herocontent";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <div className="relative z-10">
-        <Countries />
-        <Knowaboutus />
-        <ServicesSection />
-        <UniversitiesSection />
-        <ContactSection />
-        <Testimonial />
-      </div>
+      <Herocontent />
+      <Countries />
+      {/* <Knowaboutus /> */}
+      <ServicesSection />
+      <UniversitiesSection />
+      <ContactSection />
+      <Testimonial />
     </>
   );
 }

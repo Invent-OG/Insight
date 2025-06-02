@@ -6,7 +6,6 @@ import { LenisProvider } from "@/components/LenisProvider";
 import Nav from "@/components/sections/Nav";
 import { Footer } from "@/components/footer-section";
 
-
 const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {

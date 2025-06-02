@@ -32,21 +32,21 @@ export default function UniversitiesSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImageIndex((prevIndex) => (prevIndex + 1) % 2); // 2 images per card
-    }, 4000); // change every 4 seconds
+      setImageIndex((prevIndex) => (prevIndex + 1) % 2); // 2 images per university
+    }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="bg-[#1f1f29] text-white py-20 px-6">
+    <section className="bg-black text-white px-6">
       <div className="text-center max-w-4xl mx-auto mb-12">
         <h4 className="text-yellow-400 text-sm uppercase tracking-wider mb-2 relative">
-          <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2">
+          <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2 text-primary">
             Universities
           </span>
         </h4>
-        <h2 className="text-3xl md:text-4xl font-bold">
+        <h2 className="text-3xl md:text-5xl font-bold py-4">
           Unlock New Opportunities With Sterlings
         </h2>
       </div>
@@ -55,16 +55,25 @@ export default function UniversitiesSection() {
         {universities.map((uni, index) => (
           <div
             key={index}
-            className="relative rounded-xl overflow-hidden group shadow-lg hover:scale-[1.03] transition-transform duration-300"
+            className="relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]"
           >
-            <Image
-              src={uni.images[imageIndex]}
-              alt={uni.name}
-              width={400}
-              height={250}
-              className="w-full h-60 object-cover transition-opacity duration-500"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-4">
+            {/* Image wrapper for fade-in/out animation */}
+            <div className="relative w-full h-60">
+              {uni.images.map((img, imgIndex) => (
+                <Image
+                  key={imgIndex}
+                  src={img}
+                  alt={`${uni.name} Image ${imgIndex + 1}`}
+                  fill
+                  className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+                    imgIndex === imageIndex ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* University name overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
               <h3 className="text-white text-lg font-bold uppercase tracking-wide">
                 {uni.name}
               </h3>

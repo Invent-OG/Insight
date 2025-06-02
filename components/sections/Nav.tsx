@@ -60,28 +60,39 @@ export default function Nav() {
 
   return (
     <>
+      {/* Logo fixed top-left */}
+      <div className="fixed top-[5%] left-[5%] w-[40px] h-[40px] z-[1000]">
+        <Image
+          src={logo}
+          alt="Insight Logo"
+          width={50}
+          height={50}
+          className="rounded-full  h-10"
+        />
+      </div>
+
       {/* Hamburger Icon - visible only when menu is closed */}
       {!isOpen && (
         <div
-          className="fixed top-[5%] right-[5%] w-[30px] h-[25px] z-[1000] flex flex-col justify-between cursor-pointer"
+          className="fixed top-[5%] right-[5%] w-[40px] h-[40px] z-[1000] flex flex-col items-center justify-center cursor-pointer group  rounded-full p-1"
           onClick={openMenu}
           aria-label="Open Menu"
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && openMenu()}
         >
-          <div className="w-[30px] h-1 bg-[#e63946] rounded-sm"></div>
-          <div className="w-[30px] h-1 bg-[#e63946] rounded-sm"></div>
-          <div className="w-[30px] h-1 bg-[#e63946] rounded-sm"></div>
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out mb-[3px]"></span>
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out mb-[3px]"></span>
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out"></span>
         </div>
       )}
 
       {/* Navigation Menu */}
       <nav
         ref={navRef}
-        className="fixed top-0 right-[-100%] w-[80vw] max-w-[320px] h-0 bg-black shadow-lg shadow-black/60 overflow-hidden flex flex-col pt-[60px] z-[999]"
+        className="fixed top-0 right-[-100%] w-[80vw] max-w-[320px] h-0 bg-gradient-to-b from-black via-red-700 to-black shadow-lg shadow-black/60 overflow-hidden flex flex-col pt-[60px] z-[999]"
       >
-        {/* Nav Header with logo */}
+        {/* Nav Header with logo inside menu */}
         <div className="flex items-center gap-2.5 px-5 pb-5">
           <Image
             src={logo}
@@ -128,7 +139,7 @@ export default function Nav() {
               <a
                 href={route}
                 ref={addToLinksRef}
-                className="text-white text-xl font-medium no-underline opacity-0 pointer-events-none select-none transition-colors duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 focus:outline-none"
+                className="text-white text-xl font-medium no-underline opacity-0 pointer-events-none select-none transition-colors duration-300 ease-in-out hover:text-gray-500 focus:text-primary focus:outline-none"
               >
                 {name}
               </a>

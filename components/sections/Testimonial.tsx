@@ -66,8 +66,8 @@ const thirdColumn = testimonials.slice(6, 9);
 
 const Testimonials = () => {
   return (
-    <section className="bg-background my-20 relative">
-      <div className="container z-10 mx-auto">
+    <section className="bg-black text-white relative py-16">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,8 +75,10 @@ const Testimonials = () => {
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
         >
-          <div className="flex justify-center">
-            <div className="border py-1 px-4 rounded-lg">Testimonials</div>
+          {/* <div className="flex justify-center">
+            <div className="border border-gray-700 py-1 px-4 rounded-lg">
+              Testimonials
+            </div>
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
@@ -84,7 +86,15 @@ const Testimonials = () => {
           </h2>
           <p className="text-center mt-5 opacity-75">
             See what our customers have to say about us.
-          </p>
+          </p> */}
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h4 className="text-primary text-sm uppercase tracking-wider mb-3">
+              — Testimonials —
+            </h4>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              See what our customers have to say about us.
+            </h2>
+          </div>
         </motion.div>
 
         <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
@@ -105,4 +115,4 @@ const Testimonials = () => {
   );
 };
 
-export default Testimonials; // ✅ THIS is correct
+export default Testimonials;

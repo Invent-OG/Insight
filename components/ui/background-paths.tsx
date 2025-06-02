@@ -59,7 +59,7 @@ export function BackgroundPaths({
   const words = title.split(" ");
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black dark:bg-black">
       <div className="absolute inset-0">
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
@@ -87,8 +87,7 @@ export function BackgroundPaths({
                       damping: 25,
                     }}
                     className="inline-block text-transparent bg-clip-text 
-                                          bg-gradient-to-r from-neutral-900 to-neutral-700/80 
-                                          dark:from-white dark:to-white/80"
+                                        bg-gradient-to-r from-white to-white/80"
                   >
                     {letter}
                   </motion.span>
@@ -97,18 +96,18 @@ export function BackgroundPaths({
             ))}
           </h1>
 
-          {/* New paragraph added here */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
             {description}
           </p>
 
           <div
-            className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
-                          dark:from-white/10 dark:to-black/10 p-px rounded-2xl backdrop-blur-lg 
-                          overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="inline-block group relative bg-gradient-to-b from-white/10 to-white/5 
+                        dark:from-white/10 dark:to-white/5 p-px rounded-2xl backdrop-blur-lg 
+                        overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           ></div>
         </motion.div>
       </div>
     </div>
   );
 }
+

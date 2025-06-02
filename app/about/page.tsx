@@ -12,6 +12,8 @@ import {
 import Image from "next/image";
 import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths"; // Import the correct component
+import contentimg from "@/public/assets/country/Germany (1).png";
+
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -62,73 +64,77 @@ export default function About() {
       <main className="bg-black text-white min-h-screen relative">
         {/* BackgroundPaths component */}
         <BackgroundPaths title="Insight Educator & Abroad Services" />
+        {/* Hero component sub content */}
+        <section className="bg-black py-24 px-6 flex justify-center">
+          <div className="max-w-3xl p-10 rounded-xl bg-black shadow-neon-red">
+            <h2 className="text-4xl font-bold mb-6 text-primary drop-shadow-lg">
+              Insight Educator & Abroad Services
+            </h2>
+            <p className="text-red-200 text-lg leading-relaxed">
+              At Insight Educator & Abroad Services, we believe in “Insight”—the
+              ability to see beyond the obvious, understand deeply, and make
+              informed decisions which is the foundation of success. Guided by
+              this principle, we offer comprehensive study abroad consultancy
+              services to students in Coimbatore and beyond, empowering them to
+              achieve their global education dreams.
+            </p>
+          </div>
+
+          <style jsx>{`
+            .shadow-neon-red {
+              box-shadow: 0 0 10px #f87171, 0 0 30px #ef4444, 0 0 60px #b91c1c;
+            }
+          `}</style>
+        </section>
 
         {/* Founder Section */}
-        <section className="py-20 px-6 bg-black relative z-10 overflow-hidden max-w-3xl mx-auto">
-          {/* Removed parallax bg div for pure black background */}
+        <section className="relative bg-black overflow-hidden">
+          {/* Diagonal Shape */}
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/80 to-black transform -skew-y-6 z-0"></div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-black p-10 rounded-2xl shadow-2xl relative border border-gray-700 hover:border-blue-500 hover:shadow-blue-500/50 transition-all duration-500"
-          >
-            {/* Profile Image */}
-            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                className="rounded-full overflow-hidden border-4 border-blue-500 w-40 h-40 shadow-lg cursor-pointer transition-transform"
-              >
+          {/* Content */}
+          <div className="relative max-w-6xl mx-auto py-20 px-6 flex flex-col md:flex-row items-center z-10">
+            {/* Text */}
+            <motion.div
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="md:w-1/2 text-white"
+            >
+              <h2 className="text-4xl font-bold mb-4 cursor-pointer hover:text-blue-400 transition">
+                Meet Our Founder
+              </h2>
+              <p className="text-gray-300 text-lg mb-2">
+                Our founder, <span className="text-blue-400">Neshika</span>,
+                brings years of UK education and IELTS expertise to guide you.
+              </p>
+              <p className="text-gray-400 text-lg">
+                Personalized coaching and global study support tailored just for
+                you.
+              </p>
+            </motion.div>
+
+            {/* Image */}
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="md:w-1/2 mt-10 md:mt-0 flex justify-center"
+              data-aos="flip-left"
+            >
+              <div className="w-72 h-72 rounded-2xl overflow-hidden border-8 border-blue-500 shadow-lg">
                 <Image
                   src="https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg"
                   alt="Founder Neshika"
-                  width={160}
-                  height={160}
+                  width={288}
+                  height={288}
                   className="object-cover"
                 />
-              </motion.div>
-            </div>
-
-            {/* Content */}
-            <div className="mt-24 text-center space-y-6">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05, color: "#3B82F6" }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-3xl font-bold text-white cursor-pointer transition-colors"
-              >
-                Meet Our Founder
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-gray-300 text-lg"
-              >
-                At Insight, we’re driven by clarity and informed decisions. Our
-                founder,
-                <strong className="text-blue-400"> Neshika</strong>, is a UK
-                graduate and a certified IELTS trainer from Trinity University.
-              </motion.p>
-
-              <motion.blockquote
-                initial={{ opacity: 0, rotate: -2 }}
-                whileInView={{ opacity: 1, rotate: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                whileHover={{ scale: 1.02, rotate: 2 }}
-                className="text-blue-400 italic text-lg transition-transform"
-              >
-                "Her personal journey inspires our mission to guide every
-                student with personalized, student-first support."
-              </motion.blockquote>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Offerings Section */}
