@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
 function ElegantShape({
   className,
@@ -138,7 +139,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
         />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <motion.div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         {badge && (
           <motion.span
             initial={{ opacity: 0, y: -20 }}
@@ -171,7 +172,19 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           End-to-end services to make your study abroad dream smooth,
           stress-free, and successful.
         </motion.p>
-      </div>
+
+        <motion.div
+          custom={3}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
+          className="mt-20"
+        >
+          <Button className="flex justify-center items-center text-center mx-auto text-white">
+            Get Personalized Assistance Now
+          </Button>
+        </motion.div>
+      </motion.div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none" />
     </div>

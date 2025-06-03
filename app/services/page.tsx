@@ -18,6 +18,7 @@ import "@/app/globals.css";
 
 // Import the updated HeroGeometric component
 import { HeroGeometric } from "@/components/ui/shape-landing-hero"; // Assuming your file is saved here
+import { Button } from "@/components/ui/button";
 
 // DemoHeroGeometric component using the updated HeroGeometric
 function DemoHeroGeometric() {
@@ -37,6 +38,7 @@ export default function Services() {
 
       <main className="bg-black w-full min-h-screen ">
         {/* Hero Section */}
+
         <section
           className="min-h-screen flex items-center justify-center text-center"
           style={{ margin: 0, paddingTop: 0, paddingBottom: 0 }}
@@ -62,15 +64,6 @@ export default function Services() {
                   <ServiceCard {...service} data-id={`service-${idx}`} />
                 </AnimatedBackground>
               ))}
-            </div>
-            {/* CTA */}
-            <div className="mt-20 text-center">
-              <button
-                onClick={() => alert("Consultation form coming soon!")}
-                className="bg-gradient-to-r from-red-600 to-red-800 hover:scale-105 hover:from-red-700 hover:to-red-900 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300"
-              >
-                Get Personalized Assistance Now
-              </button>
             </div>
           </div>
         </section>
