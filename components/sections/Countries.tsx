@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+
+import React from "react";
+import FlipCard from "./FlipCard";
+import { StaticImageData } from "next/image";
+
+// Import images
 import uk from "@/public/assets/UK.png";
 import usa from "@/public/assets/country/Usa.jpg";
 import ireland from "@/public/assets/country/Ireland.jpg";
@@ -23,15 +23,16 @@ import lithuania from "@/public/assets/country/Lithuania .jpg";
 import malta from "@/public/assets/country/malta.jpg";
 import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
-import europe from "@/public/assets/country/europe.jpg";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
-import { motion, useInView } from "framer-motion";
 
+interface Country {
+  title: string;
+  description: string;
+  image: StaticImageData;
+}
 
-// Countries data
-const countries = [
+export const countries: Country[] = [
   {
-    title: "Study in the United Kingdom",
+    title: "Study in UK",
     description: `Home to renowned institutions like Oxford and Cambridge, the UK offers rigorous programs, short duration courses, and a strong academic tradition. Cities in the UK offers a student-friendly atmosphere, blending culture and connectivity. They offer a 1-year master’s degree with no compromise on academic standards, along with a 2-year stay-back option. With part-time work opportunities, the UK is ideal for career-focused learners.`,
     image: uk,
   },
@@ -120,194 +121,21 @@ const countries = [
     description: `Finland is known for its innovative education system, offering excellent universities with a focus on research and creativity. With a high quality of life and diverse post-graduation opportunities, Finland is a top choice for international students.`,
     image: finland,
   },
-  {
-    title: "Study in other European countries",
-    description: `Europe offers world-class universities in countries like Portugal, Greece, Austria, and Romania. With affordable tuition, vibrant cultures, and excellent post-graduation opportunities, Europe is an ideal destination for international students.`,
-    image: europe,
-  },
 ];
 
-export default function StudyAbroadDestinations() {
-  const [expandedCards, setExpandedCards] = useState<{
-    [key: number]: boolean;
-  }>({});
-
-  const toggleReadMore = (idx: number) => {
-    setExpandedCards((prev) => ({
-      ...prev,
-      [idx]: !prev[idx],
-    }));
-  };
-
-  // Animation variants
-  const textVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const slideVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
+const CountryList: React.FC = () => {
   return (
-    <div className="w-full min-h-screen bg-black text-white">
-      <h4 className="text-primary uppercase tracking-wide text-sm text-center -my-4">
-        — Countries —
-      </h4>
-      <div className="py-10 px-4 max-w-7xl mx-auto">
-        <motion.h1
-          className="text-5xl font-bold text-center mb-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={textVariants}
-        >
-          Study Abroad Destinations
-        </motion.h1>
-        <motion.p
-          className="text-center text-lg mb-10 text-white/90"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={textVariants}
-          transition={{ delay: 0.2 }}
-        >
-          Explore top countries to begin your global education journey.
-        </motion.p>
-
-        <div className="relative">
-          {/* Custom Navigation Buttons */}
-          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-10">
-            <button className="swiper-button-prev-custom text-4xl text-primary hover:text-red-700">
-              <FaArrowAltCircleLeft />
-            </button>
-          </div>
-          <div className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-10">
-            <button className="swiper-button-next-custom text-4xl text-primary hover:text-red-700">
-              <FaArrowAltCircleRight />
-            </button>
-          </div>
-
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={24}
-            slidesPerView={1}
-            navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
-            }}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-          >
-            {countries.map((country, idx) => (
-              <SwiperSlide key={idx}>
-                <AnimatedCard
-                  idx={idx}
-                  country={country}
-                  expanded={!!expandedCards[idx]}
-                  onToggle={() => toggleReadMore(idx)}
-                  slideVariants={slideVariants}
-                  textVariants={textVariants}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
+    <div className="flex flex-wrap gap-8 justify-center items-center py-10">
+      {countries.map((country, index) => (
+        <FlipCard
+          key={index}
+          imageSrc={country.image}
+          title={country.title}
+          backDescription={country.description}
+        />
+      ))}
     </div>
   );
-}
+};
 
-// Separate component for each animated card
-function AnimatedCard({
-  idx,
-  country,
-  expanded,
-  onToggle,
-  slideVariants,
-  textVariants,
-}: {
-  idx: number;
-  country: (typeof countries)[number];
-  expanded: boolean;
-  onToggle: () => void;
-  slideVariants: any;
-  textVariants: any;
-}) {
-  // ref for inView tracking
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  // Track if card has been viewed at least once to prevent animation reset on scroll
-  const [hasBeenInView, setHasBeenInView] = useState(false);
-
-  useEffect(() => {
-    if (isInView) {
-      setHasBeenInView(true);
-    }
-  }, [isInView]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className="bg-zinc-900 rounded-2xl p-5 shadow-md border border-zinc-800 hover:shadow-lg transition-all h-full flex flex-col"
-      initial="hidden"
-      animate={hasBeenInView ? "visible" : "hidden"}
-      variants={slideVariants}
-      transition={{ delay: idx * 0.1 }}
-    >
-      <div className="mb-4">
-        <Image
-          src={country.image}
-          alt={country.title}
-          width={400}
-          height={250}
-          className="w-full h-48 object-cover rounded-xl"
-        />
-      </div>
-      <motion.h2
-        className="text-xl font-semibold mb-3 text-white"
-        initial="hidden"
-        animate={hasBeenInView ? "visible" : "hidden"}
-        variants={textVariants}
-        transition={{ delay: idx * 0.1 + 0.1 }}
-      >
-        {country.title}
-      </motion.h2>
-      <motion.p
-        className="text-zinc-300 flex-grow"
-        initial="hidden"
-        animate={hasBeenInView ? "visible" : "hidden"}
-        variants={textVariants}
-        transition={{ delay: idx * 0.15 + 0.2 }}
-      >
-        {expanded
-          ? country.description
-          : country.description.length > 150
-          ? country.description.slice(0, 150) + "..."
-          : country.description}
-      </motion.p>
-      {country.description.length > 150 && (
-        <button
-          onClick={onToggle}
-          className="mt-3 text-primary hover:text-red-700 font-semibold self-start"
-        >
-          {expanded ? "Read Less" : "Read More"}
-        </button>
-      )}
-    </motion.div>
-  );
-}
+export default CountryList;

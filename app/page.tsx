@@ -10,6 +10,8 @@ import ContactSection from "@/components/sections/ContactSection";
 import Testimonial from "@/components/sections/Testimonial";
 import Herocontent from "@/components/sections/Herocontent";
 import { useState, useEffect } from "react";
+import FlipCard from "@/components/sections/FlipCard";
+import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -22,14 +24,15 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <Loading3D />;
+    // return <Loading3D />;
   }
 
   return (
     <>
       <Hero />
       <Herocontent />
-      <Countries />
+      {/* <Countries /> */}
+      <CountriesCarousel />
       {/* <Knowaboutus /> */}
       <ServicesSection />
       <UniversitiesSection />
