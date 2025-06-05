@@ -57,6 +57,7 @@
     "sonner": "^2.0.3",
     "swiper": "^11.2.8",
     "tailwind-merge": "^3.3.0",
+    "tailwind-scrollbar-hide": "^4.0.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.176.0",
     "three-stdlib": "^2.36.0",
@@ -67,8 +68,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
     "@types/three": "^0.177.0",
     "autoprefixer": "^10.4.21",
     "drizzle-kit": "^0.20.18",

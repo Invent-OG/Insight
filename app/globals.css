@@ -145,3 +145,16 @@
   border-bottom-right-radius: 50px;
   width: 45px;
 }
+
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-zoom-slow {
+  animation: zoomInOut 20s ease-in-out infinite;
+}

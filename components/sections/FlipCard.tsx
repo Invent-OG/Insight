@@ -47,7 +47,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
   return (
     <>
       <div
-        className="flip-card w-72 h-96 perspective-1000 rounded-lg shadow-lg overflow-hidden cursor-pointer"
+        className=" flip-card w-72  h-96 perspective-1000 rounded-lg shadow-lg overflow-hidden cursor-pointer"
         onClick={handleClick}
         tabIndex={0}
         onKeyDown={handleKeyDown}
@@ -61,20 +61,30 @@ const FlipCard: React.FC<FlipCardProps> = ({
           }`}
         >
           {/* Front Side */}
-          <div className="flip-card-front absolute w-full h-full backface-hidden rounded-lg overflow-hidden shadow-md flex justify-center items-center">
+          <div className="flip-card-front absolute  w-full h-full backface-hidden rounded-lg overflow-hidden shadow-lg flex justify-center items-center ">
+            {/* Image */}
             <Image
               src={imageSrc}
               alt={`Image of ${title}`}
-              className="w-full h-full object-cover filter brightness-90"
+              className="w-full h-full object-cover  filter brightness-80 transition-transform duration-500 hover:scale-110"
               priority
             />
-            <h1 className="absolute underline bottom-1 text-black text-1xl font-semibold drop-shadow-md">
+
+            {/* Diagonal Shadow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40"></div>
+
+            {/* Title */}
+            <h1 className="absolute bottom-0 w-full bg-gradient-to-b from-black/5 h-10  to-black text-white text-lg font-semibold drop-shadow-md">
               {title}
             </h1>
           </div>
 
           {/* Back Side */}
-          <div className="flip-card-back absolute w-full  h-full backface-hidden rotate-y-180 bg-gradient-to-tl from-black via-red-700 to-red-500 p-6 box-border rounded-lg shadow-md flex flex-col justify-center items-center text-center text-white overflow-hidden">
+          <div
+            className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-transparent backdrop-blur-sm border p-6 box-border rounded-lg shadow-md flex flex-col justify-center items-center text-center text-white overflow-auto scrollbar-hide"
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onMouseLeave={() => setFlipped(false)} // add this line to flip back on hover out
+          >
             <p
               className={`text-base leading-relaxed  transition duration-700 ease-in-out transform hover:scale-105 text-justify ${
                 animateDesc ? "animate-fadeSlideIn" : ""
@@ -94,7 +104,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
                   e.stopPropagation();
                   setShowFullDesc(!showFullDesc);
                 }}
-                className=" mt-20 text-white font-semibold px-5 py-2 rounded-md bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 transition-colors duration-300 select-none"
+                className=" mt-20 text-white font-semibold px-5 py-2 rounded-md border focus:outline-none focus:ring-2  transition-colors duration-300 select-none"
                 aria-label={showFullDesc ? "Show less" : "Read more"}
                 style={{ wordSpacing: "0.15em" }}
               >

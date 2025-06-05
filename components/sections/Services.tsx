@@ -3,11 +3,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Head from "next/head"; // for SEO meta tags
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import Link from "next/link";
+import { CardBody, CardContainer } from "@/components/ui/3d-card";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import Services from "@/app/services/page";
 
 const services = [
   {
@@ -35,18 +33,17 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  // State to track which descriptions are expanded; store indexes of expanded items
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
-  // Helper to truncate text
   const truncateText = (text: string, maxLength = 120) => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + "...";
   };
+
   const router = useRouter();
 
   return (
@@ -59,76 +56,63 @@ export default function ServicesSection() {
         />
       </Head>
 
-      <section className="bg-black text-white py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center ">
-          <h4 className="text-primary uppercase tracking-wide text-sm mb-2">
-            — Services —
-          </h4>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight py-4">
-            Your Journey, Fully Supported
-          </h2>
-          <p className="mt-2 text-neutral-400 max-w-3xl mx-auto">
-            Every Step of the Way!
-          </p>
-        </div>
+      <section className="bg-black  text-white flex flex-col  justify-center items-center">
+        {/* <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"> */}
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((service, index) => {
-            const isExpanded = expanded[index] || false;
-            const displayedText = isExpanded
-              ? service.description
-              : truncateText(service.description, 120);
+        <div className="container flex flex-col justify-center items-center gap-10 px-8 py-10  ">
+          <div className="  text-center ">
+            <h4 className="text-primary uppercase font-bold tracking-wide text-sm mb-2">
+              — Services —
+            </h4>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight ">
+              Your Journey, Fully Supported
+            </h2>
+            <p className="mt-2 text-neutral-400 max-w-3xl mx-auto">
+              Every Step of the Way!
+            </p>
+          </div>
 
-            return (
-              <CardContainer key={index} className="inter-var">
-                <CardBody className="bg-gradient-to-t from-black via-primary/80 to-black border-white/[0.1] rounded-xl p-6 w-full h-full flex flex-col hover:shadow-lg transition min-h-[420px]">
-                  <CardItem
-                    translateZ="100"
-                    className="relative w-full h-48 rounded-xl overflow-hidden mb-4"
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </CardItem>
+          <div className="flex gap-5 lg:flex-row md:flex-row flex-col">
+            {services.map((service, index) => {
+              const isExpanded = expanded[index] || false;
+              const displayedText = isExpanded
+                ? service.description
+                : truncateText(service.description, 120);
 
-                  <div className="flex-grow flex flex-col">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CardItem translateZ="60">
-                        <h3 className="text-lg font-semibold">
-                          {service.title}
-                        </h3>
-                      </CardItem>
+              return (
+                <CardContainer key={index} className="inter-var ">
+                  <CardBody className="bg-gray-950 border border-gray-700 rounded-lg p-4 sm:p-5  flex flex-col hover:shadow-sm transition">
+                    <div className="relative  h-40 sm:h-48 md:h-60 lg:h-64 rounded-lg overflow-hidden mb-3 border border-gray-700">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      />
                     </div>
-
-                    <CardItem
-                      translateZ="40"
-                      as="p"
-                      className="text-sm text-neutral-400 flex-grow"
-                    >
+                    <div className="border-t border-gray-700 mb-3"></div>
+                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-400">
                       {displayedText}
-                    </CardItem>
-
+                    </p>
                     {service.description.length > 120 && (
                       <button
                         onClick={() => toggleExpand(index)}
-                        className="mt-2 text-red-500 font-semibold hover:underline self-start"
+                        className="mt-2 text-gray-400 font-semibold hover:underline self-start"
                         type="button"
                       >
                         {isExpanded ? "Show Less" : "Read More"}
                       </button>
                     )}
-                  </div>
-                </CardBody>
-              </CardContainer>
-            );
-          })}
-        </div>
+                  </CardBody>
+                </CardContainer>
+              );
+            })}
+          </div>
 
-        <div className="max-w-7xl mx-auto  text-center">
           <Button onClick={() => router.push("/services")}>
             Go to Services
           </Button>

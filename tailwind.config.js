@@ -12,7 +12,16 @@ module.exports = {
         secondary: "#000000", // black
         background: "#FFFFFF", // white
       },
+      animation: {
+        "zoom-slow": "zoomInOut 20s ease-in-out infinite",
+      },
+      keyframes: {
+        zoomInOut: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

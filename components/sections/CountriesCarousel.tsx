@@ -3,7 +3,10 @@
 import React, { useRef } from "react";
 import FlipCard from "./FlipCard";
 import { countries } from "@/components/sections/Countries"; // your data
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import france from "@/public/assets/country/Japan.png"
 
 const CountriesCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -20,28 +23,36 @@ const CountriesCarousel: React.FC = () => {
     }
   };
 
-  return (
-    <div className="bg-black">
-      <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight  text-center ">
-        Countries
-      </h1>
-      <div className="relative w-full">
-        {/* Left Arrow */}
-        <button
-          onClick={scrollLeft}
-          aria-label="Scroll Left"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full shadow-md transition
-          bg-red-700 hover:bg-black"
-        >
-          <FaArrowAltCircleLeft size={30} className="text-white" />
-        </button>
+  const router = useRouter();
 
-        {/* Carousel container */}
+  return (
+    <div className="relative overflow-hidden">
+      {/* Background image with animation */}
+      <div className="absolute inset-0 -z-20 overflow-hidden ">
+        <Image
+          src={france}
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          className="animate-zoom-slow"
+          priority
+          quality={75}
+        />
+      </div>
+
+      {/* Overlay to darken background */}
+      <div className="absolute inset-0 bg-black/80"></div>
+
+      {/* Your content */}
+      <div className="relative z-10 bg-transparent text-white">
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center py-8">
+          Countries
+        </h1>
         <div
           ref={carouselRef}
-          className="w-full overflow-x-auto scroll-smooth scrollbar-hide bg-black"
+          className="w-full overflow-x-auto scroll-smooth scrollbar-hide flex justify-center"
         >
-          <div className="flex gap-6 px-4 py-8">
+          <div className="flex gap-6 px-4 py-12 mb-6">
             {countries.map((country, index) => (
               <div key={index} className="flex-shrink-0">
                 <FlipCard
@@ -54,15 +65,12 @@ const CountriesCarousel: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Arrow */}
-        <button
-          onClick={scrollRight}
-          aria-label="Scroll Right"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full shadow-md transition
-          bg-red-700 hover:bg-black"
-        >
-          <FaArrowAltCircleRight size={30} className="text-white" />
-        </button>
+        {/* Center button */}
+        <div className="flex justify-center py-4">
+          <Button onClick={() => router.push("/countries")}>
+            Explore Countries
+          </Button>
+        </div>
       </div>
     </div>
   );
