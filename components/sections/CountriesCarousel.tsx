@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import FlipCard from "./FlipCard";
 import { countries } from "@/components/sections/Countries"; // your data
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import france from "@/public/assets/country/Japan.png"
+import france from "@/public/assets/country/Japan.png";
 
 const CountriesCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -24,6 +24,7 @@ const CountriesCarousel: React.FC = () => {
   };
 
   const router = useRouter();
+  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
 
   return (
     <div className="relative overflow-hidden">
@@ -59,6 +60,9 @@ const CountriesCarousel: React.FC = () => {
                   imageSrc={country.image}
                   title={country.title}
                   backDescription={country.description}
+                  id={country.id}
+                  flipped={flippedCardId === country.id}
+                  setFlippedCardId={setFlippedCardId}
                 />
               </div>
             ))}
