@@ -132,7 +132,7 @@ const CountryList: React.FC = () => {
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
 
   return (
-    <div className="flex  justify-center items-center gap-8 py-10 bg-black/90  mx-auto">
+    <div className="flex  justify-center items-center gap-8 lg:py-10 md:py-8 bg-black/90  mx-auto">
       {countries.map((country, index) => (
         <FlipCard
           key={index}

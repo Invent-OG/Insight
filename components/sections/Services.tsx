@@ -81,32 +81,35 @@ export default function ServicesSection() {
 
               return (
                 <CardContainer key={index} className="inter-var ">
-                  <CardBody className="bg-gray-950 border border-gray-700 rounded-lg p-4 sm:p-5  flex flex-col hover:shadow-sm transition">
-                    <div className="relative  h-40 sm:h-48 md:h-60 lg:h-64 rounded-lg overflow-hidden mb-3 border border-gray-700">
+                  <CardBody className="bg-gray-950 border border-gray-700 rounded-lg overflow-hidden flex flex-col hover:shadow-sm transition h-72 sm:h-80 md:h-96">
+                    <div className="relative h-[90%] ">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover"
+                        className="object-cover w-full "
                         sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                       />
                     </div>
-                    <div className="border-t border-gray-700 mb-3"></div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-400">
-                      {displayedText}
-                    </p>
-                    {service.description.length > 120 && (
-                      <button
-                        onClick={() => toggleExpand(index)}
-                        className="mt-2 text-gray-400 font-semibold hover:underline self-start"
-                        type="button"
-                      >
-                        {isExpanded ? "Show Less" : "Read More"}
-                      </button>
-                    )}
+
+                    <div className="flex flex-col justify-between flex-grow p-4 sm:p-5">
+                      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-gray-400">
+                        {displayedText}
+                      </p>
+
+                      {service.description.length > 120 && (
+                        <button
+                          onClick={() => toggleExpand(index)}
+                          className="mt-2 text-gray-400 font-semibold hover:underline self-start"
+                          type="button"
+                        >
+                          {isExpanded ? "Show Less" : "Read More"}
+                        </button>
+                      )}
+                    </div>
                   </CardBody>
                 </CardContainer>
               );

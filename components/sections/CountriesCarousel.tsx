@@ -46,7 +46,7 @@ const CountriesCarousel: React.FC = () => {
 
       {/* Your content */}
       <div className="relative z-10 bg-transparent text-white">
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center py-8">
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center lg:py-8">
           Countries
         </h1>
         <div
@@ -70,7 +70,7 @@ const CountriesCarousel: React.FC = () => {
         </div>
 
         {/* Center button */}
-        <div className="flex justify-center py-4">
+        <div className="flex justify-center lg:py-4 mb-4 ">
           <Button onClick={() => router.push("/countries")}>
             Explore Countries
           </Button>
