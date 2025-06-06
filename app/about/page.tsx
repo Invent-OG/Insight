@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths"; // Import the correct component
+import DisplayCards from "@/components/ui/display-cards";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -193,10 +194,10 @@ export default function About() {
 
         {/* Offerings Section */}
         {/* Offerings Section */}
-        <section className="relative lg:py-20 lg:mt-14 px-6 min-h-[620px]">
+        <section className="relative lg:py-20 lg:mt-14 px-6 min-h-[620px] sm:min-h-[800px]">
           {/* Background image with blur */}
           <div
-            className="absolute inset-0 bg-center bg-cover bg-fixed filter blur-sm"
+            className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-75"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=80')",
@@ -206,7 +207,7 @@ export default function About() {
 
           {/* Blue translucent overlay */}
           <div
-            className="absolute inset-0 bg-blue-900 opacity-30 pointer-events-none"
+            className="absolute inset-0 bg-black opacity-30 pointer-events-none"
             aria-hidden="true"
           ></div>
 
@@ -218,11 +219,12 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="md:w-1/2 flex-1 p-10 rounded-3xl border border-white shadow-lg flex flex-col relative bg-transparent"
+              className="md:w-1/2 flex-1 p-6 sm:p-8 rounded-3xl border border-white shadow-lg flex flex-col relative bg-transparent"
+              style={{ minHeight: "auto" }}
             >
               {/* Glowing Circles */}
-              <div className="absolute -top-7 -left-7 w-48 h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              <div className="absolute -bottom-7 -right-7 w-48 h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+              <div className="absolute -top-7 -left-7 w-36 h-36 sm:w-48 sm:h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+              <div className="absolute -bottom-7 -right-7 w-36 h-36 sm:w-48 sm:h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
 
               {/* Heading */}
               <motion.h2
@@ -230,16 +232,16 @@ export default function About() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.9 }}
                 viewport={{ once: true }}
-                className="text-4xl font-extrabold text-red-400 mb-10 relative z-10 flex items-center gap-4"
+                className="text-3xl sm:text-4xl font-extrabold text-red-400 mb-8 sm:mb-10 relative z-10 flex items-center gap-3 sm:gap-4"
               >
                 <span className="bg-gradient-to-r from-red-500 to-red-700 text-transparent bg-clip-text">
                   Our Services
                 </span>
-                <span className="w-16 h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-full animate-pulse"></span>
+                <span className="w-12 sm:w-16 h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-full animate-pulse"></span>
               </motion.h2>
 
               {/* Paragraphs with hover effect */}
-              <motion.div className="relative z-10 space-y-8 flex-1">
+              <motion.div className="relative z-10 space-y-6 sm:space-y-8 flex-1">
                 {[
                   {
                     delay: 0,
@@ -250,7 +252,7 @@ stress-free.`,
                     icon: (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-red-500"
+                        className="h-5 w-5 text-red-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -282,7 +284,7 @@ questions—big or small—and we actively involve parents in the
 process to build trust and clarity. Our goal is to provide not just a
 service, but a life-changing experience.`,
                     icon: null,
-                    extraClass: "bg-gray-800 bg-opacity-30 p-5 rounded-lg",
+                    extraClass: "bg-gray-800 bg-opacity-30 p-4 rounded-lg",
                   },
                   {
                     delay: 0.6,
@@ -293,7 +295,7 @@ to finish. Discover your path to international education with Insight
                     icon: (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-red-500 flex-shrink-0 inline-block mr-3"
+                        className="h-5 w-5 text-red-500 flex-shrink-0 inline-block mr-2"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -306,25 +308,25 @@ to finish. Discover your path to international education with Insight
                         />
                       </svg>
                     ),
-                    extraClass: "flex items-center gap-4",
+                    extraClass: "flex items-center gap-3",
                   },
                   {
                     delay: 0.8,
                     text: `Let us be your guide to a world of educational possibilities and unforgettable experiences abroad.`,
                     icon: null,
-                    extraClass: "italic border-t border-gray-700 pt-6",
+                    extraClass: "italic border-t border-gray-700 pt-4",
                   },
                 ].map(({ delay, text, icon, extraClass }, i) => (
                   <motion.p
                     key={i}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay }}
                     viewport={{ once: true }}
-                    className={`text-lg text-gray-300 leading-relaxed transition-transform duration-300 hover:-translate-y-2 cursor-default ${extraClass}`}
+                    className={`text-base sm:text-lg text-gray-300 leading-relaxed transition-transform duration-300 hover:-translate-y-1 cursor-default ${extraClass}`}
                   >
                     {icon && (
-                      <span className="inline-block mr-3 p-2 bg-red-600 rounded-full">
+                      <span className="inline-block mr-2 p-1.5 bg-red-600 rounded-full">
                         {icon}
                       </span>
                     )}
@@ -340,7 +342,7 @@ to finish. Discover your path to international education with Insight
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="md:w-1/2 flex-1 overflow-y-auto space-y-5 rounded-3xl p-8 border border-white shadow-lg flex flex-col justify-evenly items-center max-h-[400px] md:max-h-full bg-transparent"
+              className="md:w-1/2 flex-1 overflow-y-auto space-y-4 rounded-3xl p-6 sm:p-8 border border-white shadow-lg flex flex-col justify-evenly items-center max-h-[320px] sm:max-h-[400px] md:max-h-full bg-transparent"
             >
               {[
                 "IELTS coaching in Coimbatore by certified professionals",
@@ -358,7 +360,7 @@ to finish. Discover your path to international education with Insight
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-transparent border border-white rounded-lg shadow hover:bg-red-600 hover:text-white transition cursor-pointer flex items-center min-h-[40px] md:min-h-[60px] p-4 md:p-6 text-base md:text-lg"
+                  className="bg-transparent border border-white rounded-lg shadow hover:bg-red-600 hover:text-white transition cursor-pointer flex items-center min-h-[36px] sm:min-h-[50px] p-3 sm:p-4 text-sm sm:text-base"
                 >
                   {service}
                 </motion.div>
@@ -368,106 +370,14 @@ to finish. Discover your path to international education with Insight
         </section>
 
         {/* Core Values Section */}
-        <section className="container py-20 px-6 bg-black relative z-10 max-w-5xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-            className="text-center"
-          >
-            <motion.h2
-              variants={titleVariants}
-              className="text-4xl font-bold text-white mb-16"
-            >
-              Our Core Values
-            </motion.h2>
-            <div className="grid md:grid-cols-2 gap-10">
-              {[
-                {
-                  label: "🎯 Kind Attitude",
-                  value: "“We treat every student with empathy and respect.”",
-                  icon: "🎯",
-                },
-                {
-                  label: "🔍 Clarity",
-                  value: "“Students understand every step in their journey.”",
-                  icon: "🔍",
-                },
-                {
-                  label: "📅 Professionalism",
-                  value: "“We operate with timely, reliable support.”",
-                  icon: "📅",
-                },
-                {
-                  label: "🤝 Trust",
-                  value: "“We build honest, lasting relationships.”",
-                  icon: "🤝",
-                },
-              ].map(({ label, value, icon }, i) => (
-                <motion.div
-                  key={i}
-                  variants={containerVariants}
-                  className="relative bg-gray-900 rounded-lg p-10 cursor-default hover:bg-gray-800 transition shadow-lg"
-                  whileHover={{ scale: 1.04 }}
-                >
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-6 right-6 text-7xl opacity-10 select-none pointer-events-none"
-                  >
-                    {icon}
-                  </span>
-                  <motion.p
-                    variants={descriptionVariants}
-                    className="text-gray-300 italic text-lg mb-6"
-                  >
-                    {value}
-                  </motion.p>
-                  <motion.strong
-                    variants={titleVariants}
-                    className="block text-white text-2xl"
-                  >
-                    {label}
-                  </motion.strong>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="relative py-24 px-6 flex justify-center bg-gradient-to-b from-transparent to-black text-white max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center"
-          >
-            <motion.h3
-              variants={titleVariants}
-              className="text-4xl font-extrabold mb-6"
-            >
-              Ready to Start Your Journey?
-            </motion.h3>
-            <motion.p
-              variants={descriptionVariants}
-              custom={0.3}
-              className="mb-8 text-lg text-gray-300 max-w-xl mx-auto"
-            >
-              Join hundreds of students who have already taken the leap. Book
-              your free consultation and let's get started!
-            </motion.p>
-            <motion.button
-              whileHover={{ scale: 1.05, textDecoration: "underline" }}
-              onClick={() => alert("Booking functionality coming soon!")}
-              className="text-white font-semibold text-lg underline-offset-4 transition"
-              style={{ background: "transparent", border: "none" }}
-            >
-              Book a Free Consultation
-            </motion.button>
-          </motion.div>
-        </section>
+        {/* Optional dark overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-7xl px-6">
+          <DisplayCards />
+        </div>
       </main>
     </>
   );
