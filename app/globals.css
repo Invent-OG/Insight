@@ -158,3 +158,12 @@
 .animate-zoom-slow {
   animation: zoomInOut 20s ease-in-out infinite;
 }
+/* countries */
+@keyframes ripple {
+  0% { background-position: 50% 50%; }
+  100% { background-position: 200% 200%; }
+}
+.group-hover\:animate-ripple {
+  background-size: 400% 400%;
+  animation: ripple 6s linear infinite;
+}

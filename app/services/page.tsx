@@ -64,7 +64,7 @@ export default function Services() {
                   <ServiceCard {...service} data-id={`service-${idx}`} />
                 </AnimatedBackground>
               ))}
-            </div>
+            </div>  
           </div>
         </section>
       </main>

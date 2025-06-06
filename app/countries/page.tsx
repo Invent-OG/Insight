@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import uk from "@/public/assets/UK.png";
@@ -138,76 +137,111 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] text-gray-200 py-16 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-      <h1 className="col-span-full text-5xl font-extrabold uppercase text-center mb-12 tracking-widest font-sans select-none text-cyan-400 drop-shadow-lg">
-        Study Abroad Destinations
-      </h1>
+    <>
+      <>
+        {/* Hero Section - Full Width */}
+        <section
+          className="w-full min-h-screen sm:h-80 md:h-96 flex justify-center items-center text-center px-4 sm:px-6 md:px-12 relative overflow-hidden bg-fixed"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1594734415578-00fc9540929b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundBlendMode: "overlay",
+            backgroundColor: "rgba(0,0,0,0.7)",
+          }}
+        >
+          <h1 className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-widest font-sans select-none text-white drop-shadow-lg animate-slideinleft">
+            Study <span className="text-primary">Abroad</span> Destinations
+          </h1>
 
-      {countries.map((country, index) => {
-        // example progress % for demo, can be dynamic
-        const progress = Math.min(100, 20 + index * 15);
+          <style>{`
+  @keyframes slideinleft {
+    0% { opacity: 0; transform: translateX(-100%); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slideinleft {
+    animation: slideinleft 1s ease-out forwards;
+  }
+`}</style>
 
-        return (
-          <motion.div
-            key={country.title}
-            layout
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col items-center cursor-pointer"
-            onClick={() => toggleExpand(index)}
-          >
-            <svg className="w-40 h-40" viewBox="0 0 120 120">
-              <circle
-                cx="60"
-                cy="60"
-                r="54"
-                stroke="#0ff"
-                strokeWidth="6"
-                fill="none"
-                opacity="0.2"
-              />
-              <circle
-                cx="60"
-                cy="60"
-                r="54"
-                stroke="#0ff"
-                strokeWidth="6"
-                fill="none"
-                strokeDasharray={2 * Math.PI * 54}
-                strokeDashoffset={2 * Math.PI * 54 * (1 - progress / 100)}
-                strokeLinecap="round"
-                style={{ transition: "stroke-dashoffset 0.5s ease" }}
-              />
-              <foreignObject
-                x="18"
-                y="18"
-                width="84"
-                height="84"
-                className="rounded-full overflow-hidden"
-              >
-                <Image
-                  src={country.image}
-                  alt={country.title}
-                  width={84}
-                  height={84}
-                  className="rounded-full"
-                  priority
-                />
-              </foreignObject>
-            </svg>
-            <h2 className="mt-6 text-2xl font-extrabold uppercase text-cyan-300 tracking-wide">
-              {country.title}
-            </h2>
-            <p className="mt-3 text-center text-cyan-200 text-sm line-clamp-4 max-w-xs">
-              {expandedIndex === index
-                ? country.description
-                : truncateText(country.description, 120)}
-            </p>
-          </motion.div>
-        );
-      })}
-    </div>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+      const text = "Study Abroad Destinations";
+      let idx = 0;
+      const speed = 120;
+      const typewriter = document.getElementById('typewriter');
+
+      function type() {
+        if(idx < text.length) {
+          typewriter.textContent += text.charAt(idx);
+          idx++;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+      `,
+            }}
+          />
+        </section>
+
+        {/* Cards Section - Container with Grid */}
+        <section className="w-full  mx-auto min-h-screen lg:py-20 flex justify-center gap-10 bg-black/90 px-4 sm:px-6 md:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 text-gray-200">
+            {countries.map((country, index) => {
+              return (
+                <motion.div
+                  key={country.title}
+                  style={{
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1690983320828-c01b88baacb0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                  className="relative w-full max-w-xs sm:max-w-sm md:max-w-xs h-80 cursor-pointer mx-auto"
+                  onClick={() => toggleExpand(index)}
+                >
+                  {/* Bottom Card */}
+                  <div className="absolute top-4 left-4 w-full h-full bg-[#2a2a2a] rounded-xl shadow-lg"></div>
+                  {/* Middle Card */}
+                  <div className="absolute top-2 left-2 w-full h-full bg-[#3a3a3a] rounded-xl shadow-lg"></div>
+                  {/* Top Card */}
+                  <motion.div
+                    className="relative w-full h-full bg-[#1c1c1c] rounded-xl shadow-xl flex flex-col items-center justify-center p-4"
+                    whileHover={{ y: -10 }}
+                  >
+                    {/* Image with Glow Effect */}
+                    <div className="relative w-24 h-24 mb-4">
+                      <div className="absolute inset-0 rounded-full bg-white/90 opacity-20 blur-lg animate-pulse"></div>
+                      <Image
+                        src={country.image}
+                        alt={country.title}
+                        width={96}
+                        height={96}
+                        className="relative rounded-full  shadow-md"
+                      />
+                    </div>
+
+                    <h2 className="text-xl font-bold text-gray-300 text-center">
+                      {country.title}
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-200 text-center">
+                      {expandedIndex === index
+                        ? country.description
+                        : truncateText(country.description, 100)}
+                    </p>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+      </>
+    </>
   );
 };
 
