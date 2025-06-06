@@ -145,7 +145,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-4"
+            className="inline-block bg-red-500 text-white px-3  rounded-full text-xs font-semibold lg:mb-4 "
           >
             {badge}
           </motion.span>
@@ -178,9 +178,9 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="mt-20"
+          className="lg:mt-20 "
         >
-          <Button className="flex justify-center items-center text-center mx-auto text-white">
+          <Button className="flex justify-center items-center text-center mx-auto  text-white">
             Get Personalized Assistance Now
           </Button>
         </motion.div>

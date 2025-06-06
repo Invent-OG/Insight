@@ -9,23 +9,35 @@ import {
   MdHome,
   MdAttachMoney,
 } from "react-icons/md";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { GiDiploma, GiGraduateCap } from "react-icons/gi";
 import { IoDocumentText } from "react-icons/io5";
+
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import AnimatedBackground from "@/components/ui/animated-background"; // Adjust path as needed
+import { HeroGeometric } from "@/components/ui/shape-landing-hero"; // Adjust path as needed
 import "@/app/globals.css";
 
-// Import the updated HeroGeometric component
-import { HeroGeometric } from "@/components/ui/shape-landing-hero"; // Assuming your file is saved here
-import { Button } from "@/components/ui/button";
-
-// DemoHeroGeometric component using the updated HeroGeometric
 function DemoHeroGeometric() {
   return <HeroGeometric />;
 }
 
+// Animation variants for fade-in and slide-up on mount
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function Services() {
+  const { scrollY } = useViewportScroll();
+
+  // Map scrollY to background Y position for parallax effect
+  // Adjust scroll range and movement as you like
+  const bgY = useTransform(scrollY, [0, 500], ["0%", "30%"]);
+
   return (
     <>
       <Head>
@@ -36,9 +48,8 @@ export default function Services() {
         />
       </Head>
 
-      <main className="bg-black w-full min-h-screen ">
+      <main className="bg-gradient-to-tr from-indigo-900 via-black to-gray-900 min-h-screen w-full text-gray-100">
         {/* Hero Section */}
-
         <section
           className="min-h-screen flex items-center justify-center text-center"
           style={{ margin: 0, paddingTop: 0, paddingBottom: 0 }}
@@ -47,8 +58,38 @@ export default function Services() {
         </section>
 
         {/* Services Section */}
-        <section className="w-full bg-black">
-          <div className="max-w-7xl mx-auto px-6 py-16">
+        <section className="w-full relative bg-black/70 overflow-hidden">
+          {/* Parallax Background Image */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-0 -z-20 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('')",
+              y: bgY,
+              filter: "brightness(0.4)",
+            }}
+          />
+
+          {/* Background overlay with subtle animated gradient */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 opacity-30"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%"],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+              repeatType: "reverse",
+            }}
+            style={{
+              backgroundSize: "200% 200%",
+              filter: "blur(80px)",
+            }}
+          />
+
+          <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
             <h2 className="text-3xl font-bold text-center text-primary mb-12">
               What We Offer
             </h2>
@@ -61,16 +102,17 @@ export default function Services() {
                   enableHover={true}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <ServiceCard {...service} data-id={`service-${idx}`} />
+                  <ServiceCard {...service} index={idx} />
                 </AnimatedBackground>
               ))}
-            </div>  
+            </div>
           </div>
         </section>
       </main>
     </>
   );
 }
+
 const services = [
   {
     icon: <MdSupportAgent size={28} className="text-red-600" />,
@@ -128,95 +170,35 @@ const services = [
   },
 ];
 
-type ServiceCardProps = {
+interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  "data-id"?: string;
-};
+  index: number;
+}
 
-function ServiceCard({
-  icon,
-  title,
-  description,
-  "data-id": dataId,
-}: ServiceCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
+  const { scrollYProgress } = useViewportScroll();
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  // Slightly offset each card's scroll range for natural staggered parallax
+  const yRangeStart = 0 + index * 0.1;
+  const yRangeEnd = 1 + index * 0.1;
 
-  const rotateX = useTransform(y, [-50, 50], [15, -15]);
-  const rotateY = useTransform(x, [-50, 50], [-15, 15]);
-
-  const springConfig = { stiffness: 400, damping: 20 };
-  const springX = useSpring(rotateX, springConfig);
-  const springY = useSpring(rotateY, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const offsetX = e.clientX - rect.left - rect.width / 2;
-    const offsetY = e.clientY - rect.top - rect.height / 2;
-
-    x.set(offsetX);
-    y.set(offsetY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  // Map scroll progress to vertical translate Y between -20 and +20 pixels
+  const y = useTransform(scrollYProgress, [yRangeStart, yRangeEnd], [-20, 20]);
 
   return (
     <motion.div
-      data-id={dataId}
-      ref={cardRef}
-      className="bg-black rounded-lg p-6 cursor-pointer relative overflow-hidden flex"
-      style={{
-        rotateX: springX,
-        rotateY: springY,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.07, boxShadow: "0 0 40px #f87171" }}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      variants={fadeUpVariants}
+      style={{ y }}
+      className="relative cursor-default p-8 rounded-3xl bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 border border-gray-300 shadow-md flex flex-col items-center text-center text-gray-800"
     >
-      <div className="w-2 bg-red-500 rounded-l-lg mr-5" />
-      <div>
-        <motion.div
-          className="text-4xl text-red-400 mb-3"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
-          {icon}
-        </motion.div>
-        <motion.h3
-          className="text-white text-xl font-semibold overflow-hidden whitespace-nowrap"
-          initial={{ width: 0, opacity: 0 }}
-          whileInView={{ width: "auto", opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-        >
-          {title}
-        </motion.h3>
-        <motion.p
-          className="text-gray-400 mt-2 max-w-xs"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          {description}
-        </motion.p>
-      </div>
+      <div className="mb-4">{icon}</div>
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p className="text-sm">{description}</p>
     </motion.div>
   );
 }

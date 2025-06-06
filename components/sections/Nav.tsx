@@ -16,7 +16,7 @@ export default function Nav() {
   useEffect(() => {
     // Initialize GSAP timeline for menu animation
     tl.current = gsap.timeline({
-      defaults: { duration: 1, ease: "expo.inOut" },
+      defaults: { duration: 0.6, ease: "expo.inOut" },
       paused: true,
       onReverseComplete: () => {
         // After close animation finishes, update state to hide menu and show hamburger
@@ -29,7 +29,7 @@ export default function Nav() {
       .to(navRef.current, { height: "100vh" }, "-=0.1")
       .to(
         linksRef.current,
-        { opacity: 1, pointerEvents: "all", stagger: 0.2 },
+        { opacity: 1, pointerEvents: "all", stagger: 0.1 },
         "-=0.8"
       )
       .to(closeRef.current, { opacity: 1, pointerEvents: "all" }, "-=0.8")
