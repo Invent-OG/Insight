@@ -193,47 +193,51 @@ const Page = () => {
         </section>
 
         {/* Cards Section - Container with Grid */}
-        <section className="w-full  mx-auto min-h-screen lg:py-20 flex justify-center gap-10 bg-black/90 px-4 sm:px-6 md:px-12">
+        <section
+          className="w-full mx-auto min-h-screen lg:py-20 flex justify-center gap-10 bg-black bg-cover bg-center px-4 sm:px-6 md:px-12"
+          style={{
+            backgroundImage: `url("https://www.transparenttextures.com/patterns/stardust.png")`, // You can replace this with any texture you like
+          }}
+        >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 text-gray-200">
             {countries.map((country, index) => {
               return (
                 <motion.div
                   key={country.title}
-                  style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1690983320828-c01b88baacb0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
                   className="relative w-full max-w-xs sm:max-w-sm md:max-w-xs h-80 cursor-pointer mx-auto"
                   onClick={() => toggleExpand(index)}
                 >
                   {/* Bottom Card */}
-                  <div className="absolute top-4 left-4 w-full h-full bg-[#2a2a2a] rounded-xl shadow-lg"></div>
+                  <div className="absolute top-4 left-4 w-full h-full bg-[#181818] rounded-xl shadow-lg"></div>
                   {/* Middle Card */}
-                  <div className="absolute top-2 left-2 w-full h-full bg-[#3a3a3a] rounded-xl shadow-lg"></div>
+                  <div className="absolute top-2 left-2 w-full h-full bg-[#292929] rounded-xl shadow-lg"></div>
                   {/* Top Card */}
                   <motion.div
-                    className="relative w-full h-full bg-[#1c1c1c] rounded-xl shadow-xl flex flex-col items-center justify-center p-4"
+                    className="relative w-full h-full rounded-xl shadow-xl flex flex-col items-center justify-center p-4 bg-cover bg-center border border-gray-800 hover:border-cyan-400 hover:shadow-cyan-400/50 transition-all duration-300"
+                    style={{
+                      backgroundImage: `url("https://images.unsplash.com/photo-1690983320828-c01b88baacb0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0")`,
+                    }}
                     whileHover={{ y: -10 }}
                   >
+                    {/* Overlay to dim the background and add contrast */}
+                    <div className="absolute inset-0 bg-black/50 rounded-xl"></div>
+
                     {/* Image with Glow Effect */}
-                    <div className="relative w-24 h-24 mb-4">
+                    <div className="relative w-24 h-24 mb-4 z-10">
                       <div className="absolute inset-0 rounded-full bg-white/90 opacity-20 blur-lg animate-pulse"></div>
                       <Image
                         src={country.image}
                         alt={country.title}
                         width={96}
                         height={96}
-                        className="relative rounded-full  shadow-md"
+                        className="relative rounded-lg shadow-md object-cover"
                       />
                     </div>
 
-                    <h2 className="text-xl font-bold text-gray-300 text-center">
+                    <h2 className="text-xl font-bold text-gray-300 text-center z-10">
                       {country.title}
                     </h2>
-                    <p className="mt-2 text-sm text-gray-200 text-center">
+                    <p className="mt-2 text-sm text-gray-200 text-center z-10">
                       {expandedIndex === index
                         ? country.description
                         : truncateText(country.description, 100)}
