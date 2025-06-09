@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import uk from "@/public/assets/UK.png";
@@ -136,6 +136,17 @@ const Page = () => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 100) setShowContent(true);
+      else setShowContent(false);
+    }
+    handleScroll(); // initial check
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
       <>
@@ -144,7 +155,7 @@ const Page = () => {
           className="w-full min-h-screen sm:h-80 md:h-96 flex justify-center items-center text-center px-4 sm:px-6 md:px-12 relative overflow-hidden bg-fixed"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1594734415578-00fc9540929b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+              "url('https://images.unsplash.com/photo-1594734415578-00fc9540929b?q=80&w=1470&auto=format&fit=crop')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -152,40 +163,33 @@ const Page = () => {
             backgroundColor: "rgba(0,0,0,0.7)",
           }}
         >
-          <h1 className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-widest font-sans select-none text-white drop-shadow-lg animate-slideinleft">
+          <motion.h1
+            initial={{ opacity: 0, x: -100 }}
+            animate={
+              showContent ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
+            }
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-widest font-sans select-none text-white drop-shadow-lg"
+            style={{ willChange: "opacity, transform" }}
+          >
             Study <span className="text-primary">Abroad</span> Destinations
-          </h1>
+          </motion.h1>
 
-          <style>{`
-  @keyframes slideinleft {
-    0% { opacity: 0; transform: translateX(-100%); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-  .animate-slideinleft {
-    animation: slideinleft 1s ease-out forwards;
-  }
-`}</style>
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-      const text = "Study Abroad Destinations";
-      let idx = 0;
-      const speed = 120;
-      const typewriter = document.getElementById('typewriter');
-
-      function type() {
-        if(idx < text.length) {
-          typewriter.textContent += text.charAt(idx);
-          idx++;
-          setTimeout(type, speed);
-        }
-      }
-
-      type();
-      `,
-            }}
-          />
+          {/* Scroll down indicator */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </div>
         </section>
 
         {/* Cards Section - Container with Grid */}
