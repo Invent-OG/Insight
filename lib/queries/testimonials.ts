@@ -1,4 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  UseMutationResult,
+} from "@tanstack/react-query";
 
 // Types
 export interface Testimonial {
@@ -31,17 +36,14 @@ const createTestimonial = async (
   return response.json();
 };
 
-const updateTestimonial = async ({
-  id,
-  data,
-}: {
+const updateTestimonial = async (params: {
   id: string;
   data: Omit<Testimonial, "id">;
 }): Promise<Testimonial> => {
-  const response = await fetch(`/api/testimonials/${id}`, {
+  const response = await fetch(`/api/testimonials/${params.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(params.data),
   });
   if (!response.ok) throw new Error("Failed to update testimonial");
   return response.json();
@@ -62,9 +64,14 @@ export function useTestimonials() {
   });
 }
 
-export function useCreateTestimonial() {
+export function useCreateTestimonial(): UseMutationResult<
+  Testimonial,
+  Error,
+  Omit<Testimonial, "id">,
+  unknown
+> {
   const queryClient = useQueryClient();
-  return useMutation({
+  return useMutation<Testimonial, Error, Omit<Testimonial, "id">>({
     mutationFn: createTestimonial,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["testimonials"] });
@@ -72,9 +79,18 @@ export function useCreateTestimonial() {
   });
 }
 
-export function useUpdateTestimonial() {
+export function useUpdateTestimonial(): UseMutationResult<
+  Testimonial,
+  Error,
+  { id: string; data: Omit<Testimonial, "id"> },
+  unknown
+> {
   const queryClient = useQueryClient();
-  return useMutation({
+  return useMutation<
+    Testimonial,
+    Error,
+    { id: string; data: Omit<Testimonial, "id"> }
+  >({
     mutationFn: updateTestimonial,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["testimonials"] });
@@ -82,9 +98,14 @@ export function useUpdateTestimonial() {
   });
 }
 
-export function useDeleteTestimonial() {
+export function useDeleteTestimonial(): UseMutationResult<
+  void,
+  Error,
+  string,
+  unknown
+> {
   const queryClient = useQueryClient();
-  return useMutation({
+  return useMutation<void, Error, string>({
     mutationFn: deleteTestimonial,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["testimonials"] });

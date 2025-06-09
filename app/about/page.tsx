@@ -1,36 +1,35 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-
 import Image from "next/image";
 import Head from "next/head";
-import { BackgroundPaths } from "@/components/ui/background-paths"; // Import the correct component
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import DisplayCards from "@/components/ui/display-cards";
-import { CheckCircle } from "lucide-react";
-
-const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const titleVariants = {
-  hidden: { width: 0, opacity: 0 },
-  visible: {
-    width: "auto",
-    opacity: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
-
-const descriptionVariants = {
-  hidden: { opacity: 0 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    transition: { delay, duration: 0.8, ease: "easeOut" },
-  }),
-};
 
 export default function About() {
+  useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Disable fixed background on mobile/iPhone
+      document.documentElement.style.setProperty("--bg-attachment", "scroll");
+      return;
+    }
+
+    // On desktop, enable parallax effect by updating background position on scroll
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const bg = document.querySelector(".hero");
+      if (bg instanceof HTMLElement) {
+        bg.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
@@ -50,12 +49,12 @@ export default function About() {
         <BackgroundPaths />
         {/* Hero  sub content */}
         <section
-          className="hero flex items-center min-h-screen bg-black bg-fixed bg-center bg-cover px-8 relative overflow-hidden
+          className="hero flex items-center min-h-screen bg-black bg-center bg-cover px-8 relative overflow-hidden
              bg-[url('https://images.unsplash.com/photo-1596865249308-2472dc5807d7?q=80&w=1506&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"
           style={{
-            backgroundAttachment: "fixed",
+            backgroundAttachment: "var(--bg-attachment, scroll)", // always scroll now
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center center",
           }}
         >
           <motion.div
@@ -210,7 +209,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Offerings Section */}
         {/* Offerings Section */}
         <section className="relative lg:py-20 lg:mt-14 px-6 min-h-[620px] sm:min-h-[800px]">
           {/* Background image with blur */}

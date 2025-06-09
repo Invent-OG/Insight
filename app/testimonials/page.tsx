@@ -1,80 +1,193 @@
 "use client";
+import React, { useState } from "react";
+import {
+  useTestimonials,
+  useCreateTestimonial,
+  useUpdateTestimonial,
+  useDeleteTestimonial,
+  Testimonial,
+} from "@/lib/queries/testimonials";
 
-import Head from "next/head";
-import { FaQuoteLeft } from "react-icons/fa";
+// Props: Pass userRole from the parent component
+export default function TestimonialsUI({ userRole }: { userRole: string }) {
+  const { data, isLoading, error } = useTestimonials();
+  const createMutation = useCreateTestimonial();
+  const updateMutation = useUpdateTestimonial();
+  const deleteMutation = useDeleteTestimonial();
 
-const testimonials = [
-  {
-    name: "Aarav Patel",
-    country: "Canada",
-    message:
-      "Insight helped me navigate the entire process — from choosing my course to landing in Toronto. Their guidance made my study abroad dream come true.",
-  },
-  {
-    name: "Divya Menon",
-    country: "Germany",
-    message:
-      "The SOP and visa support were top-notch! I’m now pursuing my Master's in Berlin and couldn’t have done it without Insight.",
-  },
-  {
-    name: "Jeevan Thomas",
-    country: "Australia",
-    message:
-      "From IELTS prep to accommodation, Insight handled everything. It felt like having a trusted friend throughout the journey.",
-  },
-];
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [form, setForm] = useState<Omit<Testimonial, "id">>({
+    name: "",
+    role: "",
+    content: "",
+    imageUrl: "",
+    youtubeUrl: "",
+  });
 
-export default function Testimonials() {
+  const resetForm = () => {
+    setEditingId(null);
+    setForm({
+      name: "",
+      role: "",
+      content: "",
+      imageUrl: "",
+      youtubeUrl: "",
+    });
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editingId) {
+      updateMutation.mutate({ id: editingId, data: form });
+    } else {
+      createMutation.mutate(form);
+    }
+    resetForm();
+  };
+
+  if (isLoading) return <p>Loading testimonials...</p>;
+  if (error) return <p>Error loading testimonials.</p>;
+
   return (
-    <>
-      <Head>
-        <title>
-          Student Testimonials | Study Abroad Success Stories with Insight
-        </title>
-        <meta
-          name="description"
-          content="Hear real stories from students who achieved their study abroad dreams with Insight’s expert support. Don’t just take our word for it — see how we’ve helped students like you around the globe."
-        />
-      </Head>
+    <div className="max-w-3xl mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Testimonials</h2>
 
-      <main className="bg-white min-h-screen py-20 px-6">
-        {/* Header */}
-        <section className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            What Our Students Say
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear real stories from students who achieved their study abroad
-            dreams with Insight’s expert support.
-          </p>
-        </section>
-
-        {/* Testimonials Grid */}
-        <section className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-red-50 border border-red-200 rounded-xl p-6 shadow hover:shadow-lg transition"
-            >
-              <FaQuoteLeft className="text-red-500 text-2xl mb-4" />
-              <p className="text-gray-700 italic mb-4">
-                "{testimonial.message}"
-              </p>
-              <h3 className="text-lg font-semibold text-red-700">
-                {testimonial.name}
+      {/* List */}
+      <div className="space-y-4 mb-8">
+        {data?.testimonials.length === 0 && <p>No testimonials found.</p>}
+        {data?.testimonials.map((t) => (
+          <div
+            key={t.id}
+            className="border rounded p-4 flex justify-between items-start"
+          >
+            <div>
+              <h3 className="font-semibold">
+                {t.name} ({t.role})
               </h3>
-              <p className="text-sm text-gray-500">{testimonial.country}</p>
+              <p className="mt-1">{t.content}</p>
+              {t.imageUrl && (
+                <img
+                  src={t.imageUrl}
+                  alt={t.name}
+                  className="w-24 h-24 object-cover rounded mt-2"
+                />
+              )}
+              {t.youtubeUrl && (
+                <a
+                  href={t.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline mt-1 block"
+                >
+                  Watch Video
+                </a>
+              )}
             </div>
-          ))}
-        </section>
 
-        {/* CTA */}
-        <div className="mt-20 text-center">
-          <button className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg transition duration-300">
-            Start Your Journey
-          </button>
-        </div>
-      </main>
-    </>
+            {/* Admin Controls */}
+            {userRole === "Admin" && (
+              <div className="flex flex-col gap-2">
+                <button
+                  className="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500"
+                  onClick={() => {
+                    setEditingId(t.id);
+                    setForm({
+                      name: t.name,
+                      role: t.role,
+                      content: t.content,
+                      imageUrl: t.imageUrl || "",
+                      youtubeUrl: t.youtubeUrl || "",
+                    });
+                  }}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="bg-red-500 px-3 py-1 rounded text-white hover:bg-red-600"
+                  onClick={() => deleteMutation.mutate(t.id)}
+                  disabled={deleteMutation.isPending}
+                >
+                  {deleteMutation.isPending ? "Deleting..." : "Delete"}
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Form */}
+      {userRole === "Admin" && (
+        <form onSubmit={onSubmit} className="border p-4 rounded shadow">
+          <h3 className="text-xl font-semibold mb-4">
+            {editingId ? "Edit Testimonial" : "Add Testimonial"}
+          </h3>
+
+          <input
+            type="text"
+            placeholder="Name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            required
+            className="w-full mb-3 p-2 border rounded"
+          />
+          <input
+            type="text"
+            placeholder="Role"
+            value={form.role}
+            onChange={(e) => setForm({ ...form, role: e.target.value })}
+            required
+            className="w-full mb-3 p-2 border rounded"
+          />
+          <textarea
+            placeholder="Content"
+            value={form.content}
+            onChange={(e) => setForm({ ...form, content: e.target.value })}
+            required
+            className="w-full mb-3 p-2 border rounded"
+            rows={4}
+          />
+          <input
+            type="url"
+            placeholder="Image URL (optional)"
+            value={form.imageUrl}
+            onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+            className="w-full mb-3 p-2 border rounded"
+          />
+          <input
+            type="url"
+            placeholder="YouTube URL (optional)"
+            value={form.youtubeUrl}
+            onChange={(e) => setForm({ ...form, youtubeUrl: e.target.value })}
+            className="w-full mb-3 p-2 border rounded"
+          />
+
+          <div className="flex gap-4">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              disabled={createMutation.isPending || updateMutation.isPending}
+            >
+              {editingId
+                ? updateMutation.isPending
+                  ? "Updating..."
+                  : "Update"
+                : createMutation.isPending
+                ? "Creating..."
+                : "Create"}
+            </button>
+            {editingId && (
+              <button
+                type="button"
+                className="px-4 py-2 border rounded"
+                onClick={resetForm}
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+        </form>
+      )}
+    </div>
   );
 }

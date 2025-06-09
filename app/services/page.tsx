@@ -35,8 +35,10 @@ export default function Services() {
   const { scrollY } = useViewportScroll();
 
   // Map scrollY to background Y position for parallax effect
-  // Adjust scroll range and movement as you like
-  const bgY = useTransform(scrollY, [0, 500], ["0%", "30%"]);
+  // Added spring transition for smooth movement
+  const bgY = useTransform(scrollY, [0, 500], ["0%", "30%"], {
+    clamp: false,
+  });
 
   return (
     <>
@@ -51,7 +53,7 @@ export default function Services() {
       <main className="bg-gradient-to-tr from-indigo-900 via-black to-gray-900 min-h-screen w-full text-gray-100">
         {/* Hero Section */}
         <section
-          className="min-h-screen flex items-center justify-center text-center"
+          className="min-h-screen flex items-center justify-center text-center px-4 sm:px-6 md:px-12"
           style={{ margin: 0, paddingTop: 0, paddingBottom: 0 }}
         >
           <DemoHeroGeometric />
@@ -62,18 +64,19 @@ export default function Services() {
           {/* Parallax Background Image */}
           <motion.div
             aria-hidden="true"
-            className="absolute inset-0 -z-20 bg-cover bg-center"
+            className="absolute inset-0 -z-20 bg-cover bg-center will-change-transform"
             style={{
               backgroundImage: "url('')",
               y: bgY,
               filter: "brightness(0.4)",
+              transition: "transform 0.3s ease-out",
             }}
           />
 
           {/* Background overlay with subtle animated gradient */}
           <motion.div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 opacity-30"
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 opacity-30 will-change-transform"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%"],
             }}
@@ -89,12 +92,12 @@ export default function Services() {
             }}
           />
 
-          <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
-            <h2 className="text-3xl font-bold text-center text-primary mb-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-16 relative z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-primary mb-12 leading-tight">
               What We Offer
             </h2>
 
-            <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, idx) => (
                 <AnimatedBackground
                   key={idx}
@@ -184,8 +187,10 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
   const yRangeStart = 0 + index * 0.1;
   const yRangeEnd = 1 + index * 0.1;
 
-  // Map scroll progress to vertical translate Y between -20 and +20 pixels
-  const y = useTransform(scrollYProgress, [yRangeStart, yRangeEnd], [-20, 20]);
+  // Map scroll progress to vertical translate Y between -20 and +20 pixels with spring smoothing
+  const y = useTransform(scrollYProgress, [yRangeStart, yRangeEnd], [-20, 20], {
+    clamp: false,
+  });
 
   return (
     <motion.div
@@ -193,8 +198,9 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUpVariants}
-      style={{ y }}
+      style={{ y, willChange: "transform" }}
       className="relative cursor-default p-8 rounded-3xl bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 border border-gray-300 shadow-md flex flex-col items-center text-center text-gray-800"
+      transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <div className="mb-4">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
