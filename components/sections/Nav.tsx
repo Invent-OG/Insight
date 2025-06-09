@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import logo from "@/public/assets/logo.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Nav() {
   const navRef = useRef<HTMLElement | null>(null);
@@ -57,17 +58,19 @@ export default function Nav() {
       linksRef.current.push(el);
     }
   };
+  const router = useRouter();
 
   return (
     <>
       {/* Logo fixed top-left */}
       <div className="fixed top-[5%] left-[5%] w-[40px] h-[40px] z-[1000]">
         <Image
+        onClick={()=>router.push('/')}
           src={logo}
           alt="Insight Logo"
           width={50}
           height={50}
-          className="rounded-full  h-10"
+          className="rounded-full  h-10 hover:cursor-pointer "
         />
       </div>
 

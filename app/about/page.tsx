@@ -6,6 +6,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths"; // Import the correct component
 import DisplayCards from "@/components/ui/display-cards";
+import { CheckCircle } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -148,7 +149,16 @@ export default function About() {
         </section>
 
         {/* Founder Section */}
-        <section className="relative lg:py-20 lg:mt-16  max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 bg-gray-900">
+        <section className="relative lg:py-20 lg:mt-16 max-w-5xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10 bg-gray-900 overflow-hidden">
+          {/* Parallax Background */}
+          <div
+            className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-50"
+            style={{
+              backgroundImage:
+                "url('https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg')",
+            }}
+          ></div>
+
           {/* Overlay for light black tint */}
           <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none"></div>
 
@@ -169,27 +179,35 @@ export default function About() {
             every step of the way.”
             <br />
             <br />
-            <span className="text-primary font-semibold not-italic">
+            {/* Hidden on mobile, visible on md+ */}
+            <span className="hidden md:inline text-primary font-semibold not-italic">
               — Founder Neshika
             </span>
           </motion.blockquote>
 
           {/* Image (Right Side) */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, rotateY: 180 }}
-            whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-8 border-primary/70 shadow-xl flex-shrink-0 z-10"
-          >
-            <Image
-              src="https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg"
-              alt="Founder Neshika"
-              width={240}
-              height={240}
-              className="object-cover"
-            />
-          </motion.div>
+          <div className="flex flex-col items-center md:items-start md:w-auto z-10">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, rotateY: 180 }}
+              whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-8 border-primary/70 shadow-xl flex-shrink-0"
+            >
+              <Image
+                src="https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg"
+                alt="Founder Neshika"
+                width={240}
+                height={240}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* Founder name below image on mobile only */}
+            <span className="mt-4 text-primary font-semibold not-italic md:hidden">
+              — Founder Neshika
+            </span>
+          </div>
         </section>
 
         {/* Offerings Section */}
@@ -219,7 +237,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="md:w-1/2 flex-1 p-6 sm:p-8 rounded-3xl border border-white shadow-lg flex flex-col relative bg-transparent"
+              className="md:w-1/2 w-full flex-1 p-6 sm:p-8 rounded-3xl  shadow-lg flex flex-col relative bg-transparent"
               style={{ minHeight: "auto" }}
             >
               {/* Glowing Circles */}
@@ -340,31 +358,32 @@ to finish. Discover your path to international education with Insight
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="md:w-1/2 flex-1 overflow-y-auto space-y-4 rounded-3xl p-6 sm:p-8 border border-white shadow-lg flex flex-col justify-evenly items-center max-h-[320px] sm:max-h-[400px] md:max-h-full bg-transparent"
+              className="md:w-1/2 w-full flex-1 p-8 bg-gradient-to-r from-black/20 via-black/10 to-black/20 rounded-3xl"
             >
-              {[
-                "IELTS coaching in Coimbatore by certified professionals",
-                "Personalized study abroad counselling",
-                "Assistance with university applications and admissions",
-                "Help with securing scholarships and financial aid",
-                "Complete student visa support and guidance",
-                "Flight booking, accommodation, and airport pickup services",
-                "Pre-departure and post-arrival support",
-                "Part-Time Guidance",
-              ].map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-transparent border border-white rounded-lg shadow hover:bg-red-600 hover:text-white transition cursor-pointer flex items-center min-h-[36px] sm:min-h-[50px] p-3 sm:p-4 text-sm sm:text-base"
-                >
-                  {service}
-                </motion.div>
-              ))}
+              <div className="flex flex-col gap-5">
+                {[
+                  "IELTS coaching in Coimbatore by certified professionals",
+                  "Personalized study abroad counselling",
+                  "Assistance with university applications and admissions",
+                  "Help with securing scholarships and financial aid",
+                  "Complete student visa support and guidance",
+                  "Flight booking, accommodation, and airport pickup services",
+                  "Pre-departure and post-arrival support",
+                  "Part-Time Guidance",
+                ].map((service, i) => (
+                  <div
+                    key={i}
+                    className="cursor-pointer flex items-center gap-4 p-4 bg-white/10 rounded-lg hover:bg-red-700 transition"
+                  >
+                    <div className="w-2 h-12 bg-red-600 rounded-md"></div>
+                    <p className="text-white font-semibold text-lg">
+                      {service}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </section>
@@ -375,7 +394,7 @@ to finish. Discover your path to international education with Insight
         <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl px-6">
+        <div className=" relative z-10  ">
           <DisplayCards />
         </div>
       </main>

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import FlipCard from "./FlipCard";
-import { countries } from "@/components/sections/Countries"; // your data
+import { countries } from "@/components/sections/Countries";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -10,35 +10,65 @@ import france from "@/public/assets/country/Japan.png";
 
 const CountriesCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
 
-  const scrollLeft = () => {
+  // Listen to horizontal scroll to create parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (carouselRef.current) {
+        const scrollLeft = carouselRef.current.scrollLeft;
+        setParallaxOffset(scrollLeft * 0.1); // adjust multiplier for subtle effect
+      }
+    };
+
+    const ref = carouselRef.current;
+    if (ref) {
+      ref.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  const scrollLeftFunc = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
     }
   };
 
-  const scrollRight = () => {
+  const scrollRightFunc = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
     }
   };
 
-  const router = useRouter();
-  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
-
   return (
     <div className="relative overflow-hidden">
-      {/* Background image with animation */}
-      <div className="absolute inset-0 -z-20 overflow-hidden ">
-        <Image
-          src={france}
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          className="animate-zoom-slow"
-          priority
-          quality={75}
-        />
+      {/* Parallax background container */}
+      <div className="absolute inset-0 -z-20 overflow-hidden">
+        <div
+          style={{
+            transform: `translateX(-${parallaxOffset}px)`, // background shift
+            transition: "transform 0.2s ease-out",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+          }}
+        >
+          <Image
+            src={france}
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+            priority
+            quality={75}
+          />
+        </div>
       </div>
 
       {/* Overlay to darken background */}
@@ -49,6 +79,7 @@ const CountriesCarousel: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center lg:py-8">
           Countries
         </h1>
+
         <div
           ref={carouselRef}
           className="w-full overflow-x-auto scroll-smooth scrollbar-hide flex justify-center"
@@ -70,7 +101,7 @@ const CountriesCarousel: React.FC = () => {
         </div>
 
         {/* Center button */}
-        <div className="flex justify-center lg:py-4 mb-4 ">
+        <div className="flex justify-center lg:py-4 mb-4">
           <Button onClick={() => router.push("/countries")}>
             Explore Countries
           </Button>
