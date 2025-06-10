@@ -181,34 +181,33 @@ export default function ServicesSection() {
         />
       </Head>
 
-      <section className="bg-hero text-white  flex flex-col items-center md:flex-col justify-center md:text-center">
-        <div className="container flex flex-col lg:flex-row gap-10 px-8 lg:py-10 md:py-8">
-          {/* Left side - Sticky box */}
-          <div className="flex-1 top-20 lg:sticky self-start flex flex-col gap-6 p-10 rounded-xl items-center justify-center text-center ">
+      <section className="bg-hero text-white flex flex-col justify-center items-center md:text-center">
+        <div className="container mx-auto flex flex-col gap-10 px-6 py-8 md:px-10 md:py-10 lg:flex-row lg:gap-12">
+          {/* Left side */}
+          <div className="flex-1 lg:sticky top-20 flex flex-col gap-6 items-center lg:items-start text-center lg:text-left">
             <h4 className="text-primary uppercase text-xs font-medium tracking-wider">
               — Services —
             </h4>
-            <div className="h-px bg-gray-700 my-2"></div>
-            <h2 className="text-5xl font-extrabold">
+            <div className="h-px bg-gray-700 my-2 w-12"></div>
+            <h2 className="text-4xl sm:text-5xl font-extrabold">
               Your Journey,{" "}
               <span className="text-primary">Fully Supported</span>
             </h2>
             <p className="text-gray-400">Every Step of the Way!</p>
 
-            {/* Show button only on large screens */}
             <div className="hidden lg:block">
               <Button
                 onClick={() => router.push("/services")}
-                className="mt-6 w-40"
+                className="mt-4 w-40"
               >
                 Go to Services
               </Button>
             </div>
           </div>
 
-          {/* Right side - Cards container */}
+          {/* Right side */}
           <div className="flex-1 w-full">
-            <ContainerScroll className="py-12 space-y-8">
+            <ContainerScroll className="py-8 space-y-8">
               {services.map((service, index) => {
                 const isExpanded = expanded[index] || false;
                 const displayedText = isExpanded
@@ -216,45 +215,42 @@ export default function ServicesSection() {
                   : truncateText(service.description, 120);
 
                 return (
-                  <React.Fragment key={index}>
-                    <CardSticky
-                      index={index + 2}
-                      className="rounded-2xl bg-black overflow-hidden p-0 shadow-md lg:backdrop-blur-md"
-                      incrementY={30}
-                      incrementZ={10}
-                    >
-                      <div className="relative h-64 w-full">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          className="object-cover opacity-30"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
-                          <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2">
-                            {service.title}
-                          </h3>
-                          <p className="text-sm text-gray-300">
-                            {displayedText}
-                          </p>
-                          {service.description.length > 120 && (
-                            <button
-                              onClick={() => router.push("/services")}
-                              className="mt-2 text-primary font-semibold hover:underline"
-                              type="button"
-                            >
-                              Read More
-                            </button>
-                          )}
-                        </div>
+                  <CardSticky
+                    key={index}
+                    index={index + 2}
+                    className="rounded-2xl text-xl bg-black overflow-hidden p-0 shadow-md lg:backdrop-blur-md"
+                    incrementY={30}
+                    incrementZ={10}
+                  >
+                    <div className="relative h-64 w-full">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover opacity-30"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
+                        <h3 className="sm:text-xl font-semibold text-primary mb-2">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm text-gray-300">{displayedText}</p>
+                        {service.description.length > 120 && (
+                          <button
+                            onClick={() => router.push("/services")}
+                            className="mt-2 text-primary font-semibold hover:underline"
+                            type="button"
+                          >
+                            Read More
+                          </button>
+                        )}
                       </div>
-                    </CardSticky>
-                  </React.Fragment>
+                    </div>
+                  </CardSticky>
                 );
               })}
             </ContainerScroll>
-            <div className="flex justify-center lg:hidden">
+            <div className="flex justify-center mt-4 lg:hidden">
               <Button onClick={() => router.push("/services")} className="w-40">
                 Go to Services
               </Button>

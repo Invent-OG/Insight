@@ -63,21 +63,21 @@ export default function Nav() {
   return (
     <>
       {/* Logo fixed top-left */}
-      <div className="fixed top-[5%] left-[5%] w-[40px] h-[40px] z-[1000]">
+      <div className="fixed top-[5%] left-[5%] w-[60px] h-[70px] z-[1000]">
         <Image
-        onClick={()=>router.push('/')}
+          onClick={() => router.push("/")}
           src={logo}
           alt="Insight Logo"
-          width={50}
-          height={50}
-          className="rounded-full  h-10 hover:cursor-pointer "
+          width={70}
+          height={80}
+          className="rounded-full  hover:cursor-pointer "
         />
       </div>
 
       {/* Hamburger Icon - visible only when menu is closed */}
       {!isOpen && (
         <div
-          className="fixed top-[5%] right-[5%] w-[40px] h-[40px] z-[1000] flex flex-col items-center justify-center cursor-pointer group  rounded-full p-1"
+          className=" fixed top-[5%] right-[5%] w-[40px] h-[40px] z-[1000] flex flex-col items-center justify-center cursor-pointer group  rounded-full p-1"
           onClick={openMenu}
           aria-label="Open Menu"
           role="button"
@@ -93,10 +93,10 @@ export default function Nav() {
       {/* Navigation Menu */}
       <nav
         ref={navRef}
-        className="fixed top-0 right-[-100%] w-[80vw] max-w-[320px] h-0 bg-gradient-to-b from-black via-red-700 to-black shadow-lg shadow-black/60 overflow-hidden flex flex-col pt-[60px] z-[999]"
+        className=" fixed top-0 right-[-100%] w-[80vw] max-w-[320px] h-0 bg-gradient-to-b from-black via-red-700 to-black shadow-lg shadow-black/60 overflow-hidden flex flex-col pt-[60px] z-[999]"
       >
         {/* Nav Header with logo inside menu */}
-        <div className="flex items-center gap-2.5 px-5 pb-5">
+        <div className="flex items-center gap-2.5 px-5 pb-5 ">
           <Image
             src={logo}
             alt="Insight Logo"

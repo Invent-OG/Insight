@@ -18,8 +18,8 @@ const imageVariants = {
 };
 
 const Layout2 = () => (
-  <section className="bg-black text-white min-h-screen py-10 sm:py-16 lg:py-8">
-    <div className="container flex flex-col md:flex-row items-center px-6 md:px-20 md:py-20 lg:py-16 ">
+  <section className="bg-black text-white py-10 ">
+    <div className="container flex flex-col md:flex-row md:space-y-6 items-center px-6 md:px-20 md:py-20 lg:py-16 ">
       {/* Image on left with scroll-triggered animation */}
       <motion.div
         className="w-full md:w-1/2  md:mb-0 md:pr-12"
@@ -40,7 +40,7 @@ const Layout2 = () => (
       <div className="w-full md:w-1/2 space-y-6">
         {/* Heading */}
         <motion.h1
-          className="text-3xl md:text-5xl font-bold leading-snug text-center md:text-left md:py-4 "
+          className="text-3xl md:text-5xl font-bold leading-snug text-center md:text-left  "
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.5 }}

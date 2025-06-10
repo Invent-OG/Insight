@@ -197,26 +197,44 @@ const Hero = () => {
         height={600}
       />
 
-      <ContainerScale className="z-10  md:text-center px-6 md:px-0">
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold uppercase tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
-          <div>
-            <VerticalCutReveal
-              splitBy="characters"
-              staggerDuration={0.025}
-              staggerFrom="first"
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 21,
-              }}
-            >
-              {`Achieve\u00A0Your`}
-            </VerticalCutReveal>
+      <ContainerScale className="z-10 md:text-center px-6 md:px-0">
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
+          {/* First Line */}
+          <div className="flex flex-wrap justify-center gap-x-2">
+            <div className="text-primary">
+              <VerticalCutReveal
+                splitBy="words"
+                staggerDuration={0.025}
+                staggerFrom="first"
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 21,
+                }}
+              >
+                {"Achieve"}
+              </VerticalCutReveal>
+            </div>
+            <div className="text-white">
+              <VerticalCutReveal
+                splitBy="words"
+                staggerDuration={0.025}
+                staggerFrom="first"
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 21,
+                }}
+              >
+                {"Your"}
+              </VerticalCutReveal>
+            </div>
           </div>
 
-          <div>
+          {/* Second Line */}
+          <div className="flex flex-wrap justify-center gap-x-2">
             <VerticalCutReveal
-              splitBy="characters"
+              splitBy="words"
               staggerDuration={0.025}
               staggerFrom="last"
               reverse={true}
@@ -227,14 +245,29 @@ const Hero = () => {
                 delay: 0.5,
               }}
             >
-              {`Abroad\u00A0Study`}
+              {"Abroad"}
+            </VerticalCutReveal>
+            <VerticalCutReveal
+              splitBy="words"
+              staggerDuration={0.025}
+              staggerFrom="last"
+              reverse={true}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 21,
+                delay: 0.5,
+              }}
+            >
+              {"Study"}
             </VerticalCutReveal>
           </div>
 
-          <div>
-            <div className="text-primary flex flex-row">
+          {/* Third Line */}
+          <div className="flex flex-wrap justify-center gap-x-2">
+            <div className="text-primary">
               <VerticalCutReveal
-                splitBy="characters"
+                splitBy="words"
                 staggerDuration={0.025}
                 staggerFrom="center"
                 transition={{
@@ -244,10 +277,13 @@ const Hero = () => {
                   delay: 1.1,
                 }}
               >
-                {"Dreams\u00A0"}
+                {"Dreams"}
               </VerticalCutReveal>
+            </div>
+
+            <div className="text-white">
               <VerticalCutReveal
-                splitBy="characters"
+                splitBy="words"
                 staggerDuration={0.025}
                 staggerFrom="center"
                 transition={{
@@ -257,7 +293,23 @@ const Hero = () => {
                   delay: 1.1,
                 }}
               >
-                {"With\u00A0Us"}
+                {"With"}
+              </VerticalCutReveal>
+            </div>
+
+            <div className="text-white">
+              <VerticalCutReveal
+                splitBy="words"
+                staggerDuration={0.025}
+                staggerFrom="center"
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 21,
+                  delay: 1.1,
+                }}
+              >
+                {"Us"}
               </VerticalCutReveal>
             </div>
           </div>
