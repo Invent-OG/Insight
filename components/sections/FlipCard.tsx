@@ -1,18 +1,15 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useRouter } from "next/navigation";
-import { Router } from "next/router";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
 interface FlipCardProps {
-  id: string; // unique id for the card
+  id: string;
   imageSrc: StaticImageData;
   title: string;
   backDescription: string;
-  flipped: boolean; // controlled from parent
-  setFlippedCardId: (id: string | null) => void;
 }
 
 const FlipCard: React.FC<FlipCardProps> = ({
@@ -20,11 +17,11 @@ const FlipCard: React.FC<FlipCardProps> = ({
   imageSrc,
   title,
   backDescription,
-  flipped,
-  setFlippedCardId,
 }) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [animateDesc, setAnimateDesc] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [flipped, setFlipped] = useState(false);
 
   const truncateLength = 150;
 
@@ -39,85 +36,53 @@ const FlipCard: React.FC<FlipCardProps> = ({
     return () => clearTimeout(timeout);
   }, [displayDescription]);
 
-  // Handle click or keyboard to flip card
-  const toggleFlip = () => {
-    if (flipped) {
-      setFlippedCardId(null);
-      setShowFullDesc(false);
-    } else {
-      setFlippedCardId(id);
-      setShowFullDesc(false);
-    }
-  };
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    toggleFlip();
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleFlip();
-    }
-  };
-
-  // On hover, open card; on mouse leave, close it if it's flipped
-  const handleMouseEnter = () => {
-    setFlippedCardId(id);
-  };
-
-  const handleMouseLeave = () => {
-    // Close card only if it's flipped and mouse leaves
-    if (flipped) {
-      setFlippedCardId(null);
-      setShowFullDesc(false);
-    }
-  };
   const router = useRouter();
+
+  const handleCardClick = () => {
+    if (isMobile) {
+      setFlipped((prev) => !prev);
+    }
+  };
 
   return (
     <>
       <div
         className="flip-card w-72 h-96 perspective-1000 rounded-lg shadow-lg overflow-hidden cursor-pointer"
         tabIndex={0}
-        role="button"
-        aria-pressed={flipped}
         aria-label={`Flip card for ${title}`}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onClick={handleCardClick}
       >
         <div
-          className={`flip-card-inner relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d rounded-lg ${
-            flipped ? "rotate-y-180" : ""
-          }`}
+          className={`flip-card-inner relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d rounded-lg
+            ${isMobile && flipped ? "rotate-y-180" : ""}
+            ${!isMobile ? "hover:rotate-y-180" : ""}
+          `}
         >
           {/* Front Side */}
           <div className="flip-card-front absolute w-full h-full backface-hidden rounded-lg overflow-hidden shadow-lg flex justify-center items-center">
-            {/* Image */}
             <Image
               src={imageSrc}
               alt={`Image of ${title}`}
               className="w-full h-full object-cover filter brightness-80 transition-transform duration-500 hover:scale-110"
               priority
             />
-
-            {/* Diagonal Shadow */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40"></div>
-
-            {/* Title */}
             <h1 className="absolute bottom-0 w-full bg-gradient-to-b from-black/5 h-10 to-black text-white text-lg font-semibold drop-shadow-md">
               {title}
             </h1>
           </div>
 
           {/* Back Side */}
-          <div
-            className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-transparent backdrop-blur-sm border p-6 box-border rounded-lg shadow-md flex flex-col justify-center items-center text-center text-white overflow-auto scrollbar-hide"
-            onClick={(e) => e.stopPropagation()} // prevent flipping when clicking inside back
-          >
+          <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-transparent backdrop-blur-sm border p-6 box-border rounded-lg shadow-md flex flex-col justify-center items-center text-center text-white overflow-hidden">
             <p
               className={`text-base leading-relaxed transition duration-700 ease-in-out transform hover:scale-105 text-justify ${
                 animateDesc ? "animate-fadeSlideIn" : ""
@@ -135,14 +100,12 @@ const FlipCard: React.FC<FlipCardProps> = ({
                 onClick={(e) => {
                   e.stopPropagation();
                   if (!showFullDesc) {
-                    // If currently truncated, redirect on click
                     router.push("/countries");
                   } else {
-                    // If currently expanded, just toggle back without redirect
                     setShowFullDesc(false);
                   }
                 }}
-                className="mt-6 text-white font-semibold px-5 py-2 rounded-md border focus:outline-none focus:ring-2 transition-colors duration-300 select-none"
+                className="mt-6 bg-transparent hover:bg-primary/20 text-white font-semibold px-5 py-2 rounded-md border focus:outline-none focus:ring-2 transition-colors duration-300 select-none"
                 aria-label={showFullDesc ? "Show less" : "Read more"}
                 style={{ wordSpacing: "0.15em" }}
               >
@@ -165,7 +128,6 @@ const FlipCard: React.FC<FlipCardProps> = ({
           .rotate-y-180 {
             transform: rotateY(180deg);
           }
-
           @keyframes fadeSlideIn {
             0% {
               opacity: 0;
@@ -178,6 +140,15 @@ const FlipCard: React.FC<FlipCardProps> = ({
           }
           .animate-fadeSlideIn {
             animation: fadeSlideIn 0.7s ease forwards;
+          }
+
+          /* Hide scrollbars on flip-card-back */
+          .flip-card-back::-webkit-scrollbar {
+            display: none;
+          }
+          .flip-card-back {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
           }
         `}</style>
       </div>

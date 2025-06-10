@@ -106,8 +106,6 @@ const CountryList: React.FC = () => {
             title={country.title}
             backDescription={country.description}
             id={country.id}
-            flipped={flippedCardId === country.id}
-            setFlippedCardId={setFlippedCardId}
           />
         ))}
       </div>

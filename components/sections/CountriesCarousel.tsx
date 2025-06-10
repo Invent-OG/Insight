@@ -18,8 +18,11 @@ const CountriesCarousel: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (carouselRef.current) {
+        const maxScroll =
+          carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
         const scrollLeft = carouselRef.current.scrollLeft;
-        setParallaxOffset(scrollLeft * 0.1); // adjust multiplier for subtle effect
+        const offset = (scrollLeft / maxScroll) * 50; // adjust the "50" for more/less parallax
+        setParallaxOffset(offset);
       }
     };
 
@@ -48,14 +51,14 @@ const CountriesCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden lg:min-h-screen">
       {/* Parallax background container */}
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div
           style={{
-            transform: `translateX(-${parallaxOffset}px)`, // background shift
-            transition: "transform 0.2s ease-out",
-            width: "100%",
+            transform: `translateX(-${parallaxOffset}%)`,
+            transition: "transform 0.1s linear",
+            width: "110%",
             height: "100%",
             position: "relative",
           }}
@@ -92,8 +95,6 @@ const CountriesCarousel: React.FC = () => {
                   title={country.title}
                   backDescription={country.description}
                   id={country.id}
-                  flipped={flippedCardId === country.id}
-                  setFlippedCardId={setFlippedCardId}
                 />
               </div>
             ))}

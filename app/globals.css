@@ -117,7 +117,7 @@
 }
 
 .line1 {
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .line2 {
@@ -131,12 +131,12 @@
 }
 
 #label-check:checked + .hamburger-label .line1 {
-  transform: rotate(35deg) scaleX(.55) translate(39px, -4.5px);
+  transform: rotate(35deg) scaleX(0.55) translate(39px, -4.5px);
   border-radius: 50px 50px 50px 0;
 }
 
 #label-check:checked + .hamburger-label .line3 {
-  transform: rotate(-35deg) scaleX(.55) translate(39px, 4.5px);
+  transform: rotate(-35deg) scaleX(0.55) translate(39px, 4.5px);
   border-radius: 0 50px 50px 50px;
 }
 
@@ -147,7 +147,8 @@
 }
 
 @keyframes zoomInOut {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(3);
   }
   50% {
@@ -160,15 +161,39 @@
 }
 /* countries */
 @keyframes ripple {
-  0% { background-position: 50% 50%; }
-  100% { background-position: 200% 200%; }
+  0% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
 }
 .group-hover\:animate-ripple {
   background-size: 400% 400%;
   animation: ripple 6s linear infinite;
 }
 
+.bg-hero {
+  background-image: url("https://images.pexels.com/photos/18541767/pexels-photo-18541767/free-photo-of-texture-school-chalk-chalkboard.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px); /* Adjust the blur radius as needed */
+  z-index: 0;
+}
 
+@media (max-width: 768px) {
+  .bg-hero::before {
+    backdrop-filter: none;
+  }
+}
 
-
-
+.bg-hero {
+  position: relative;
+  z-index: 1;
+}
