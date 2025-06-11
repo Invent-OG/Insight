@@ -46,24 +46,12 @@ export default function Services() {
         />
       </Head>
 
-      <main className="bg-gradient-to-tr from-indigo-900 via-black to-gray-900 min-h-screen w-full text-gray-100">
+      <main className="bg-gradient-to-tr from-indigo-900 via-black to-gray-900 min-h-screen w-full text-gray-100 ">
         {/* Hero Section */}
         <HeroGeometric />
 
         {/* Services Section */}
         <section className="w-full relative bg-black/70 overflow-hidden">
-          {/* Parallax Background Image */}
-          <motion.div
-            aria-hidden="true"
-            className="absolute inset-0 -z-20 bg-cover bg-center will-change-transform"
-            style={{
-              backgroundImage: "url('')",
-              y: bgY,
-              filter: "brightness(0.4)",
-              transition: "transform 0.3s ease-out",
-            }}
-          />
-
           {/* Background overlay with subtle animated gradient */}
           <motion.div
             aria-hidden="true"
@@ -84,7 +72,7 @@ export default function Services() {
           />
 
           <div className=" px-4 sm:px-6 md:px-12 py-16 relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-primary mb-12 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-12 leading-tight">
               What We Offer
             </h2>
 

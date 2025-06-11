@@ -164,11 +164,9 @@ const Page = () => {
           }}
         >
           <motion.h1
-            initial={{ opacity: 0, x: -100 }}
-            animate={
-              showContent ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
-            }
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-widest font-sans select-none text-white drop-shadow-lg"
             style={{ willChange: "opacity, transform" }}
           >
@@ -194,10 +192,12 @@ const Page = () => {
 
         {/* Cards Section - Container with Grid */}
         <section
-          className="w-full mx-auto min-h-screen lg:py-20 flex justify-center gap-10 bg-black bg-cover bg-center px-4 sm:px-6 md:px-12"
-          style={{
-            backgroundImage: `url("https://www.transparenttextures.com/patterns/stardust.png")`, // You can replace this with any texture you like
-          }}
+          className="w-full mx-auto min-h-screen py-16 lg:py-20 flex justify-center gap-10 bg-black bg-cover bg-center px-4 sm:px-6 md:px-12"
+          style={
+            {
+              // backgroundImage: `url("https://www.transparenttextures.com/patterns/stardust.png")`, // You can replace this with any texture you like
+            }
+          }
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 text-gray-200">
             {countries.map((country, index) => {

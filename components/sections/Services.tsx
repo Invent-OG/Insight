@@ -180,10 +180,10 @@ export default function ServicesSection() {
         />
       </Head>
 
-      <section className="bg-black text-white flex flex-col items-center md:flex-col justify-center md:text-center">
-        <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row">
+      <section className="bg-black text-white flex flex-col items-center md:flex-col justify-center md:text-center ">
+        <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row ">
           {/* Left side - Not sticky on mobile */}
-          <div className="flex-1 self-start flex flex-col gap-6 rounded-xl items-center justify-center text-center lg:sticky top-20">
+          <div className="flex-1 self-start flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20">
             <h4 className="text-primary uppercase text-xs font-medium tracking-wider">
               — Services —
             </h4>
@@ -192,7 +192,7 @@ export default function ServicesSection() {
               Your Journey,{" "}
               <span className="text-primary">Fully Supported</span>
             </h2>
-            <p className="text-gray-400">Every Step of the Way!</p>
+            <p className="text-gray-400 py-4">Every Step of the Way!</p>
 
             {/* Show button only on large screens */}
             <div className="hidden lg:block">
@@ -207,7 +207,7 @@ export default function ServicesSection() {
 
           {/* Right side - Cards container */}
           <div className="flex-1 w-full">
-            <ContainerScroll className="py-12 space-y-8">
+            <ContainerScroll className="py-4 space-y-8">
               {services.map((service, index) => {
                 const isExpanded = expanded[index] || false;
                 const displayedText = isExpanded
@@ -255,7 +255,7 @@ export default function ServicesSection() {
             </ContainerScroll>
 
             {/* Mobile-only button with bottom margin */}
-            <div className="flex justify-center lg:hidden mb-6">
+            <div className="flex justify-center lg:hidden mt-8">
               <Button onClick={() => router.push("/services")} className="w-40">
                 Go to Services
               </Button>

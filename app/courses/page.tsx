@@ -116,18 +116,10 @@ const Page = () => {
         <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none"></div>
 
         {/* Content container */}
-        <div
-          className={`relative max-w-4xl transition-all duration-700 ease-out ${
-            showContent
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 translate-y-10 pointer-events-none"
-          }`}
-          style={{
-            willChange: "opacity, transform",
-          }}
-        >
+        <div>
           <h1 className="text-white text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg">
-            Top Courses to Study Abroad&nbsp;
+            Top Courses to <span className="text-primary">Study Abroad</span>
+            &nbsp;
             {/* Pulsating underline */}
             <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-2 animate-pulse"></span>
           </h1>

@@ -54,7 +54,7 @@ const Blog7 = ({
             </Link>
           </Button>
         </div>
-        <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
+        <div className="grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
           {posts.map((post) => (
             <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto]">
               <div className="aspect-[16/9] w-full">

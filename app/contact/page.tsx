@@ -19,18 +19,18 @@ export default function Contact() {
       <main className="min-h-screen flex flex-col md:flex-row">
         {/* Left Side — Background Image with Overlay */}
         <div
-          className="relative bg-black text-white flex items-center justify-center px-8 py-20 md:w-1/2 bg-cover bg-center"
+          className="relative bg-black text-white flex items-center justify-center px-8 py-36 md:w-1/2 bg-cover bg-center"
           style={{ backgroundImage: `url(${contact.src})` }}
         >
           {/* Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
           {/* Content */}
-          <div className="relative text-center">
+          <div className="relative text-center ">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Plan smarter, go further.
+              <span className="text-primary">Plan smarter</span>, go further.
             </h1>
-            <p className="text-lg max-w-md mx-auto">
+            <p className="text-lg max-w-md mx-auto leading-8">
               Let our experts guide you towards your international education
               journey. Connect with us today.
             </p>
@@ -38,12 +38,12 @@ export default function Contact() {
         </div>
 
         {/* Right Side — Contact Form with Slide-in Animation */}
-        <div className="flex items-center justify-center bg-black w-full md:w-1/2 px-8 py-20 animate-slideIn">
+        <div className="flex items-center justify-center bg-black w-full md:w-1/2 px-8 py-20 animate-slideIn ">
           <div className="w-full max-w-lg">
-            <h2 className="text-2xl font-bold mb-6 text-red-700">
+            <h2 className="text-2xl font-bold mb-6 text-primary">
               Get in Touch
             </h2>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
               <div>
                 <label className="block text-sm font-medium text-gray-300">
                   Name <span className="text-red-600">*</span>
@@ -85,17 +85,16 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition transform hover:scale-105 active:scale-95"
+                className="w-full bg-primary hover:bg-red-700 text-white font-semibold py-3 rounded-md transition transform hover:scale-105 active:scale-95"
               >
                 Submit Inquiry
               </button>
             </form>
-
             {/* Contact Info */}
             <div className="mt-8 text-gray-600">
               <p className="mb-3">
                 <strong>Phone:</strong>{" "}
-                <a href="tel:+918270883451" className="text-red-600">
+                <a href="tel:+918270883451" className="text-primary">
                   +91 82708 83451
                 </a>
               </p>
@@ -103,7 +102,7 @@ export default function Contact() {
                 <strong>Email:</strong>{" "}
                 <a
                   href="mailto:admin@insightabroadservices.org"
-                  className="text-red-600"
+                  className="text-primary"
                 >
                   admin@insightabroadservices.org
                 </a>
@@ -114,7 +113,7 @@ export default function Contact() {
                 <br />
                 Gandhipuram, Coimbatore, Tamil Nadu 641012
               </p>
-              <h3 className="text-lg font-semibold mb-2 text-red-700">
+              <h3 className="text-lg font-semibold mb-2 text-primary">
                 Office Hours
               </h3>
               <ul className="text-sm space-y-1">

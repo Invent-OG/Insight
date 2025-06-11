@@ -6,6 +6,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import DisplayCards from "@/components/ui/display-cards";
+import bgpar from "@/public/assets/herocontentimage.png";
 
 export default function About() {
   useEffect(() => {
@@ -49,10 +50,10 @@ export default function About() {
         <BackgroundPaths />
         {/* Hero  sub content */}
         <section
-          className="hero flex items-center min-h-screen bg-black bg-center bg-cover px-8 relative overflow-hidden
-             bg-[url('https://images.unsplash.com/photo-1596865249308-2472dc5807d7?q=80&w=1506&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"
+          className="hero flex items-center min-h-screen bg-black bg-center bg-cover px-8 relative overflow-hidden"
           style={{
-            backgroundAttachment: "var(--bg-attachment, scroll)", // always scroll now
+            backgroundImage: `url(${bgpar.src})`,
+            backgroundAttachment: "fixed",
             backgroundSize: "cover",
             backgroundPosition: "center center",
           }}
@@ -84,7 +85,7 @@ export default function About() {
               <img
                 src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
                 alt="International education"
-                className="rounded-full object-cover w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 shadow-lg"
+                className="object-cover rounded-lg w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 shadow-lg"
               />
             </motion.div>
 
@@ -148,16 +149,7 @@ export default function About() {
         </section>
 
         {/* Founder Section */}
-        <section className="relative lg:py-20 lg:mt-16 max-w-5xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10 bg-gray-900 overflow-hidden">
-          {/* Parallax Background */}
-          <div
-            className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-50"
-            style={{
-              backgroundImage:
-                "url('https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg')",
-            }}
-          ></div>
-
+        <section className="relative  lg:py-20 lg:mt-16 max-w-5xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center gap-10 bg-gray-900 overflow-hidden">
           {/* Overlay for light black tint */}
           <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none"></div>
 
@@ -179,7 +171,7 @@ export default function About() {
             <br />
             <br />
             {/* Hidden on mobile, visible on md+ */}
-            <span className="hidden md:inline text-primary font-semibold not-italic">
+            <span className="hidden md:inline text-primary  font-semibold not-italic">
               — Founder Neshika
             </span>
           </motion.blockquote>
@@ -248,7 +240,7 @@ export default function About() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.9 }}
                 viewport={{ once: true }}
-                className="text-3xl sm:text-4xl font-extrabold text-red-400 mb-8 sm:mb-10 relative z-10 flex items-center gap-3 sm:gap-4"
+                className="text-3xl sm:text-4xl font-extrabold text-red-400 mb-8 py-8 lg:py-0 sm:mb-10 relative z-10 flex items-center gap-3 sm:gap-4"
               >
                 <span className="bg-gradient-to-r from-red-500 to-red-700 text-transparent bg-clip-text">
                   Our Services
@@ -358,7 +350,7 @@ to finish. Discover your path to international education with Insight
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="md:w-1/2 w-full flex-1 p-8 bg-gradient-to-r from-black/20 via-black/10 to-black/20 rounded-3xl"
+              className="md:w-1/2 mb-6 lg:mb-0 w-full flex-1 p-8 bg-gradient-to-r from-black/20 via-black/10 to-black/20 rounded-3xl"
             >
               <div className="flex flex-col gap-5">
                 {[

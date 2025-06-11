@@ -39,12 +39,12 @@ export default function UniversitiesSection() {
   }, []);
 
   return (
-    <section className="bg-black/90 text-white px-4 py-8 md:py-11 lg:py-12">
+    <section className="bg-black/90 text-white px-4 py-12 md:py-11 lg:py-4">
       <div className="container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12">
         {/* Heading */}
-        <div className="text-center max-w-4xl mx-auto  lg:mb-12">
-          <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider mb-2 relative">
-            <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2 text-primary">
+        <div className="text-center max-w-4xl mx-auto  lg:mb-12 space-y-8">
+          <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider  relative">
+            <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2 text-primary ">
               Universities
             </span>
           </h4>
@@ -54,7 +54,7 @@ export default function UniversitiesSection() {
         </div>
 
         {/* Universities Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:py-4 py-6">
           {universities.map((uni, index) => (
             <div
               key={index}

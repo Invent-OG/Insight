@@ -151,7 +151,7 @@ const CountriesCarousel: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="relative overflow-hidden py-16 lg:min-h-screen">
+    <div className="relative overflow-hidden py-16 lg:min-h-screen ">
       {/* Parallax Background */}
       <div
         className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"

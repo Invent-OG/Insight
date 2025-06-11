@@ -139,7 +139,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
         />
       </div>
 
-      <motion.div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <motion.div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-12">
         {badge && (
           <motion.span
             initial={{ opacity: 0, y: -20 }}
@@ -156,7 +156,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold leading-tight text-white p-2"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold leading-tight text-white py-6"
         >
           Start Your <span className="text-primary">Global Journey</span> With
           Expert Guidance
@@ -167,7 +167,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="mt-6 text-lg sm:text-xl md:text-2xl font-medium text-white/60 max-w-3xl mx-auto"
+          className="lg:mt-6 mt-0  leading-8 text-lg sm:text-xl md:text-2xl font-medium text-white/60 max-w-3xl mx-auto"
         >
           End-to-end services to make your study abroad dream smooth,
           stress-free, and successful.
@@ -178,7 +178,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="lg:mt-20 "
+          className="lg:mt-20 lg:py-2 mt-6 "
         >
           <Button className="flex justify-center items-center text-center mx-auto  text-white">
             Get Personalized Assistance Now
