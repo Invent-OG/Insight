@@ -197,9 +197,9 @@ const Hero = () => {
       />
 
       <ContainerScale className="z-10 md:text-center px-6 md:px-0">
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
+        <div className="lg:text-5xl md:text-5xl text-3xl  font-bold tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
           {/* First Line */}
-          <div className="flex justify-center gap-x-2 whitespace-nowrap">
+          <div className="flex justify-center gap-x-2">
             <div className="text-primary">
               <VerticalCutReveal
                 splitBy="words"
@@ -231,7 +231,7 @@ const Hero = () => {
           </div>
 
           {/* Second Line */}
-          <div className="flex justify-center gap-x-2 whitespace-nowrap">
+          <div className="flex justify-center gap-x-2">
             <VerticalCutReveal
               splitBy="words"
               staggerDuration={0.025}
@@ -263,7 +263,7 @@ const Hero = () => {
           </div>
 
           {/* Third Line */}
-          <div className="flex justify-center gap-x-2 whitespace-nowrap">
+          <div className="flex justify-center gap-x-2">
             <div className="text-primary">
               <VerticalCutReveal
                 splitBy="words"

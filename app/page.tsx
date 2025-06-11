@@ -1,7 +1,6 @@
 "use client";
 
 import Loading3D from "@/components/sections/Loading3D";
-import Countries from "@/components/sections/Countries";
 import Hero from "@/components/sections/Hero";
 import Knowaboutus from "@/components/sections/Knowaboutus";
 import ServicesSection from "@/components/sections/Services";
