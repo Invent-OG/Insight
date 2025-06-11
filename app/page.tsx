@@ -6,6 +6,8 @@ import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Testimonial from "@/components/sections/Testimonial";
 import Herocontent from "@/components/sections/Herocontent";
+import Blogs from "@/components/sections/Blogs";
+
 import { useState, useEffect } from "react";
 import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
@@ -33,6 +35,7 @@ export default function Home() {
       <ServicesSection />
       <UniversitiesSection />
       <ContactSection />
+      <Blogs />
       <Testimonial />
     </>
   );
