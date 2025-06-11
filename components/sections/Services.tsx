@@ -132,7 +132,6 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { ContainerScroll, CardSticky } from "@/components/cards-stack";
 import { Button } from "../ui/button";
-import img1 from "@/public/assets/country/Australia.png";
 
 const services = [
   {
@@ -181,7 +180,7 @@ export default function ServicesSection() {
         />
       </Head>
 
-      <section className="bg-hero text-white flex flex-col items-center md:flex-col justify-center md:text-center">
+      <section className="bg-black text-white flex flex-col items-center md:flex-col justify-center md:text-center">
         <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row">
           {/* Left side - Not sticky on mobile */}
           <div className="flex-1 self-start flex flex-col gap-6 rounded-xl items-center justify-center text-center lg:sticky top-20">
@@ -218,6 +217,7 @@ export default function ServicesSection() {
                 return (
                   <React.Fragment key={index}>
                     <CardSticky
+                      key={index}
                       index={index + 2}
                       className="rounded-2xl text-xl bg-black overflow-hidden p-0 shadow-md lg:backdrop-blur-md"
                       incrementY={30}
@@ -229,10 +229,9 @@ export default function ServicesSection() {
                           alt={service.title}
                           fill
                           className="object-cover opacity-30"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                         />
                         <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
-                          <h3 className="sm:text-xl font-semibold text-primary mb-2">
+                          <h3 className="sm:text-xl font-semibold text-white mb-2">
                             {service.title}
                           </h3>
                           <p className="text-sm text-gray-300">

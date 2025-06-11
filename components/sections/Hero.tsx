@@ -18,18 +18,24 @@ import hero4 from "@/public/assets/hero4.webp";
 import hero5 from "@/public/assets/hero5.webp";
 import VerticalCutReveal from "@/fancy/components/text/vertical-cut-reveal";
 
-const bentoGridVariants = cva(
-  "relative grid gap-4 [&>*:first-child]:origin-top-right [&>*:nth-child(3)]:origin-bottom-right [&>*:nth-child(4)]:origin-top-right",
-  {
-    variants: {
-      variant: {
-        default: `
+const bentoGridVariants = cva("relative grid gap-4", {
+  variants: {
+    variant: {
+      default: `
           grid-cols-4 grid-rows-[1fr_1fr_1fr]
           [&>*:first-child]:col-span-4 [&>*:first-child]:row-span-1
           [&>*:nth-child(2)]:col-span-2
           [&>*:nth-child(3)]:col-span-2
           [&>*:nth-child(4)]:col-span-2
           [&>*:nth-child(5)]:col-span-2
+
+          sm:grid-cols-2 sm:grid-rows-[1fr_1fr_1fr]
+          sm:[&>*:first-child]:col-span-2 sm:[&>*:first-child]:row-span-1
+          sm:[&>*:nth-child(2)]:col-span-1
+          sm:[&>*:nth-child(3)]:col-span-1
+          sm:[&>*:nth-child(4)]:col-span-1
+          sm:[&>*:nth-child(5)]:col-span-1
+
           md:grid-cols-8 md:grid-rows-[1fr_0.5fr_0.5fr_1fr]
           md:[&>*:first-child]:col-span-6 md:[&>*:first-child]:row-span-3
           md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(2)]:row-span-2
@@ -37,19 +43,12 @@ const bentoGridVariants = cva(
           md:[&>*:nth-child(4)]:col-span-3
           md:[&>*:nth-child(5)]:col-span-3
         `,
-        threeCells: `grid-cols-2 grid-rows-2
-          [&>*:first-child]:col-span-2`,
-        fourCells: `grid-cols-3 grid-rows-2
-          [&>*:first-child]:col-span-1
-          [&>*:nth-child(2)]:col-span-2
-          [&>*:nth-child(3)]:col-span-2`,
-      },
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 interface ContainerScrollContextValue {
   scrollYProgress: MotionValue<number>;
@@ -200,7 +199,7 @@ const Hero = () => {
       <ContainerScale className="z-10 md:text-center px-6 md:px-0">
         <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-overused-grotesk font-bold tracking-wide text-white flex flex-col space-y-2 sm:space-y-4">
           {/* First Line */}
-          <div className="flex flex-wrap justify-center gap-x-2">
+          <div className="flex justify-center gap-x-2 whitespace-nowrap">
             <div className="text-primary">
               <VerticalCutReveal
                 splitBy="words"
@@ -232,7 +231,7 @@ const Hero = () => {
           </div>
 
           {/* Second Line */}
-          <div className="flex flex-wrap justify-center gap-x-2">
+          <div className="flex justify-center gap-x-2 whitespace-nowrap">
             <VerticalCutReveal
               splitBy="words"
               staggerDuration={0.025}
@@ -264,7 +263,7 @@ const Hero = () => {
           </div>
 
           {/* Third Line */}
-          <div className="flex flex-wrap justify-center gap-x-2">
+          <div className="flex justify-center gap-x-2 whitespace-nowrap">
             <div className="text-primary">
               <VerticalCutReveal
                 splitBy="words"
@@ -280,7 +279,6 @@ const Hero = () => {
                 {"Dreams"}
               </VerticalCutReveal>
             </div>
-
             <div className="text-white">
               <VerticalCutReveal
                 splitBy="words"
@@ -296,7 +294,6 @@ const Hero = () => {
                 {"With"}
               </VerticalCutReveal>
             </div>
-
             <div className="text-white">
               <VerticalCutReveal
                 splitBy="words"

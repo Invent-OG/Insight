@@ -213,7 +213,7 @@ const Page = () => {
                   <div className="absolute top-2 left-2 w-full h-full bg-[#292929] rounded-xl shadow-lg"></div>
                   {/* Top Card */}
                   <motion.div
-                    className="relative w-full h-full rounded-xl shadow-xl flex flex-col items-center justify-center p-4 bg-cover bg-center border border-gray-800 hover:border-cyan-400 hover:shadow-cyan-400/50 transition-all duration-300"
+                    className="relative w-full h-full rounded-xl shadow-xl flex flex-col items-center justify-center p-4 bg-cover bg-center border border-gray-800 hover:border-primary/50 hover:shadow-primary/80 transition-all duration-300"
                     style={{
                       backgroundImage: `url("https://images.unsplash.com/photo-1690983320828-c01b88baacb0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0")`,
                     }}

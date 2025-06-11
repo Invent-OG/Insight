@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
@@ -47,8 +47,22 @@ const FlipCard: React.FC<FlipCardProps> = ({
 
   const router = useRouter();
 
-  const handleCardClick = () => {
-    if (isMobile) {
+  // swipe detection
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const deltaX = touchEndX.current - touchStartX.current;
+    if (Math.abs(deltaX) > 50) {
       setFlipped((prev) => !prev);
     }
   };
@@ -59,7 +73,8 @@ const FlipCard: React.FC<FlipCardProps> = ({
         className="flip-card w-72 h-96 perspective-1000 rounded-lg shadow-lg overflow-hidden cursor-pointer"
         tabIndex={0}
         aria-label={`Flip card for ${title}`}
-        onClick={handleCardClick}
+        onTouchStart={isMobile ? handleTouchStart : undefined}
+        onTouchEnd={isMobile ? handleTouchEnd : undefined}
       >
         <div
           className={`flip-card-inner relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d rounded-lg

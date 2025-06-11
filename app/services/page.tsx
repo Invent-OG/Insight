@@ -17,10 +17,6 @@ import AnimatedBackground from "@/components/ui/animated-background"; // Adjust 
 import { HeroGeometric } from "@/components/ui/shape-landing-hero"; // Adjust path as needed
 import "@/app/globals.css";
 
-function DemoHeroGeometric() {
-  return <HeroGeometric />;
-}
-
 // Animation variants for fade-in and slide-up on mount
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -52,12 +48,7 @@ export default function Services() {
 
       <main className="bg-gradient-to-tr from-indigo-900 via-black to-gray-900 min-h-screen w-full text-gray-100">
         {/* Hero Section */}
-        <section
-          className="min-h-screen flex items-center justify-center text-center px-4 sm:px-6 md:px-12"
-          style={{ margin: 0, paddingTop: 0, paddingBottom: 0 }}
-        >
-          <DemoHeroGeometric />
-        </section>
+        <HeroGeometric />
 
         {/* Services Section */}
         <section className="w-full relative bg-black/70 overflow-hidden">
@@ -92,7 +83,7 @@ export default function Services() {
             }}
           />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-16 relative z-10">
+          <div className=" px-4 sm:px-6 md:px-12 py-16 relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-primary mb-12 leading-tight">
               What We Offer
             </h2>
@@ -199,7 +190,7 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUpVariants}
       style={{ y, willChange: "transform" }}
-      className="relative cursor-default p-8 rounded-3xl bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 border border-gray-300 shadow-md flex flex-col items-center text-center text-gray-800"
+      className="relative cursor-default p-8 rounded-3xl bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-black via-primary/60 to-black flex flex-col items-center text-center "
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <div className="mb-4">{icon}</div>
