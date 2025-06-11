@@ -1,15 +1,12 @@
 "use client";
 
-import Loading3D from "@/components/sections/Loading3D";
 import Hero from "@/components/sections/Hero";
-import Knowaboutus from "@/components/sections/Knowaboutus";
 import ServicesSection from "@/components/sections/Services";
 import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Testimonial from "@/components/sections/Testimonial";
 import Herocontent from "@/components/sections/Herocontent";
 import { useState, useEffect } from "react";
-import FlipCard from "@/components/sections/FlipCard";
 import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
 export default function Home() {
