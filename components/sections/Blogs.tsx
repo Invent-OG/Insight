@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,8 +39,19 @@ const Blog7 = ({
   buttonUrl = "/blogs",
   posts = [],
 }: Blog7Props) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+    });
+  }, []);
   return (
-    <section className="py-16 w-full bg-gradient-to-r from-black to-primary/40 text-white min-h-screen">
+    <section
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-center"
+      className="py-16 w-full bg-gradient-to-r from-black to-primary/40 text-white min-h-screen"
+    >
       <div className="w-full flex flex-col items-center gap-16 px-0">
         <div className="text-center max-w-5xl mx-auto px-4">
           <h2 className="mb-3 text-3xl font-semibold md:text-4xl lg:text-5xl">

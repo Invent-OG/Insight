@@ -7,6 +7,8 @@ import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import DisplayCards from "@/components/ui/display-cards";
 import bgpar from "@/public/assets/herocontentimage.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function About() {
   useEffect(() => {
@@ -30,6 +32,13 @@ export default function About() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+    });
+  }, []);
 
   return (
     <>
@@ -50,6 +59,9 @@ export default function About() {
         <BackgroundPaths />
         {/* Hero  sub content */}
         <section
+          data-aos="fade-down"
+          data-aos-duration="800"
+          data-aos-anchor-placement="top-start"
           className="hero flex items-center min-h-screen bg-black bg-center bg-cover px-8 relative overflow-hidden"
           style={{
             backgroundImage: `url(${bgpar.src})`,
@@ -223,6 +235,9 @@ export default function About() {
           <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-10">
             {/* Left Content */}
             <motion.div
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-anchor-placement="top-start"
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -346,6 +361,9 @@ to finish. Discover your path to international education with Insight
 
             {/* Right Accordion */}
             <motion.div
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-anchor-placement="top-start"
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
@@ -384,7 +402,12 @@ to finish. Discover your path to international education with Insight
         <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
 
         {/* Content */}
-        <div className=" relative z-10  ">
+        <div
+          data-aos="fade-down-right"
+          data-aos-duration="800"
+          data-aos-anchor-placement="top-end"
+          className=" relative z-10   "
+        >
           <DisplayCards />
         </div>
       </main>

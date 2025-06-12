@@ -149,7 +149,7 @@ export default function Nav() {
             { name: "services", route: "/services" },
             { name: "about", route: "/about" },
             { name: "courses", route: "/courses" },
-            { name: "IELTC", route: "/ieltc" },
+            { name: "english programs", route: "/english-programs" },
             { name: "blogs", route: "/blogs" },
             { name: "testimonials", route: "/testimonials" },
             { name: "contact", route: "/contact" },

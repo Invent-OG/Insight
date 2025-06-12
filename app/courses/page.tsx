@@ -75,6 +75,8 @@ const categoryIcons = {
 };
 
 import Image from "next/image";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // Animation variants for framer-motion
 const cardVariants = {
@@ -97,6 +99,14 @@ const Page = () => {
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 300,
+      offset: 100,
+      once: true,
+    });
   }, []);
   return (
     <main className=" mx-auto  bg-black">
@@ -154,7 +164,12 @@ const Page = () => {
       </section>
 
       {/* Combined Courses Section */}
-      <section className="mb-16 bg-black py-12 px-4 sm:px-6 md:px-12 rounded-lg shadow-xl max-w-4xl mx-auto">
+      <section
+        data-aos="zoom-in-up"
+        data-aos-duration="1000"
+        data-aos-delay="100"
+        className="mb-16 bg-black py-12 px-4 sm:px-6 md:px-12 rounded-lg shadow-xl max-w-4xl mx-auto"
+      >
         <h2 className="lg:text-5xl sm:text-4xl font-extrabold text-white mb-10 text-center tracking-wide">
           Explore <span className="text-primary">Top Courses Abroad</span>
         </h2>
@@ -599,7 +614,7 @@ const Page = () => {
       </section>
 
       {/* why these countries */}
-      <div>
+      <div data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="100">
         <WhyTheseCountries />
       </div>
     </main>

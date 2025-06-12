@@ -4,8 +4,111 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HomePage: React.FC = () => {
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return;
+
+      gsap.fromTo(
+        card,
+        { opacity: 0, filter: "blur(10px)", y: 20 },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          y: 0,
+          duration: 1.8,
+          delay: index * 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          },
+        }
+      );
+    });
+  }, []);
+  useEffect(() => {
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 90%",
+          },
+        }
+      );
+    }
+
+    if (leftRef.current) {
+      gsap.fromTo(
+        leftRef.current,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.4,
+          delay: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: leftRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+    }
+
+    if (rightRef.current) {
+      gsap.fromTo(
+        rightRef.current,
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.4,
+          delay: 0.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: rightRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+    }
+  }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 300,
+      offset: 100,
+      once: true,
+    });
+  }, []);
+  const benefits = [
+    "Not grammar-heavy – focus on test rules and smart strategies",
+    "Customized practice sessions for individual needs",
+    "Flexible timing and student comfort",
+    "Regular feedback and progress tracking",
+    "Personal mentorship & doubt-clearing sessions",
+  ];
+
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
@@ -39,7 +142,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* English Proficiency Tests */}
-      <section className="relative overflow-hidden py-16 px-4 bg-gray-950">
+      <section
+        data-aos="zoom-in-down"
+        data-aos-anchor-placement="top-start"
+        data-aos-duration="2000"
+        className="relative flex flex-col justify-center  overflow-hidden py-16 px-4 bg-gray-950 mx-auto"
+      >
         {/* Top wave */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
           <svg
@@ -60,8 +168,7 @@ const HomePage: React.FC = () => {
           English Proficiency Test Preparation
         </motion.h2>
 
-        <div className="relative container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Repeat cards here with same content */}
+        <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
           {[
             "IELTS – Academic & General",
             "PTE – Pearson Test of English",
@@ -164,54 +271,93 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* What Makes Us Different */}
-      <section className="relative bg-gradient-to-r from-indigo-800 to-purple-900 py-16 px-4 overflow-hidden">
+      <section
+        data-aos="fade-up"
+        data-aos-anchor-placement="top-start"
+        data-aos-duration="1000"
+        className="relative  bg-black py-16  overflow-hidden"
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-100 mb-10">
+          <h2 className="text-5xl font-bold text-center text-white mb-10">
             What Makes Our Training Different?
           </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              "Not grammar-heavy – focus on test rules and smart strategies",
-              "Customized practice sessions for individual needs",
-              "Flexible timing and student comfort",
-              "Regular feedback and progress tracking",
-            ].map((item, index) => (
-              <motion.div
+          <div className="flex flex-wrap justify-center gap-6 perspective-1000">
+            {benefits.map((item, index) => (
+              <div
                 key={index}
-                className="bg-black/30 backdrop-blur-md p-6 w-full sm:w-72 rounded-lg border border-pink-500/30 shadow-lg"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                ref={(el) => {
+                  if (el) cardsRef.current[index] = el;
+                }}
+                className="bg-black/30 backdrop-blur-md p-6 w-full sm:w-72 rounded-xl border border-primary shadow-[0_10px_30px_rgba(280,0,3,0.4)] hover:rotate-[1deg] hover:scale-105 transition-transform duration-300"
               >
-                <p className="text-gray-200">{item}</p>
-              </motion.div>
+                <p className="text-white text-base">{item}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* English Communication Classes */}
-      <section className="container mx-auto py-16 px-4">
+      <section className="max-w-6xl mx-auto lg:py-8 px-4 text-white">
         <motion.h2
-          className="text-3xl font-bold text-center mb-8"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl font-bold text-center mb-16 text-white"
         >
           English Communication Classes
         </motion.h2>
-        <div className="grid md:grid-cols-2 gap-8">
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-6"
           >
-            <h3 className="text-xl font-semibold mb-3">Our Method:</h3>
-            <p className="mb-4">
-              “Speak first, learn rules later” – start with real-life
-              conversations, then build grammar and vocabulary progressively.
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Our English communication training is ideal for students,
+              professionals, and anyone looking to gain fluency and confidence
+              in spoken English.
             </p>
-            <ul className="list-disc ml-4 text-gray-300 space-y-1">
+
+            <div>
+              <h3 className="text-xl font-semibold text-primary mb-2">
+                Our Method:
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-2">
+                We follow a{" "}
+                <span className="text-white font-medium">
+                  “speak first, learn rules later”
+                </span>{" "}
+                approach.
+              </p>
+              <p className="text-gray-300 leading-relaxed mb-2">
+                Students begin with spoken practice in everyday situations –
+                this builds natural fluency and confidence.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                As they grow more comfortable, we introduce grammar, vocabulary,
+                and sentence patterns with clear usage-based explanations.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right Content - Key Areas */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-6 border border-gray-600 bg-[#111111] p-8 rounded-xl shadow-md"
+          >
+            <h3 className="text-xl font-semibold text-primary">
+              Key Areas We Cover:
+            </h3>
+            <ul className="list-disc ml-5 text-gray-300 space-y-2">
               <li>Spoken English and pronunciation</li>
               <li>Grammar and sentence framing</li>
               <li>Vocabulary development (basic to advanced)</li>
@@ -219,46 +365,79 @@ const HomePage: React.FC = () => {
               <li>Accent reduction and real-life speaking skills</li>
             </ul>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-xl font-semibold mb-3">Who Can Join?</h3>
-            <p className="mb-4">
-              Everyone is welcome – from school students to professionals and
-              homemakers. No prior knowledge is needed – we start at your level.
-            </p>
-            <ul className="list-disc ml-4 text-gray-300 space-y-1">
-              <li>Flexible scheduling based on your convenience</li>
-              <li>One-on-one attention from trained experts</li>
-              <li>Demo session available before enrollment</li>
-            </ul>
-          </motion.div>
         </div>
+      </section>
+      {/* who can join us? */}
+      <section className="max-w-6xl mx-auto py-20 px-4 text-white">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl font-bold text-center mb-16 text-white"
+        >
+          Who Can Join?
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-[#0f0f0f] border-t-4 border-b-4 border-primary p-8 rounded-md shadow-md space-y-6"
+        >
+          <p className="text-lg text-gray-300 leading-relaxed">
+            Everyone is welcome! Whether you're a school student, graduate,
+            working professional, homemaker, or elder, we tailor the sessions to
+            suit your goals.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            No prior knowledge is needed – we start from your level and build
+            from there.
+          </p>
+
+          <div className="pt-4 border-t border-gray-700 space-y-3 text-gray-300">
+            <div className="bg-gray-800/50 px-4 py-2 rounded-md border border-gray-700">
+              Flexible scheduling based on your convenience
+            </div>
+            <div className="bg-gray-800/50 px-4 py-2 rounded-md border border-gray-700">
+              One-on-one attention from trained experts
+            </div>
+            <div className="bg-gray-800/50 px-4 py-2 rounded-md border border-gray-700">
+              Demo session available before enrollment
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Why Choose Insight */}
-      <section className="bg-gradient-to-r from-purple-700 to-pink-800 py-16 px-4 text-center">
+      <section
+        data-aos="fade-up"
+        data-aos-anchor-placement="top-start"
+        className="py-10 flex items-center justify-center bg-black px-4  text-center"
+      >
         <motion.div
-          className="max-w-3xl mx-auto"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          className="max-w-2xl"
+          data-aos="flip-up"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <h2 className="text-3xl font-bold mb-4">Why Choose Insight?</h2>
-          <p className="mb-4">
+          <h2 className="text-4xl font-extrabold text-white mb-6">
+            Why Choose Insight?
+          </h2>
+          <p className="text-white mb-4">
             We don’t just teach English – we help you build real-world
             communication skills, boost your confidence, and prepare for global
             opportunities.
           </p>
-          <p className="mb-4">
-            Whether you’re aiming for test success or everyday fluency, Insight
+          <p className="text-white mb-6">
+            Whether you're aiming for test success or everyday fluency, Insight
             is here to guide you every step of the way.
           </p>
           <Button
             variant="secondary"
-            className="bg-white text-purple-800 font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300"
+            className="bg-white text-purple-800 font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition duration-300"
           >
             Get Started
           </Button>

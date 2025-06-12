@@ -2,8 +2,17 @@
 
 import Head from "next/head";
 import contact from "@/public/assets/contact.png"; // 👈 Adjust the path as needed
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Contact() {
+  useEffect(() => {
+    AOS.init({
+      duration: 300,
+      once: true,
+    });
+  }, []);
   return (
     <>
       <Head>
@@ -16,17 +25,22 @@ export default function Contact() {
         />
       </Head>
 
-      <main className="min-h-screen flex flex-col md:flex-row">
-        {/* Left Side — Background Image with Overlay */}
+      <main className="relative min-h-screen flex flex-col md:flex-row overflow-hidden">
+        {/* Left Side — Fullscreen Background Image */}
         <div
-          className="relative bg-black text-white flex items-center justify-center px-8 py-36 md:w-1/2 bg-cover bg-center"
+          data-aos="flip-left"
+          data-aos-duration="1000"
+          data-aos-anchor-placement="top-start"
+          data-aos-delay="100"
+          className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${contact.src})` }}
         >
-          {/* Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+        </div>
 
-          {/* Content */}
-          <div className="relative text-center ">
+        {/* Left Side — Text Over Image */}
+        <div className="relative z-10 flex items-center justify-center text-white px-8 py-36 md:w-1/2 w-full text-center">
+          <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="text-primary">Plan smarter</span>, go further.
             </h1>
@@ -37,50 +51,60 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right Side — Contact Form with Slide-in Animation */}
-        <div className="flex items-center justify-center bg-black w-full md:w-1/2 px-8 py-20 animate-slideIn ">
-          <div className="w-full max-w-lg">
+        {/* Right Side — Transparent Glass Form */}
+        <div
+          data-aos="flip-right"
+          data-aos-duration="1000"
+          data-aos-anchor-placement="top-start"
+          data-aos-delay="100"
+          className="relative z-10 flex items-center justify-center w-full md:w-1/2 px-8 py-20 backdrop-blur-sm bg-white/10"
+        >
+          <div className="w-full max-w-lg text-white">
             <h2 className="text-2xl font-bold mb-6 text-primary">
               Get in Touch
             </h2>
             <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
               <div>
-                <label className="block text-sm font-medium text-gray-300">
+                <label className="block text-sm font-medium text-gray-200">
                   Name <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                  className="w-full px-4 py-2 mt-1 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition"
+                  placeholder="Your Name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300">
+                <label className="block text-sm font-medium text-gray-200">
                   Email Address <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="email"
                   required
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                  className="w-full px-4 py-2 mt-1 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition"
+                  placeholder="you@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300">
+                <label className="block text-sm font-medium text-gray-200">
                   Phone Number <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="tel"
                   required
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                  className="w-full px-4 py-2 mt-1 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition"
+                  placeholder="+91 00000 00000"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300">
+                <label className="block text-sm font-medium text-gray-200">
                   Interest
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 transition"
+                  className="w-full px-4 py-2 mt-1 border border-gray-500 rounded-md bg-transparent text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition"
+                  placeholder="Study Abroad Program"
                 />
               </div>
               <button
@@ -90,8 +114,9 @@ export default function Contact() {
                 Submit Inquiry
               </button>
             </form>
+
             {/* Contact Info */}
-            <div className="mt-8 text-gray-600">
+            <div className="mt-8 text-gray-300">
               <p className="mb-3">
                 <strong>Phone:</strong>{" "}
                 <a href="tel:+918270883451" className="text-primary">
@@ -125,23 +150,6 @@ export default function Contact() {
           </div>
         </div>
       </main>
-
-      {/* Slide-in Animation */}
-      <style jsx>{`
-        @keyframes slideIn {
-          0% {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        .animate-slideIn {
-          animation: slideIn 1s ease forwards;
-        }
-      `}</style>
     </>
   );
 }

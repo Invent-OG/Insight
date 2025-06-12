@@ -170,7 +170,7 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
             initial="hidden"
             animate="visible"
             whileHover="hover"
-            className="w-full h-full"
+            className="w-full h-full bg-gray-900" // 👈 Add your desired bg color here
           >
             <DisplayCard {...cardProps} className="h-full" />
           </motion.div>
