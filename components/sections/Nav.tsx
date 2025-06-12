@@ -4,30 +4,36 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import logo from "@/public/assets/logo.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export default function Nav() {
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const navRef = useRef<HTMLElement | null>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
   const closeRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLHeadingElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null); // ✅ For outside click
 
   const tl = useRef<gsap.core.Timeline | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    // Initialize GSAP timeline for menu animation
+    if (isAdmin) return;
+
     tl.current = gsap.timeline({
       defaults: { duration: 0.6, ease: "expo.inOut" },
       paused: true,
@@ -50,15 +56,37 @@ export default function Nav() {
     return () => {
       tl.current?.kill();
     };
-  }, []);
+  }, [isAdmin]);
+
+  // ✅ Close menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        isOpen
+      ) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const openMenu = () => {
-    tl.current?.play();
-    setIsOpen(true);
+    if (!isAdmin) {
+      tl.current?.play();
+      setIsOpen(true);
+    }
   };
 
   const closeMenu = () => {
-    tl.current?.reverse();
+    if (!isAdmin) {
+      tl.current?.reverse();
+    }
   };
 
   const addToLinksRef = (el: HTMLAnchorElement | null) => {
@@ -67,18 +95,19 @@ export default function Nav() {
     }
   };
 
-  const router = useRouter();
+  if (isAdmin) return null;
 
   return (
     <div
+      ref={containerRef}
       className={cn(
-        " lg:px-28 px-5 py-3  w-full flex items-center transition-all duration-500 justify-between fixed z-50",
+        "lg:px-28 px-5 py-3 w-full flex items-center transition-all duration-500 justify-between fixed z-50",
         isScrolled
-          ? "bg-gradient-to-t from-transparent   m-0 to-black  [mask-image:linear-gradient(to_bottom,black_25%,black_75%,)] "
+          ? "bg-gradient-to-t from-transparent to-black [mask-image:linear-gradient(to_bottom,black_25%,black_75%)]"
           : "bg-transparent"
       )}
     >
-      {/* Logo fixed top-left */}
+      {/* Logo */}
       <Image
         onClick={() => router.push("/")}
         src={logo}
@@ -88,7 +117,7 @@ export default function Nav() {
         className="object-cover hover:cursor-pointer"
       />
 
-      {/* Hamburger Icon */}
+      {/* Hamburger */}
       {!isOpen && (
         <div
           className="flex flex-col items-center justify-center cursor-pointer group rounded-full"
@@ -98,18 +127,18 @@ export default function Nav() {
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && openMenu()}
         >
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out mb-[3px]" />
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out mb-[3px]" />
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300 ease-in-out" />
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
+          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300" />
         </div>
       )}
 
-      {/* Navigation Menu */}
+      {/* Sidebar Nav */}
       <nav
         ref={navRef}
         className="fixed top-0 right-[-100%] w-[80vw] max-w-[320px] h-0 bg-gradient-to-b from-red-700 via-red-700 to-black shadow-2xl shadow-black/60 overflow-hidden flex flex-col pt-[60px] z-[999]"
       >
-        {/* Nav Header with logo */}
+        {/* Nav Header */}
         <div className="flex items-center gap-2.5 px-5 pb-5">
           <Image
             src={logo}
@@ -134,16 +163,16 @@ export default function Nav() {
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && closeMenu()}
-          className="absolute top-[15px] right-5 w-7.5 h-7.5 cursor-pointer opacity-0 pointer-events-none flex items-center justify-center focus:outline-white focus:outline-2"
+          className="absolute top-[15px] right-5 w-7.5 h-7.5 cursor-pointer opacity-0 pointer-events-none flex items-center justify-center"
         >
           <div className="relative w-6 h-6">
-            <span className="absolute left-3 top-0 w-[3px] h-6 bg-white rounded-sm rotate-45 transition-colors duration-300 ease-in-out pointer-events-none" />
-            <span className="absolute left-3 top-0 w-[3px] h-6 bg-white rounded-sm -rotate-45 transition-colors duration-300 ease-in-out pointer-events-none" />
+            <span className="absolute left-3 top-0 w-[3px] h-6 bg-white rotate-45 rounded-sm" />
+            <span className="absolute left-3 top-0 w-[3px] h-6 bg-white -rotate-45 rounded-sm" />
           </div>
         </div>
 
-        {/* Navigation Links */}
-        <ul className="flex flex-col gap-6 mt-10 pl-5 capitalize list-none">
+        {/* Nav Links */}
+        <ul className="flex flex-col gap-6 mt-10 pl-5 capitalize">
           {[
             { name: "home", route: "/" },
             { name: "services", route: "/services" },
@@ -158,7 +187,7 @@ export default function Nav() {
               <a
                 href={route}
                 ref={addToLinksRef}
-                className="text-white text-xl font-medium no-underline capitalize opacity-0 pointer-events-none select-none transition-colors duration-300 ease-in-out hover:text-gray-500 focus:text-primary focus:outline-none"
+                className="text-white text-xl font-medium no-underline opacity-0 pointer-events-none transition-colors duration-300 hover:text-gray-500 focus:text-primary focus:outline-none"
               >
                 {name}
               </a>

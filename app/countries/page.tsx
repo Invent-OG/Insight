@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -26,27 +27,28 @@ import finland from "@/public/assets/country/Finland.jpg";
 type Country = {
   title: string;
   image: any;
+  slug: string;
 };
 
 const countries: Country[] = [
-  { title: "Study in UK", image: uk },
-  { title: "Study in the USA", image: usa },
-  { title: "Study in Ireland", image: ireland },
-  { title: "Study in Canada", image: canada },
-  { title: "Study in Australia", image: australia },
-  { title: "Study in New Zealand", image: newzealand },
-  { title: "Study in France", image: france },
-  { title: "Study in Germany", image: germany },
-  { title: "Study in the UAE", image: uae },
-  { title: "Study in Singapore", image: singapore },
-  { title: "Study in Malaysia", image: malaysia },
-  { title: "Study in Poland", image: poland },
-  { title: "Study in Sweden", image: sweden },
-  { title: "Study in Latvia", image: latvia },
-  { title: "Study in Lithuania", image: lithuania },
-  { title: "Study in Malta", image: malta },
-  { title: "Study in Netherlands", image: netherland },
-  { title: "Study in Finland", image: finland },
+  { title: "Study in UK", image: uk, slug: "uk" },
+  { title: "Study in the USA", image: usa, slug: "usa" },
+  { title: "Study in Ireland", image: ireland, slug: "ireland" },
+  { title: "Study in Canada", image: canada, slug: "canada" },
+  { title: "Study in Australia", image: australia, slug: "australia" },
+  { title: "Study in New Zealand", image: newzealand, slug: "new-zealand" },
+  { title: "Study in France", image: france, slug: "france" },
+  { title: "Study in Germany", image: germany, slug: "germany" },
+  { title: "Study in the UAE", image: uae, slug: "uae" },
+  { title: "Study in Singapore", image: singapore, slug: "singapore" },
+  { title: "Study in Malaysia", image: malaysia, slug: "malaysia" },
+  { title: "Study in Poland", image: poland, slug: "poland" },
+  { title: "Study in Sweden", image: sweden, slug: "sweden" },
+  { title: "Study in Latvia", image: latvia, slug: "latvia" },
+  { title: "Study in Lithuania", image: lithuania, slug: "lithuania" },
+  { title: "Study in Malta", image: malta, slug: "malta" },
+  { title: "Study in Netherlands", image: netherland, slug: "netherlands" },
+  { title: "Study in Finland", image: finland, slug: "finland" },
 ];
 
 const Page = () => {
@@ -104,29 +106,27 @@ const Page = () => {
       <section className="w-full mx-auto py-16 lg:py-20 bg-black px-4 sm:px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-gray-200">
           {countries.map((country) => (
-            <motion.div
-              key={country.title}
-              className="relative w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-xl group border border-gray-800 hover:border-primary/50 transition-all duration-300"
-              whileHover={{ scale: 1.03 }}
-            >
-              {/* Wrapper with fixed height */}
-              <div className="relative h-80 w-full">
-                <Image
-                  src={country.image}
-                  alt={country.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-
-                {/* Gradient and Title */}
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/60 to-transparent px-4 py-3">
-                  <h2 className="text-white text-lg font-semibold text-center">
-                    {country.title}
-                  </h2>
+            <Link href={`/countries/${country.slug}`} key={country.slug}>
+              <motion.div
+                className="relative w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-xl group border border-gray-800 hover:border-primary/50 transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+              >
+                <div className="relative h-80 w-full">
+                  <Image
+                    src={country.image}
+                    alt={country.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/60 to-transparent px-4 py-3">
+                    <h2 className="text-white text-lg font-semibold text-center">
+                      {country.title}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>

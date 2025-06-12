@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import logo from "@/public/assets/logo.png";
 import {
   Users,
   MessageSquare,
@@ -80,27 +81,22 @@ export default function Sidebar() {
       >
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
-            <Image
-              src="https://inkxnijaveazwuplldwu.supabase.co/storage/v1/object/public/insight//INSIGHT.R.png"
-              alt={"logo"}
-              width={50}
-              height={50}
-            />
+            <Image src={logo} alt={"logo"} width={50} height={50} />
             <span className="font-semibold">Admin Panel</span>
           </div>
 
-          <nav className="space-y-2">
+          <nav className="space-y-2 ">
             {navItems.map((item) => (
               <Button
                 key={item.href}
                 variant={pathname === item.href ? "secondary" : "ghost"}
-                className="w-full justify-start"
+                className="w-full justify-start  "
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Link href={item.href}>
                   {item.icon}
-                  <span className="ml-2">{item.label}</span>
+                  <span className="ml-2 ">{item.label}</span>
                 </Link>
               </Button>
             ))}
@@ -110,8 +106,8 @@ export default function Sidebar() {
               className="w-full justify-start text-destructive hover:text-destructive"
               onClick={handleLogout}
             >
-              <LogOut className="h-5 w-5" />
-              <span className="ml-2">Logout</span>
+              <LogOut className="h-5 w-5 " />
+              <span className="ml-2 ">Logout</span>
             </Button>
           </nav>
         </div>
@@ -120,7 +116,7 @@ export default function Sidebar() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 lg:hidden"
+          className="fixed  inset-0 bg-background/80 backdrop-blur-sm z-30 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
