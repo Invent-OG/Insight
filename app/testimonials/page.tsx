@@ -36,7 +36,7 @@ export default function TestimonialsPage() {
       <div className="bg-black/80 w-full h-full absolute inset-0 -z-10" />
 
       {/* Dark Section */}
-      <div className="relative px-4 sm:px-6 lg:px-12 py-16 sm:py-24 min-h-screen flex items-center justify-center">
+      <div className="relative px-4 sm:px-6 lg:px-12 py-16 sm:py-24 min-h-[100dvh] sm:min-h-screen flex items-center justify-center">
         <div className="w-full max-w-6xl">
           <div className="flex justify-center items-center py-10">
             <CircularTestimonials

@@ -210,7 +210,7 @@ export const CircularTestimonials = ({
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h3
-                className="name"
+                className="name "
                 style={{ color: colorName, fontSize: fontSizeName }}
               >
                 {activeTestimonial.name}
@@ -288,16 +288,19 @@ export const CircularTestimonials = ({
           max-width: 56rem;
           padding: 2rem;
         }
+
         .testimonial-grid {
           display: grid;
           gap: 5rem;
         }
+
         .image-container {
           position: relative;
           width: 100%;
           height: 24rem;
           perspective: 1000px;
         }
+
         .testimonial-image {
           position: absolute;
           width: 100%;
@@ -306,26 +309,31 @@ export const CircularTestimonials = ({
           border-radius: 1.5rem;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+
         .testimonial-content {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
         }
+
         .name {
           font-weight: bold;
-          margin-bottom: 0.25rem;
         }
+
         .designation {
           margin-bottom: 2rem;
         }
+
         .quote {
           line-height: 1.75;
         }
+
         .arrow-buttons {
           display: flex;
           gap: 1.5rem;
-          padding-top: 3rem;
+          padding-top: 2rem;
         }
+
         .arrow-button {
           width: 2.7rem;
           height: 2.7rem;
@@ -337,13 +345,48 @@ export const CircularTestimonials = ({
           transition: background-color 0.3s;
           border: none;
         }
+
         .word {
           display: inline-block;
         }
+
+        /* ----------- MOBILE ONLY ADJUSTMENTS ----------- */
+        @media (max-width: 767px) {
+          .testimonial-grid {
+            gap: 2rem; /* Reduced gap between image and content */
+          }
+
+          .image-container {
+            height: 14rem; /* Smaller image height */
+          }
+
+          .testimonial-image {
+            width: 90%;
+            height: 90%;
+            left: 5%;
+            top: 5%;
+          }
+
+          .name {
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+          }
+
+          .designation {
+            margin-bottom: 1rem;
+          }
+
+          .arrow-buttons {
+            padding-top: 1.5rem;
+          }
+        }
+
+        /* ----------- DESKTOP + TABLET GRID ----------- */
         @media (min-width: 768px) {
           .testimonial-grid {
             grid-template-columns: 1fr 1fr;
           }
+
           .arrow-buttons {
             padding-top: 0;
           }
