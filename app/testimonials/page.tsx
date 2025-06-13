@@ -1,24 +1,59 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTestimonials } from "@/lib/queries/testimonials";
 import { CircularTestimonials } from "@/components/circular-testimonials";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
 
 export default function TestimonialsPage() {
   const { data, isLoading, error } = useTestimonials();
+  const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
 
   if (isLoading) return <p>Loading testimonials...</p>;
   if (error) return <p>Error loading testimonials.</p>;
 
-  const defaultAvatar = "/default-avatar.jpg"; // <-- Replace with a valid fallback image
+  const defaultAvatar = "/default-avatar.jpg";
+
+  const toggleReadMore = (index: number) => {
+    setExpandedIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
 
   const testimonials =
-    data?.testimonials.map((t) => ({
-      quote: t.content,
-      name: t.name,
-      designation: t.role,
-      src: t.imageUrl || defaultAvatar, // ✅ Ensure `src` is always a string
-    })) ?? [];
+    data?.testimonials.map((t, index) => {
+      const isExpanded = expandedIndexes.includes(index);
+      const isLong = t.content.length > 300;
+      const shortContent = t.content.slice(0, 300);
+
+      return {
+        quote: (
+          <>
+            {isExpanded || !isLong ? t.content : `${shortContent}... `}
+            {isLong && (
+              <button
+                onClick={() => toggleReadMore(index)}
+                className="ml-2 flex items-center gap-1 text-[#FF0012] text-sm hover:underline transition"
+              >
+                {isExpanded ? (
+                  <>
+                    Read Less <FaChevronUp size={12} />
+                  </>
+                ) : (
+                  <>
+                    Read More <FaChevronDown size={12} />
+                  </>
+                )}
+              </button>
+            )}
+          </>
+        ),
+        name: t.name,
+        designation: t.role,
+        src: t.imageUrl || defaultAvatar,
+      };
+    }) ?? [];
 
   return (
     <section className="relative">

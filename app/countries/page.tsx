@@ -337,7 +337,7 @@ export default function StudyAbroadAnimation() {
                 <h2 className="section-title text-4xl md:text-6xl font-bold text-center">
                   {country.title}
                 </h2>
-                <div className="mt-4 text-center">
+                <div className=" text-center">
                   <Link href={`/countries/${country.slug}`} passHref>
                     <Button className="relative inline-flex items-center justify-center px-4 py-2 rounded-full text-white bg-black border border-black hover:text-white transition-colors before:absolute before:inset-0 before:rounded-full before:border before:border-red-500 before:opacity-100 hover:before:opacity-0 before:transition-opacity">
                       Learn More

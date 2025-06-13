@@ -10,7 +10,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Testimonial {
-  quote: string;
+  quote: string | React.ReactNode;
   name: string;
   designation: string;
   src: string;
@@ -228,29 +228,34 @@ export const CircularTestimonials = ({
                 className="quote"
                 style={{ color: colorTestimony, fontSize: fontSizeQuote }}
               >
-                {activeTestimonial.quote.split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{
-                      filter: "blur(10px)",
-                      opacity: 0,
-                      y: 5,
-                    }}
-                    animate={{
-                      filter: "blur(0px)",
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: 0.22,
-                      ease: "easeInOut",
-                      delay: 0.025 * i,
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {word}&nbsp;
-                  </motion.span>
-                ))}
+                {typeof activeTestimonial.quote === "string" ? (
+                  activeTestimonial.quote.split(" ").map((word, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{
+                        filter: "blur(10px)",
+                        opacity: 0,
+                        y: 5,
+                      }}
+                      animate={{
+                        filter: "blur(0px)",
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.22,
+                        ease: "easeInOut",
+                        delay: 0.025 * i,
+                      }}
+                      style={{ display: "inline-block" }}
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))
+                ) : (
+                  // If it's already a JSX element, just render it
+                  <>{activeTestimonial.quote}</>
+                )}
               </motion.p>
             </motion.div>
           </AnimatePresence>
@@ -287,6 +292,7 @@ export const CircularTestimonials = ({
           width: 100%;
           max-width: 56rem;
           padding: 2rem;
+          position: relative; /* ✅ add this */
         }
 
         .testimonial-grid {
@@ -314,6 +320,8 @@ export const CircularTestimonials = ({
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          position: relative;
+          z-index: 5;
         }
 
         .name {
@@ -332,6 +340,8 @@ export const CircularTestimonials = ({
           display: flex;
           gap: 1.5rem;
           padding-top: 2rem;
+          z-index: 10;
+          position: relative;
         }
 
         .arrow-button {
