@@ -31,13 +31,13 @@ const Layout2 = () => {
 
   return (
     <div className="bg-gradient-to-r from-black to-primary/40 ">
-      <section
-        data-aos="zoom-in-left"
-        data-aos-duration="1000"
-        data-aos-delay="100"
-        className="bg-black text-white lg:py-10 py-20 "
-      >
-        <div className="container flex flex-col  md:flex-row md:space-y-6 items-center px-6 md:px-20 md:py-20 lg:py-16 ">
+      <section className="bg-black text-white lg:py-10 py-20 ">
+        <div
+          data-aos="zoom-in-left"
+          data-aos-duration="1000"
+          data-aos-delay="100"  
+          className="container flex flex-col  md:flex-row md:space-y-6 items-center px-6 md:px-20 md:py-20 lg:py-16 "
+        >
           {/* Image on left with scroll-triggered animation */}
           <motion.div
             className="w-full md:w-1/2  md:mb-0 md:pr-12"

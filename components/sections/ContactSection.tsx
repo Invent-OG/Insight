@@ -20,7 +20,12 @@ export default function ContactSection() {
       </div>
 
       {/* Grid Section */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="100"
+        className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center"
+      >
         {/* Left Side - Form */}
         <div>
           <form className="space-y-4">

@@ -67,7 +67,12 @@ const thirdColumn = testimonials.slice(6, 9);
 const Testimonials = () => {
   return (
     <section className="bg-black text-white relative py-16">
-      <div className="container mx-auto">
+      <div
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="100"
+        className="container mx-auto"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

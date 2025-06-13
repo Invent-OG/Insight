@@ -49,12 +49,14 @@ export default function UniversitiesSection() {
 
   return (
     <div className="bg-gradient-to-r from-black to-primary/40">
-      <section
-        data-aos="fade-up"
-        data-aos-anchor-placement="top-start"
-        className="bg-black/90 text-white px-4 py-12 md:py-11 lg:py-4"
-      >
-        <div className="container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12">
+      <section className="bg-black/90 text-white px-4 py-12 md:py-11 lg:py-4">
+        <div
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+          data-aos-anchor-placement="top-center"
+          className="container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12"
+        >
           {/* Heading */}
           <div className="text-center max-w-4xl mx-auto  lg:mb-12 space-y-8">
             <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider  relative">

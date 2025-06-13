@@ -14,11 +14,11 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null); // ✅ outer wrapper for outside click
   const navRef = useRef<HTMLElement | null>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
   const closeRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLHeadingElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null); // ✅ For outside click
 
   const tl = useRef<gsap.core.Timeline | null>(null);
   const router = useRouter();
@@ -62,8 +62,8 @@ export default function Nav() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node) &&
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node) &&
         isOpen
       ) {
         closeMenu();
@@ -98,40 +98,41 @@ export default function Nav() {
   if (isAdmin) return null;
 
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        "lg:px-28 px-5 py-3 w-full flex items-center transition-all duration-500 justify-between fixed z-50",
-        isScrolled
-          ? "bg-gradient-to-t from-transparent to-black [mask-image:linear-gradient(to_bottom,black_25%,black_75%)]"
-          : "bg-transparent"
-      )}
-    >
-      {/* Logo */}
-      <Image
-        onClick={() => router.push("/")}
-        src={logo}
-        alt="Insight Logo"
-        width={60}
-        height={60}
-        className="object-cover hover:cursor-pointer"
-      />
+    <div ref={wrapperRef}>
+      <div
+        className={cn(
+          "lg:px-28 px-5 py-3 w-full flex items-center transition-all duration-500 justify-between fixed z-50",
+          isScrolled
+            ? "bg-gradient-to-t from-transparent to-black [mask-image:linear-gradient(to_bottom,black_25%,black_75%)]"
+            : "bg-transparent"
+        )}
+      >
+        {/* Logo */}
+        <Image
+          onClick={() => router.push("/")}
+          src={logo}
+          alt="Insight Logo"
+          width={60}
+          height={60}
+          className="object-cover hover:cursor-pointer"
+        />
 
-      {/* Hamburger */}
-      {!isOpen && (
-        <div
-          className="flex flex-col items-center justify-center cursor-pointer group rounded-full"
-          onClick={openMenu}
-          aria-label="Open Menu"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && openMenu()}
-        >
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
-          <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300" />
-        </div>
-      )}
+        {/* Hamburger */}
+        {!isOpen && (
+          <div
+            className="flex flex-col items-center justify-center cursor-pointer group rounded-full"
+            onClick={openMenu}
+            aria-label="Open Menu"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && openMenu()}
+          >
+            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
+            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
+            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300" />
+          </div>
+        )}
+      </div>
 
       {/* Sidebar Nav */}
       <nav

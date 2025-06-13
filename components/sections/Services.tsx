@@ -190,12 +190,7 @@ export default function ServicesSection() {
       </Head>
 
       <div className="bg-gradient-to-r from-black to-primary/40">
-        <section
-          data-aos="fade-right"
-          data-aos-offset="300"
-          data-aos-easing="ease-in-sine"
-          className="bg-black text-white flex flex-col items-center md:flex-col justify-center md:text-center "
-        >
+        <section className="bg-black text-white flex flex-col items-center md:flex-col justify-center md:text-center ">
           <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row ">
             {/* Left side - Not sticky on mobile */}
             <div className="flex-1 self-start flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20">

@@ -101,11 +101,13 @@
 
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import FlipCard from "./FlipCard";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { StaticImageData } from "next/image";
+import AOS from "aos";
+import "aos/dist/aos.css";
 // Import images
 import uk from "@/public/assets/UK.png";
 import usa from "@/public/assets/country/Usa.jpg";
@@ -150,6 +152,14 @@ const CountriesCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+    });
+  }, []);
+
   return (
     <div className="relative overflow-hidden py-16 lg:min-h-screen ">
       {/* Parallax Background */}
@@ -164,7 +174,13 @@ const CountriesCarousel: React.FC = () => {
       <div className="absolute inset-0 bg-black/80"></div>
 
       {/* Your content */}
-      <div className="relative z-10 bg-transparent flex flex-col gap-10 justify-center items-center text-white">
+      <div
+        data-aos="flip-up"
+        data-aos-duration="1000"
+        data-aos-delay="100"
+        data-aos-anchor-placement="top-bottom"
+        className="relative z-10 bg-transparent flex flex-col gap-10 justify-center items-center text-white"
+      >
         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center lg:py-8">
           Countries
         </h1>

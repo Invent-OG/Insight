@@ -7,9 +7,9 @@ import ContactSection from "@/components/sections/ContactSection";
 import Testimonial from "@/components/sections/Testimonial";
 import Herocontent from "@/components/sections/Herocontent";
 import Blogs from "@/components/sections/Blogs";
+import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
 import { useState, useEffect } from "react";
-import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -26,17 +26,15 @@ export default function Home() {
   }
 
   return (
-    <>
+    <main className="w-full ">
       <Hero />
       <Herocontent />
-      {/* <Countries /> */}
       <CountriesCarousel />
-      {/* <Knowaboutus /> */}
       <ServicesSection />
       <UniversitiesSection />
       <ContactSection />
       <Blogs />
       <Testimonial />
-    </>
+    </main>
   );
 }
