@@ -7,7 +7,7 @@ import {
 
 // Types
 export interface Testimonial {
-  _id: string;
+  _id?: string;
   id: string;
   name: string;
   role: string;

@@ -29,8 +29,8 @@ type TestimonialFormData = z.infer<typeof testimonialSchema>;
 
 interface TestimonialFormProps {
   onClose: () => void;
-  initialData?: TestimonialFormData & { id: string };
-  onSuccess?: () => void; // <-- New prop for notifying parent on success
+  initialData?: TestimonialFormData & { id?: string; _id?: string };
+  onSuccess?: () => void;
 }
 
 export default function TestimonialForm({
@@ -67,6 +67,7 @@ export default function TestimonialForm({
     try {
       let imageUrl = data.imageUrl;
 
+      // Upload image if selected
       if (fileToUpload) {
         setUploading(true);
         const fileExt = fileToUpload.name.split(".").pop();
@@ -79,9 +80,7 @@ export default function TestimonialForm({
 
         if (uploadError) {
           toast.error("Image upload failed");
-          setUploading(false);
-          setIsSubmitting(false);
-          return;
+          throw uploadError;
         }
 
         const { data: publicUrlData } = supabase.storage
@@ -90,39 +89,39 @@ export default function TestimonialForm({
 
         if (!publicUrlData?.publicUrl) {
           toast.error("Failed to get public image URL");
-          setUploading(false);
-          setIsSubmitting(false);
-          return;
+          throw new Error("No public URL found");
         }
 
         imageUrl = publicUrlData.publicUrl;
         setUploading(false);
       }
 
-      const payload = {
+      // Build payload without `id`
+      const { id, ...rest } = initialData || {};
+      const payload: Omit<TestimonialFormData, "id"> = {
         ...data,
         imageUrl,
+        // ...(rest._id ? { _id: rest._id } : {}),
       };
 
-      if (initialData?.id) {
+      const docId = initialData?.id;
+
+      if (docId) {
+        // Update
         await updateTestimonialMutation.mutateAsync({
-          id: initialData.id,
+          id: docId,
           data: payload,
         });
         toast.success("Testimonial updated successfully");
       } else {
+        // Create
         await createTestimonialMutation.mutateAsync(payload);
         toast.success("Testimonial created successfully");
       }
 
       form.reset();
       setFileToUpload(null);
-
-      if (onSuccess) {
-        onSuccess(); // Notify parent to reset page and close form
-      } else {
-        onClose();
-      }
+      onSuccess ? onSuccess() : onClose();
     } catch (error) {
       toast.error(
         initialData
@@ -208,7 +207,6 @@ export default function TestimonialForm({
               />
             </FormControl>
             {uploading && <p className="text-sm text-muted">Uploading...</p>}
-
             {fileToUpload && (
               <img
                 src={URL.createObjectURL(fileToUpload)}
@@ -216,7 +214,6 @@ export default function TestimonialForm({
                 className="h-20 w-20 object-cover rounded-md mt-2"
               />
             )}
-
             {!fileToUpload && form.watch("imageUrl") && (
               <img
                 src={form.watch("imageUrl")}
