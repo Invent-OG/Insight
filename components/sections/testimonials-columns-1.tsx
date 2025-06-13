@@ -183,3 +183,54 @@
 //     </div>
 //   );
 // }
+// import React, { JSX } from "react";
+
+// type Testimonial = {
+//   text: string;
+//   image: string;
+//   name: string;
+//   role: string;
+//   wrapper?: ({ children }: { children: React.ReactNode }) => JSX.Element;
+// };
+
+// export function TestimonialsColumn({
+//   testimonials,
+//   duration,
+//   className = "",
+// }: {
+//   testimonials: Testimonial[];
+//   duration: number;
+//   className?: string;
+// }) {
+//   return (
+//     <div className={`flex flex-col gap-6 ${className}`}>
+//       {testimonials.map((testimonial, index) => {
+//         const Wrapper =
+//           testimonial.wrapper || (({ children }) => <>{children}</>);
+
+//         return (
+//           <Wrapper key={`testimonial-${index}`}>
+//             <div
+//               key={index}
+//               className="bg-zinc-900 p-6 rounded-xl h-full flex flex-col justify-between min-h-[200px] max-w-[320px] w-full"
+//             >
+//               <p className="text-sm mb-4">{testimonial.text}</p>
+//               <div className="flex items-center gap-4 mt-auto">
+//                 <img
+//                   src={testimonial.image}
+//                   alt={testimonial.name}
+//                   className="w-10 h-10 rounded-full object-cover"
+//                 />
+//                 <div>
+//                   <p className="text-sm font-medium">{testimonial.name}</p>
+//                   <p className="text-xs text-zinc-400">{testimonial.role}</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </Wrapper>
+//         );
+//       })}
+//     </div>
+//   );
+// }
+

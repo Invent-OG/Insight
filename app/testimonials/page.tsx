@@ -27,7 +27,7 @@ export default function TestimonialsPage() {
         className="absolute inset-0 bg-fixed bg-center bg-cover -z-10"
         style={{
           backgroundImage:
-            "url('https://images.pexels.com/photos/18512872/pexels-photo-18512872/free-photo-of-feedback.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+            "url('https://images.pexels.com/photos/30700949/pexels-photo-30700949/free-photo-of-mysterious-river-valley-under-dramatic-clouds.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
         }}
         aria-hidden="true"
       />

@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function ElegantShape({
   className,
@@ -87,7 +90,13 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
       },
     }),
   };
-
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      offset: 100,
+      once: true,
+    })
+  }, []);
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
       <div className="absolute inset-0 bg-gradient-to-br w-full from-indigo-900/10 via-transparent to-rose-900/10 blur-3xl" />
@@ -139,7 +148,12 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
         />
       </div>
 
-      <motion.div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-12">
+      <motion.div
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-anchor-placement="top-start"
+        className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-12"
+      >
         {badge && (
           <motion.span
             initial={{ opacity: 0, y: -20 }}

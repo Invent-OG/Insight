@@ -50,12 +50,6 @@ export default function BlogsPage() {
               Discover the latest trends, insights, and real-world stories from
               our team.
             </p>
-            <Button variant="link" asChild className="text-lg font-semibold">
-              <Link href="/blogs">
-                Explore All Posts
-                <ArrowRight className="ml-2 size-4" />
-              </Link>
-            </Button>
           </div>
 
           <div className="grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
@@ -64,11 +58,11 @@ export default function BlogsPage() {
               return (
                 <Card
                   key={post.id}
-                  className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-md"
+                  className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-md min-h-[420px] bg-white/5"
                 >
                   <Link
                     href={`/blogs/${post.id}`}
-                    className="relative w-full aspect-[16/9] block"
+                    className="relative w-full h-48 block"
                   >
                     {post.imageUrl ? (
                       <img

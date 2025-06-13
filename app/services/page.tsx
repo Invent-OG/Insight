@@ -58,14 +58,11 @@ export default function Services() {
         />
       </Head>
 
-      <main
-        data-aos="fade-up"
-        data-aos-duration="800"
-        data-aos-anchor-placement="top-start"
-        className=" min-h-screen w-full text-gray-100"
-      >
+      <main className=" min-h-screen w-full text-gray-100">
         {/* Hero Section */}
-        <HeroGeometric />
+        <div>
+          <HeroGeometric />
+        </div>
 
         {/* Services Section */}
         <section className={`${animatedStyles.area} relative`}>
@@ -202,7 +199,7 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
       <div className="relative z-10">
         <div className="text-2xl mb-2">{icon}</div>
         <h3 className="text-xl font-bold text-primary">{title}</h3>
-        <p className="text-sm py-2">{description}</p>
+        <p className="text-sm py-2 leading-normal">{description}</p>
       </div>
     </motion.div>
   );
