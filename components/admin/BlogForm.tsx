@@ -62,9 +62,10 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
       throw new Error("Image upload failed");
     }
 
-    const { data } = supabase.storage.from("blogs").getPublicUrl(filePath);
+    const { data } = supabase.storage.from("images").getPublicUrl(filePath);
     return data.publicUrl;
   };
+  
 
   const onSubmit = async (data: BlogFormData) => {
     setIsSubmitting(true);
