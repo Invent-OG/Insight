@@ -175,7 +175,7 @@ const CountriesCarousel: React.FC = () => {
 
       {/* Your content */}
       <div
-        data-aos="flip-up"
+        data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="100"
         data-aos-anchor-placement="top-bottom"
