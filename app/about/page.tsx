@@ -9,7 +9,6 @@ import DisplayCards from "@/components/ui/display-cards";
 import bgpar from "@/public/assets/herocontentimage.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import PixelatedImage from "@/components/pixelated-image";
 
 export default function About() {
   useEffect(() => {
