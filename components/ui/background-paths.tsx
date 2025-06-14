@@ -91,7 +91,7 @@ export function BackgroundPaths({
           transition={{ duration: 2 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold leading-relaxed  text-white p-2 mb-8 tracking-tighter">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold leading-relaxed  text-white p-2 mb-8 tracking-tighter">
             {words.map((word, wordIndex) => {
               // Check if the word should be highlighted
               const isHighlighted = highlightWords.includes(word.toUpperCase());

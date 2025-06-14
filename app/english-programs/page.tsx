@@ -478,7 +478,7 @@ const HomePage: React.FC = () => {
       <section
         data-aos="fade-up"
         data-aos-anchor-placement="top-start"
-        className="lg:py-15 py-20 flex pb-14 items-center justify-center bg-gradient-to-br from-black to-red-800 px-4  text-center"
+        className="lg:py-15 py-20 flex pb-14 items-center justify-center bg-gradient-to-br from-black  px-4  text-center"
       >
         <motion.div
           className="max-w-2xl"

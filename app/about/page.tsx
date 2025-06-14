@@ -9,6 +9,7 @@ import DisplayCards from "@/components/ui/display-cards";
 import bgpar from "@/public/assets/herocontentimage.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PixelatedImage from "@/components/pixelated-image";
 
 export default function About() {
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function About() {
       <main className="bg-black text-white min-h-screen relative">
         {/* BackgroundPaths component */}
         <BackgroundPaths />
+
         {/* Hero  sub content */}
         <section
           data-aos="fade-down"
