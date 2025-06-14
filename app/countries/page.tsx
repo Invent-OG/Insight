@@ -281,9 +281,7 @@ export default function StudyAbroadAnimation() {
       }
     };
 
-    // 🟠 Mobile swipe logic
     let startY = 0;
-
     const handleTouchStart = (e: TouchEvent) => {
       startY = e.touches[0].clientY;
     };
@@ -302,7 +300,7 @@ export default function StudyAbroadAnimation() {
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchend", handleTouchEnd);
 
-    goto(0, 1);
+    goto(1, 18);
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
@@ -334,15 +332,29 @@ export default function StudyAbroadAnimation() {
 
             <div className="inner relative z-10 w-full h-full flex items-end justify-center">
               <div className="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/50 to-transparent px-4 py-6">
-                <h2 className="section-title text-4xl md:text-6xl font-bold text-center">
+                <h2 className="section-title text-4xl md:text-6xl font-bold py-10 mb-6 text-center">
                   {country.title}
                 </h2>
-                <div className=" text-center">
+                <div className="relative flex flex-col items-center text-center min-h-[180px] sm:min-h-[200px] lg:min-h-[220px]">
                   <Link href={`/countries/${country.slug}`} passHref>
-                    <Button className="relative inline-flex items-center justify-center px-4 py-2 rounded-full text-white bg-black border border-black hover:text-white transition-colors before:absolute before:inset-0 before:rounded-full before:border before:border-red-500 before:opacity-100 hover:before:opacity-0 before:transition-opacity">
+                    <Button className="relative inline-flex items-center justify-center px-6 py-3 rounded-full text-white bg-black border border-black hover:text-white transition-colors before:absolute before:inset-0 before:rounded-full before:border before:border-red-500 before:opacity-100 hover:before:opacity-0 before:transition-opacity">
                       Learn More
                     </Button>
                   </Link>
+                  <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
+                    <svg
+                      className="w-6 h-6 lg:w-8 lg:h-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 5v14M19 12l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -375,3 +387,4 @@ export default function StudyAbroadAnimation() {
     </div>
   );
 }
+
