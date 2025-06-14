@@ -56,7 +56,7 @@ export default function BlogsPage() {
             </p>
             <Button variant="link" asChild className="text-lg font-semibold">
               <Link href="/blogs">
-                Explore All Posts
+                Explore All Blogs
                 <ArrowRight className="ml-2 size-4" />
               </Link>
             </Button>
@@ -66,17 +66,18 @@ export default function BlogsPage() {
             {blogs.map((post) => (
               <Card
                 key={post.id}
-                className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-md"
+                className="flex flex-col h-[450px] bg-card text-card-foreground rounded-lg overflow-hidden shadow-lg"
               >
+                {/* Image */}
                 <Link
                   href={`/blogs/${post.id}`}
-                  className="relative w-full aspect-[16/9] block"
+                  className="relative w-full aspect-[16/9]"
                 >
                   {post.imageUrl ? (
                     <img
                       src={post.imageUrl}
                       alt={post.title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="bg-gray-700 w-full h-full flex items-center justify-center text-white">
@@ -85,8 +86,9 @@ export default function BlogsPage() {
                   )}
                 </Link>
 
-                <CardHeader>
-                  <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                {/* Title + Date */}
+                <CardHeader className="flex flex-col gap-1 px-4 pt-4 pb-2">
+                  <h3 className="text-lg font-semibold hover:underline line-clamp-2">
                     <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                   </h3>
                   <p className="text-sm text-muted-foreground">
@@ -94,16 +96,19 @@ export default function BlogsPage() {
                   </p>
                 </CardHeader>
 
-                <CardContent>
-                  <p className="text-muted-foreground line-clamp-3">
+                {/* Description */}
+                <CardContent className="px-4 pb-2">
+                  <p className="text-muted-foreground text-sm line-clamp-3">
                     {post.excerpt}
                   </p>
                 </CardContent>
 
-                <CardFooter>
+                {/* Spacer + Read More */}
+                <div className="flex-grow" />
+                <CardFooter className="px-4 pb-4">
                   <Link
                     href={`/blogs/${post.id}`}
-                    className="flex items-center text-primary hover:underline"
+                    className="flex items-center text-primary hover:underline text-sm font-medium"
                   >
                     Read more
                     <ArrowRight className="ml-2 size-4" />

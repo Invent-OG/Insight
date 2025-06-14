@@ -168,7 +168,7 @@ export default function Testimonials() {
             <h4 className="text-primary text-sm uppercase tracking-wider mb-3">
               — Testimonials —
             </h4>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+            <h2 className="lg:text-5xl md:text-4xl font-bold leading-tight">
               See what our customers have to say about us.
             </h2>
           </div>

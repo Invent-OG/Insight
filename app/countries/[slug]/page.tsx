@@ -24,9 +24,6 @@ import { motion } from "framer-motion";
 import { use, useState } from "react";
 import Link from "next/link";
 
-// (Removed from here; will be placed inside the component)
-// These lines are now inside the component after suggestionMap is declared.
-
 type Country = {
   title: string;
   image: any;
