@@ -63,7 +63,7 @@ export default function About() {
           data-aos="fade-down"
           data-aos-duration="800"
           data-aos-anchor-placement="top-start"
-          className="hero flex items-center min-h-screen bg-black bg-center bg-cover px-8 relative overflow-hidden"
+          className="hero  flex items-center min-h-screen filter brightness-95 bg-black bg-center bg-cover px-8 relative overflow-hidden"
           style={{
             backgroundImage: `url(${bgpar.src})`,
             backgroundAttachment: "fixed",
@@ -142,7 +142,7 @@ export default function About() {
                   ))}
               </motion.h1>
               <motion.p
-                className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-lg text-left"
+                className="text-base sm:text-lg text-white leading-relaxed max-w-lg text-left"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -158,7 +158,7 @@ export default function About() {
           </motion.div>
 
           {/* Semi-transparent overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
         </section>
 
         {/* Founder Section */}

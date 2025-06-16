@@ -114,9 +114,9 @@ const countries = [
 
 export default function WhyTheseCountries() {
   return (
-    <section className="bg-black text-white p-8 rounded-3xl shadow-2xl max-w-7xl mx-auto">
-      <h2 className="text-4xl font-extrabold text-center mb-8">
-        Why These Countries?
+    <section className="bg-black text-white p-8  rounded-3xl shadow-2xl max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-8">
+        Why <span className="text-primary">These</span> Countries?
       </h2>
 
       {/* Desktop & tablet: Table, hidden on small */}

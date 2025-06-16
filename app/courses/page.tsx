@@ -127,7 +127,7 @@ const Page = () => {
 
         {/* Content container */}
         <div>
-          <h1 className="text-white text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl  font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg">
             Top Courses to <span className="text-primary">Study Abroad</span>
             &nbsp;
             {/* Pulsating underline */}
@@ -170,7 +170,7 @@ const Page = () => {
         data-aos-delay="100"
         className="mb-16 bg-black py-12 px-4 sm:px-6 md:px-12 rounded-lg shadow-xl max-w-4xl mx-auto"
       >
-        <h2 className="lg:text-5xl sm:text-4xl font-extrabold text-white mb-10 text-center tracking-wide">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl  font-extrabold text-white mb-10 text-center tracking-wide">
           Explore <span className="text-primary">Top Courses Abroad</span>
         </h2>
 
