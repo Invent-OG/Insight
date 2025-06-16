@@ -46,127 +46,205 @@ const countries: Country[] = [
     title: "Study in UK",
     image: uk,
     slug: "uk",
-    description:
-      "The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain,[m] is a country in Northwestern Europe, off the coast of the continental mainland. It comprises England, Scotland, Wales and Northern Ireland.[n] The UK includes the island of Great Britain, the north-eastern part of the island of Ireland, and most of the smaller islands within the British Isles, covering 94,354 square miles (244,376 km2).[f] Northern Ireland shares a land border with the Republic of Ireland; otherwise, the UK is surrounded by the Atlantic Ocean, the North Sea, the English Channel, the Celtic Sea and the Irish Sea. It maintains sovereignty over the British Overseas Territories, which are located across various oceans and seas globally. The UK had an estimated population of over 68.2 million people in 2023. The capital and largest city of both England and the UK is London. The cities of Edinburgh, Cardiff and Belfast are the national capitals of Scotland, Wales and Northern Ireland.",
+    description: `Home to renowned institutions like Oxford and Cambridge, the UK
+offers rigorous programs, short duration courses, and a strong
+academic tradition. Cities in the UK offers a student-friendly
+atmosphere, blending culture and connectivity. They offer a 1-year
+master’s degree with no compromise on academic standards, along
+with a 2-year stay-back option. With part-time work opportunities,
+the UK is ideal for career-focused learners.`,
   },
   {
     title: "Study in the USA",
     image: usa,
     slug: "usa",
-    description:
-      "The USA provides diverse courses, top universities, and cultural exposure. It's a leading choice for STEM, Business, and Research programs.",
+    description: `The U.S. is a top destination for international students, offering
+prestigious universities like Harvard and MIT, a flexible education
+system, research projects and internship opportunities. Its diverse
+lifestyle—from city campuses to quiet towns—enhances the student
+experience. Offering a 2-year master's program and a 3-year
+stay-back option, students can gain valuable work experience after
+graduation through Optional Practical Training (OPT) and STEM
+extensions`,
   },
   {
     title: "Study in Ireland",
     image: ireland,
     slug: "ireland",
-    description:
-      "Ireland offers a vibrant student life, excellent universities, and strong opportunities in tech and pharmaceuticals.",
+    description: `Ireland is home to prestigious universities like Trinity College Dublin
+and University College Dublin, known for academic excellence. With
+vibrant cities, affordable tuition, and a welcoming atmosphere, it
+offers an exceptional student experience. Ireland also provides
+Post-Graduation Work Permits, making it a great choice for
+long-term career and settlement opportunities.
+`,
   },
   {
     title: "Study in Canada",
     image: canada,
     slug: "canada",
-    description:
-      "Canada is known for its welcoming atmosphere, excellent education system, and work-permit friendly policies.",
+    description: `Canada stands out for its world-class universities like the University
+of Toronto and McGill, inclusive society, and high standard of living.
+Affordable tuition, multicultural cities, and a welcoming
+environment make it a top choice. Post-Graduation Work Permits
+(up to 3 years) and clear Permanent Residency pathways support
+long-term settlement.`,
   },
   {
     title: "Study in Australia",
     image: australia,
     slug: "australia",
-    description:
-      "Australia boasts world-class universities, sunny weather, and PR pathways for international graduates.",
+    description: `Australia offers globally ranked universities, practical learning, and
+vibrant student life in cities like Sydney and Melbourne. Students
+benefit from part-time work rights and can apply for post-study
+work visas of up to 4 years. Known for its beautiful landscapes and
+sunny climate, Australia blends quality education with a laid-back
+lifestyle.
+`,
   },
   {
     title: "Study in New Zealand",
     image: newzealand,
     slug: "new-zealand",
-    description:
-      "New Zealand provides high-quality education and stunning natural beauty. A great choice for peaceful and practical learning.",
+    description: `New Zealand provides a peaceful and research-driven education
+experience at institutions like the University of Auckland. With its
+stunning scenery and friendly, diverse communities, it offers a
+balanced lifestyle. Students can work during studies and stay up to
+3 years post-graduation, making it a great option for academic and
+personal growth.`,
   },
   {
     title: "Study in France",
     image: france,
     slug: "france",
-    description:
-      "France offers affordable tuition, cultural richness, and globally ranked institutions like Sorbonne and HEC Paris.",
+    description: `With top-ranked universities, affordable tuition, and diverse English
+and French-taught programs, France welcomes international
+students from across the globe. Experience a rich cultural heritage,
+vibrant student life, and access to leading industries. Whether
+you're pursuing undergraduate, postgraduate, or research degrees,
+France offers academic excellence and career opportunities.
+Scholarships and visa support make studying here more accessible
+than ever. Begin your global journey with an education that sets you
+apart.
+`,
   },
   {
     title: "Study in Germany",
     image: germany,
     slug: "germany",
-    description:
-      "Germany offers tuition-free education in public universities and is a tech and engineering powerhouse.",
+    description: `Germany is known for top public universities like TUM and
+Heidelberg that offer tuition-free or low-cost education in
+engineering, science, and more. With modern infrastructure, English
+programs, and strong job prospects, it attracts career-focused
+students. Learning German is an added advantage, as it opens
+doors to more job opportunities and integration into the local
+culture. Graduates can stay 18 months for job search and pursue
+EU Blue Card residency.
+`,
   },
   {
     title: "Study in the UAE",
     image: uae,
     slug: "uae",
-    description:
-      "The UAE is rapidly growing as an education hub with campuses of top global universities and vibrant student life.",
+    description: `The UAE offers international-standard education in a safe,
+multicultural setting with campuses in Dubai and Abu Dhabi. With
+strong programs in business, AI, and engineering, students gain
+practical skills and global exposure. High living standards, tax-free
+income, and strong career prospects make it a dynamic choice.`,
   },
   {
     title: "Study in Singapore",
     image: singapore,
     slug: "singapore",
-    description:
-      "Singapore blends Eastern and Western cultures, has world-class universities, and is a global financial center.",
+    description: `Singapore is Asia’s leading education hub, home to world-class
+institutions like NUS and NTU. It offers cutting-edge programs in
+tech, business, and life sciences, alongside a clean, safe
+environment. With strong industry links and high employability,
+Singapore prepares students for success in the fast-growing
+Asia-Pacific region.
+`,
   },
   {
     title: "Study in Malaysia",
     image: malaysia,
     slug: "malaysia",
-    description:
-      "Malaysia offers affordable, high-quality education and hosts many UK university branches with lower costs.",
+    description: `Malaysia offers globally recognized degrees at lower costs, with
+English widely spoken and vibrant multicultural campuses.
+Universities like the University of Malaya offer dual-degree
+programs and industry collaboration. Its central location and
+welcoming environment make it a great gateway to careers in Asia.`,
   },
   {
     title: "Study in Poland",
     image: poland,
     slug: "poland",
-    description:
-      "Poland combines rich history with low tuition and living costs, ideal for medical and engineering studies.",
+    description: `Poland combines affordable living with top universities
+offering strong programs in various fields. Known for its
+vibrant student life and historic cities, Poland is an attractive
+destination for international students.
+`,
   },
   {
     title: "Study in Sweden",
     image: sweden,
     slug: "sweden",
-    description:
-      "Sweden focuses on innovation, sustainability, and research, with great scholarships for international students.",
+    description: `Sweden is renowned for its world-class education,
+innovation, and sustainability focus. With English widely
+spoken, numerous English-taught programs, and a high
+quality of life, Students enjoy modern cities, scholarship
+opportunities, and post-study work options, making Sweden
+ideal for future innovators and researchers.
+`,
   },
   {
     title: "Study in Latvia",
     image: latvia,
     slug: "latvia",
-    description:
-      "Latvia offers affordable education, growing international programs, and opportunities to explore Europe.",
+    description: `Latvia offers a range of quality, affordable education
+options, especially in fields like engineering, IT, and
+business. It’s an emerging destination with a unique cultural
+experience and a growing international student community.
+`,
   },
   {
     title: "Study in Lithuania",
     image: lithuania,
     slug: "lithuania",
-    description:
-      "Lithuania is an emerging study destination in the EU with modern universities and cost-effective living.",
+    description: `Lithuania offers high-quality, low-cost education in a
+vibrant, historical setting. Known for strong academic
+programs in science, technology, and arts, Lithuania is a
+hidden gem for international students.`,
   },
   {
     title: "Study in Malta",
     image: malta,
     slug: "malta",
-    description:
-      "Malta offers English-taught programs, Mediterranean lifestyle, and easy access to European travel.",
+    description: `Malta offers top-quality education in English, with a
+Mediterranean lifestyle that combines rich history, vibrant
+culture, and affordable living. It’s perfect for students
+seeking an English-speaking environment in a stunning
+location.`,
   },
   {
     title: "Study in Netherlands",
     image: netherland,
     slug: "netherlands",
-    description:
-      "The Netherlands provides cutting-edge education in English, progressive culture, and career support.",
+    description: `The Netherlands is famous for its innovation and top-tier
+universities, many of which offer English-taught programs.
+With a highly international student population, it’s an ideal
+destination for career-focused students.
+`,
   },
   {
     title: "Study in Finland",
     image: finland,
     slug: "finland",
-    description:
-      "Finland has one of the best education systems globally, with a focus on equality, innovation, and student well-being.",
+    description: `Finland is known for its innovative education system,
+offering excellent universities with a focus on research and
+creativity. With a high quality of life and diverse
+post-graduation opportunities, Finland is a top choice for
+international students.
+`,
   },
 ];
 const suggestionMap: Record<string, string[]> = {
@@ -231,7 +309,7 @@ export default function CountryPage() {
 
   return (
     <section className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-12 py-16">
-      <div className="flex flex-col lg:flex-row gap-10">
+      <div className="flex flex-col lg:flex-row gap-10 py-10 ">
         {/* Left Column - Main Content */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -239,7 +317,7 @@ export default function CountryPage() {
           transition={{ duration: 0.6 }}
           className="w-full lg:w-[70%] space-y-6"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-primary">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
             Take the First Step Toward Your Global Education!
           </h1>
           <h2 className="text-xl font-semibold">
@@ -536,7 +614,7 @@ export default function CountryPage() {
               </p>
             </div>
 
-            <div className="flex-1 overflow-y-auto space-y-4 pr-1">
+            <div className="flex-1 overflow-y-auto space-y-7 pr-1 py-4">
               <input
                 type="text"
                 name="name"
