@@ -46,12 +46,15 @@ export default function BlogsPage() {
         data-aos-anchor-placement="top-center"
         className="py-16 w-full bg-gradient-to-r from-black to-primary/40 text-white"
       >
+        <h4 className="text-primary text-center uppercase text-base font-medium tracking-wider">
+          — Services —
+        </h4>
         <div className="w-full flex flex-col items-center gap-16 px-0">
           <div className="text-center max-w-5xl mx-auto px-4">
-            <h2 className="mb-3 text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Latest Blog Posts
+            <h2 className=" text-3xl md:text-4xl lg:text-5xl py-6 font-semibold">
+              Latest <span className="text-primary">Blog</span> Posts
             </h2>
-            <p className="mb-8 text-muted-foreground md:text-base lg:text-lg">
+            <p className="mb-4 text-muted-foreground md:text-base lg:text-lg">
               Stay updated with trends, stories, and insights.
             </p>
             <Button variant="link" asChild className="text-lg font-semibold">
@@ -88,10 +91,10 @@ export default function BlogsPage() {
 
                 {/* Title + Date */}
                 <CardHeader className="flex flex-col gap-1 px-4 pt-4 pb-2">
-                  <h3 className="text-lg font-semibold hover:underline line-clamp-2">
+                  <h3 className="text-lg font-semibold hover:underline  line-clamp-2">
                     <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-red-600 text-muted-foreground">
                     {new Date(post.createdAt).toLocaleDateString()}
                   </p>
                 </CardHeader>

@@ -1,94 +1,181 @@
 "use client";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import herocontentimage from "@/public/assets/herocontentimage.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Button } from "../ui/button";
+import { CircleDot } from "lucide-react";
 
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
 };
 
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
+const highlightKeywords = (text: string) => {
+  const keywords = [
+    "Insight Educator & Abroad Services",
+    "study abroad consultants",
+    "overseas education consultancy",
+    "you’re in the right place",
+    "foreign education advisors",
+    "empowering you",
+  ];
+
+  const pattern = new RegExp(`(${keywords.join("|")})`, "gi");
+
+  return text.split(pattern).map((part, i) =>
+    keywords.includes(part) ||
+    keywords.some((k) => k.toLowerCase() === part.toLowerCase()) ? (
+      <span key={i} className="text-red-500 font-semibold">
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
 };
 
 const Layout2 = () => {
+  const [showFull, setShowFull] = useState(false);
+
   useEffect(() => {
-    AOS.init({
-      duration: 300,
-      offset: 100,
-      once: true,
-    });
+    AOS.init({ duration: 300, offset: 100, once: true });
   }, []);
 
+  const content = [
+    "Feeling overwhelmed by the idea of studying abroad? You’re not alone — and we get it.",
+    "At Insight Educator & Abroad Services, we are more than just study abroad consultants — we're your partners in shaping a brighter future overseas.",
+    "As a leading overseas education consultancy, we help students to turn their international education dreams into reality.",
+    "Whether you have no idea which country to choose, what course fits you best, or how the visa process works — you’re in the right place, our expert foreign education advisors are here to guide you through every step of the way.",
+    "Studying abroad is more than just earning a degree – a journey of personal growth, independence, and transformation.",
+    "At Insight, we guide you through every stage of this life-changing experience. We help you grow not only as a student but as a global citizen.",
+    "With our expert support, your education abroad becomes a powerful opportunity to broaden your perspective, explore diverse cultures, and gain life lessons that go far beyond academics – shaping a more self-aware, confident, and open-minded future.",
+    "We don’t believe in hard-selling or forcing decisions. Our consultations are about empowering you — to ask questions, explore your options, and take confident steps toward your future.",
+  ];
+
+  const visibleContent = showFull ? content : content.slice(0, 2);
+
   return (
-    <div className="bg-gradient-to-r from-black to-primary/40 ">
-      <section className="bg-black text-white lg:py-10 py-20 ">
+    <div className="bg-gradient-to-r from-black to-primary/40 relative z-0">
+      <section className="bg-black text-white lg:py-10 py-20">
         <div
           data-aos="zoom-in-left"
-          data-aos-duration="1000"
-          data-aos-delay="100"  
-          className="container flex flex-col  md:flex-row md:space-y-6 items-center px-6 md:px-20 md:py-20 lg:py-16 "
+          className={`container px-6 md:px-20 md:py-20 lg:py-16 flex flex-col ${
+            showFull
+              ? "md:flex-col items-center text-center"
+              : "md:flex-row items-center text-left"
+          } items-center gap-10`}
         >
-          {/* Image on left with scroll-triggered animation */}
+          {/* Image */}
           <motion.div
-            className="w-full md:w-1/2  md:mb-0 md:pr-12"
+            className={`w-full ${
+              showFull ? "md:w-1/2 mx-auto" : "md:w-1/2 md:pr-12"
+            }`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.5 }}
-            variants={imageVariants}
+            variants={{
+              hidden: { opacity: 0, scale: 0.8 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.8, ease: "easeOut" },
+              },
+            }}
           >
             <Image
               src={herocontentimage}
               alt="Study Abroad Illustration"
-              className="rounded-lg shadow-lg w-full h-auto object-cover "
+              className="rounded-lg shadow-lg w-full h-auto object-cover"
               priority
             />
           </motion.div>
 
-          {/* Text on right with scroll-triggered staggered animation */}
-          <div className="w-full md:w-1/2 space-y-6 mt-8 mb-4">
-            {/* Heading */}
-            <motion.h1
-              className="text-3xl md:text-5xl font-bold leading-snug text-center md:text-left  "
+          {/* Text */}
+          <div
+            className={`w-full ${
+              showFull ? "md:w-full mt-4" : "md:w-1/2"
+            } space-y-6`}
+          >
+            <motion.h2
+              className="lg:text-5xl md:text-4xl text-3xl font-bold text-white text-center md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={textVariants}
-              transition={{ delay: 0 * 0.3 }}
             >
               Your Global Education Starts Here –{" "}
               <span className="text-primary">We Make It Happen</span>
-            </motion.h1>
+            </motion.h2>
 
-            {/* Paragraphs */}
-            {[
-              "Feeling overwhelmed by the idea of studying abroad? You’re not alone — and we get it.",
-              "At Insight Educator & Abroad Services, we are more than just study abroad consultants — we're your partners in shaping a brighter future overseas.",
-            ].map((text, index) => (
-              <motion.p
-                key={index}
-                className="text-lg text-center md:text-left"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={textVariants}
-                transition={{ delay: (index + 1) * 0.3 }}
+            {/* Content Block */}
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={showFull ? "expanded" : "collapsed"}
+                initial={{ opacity: 0, y: 20, height: "auto" }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  height: "auto",
+                  transition: { type: "tween", duration: 0.6 },
+                }}
+                exit={{ opacity: 0, y: -20, transition: { duration: 0.4 } }}
+                className={`transition-all overflow-hidden ${
+                  showFull
+                    ? "relative bg-white/10 border border-white/10 backdrop-blur-lg shadow-xl p-6 rounded-xl space-y-6 scrollbar-hide max-h-[30rem] overflow-y-auto"
+                    : "space-y-6"
+                }`}
               >
-                {text}
-              </motion.p>
-            ))}
+                {visibleContent.map((para, idx) => (
+                  <motion.p
+                    key={idx}
+                    className={`text-base md:text-lg leading-relaxed tracking-wide flex gap-2 items-start ${
+                      showFull
+                        ? "text-white/85 text-justify"
+                        : "text-white/90 text-center md:text-left"
+                    }`}
+                    variants={textVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, amount: 0.5 }}
+                  >
+                    {showFull && (
+                      <CircleDot
+                        size={18}
+                        className="text-red-500 mt-1 shrink-0"
+                      />
+                    )}
+                    <span>{highlightKeywords(para)}</span>
+                  </motion.p>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="text-center md:text-left">
+              <Button
+                onClick={() => setShowFull((prev) => !prev)}
+                className="mt-2 bg-primary text-black px-4 py-2 font-semibold hover:bg-white transition-all"
+              >
+                {showFull ? "Show Less" : "Read More"}
+              </Button>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Hide Scrollbar Styling */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };

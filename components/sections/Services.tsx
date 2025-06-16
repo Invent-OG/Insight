@@ -194,11 +194,11 @@ export default function ServicesSection() {
           <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row ">
             {/* Left side - Not sticky on mobile */}
             <div className="flex-1 self-start flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20">
-              <h4 className="text-primary uppercase text-xs font-medium tracking-wider">
+              <h4 className="text-primary uppercase text-base  tracking-wider">
                 — Services —
               </h4>
               <div className="h-px bg-gray-700 my-2"></div>
-              <h2 className="text-5xl font-extrabold">
+              <h2 className="lg:text-5xl md:text-4xl text-3xl font-extrabold">
                 Your Journey,{" "}
                 <span className="text-primary">Fully Supported</span>
               </h2>

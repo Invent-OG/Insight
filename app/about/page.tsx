@@ -215,7 +215,7 @@ export default function About() {
         </section>
 
         {/* Offerings Section */}
-        <section className="relative lg:py-20 lg:mt-14 px-6 min-h-[620px] sm:min-h-[800px]">
+        <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
           {/* Background image with blur */}
           <div
             className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-75"
@@ -233,7 +233,7 @@ export default function About() {
           ></div>
 
           {/* Content container */}
-          <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-10">
+          <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-10 px-6">
             {/* Left Content */}
             <motion.div
               data-aos="fade-right"
@@ -243,7 +243,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="md:w-1/2 w-full flex-1 p-6 sm:p-8 rounded-3xl  shadow-lg flex flex-col relative bg-transparent"
+              className="md:w-1/2 w-full flex-1 p-6 sm:p-8 rounded-3xl shadow-lg flex flex-col relative bg-transparent"
               style={{ minHeight: "auto" }}
             >
               {/* Glowing Circles */}
@@ -398,8 +398,6 @@ to finish. Discover your path to international education with Insight
         </section>
 
         {/* Core Values Section */}
-
-        {/* Optional dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
 
         {/* Content */}

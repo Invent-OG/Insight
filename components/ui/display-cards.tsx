@@ -147,8 +147,8 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
 
   return (
     <section className="w-full bg-black bg-opacity-20 py-16 px-6">
-      <h2 className="text-4xl font-extrabold text-center text-white mb-12">
-        Our Core Values
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center text-white mb-12">
+        Our <span className="text-primary">Core Values</span>
       </h2>
       <div
         className="

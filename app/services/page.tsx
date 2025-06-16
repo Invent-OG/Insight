@@ -73,8 +73,8 @@ export default function Services() {
           </ul>
 
           <div className="relative z-10 px-4 sm:px-6 md:px-12 py-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-12 leading-tight">
-              What We Offer
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-center text-white mb-12 leading-tight">
+              What We <span className="text-primary">Offer</span>
             </h2>
 
             <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">

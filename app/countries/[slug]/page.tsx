@@ -21,8 +21,18 @@ import malta from "@/public/assets/country/malta.jpg";
 import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
 import { motion } from "framer-motion";
-import { use, useState } from "react";
+import {
+  Fragment,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  use,
+  useState,
+} from "react";
 import Link from "next/link";
+import { countryData, CountryInfo } from "@/app/data/countryData";
 
 type Country = {
   title: string;
@@ -193,6 +203,10 @@ export default function CountryPage() {
   const country = countries.find((c) => c.slug === params.slug);
   if (!country) notFound();
 
+  const countryContents = countryData.filter(
+    (c) => c.country.toLowerCase() === params.slug
+  );
+
   const [selectedSlug, setSelectedSlug] = useState(slug as string);
   const selectedSuggestions = suggestionMap[selectedSlug];
   const suggestedCards = countries.filter((c) =>
@@ -231,11 +245,6 @@ export default function CountryPage() {
           <h2 className="text-xl font-semibold">
             Find Your Ideal Course & Country
           </h2>
-          <p className="text-gray-300">
-            Submit your details, and let’s explore your study abroad options
-            together. Discover top universities, visa guidance, and expert
-            counseling to shape your academic future.
-          </p>
 
           {/* Image with overlay */}
           <div className="relative w-full h-72 rounded-xl overflow-hidden shadow-lg">
@@ -251,26 +260,261 @@ export default function CountryPage() {
           </div>
 
           {/* More text BELOW the image */}
-          <p className="text-gray-300">
-            Submit your details, and let’s explore your study abroad options
-            together. Discover top universities, visa guidance, and expert
-            counseling to shape your academic future.
-          </p>
-          <p className="text-gray-300">
-            Submit your details, and let’s explore your study abroad options
-            together. Discover top universities, visa guidance, and expert
-            counseling to shape your academic future.
-          </p>
-          <p className="text-gray-300">
-            Submit your details, and let’s explore your study abroad options
-            together. Discover top universities, visa guidance, and expert
-            counseling to shape your academic future.
-          </p>
-          <p className="text-gray-300">
-            Submit your details, and let’s explore your study abroad options
-            together. Discover top universities, visa guidance, and expert
-            counseling to shape your academic future.
-          </p>
+
+          <div>{country.description}</div>
+
+          <div className="overflow-x-auto p-4">
+            <table className="min-w-full table-auto border border-white text-white bg-black">
+              <thead className="bg-gray-800 text-white">
+                <tr>
+                  <th className="px-4 py-2 border border-white text-left">
+                    Field
+                  </th>
+                  <th className="px-4 py-2 border border-white text-left">
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {countryContents.map((c, index) => (
+                  <Fragment key={index}>
+                    <tr className="bg-gray-900">
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Country
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.country}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Tuition Fee Range
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.tuitionFeeRange}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Living Costs
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.livingCosts}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Duration of Courses
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.durationOfCourses}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Academic Requirements
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.academicRequirements}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Language Proficiency
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.languageProficiency}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        IELTS Waiver
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.ieltsWaiverAvailability}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Accepted Academic Gaps
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.acceptedAcademicGaps}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Work Experience Proof
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.workExperienceProof}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Funds Required for Visa
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.fundsRequiredForVisa}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Financial Sources
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.acceptableFinancialSources}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Eligible Sponsors
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.eligibleSponsors}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Minimum Family Income
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.minimumFamilyIncome}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Visa Type
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.visaType}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Visa Processing Time
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.visaProcessingTime}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Part-time Work Limit
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.partTimeWorkLimit}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Average Part-time Wages
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.averagePartTimeWages}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Internship Options
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.internshipOptions}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Post-Study Work
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.postStudyWorkOptions}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        PR Pathway
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.permanentResidencyPathway}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Spouse Dependent Visa
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.spouseDependentVisa}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Dependent Conditions
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.dependentConditions}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Scholarships
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.scholarshipOpportunities}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Healthcare Access
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.healthcareAccess}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Climate
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.climateWeather}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Cultural Environment
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.culturalEnvironment}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Currency
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.currency}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Intakes
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.intakes}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 border border-white font-semibold">
+                        Popular Cities
+                      </td>
+                      <td className="px-4 py-2 border border-white">
+                        {c.popularCities}
+                      </td>
+                    </tr>
+                  </Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </motion.div>
 
         {/* Right Column - Form + Suggestions */}

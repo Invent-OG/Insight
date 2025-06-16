@@ -189,7 +189,7 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Card className="bg-gray-950 rounded-xl border border-gray-700 shadow-xl hover:shadow-rose-400/50 transition duration-300 p-5 relative">
+              <Card className="bg-gray-950 rounded-xl border border-gray-700 shadow-xl h-full hover:shadow-rose-400/50 transition duration-300 p-5 relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black to-primary rounded-t-xl"></div>
                 <CardHeader className="mb-3">
                   <h3 className="text-xl font-extrabold text-white">{title}</h3>

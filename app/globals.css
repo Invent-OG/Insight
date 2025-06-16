@@ -222,8 +222,8 @@
   scrollbar-width: none; /* Firefox */
 }
 
-/* html,
-body {
-  overflow-x: hidden;
-  width: 100vw;
-} */
+.first-slide {
+  opacity: 1 !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
+}

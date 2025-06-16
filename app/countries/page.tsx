@@ -1,146 +1,9 @@
-// "use client";
-
-// import Image from "next/image";
-// import Link from "next/link";
-// import { useEffect, useState } from "react";
-// import { motion } from "framer-motion";
-
-// import uk from "@/public/assets/UK.png";
-// import usa from "@/public/assets/country/Usa.jpg";
-// import ireland from "@/public/assets/country/Ireland.jpg";
-// import canada from "@/public/assets/country/Canada (1).png";
-// import australia from "@/public/assets/country/Australia.png";
-// import newzealand from "@/public/assets/country/New Zealand (1).png";
-// import france from "@/public/assets/country/France.jpg";
-// import germany from "@/public/assets/country/Germany (1).png";
-// import uae from "@/public/assets/country/UAE (1).png";
-// import singapore from "@/public/assets/country/Singapore.png";
-// import malaysia from "@/public/assets/country/Malaysia.png";
-// import poland from "@/public/assets/country/Poland.png";
-// import sweden from "@/public/assets/country/Sweden.png";
-// import latvia from "@/public/assets/country/Latvia.jpg";
-// import lithuania from "@/public/assets/country/Lithuania .jpg";
-// import malta from "@/public/assets/country/malta.jpg";
-// import netherland from "@/public/assets/country/Netherland.jpg";
-// import finland from "@/public/assets/country/Finland.jpg";
-
-// type Country = {
-//   title: string;
-//   image: any;
-//   slug: string;
-// };
-
-// const countries: Country[] = [
-//   { title: "Study in UK", image: uk, slug: "uk" },
-//   { title: "Study in the USA", image: usa, slug: "usa" },
-//   { title: "Study in Ireland", image: ireland, slug: "ireland" },
-//   { title: "Study in Canada", image: canada, slug: "canada" },
-//   { title: "Study in Australia", image: australia, slug: "australia" },
-//   { title: "Study in New Zealand", image: newzealand, slug: "new-zealand" },
-//   { title: "Study in France", image: france, slug: "france" },
-//   { title: "Study in Germany", image: germany, slug: "germany" },
-//   { title: "Study in the UAE", image: uae, slug: "uae" },
-//   { title: "Study in Singapore", image: singapore, slug: "singapore" },
-//   { title: "Study in Malaysia", image: malaysia, slug: "malaysia" },
-//   { title: "Study in Poland", image: poland, slug: "poland" },
-//   { title: "Study in Sweden", image: sweden, slug: "sweden" },
-//   { title: "Study in Latvia", image: latvia, slug: "latvia" },
-//   { title: "Study in Lithuania", image: lithuania, slug: "lithuania" },
-//   { title: "Study in Malta", image: malta, slug: "malta" },
-//   { title: "Study in Netherlands", image: netherland, slug: "netherlands" },
-//   { title: "Study in Finland", image: finland, slug: "finland" },
-// ];
-
-// const Page = () => {
-//   const [showContent, setShowContent] = useState(false);
-
-//   useEffect(() => {
-//     function handleScroll() {
-//       setShowContent(window.scrollY > 100);
-//     }
-//     handleScroll();
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   return (
-//     <>
-//       {/* Hero Section */}
-//       <section
-//         className="w-full min-h-screen sm:h-80 md:h-96 flex justify-center items-center text-center px-4 sm:px-6 md:px-12 relative overflow-hidden bg-fixed"
-//         style={{
-//           backgroundImage:
-//             "url('https://images.unsplash.com/photo-1594734415578-00fc9540929b?q=80&w=1470&auto=format&fit=crop')",
-//           backgroundRepeat: "no-repeat",
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//           backgroundBlendMode: "overlay",
-//           backgroundColor: "rgba(0,0,0,0.7)",
-//         }}
-//       >
-//         <motion.h1
-//           initial={{ opacity: 0, y: -50 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 1, ease: "easeOut" }}
-//           className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-widest font-sans select-none text-white drop-shadow-lg"
-//         >
-//           Study <span className="text-primary">Abroad</span> Destinations
-//         </motion.h1>
-
-//         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
-//           <svg
-//             className="w-8 h-8"
-//             fill="none"
-//             stroke="currentColor"
-//             strokeWidth="2"
-//             viewBox="0 0 24 24"
-//             strokeLinecap="round"
-//             strokeLinejoin="round"
-//           >
-//             <path d="M12 5v14M19 12l-7 7-7-7" />
-//           </svg>
-//         </div>
-//       </section>
-
-//       {/* Cards Section */}
-//       <section className="w-full mx-auto py-16 lg:py-20 bg-black px-4 sm:px-6 md:px-12">
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-gray-200">
-//           {countries.map((country) => (
-//             <Link href={`/countries/${country.slug}`} key={country.slug}>
-//               <motion.div
-//                 className="relative w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-xl group border border-gray-800 hover:border-primary/50 transition-all duration-300"
-//                 whileHover={{ scale: 1.03 }}
-//               >
-//                 <div className="relative h-80 w-full">
-//                   <Image
-//                     src={country.image}
-//                     alt={country.title}
-//                     fill
-//                     className="object-cover"
-//                     priority
-//                   />
-//                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/60 to-transparent px-4 py-3">
-//                     <h2 className="text-white text-lg font-semibold text-center">
-//                       {country.title}
-//                     </h2>
-//                   </div>
-//                 </div>
-//               </motion.div>
-//             </Link>
-//           ))}
-//         </div>
-//       </section>
-//     </>
-//   );
-// };
-
-// export default Page;
-
 "use client";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
+import { IoIosArrowDown } from "react-icons/io";
 
 // Image imports
 import uk from "@/public/assets/UK.png";
@@ -162,17 +25,20 @@ import malta from "@/public/assets/country/malta.jpg";
 import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { ArrowBigDown } from "lucide-react";
 
 const countries = [
+  { title: "adasd", image: uk, slug: "sample" },
   { title: "Study in UK", image: uk, slug: "uk" },
-  { title: "Study in the USA", image: usa, slug: "usa" },
+  { title: "Study in USA", image: usa, slug: "usa" },
   { title: "Study in Ireland", image: ireland, slug: "ireland" },
   { title: "Study in Canada", image: canada, slug: "canada" },
   { title: "Study in Australia", image: australia, slug: "australia" },
   { title: "Study in New Zealand", image: newzealand, slug: "new-zealand" },
   { title: "Study in France", image: france, slug: "france" },
   { title: "Study in Germany", image: germany, slug: "germany" },
-  { title: "Study in the UAE", image: uae, slug: "uae" },
+  { title: "Study in  UAE", image: uae, slug: "uae" },
   { title: "Study in Singapore", image: singapore, slug: "singapore" },
   { title: "Study in Malaysia", image: malaysia, slug: "malaysia" },
   { title: "Study in Poland", image: poland, slug: "poland" },
@@ -187,6 +53,7 @@ const countries = [
 export default function StudyAbroadAnimation() {
   const [activeIndex, setActiveIndex] = useState(0);
   const gotoRef = useRef<(index: number, dir: number) => void>(() => {});
+  const router = useRouter();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -275,15 +142,22 @@ export default function StudyAbroadAnimation() {
         if (headerEl) headerEl.style.opacity = "1";
       }, 1500);
 
+      const direction = e.deltaY > 0 ? 1 : -1;
+      const lastIndex = sectionEls.length - 1;
+
       if (!animating) {
         if (footerEl) footerEl.style.display = "none";
-        goto(currentIndex + (e.deltaY > 0 ? 1 : -1), e.deltaY > 0 ? 1 : -1);
-      }
-    };
 
-    let startY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY;
+        if (currentIndex === 1 && direction === -1) {
+          // From index 1, scroll up goes to last index
+          goto(lastIndex, 1);
+        } else if (currentIndex === lastIndex && direction === 1) {
+          // From last index, scroll down goes to index 1
+          goto(1, 1);
+        } else {
+          goto(currentIndex + direction, direction);
+        }
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -292,8 +166,21 @@ export default function StudyAbroadAnimation() {
 
       if (Math.abs(deltaY) > 50 && !animating) {
         const direction = deltaY > 0 ? 1 : -1;
-        goto(currentIndex + direction, direction);
+        const lastIndex = sectionEls.length - 1;
+
+        if (currentIndex === 1 && direction === -1) {
+          goto(lastIndex, 1); // swipe down from index 1 → go to last
+        } else if (currentIndex === lastIndex && direction === 1) {
+          goto(1, 1); // swipe up from last index → go to index 1
+        } else {
+          goto(currentIndex + direction, direction);
+        }
       }
+    };
+
+    let startY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
     };
 
     window.addEventListener("wheel", handleScroll, { passive: true });
@@ -331,31 +218,27 @@ export default function StudyAbroadAnimation() {
             </div>
 
             <div className="inner relative z-10 w-full h-full flex items-end justify-center">
-              <div className="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/50 to-transparent px-4 py-6">
-                <h2 className="section-title text-4xl md:text-6xl font-bold py-10 mb-6 text-center">
+              <div className="absolute lg:bottom-0 bottom-1/4 w-full lg:bg-gradient-to-t flex gap-5 flex-col justify-center items-center from-black via-black/50 to-transparent px-4 py-6">
+                <h2 className="section-title text-4xl md:text-6xl font-bold  flex gap-3  text-center">
+                  {/* {country.title.split(" ").map((word, i) => (
+                    <span
+                      key={i}
+                      className={`flex ${
+                        i === 2 ? "text-primary" : "text-white"
+                      }`}
+                    >
+                      {word}
+                    </span>
+                  ))} */}
                   {country.title}
                 </h2>
-                <div className="relative flex flex-col items-center text-center min-h-[180px] sm:min-h-[200px] lg:min-h-[220px]">
-                  <Link href={`/countries/${country.slug}`} passHref>
-                    <Button className="relative inline-flex items-center justify-center px-6 py-3 rounded-full text-white bg-black border border-black hover:text-white transition-colors before:absolute before:inset-0 before:rounded-full before:border before:border-red-500 before:opacity-100 hover:before:opacity-0 before:transition-opacity">
-                      Learn More
-                    </Button>
-                  </Link>
-                  <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
-                    <svg
-                      className="w-6 h-6 lg:w-8 lg:h-8"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 5v14M19 12l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
+                <Button
+                  onClick={() => router.push(`/countries/${country.slug}`)}
+                  className=" bg-black border-primary border rounded-full hover:bg-red-600  transition-colors duration-300"
+                >
+                  Learn More
+                </Button>
+                <IoIosArrowDown className="animate-bounce " />
               </div>
             </div>
           </div>
@@ -365,26 +248,28 @@ export default function StudyAbroadAnimation() {
       {/* Left Vertical Number Nav */}
       <header className="fixed top-1/2 left-2 -translate-y-1/2 z-[999]">
         <nav className="flex flex-col gap-1 max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-transparent">
-          {countries.map((country, i) => (
-            <button
-              key={country.slug}
-              onClick={() => {
-                const dir = i > activeIndex ? 1 : -1;
-                gotoRef.current?.(i, dir);
-              }}
-              className={`w-6 h-6 text-[10px] sm:w-8 sm:h-8 sm:text-sm backdrop-blur-md bg-white/10 text-white border border-white/30 rounded-md shadow-md transition-transform hover:scale-105
-              ${
-                i === activeIndex
-                  ? "bg-red-600 font-bold text-white shadow-red-500/50"
-                  : "hover:bg-red-700/50"
-              }`}
-            >
-              {i + 1}
-            </button>
-          ))}
+          {countries.slice(1).map((country, i) => {
+            const actualIndex = i + 1; // Since we're slicing from 1, adjust index
+            return (
+              <button
+                key={country.slug}
+                onClick={() => {
+                  const dir = actualIndex > activeIndex ? 1 : -1;
+                  gotoRef.current?.(actualIndex, dir);
+                }}
+                className={`w-6 h-6 text-[10px] sm:w-8 sm:h-8 sm:text-sm backdrop-blur-md   border border-white/20 rounded-md shadow-md transition-transform 
+            ${
+              actualIndex === activeIndex
+                ? "  font-bold text-black bg-white/40"
+                : "hover:bg-white/50 bg-white/10 text-white"
+            }`}
+              >
+                {actualIndex}
+              </button>
+            );
+          })}
         </nav>
       </header>
     </div>
   );
 }
-

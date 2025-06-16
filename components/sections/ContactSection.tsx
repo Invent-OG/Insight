@@ -26,16 +26,11 @@ export default function ContactSection() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      // Simulate a successful response without Nodemailer
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (res.ok) {
-        setSuccess(true);
-        setFormData({ name: "", email: "", phone: "", message: "" });
-      }
+      setSuccess(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -45,16 +40,17 @@ export default function ContactSection() {
 
   return (
     <section
-      className="bg-black text-white py-20 px-6 flex justify-center flex-col gap-10"
+      className="bg-black text-white py-12 md:py-16 lg:py-20 px-6 flex justify-center flex-col gap-10"
       id="contact"
     >
       {/* Centered Heading */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <h4 className="text-primary text-sm uppercase tracking-wider mb-3">
+      <div className="text-center max-w-2xl mx-auto ">
+        <h4 className="text-primary text-base uppercase tracking-wider mb-3">
           — Say Hello —
         </h4>
-        <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-          Let Us Know Your Concern <br /> We Are Always Ready.
+        <h2 className="text-3xl md:text-4xl lg:text-5xl py-4 font-bold leading-tight">
+          Let Us Know Your Concern
+          <br /> We Are <span className="text-primary">Always Ready.</span>
         </h2>
       </div>
 
@@ -117,7 +113,7 @@ export default function ContactSection() {
 
         {/* Right Side - Info */}
         <div className="flex flex-col justify-center">
-          <h3 className="text-2xl font-semibold mb-2">Lets Talk</h3>
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">Lets Talk</h3>
           <p className="text-gray-300 mb-6">
             Schedule a consultation to discuss your study abroad goals
           </p>

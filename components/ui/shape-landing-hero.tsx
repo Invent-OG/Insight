@@ -170,10 +170,10 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold leading-tight text-white py-6"
+          className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight text-white py-6"
         >
           Start Your <span className="text-primary">Global Journey</span> With
-          Expert Guidance
+          Expert <span className="text-primary">Guidance</span>
         </motion.h1>
 
         <motion.p
