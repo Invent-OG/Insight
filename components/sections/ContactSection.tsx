@@ -40,7 +40,7 @@ export default function ContactSection() {
 
   return (
     <section
-      className="bg-black text-white py-12 md:py-16 lg:py-20 px-6 flex justify-center flex-col gap-10"
+      className="bg-white text-black py-12 md:py-16 lg:py-20 px-6 flex justify-center flex-col gap-10"
       id="contact"
     >
       {/* Centered Heading */}
@@ -102,11 +102,13 @@ export default function ContactSection() {
               required
               className="w-full p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
             />
-            <Button type="submit" disabled={loading}>
+            <Button
+            className="text-white"
+            type="submit" disabled={loading}>
               {loading ? "Sending..." : "— Contact Now —"}
             </Button>
             {success && (
-              <p className="text-green-400 mt-2">Message sent successfully!</p>
+              <p className="text-green-600 mt-2">Message sent successfully!</p>
             )}
           </form>
         </div>
@@ -114,7 +116,7 @@ export default function ContactSection() {
         {/* Right Side - Info */}
         <div className="flex flex-col justify-center">
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">Lets Talk</h3>
-          <p className="text-gray-300 mb-6">
+          <p className="text-black mb-6">
             Schedule a consultation to discuss your study abroad goals
           </p>
 
@@ -123,7 +125,7 @@ export default function ContactSection() {
               <FaPhoneAlt size={20} />
             </div>
             <div>
-              <span className="text-sm text-gray-400">Phone</span>
+              <span className="text-sm text-black">Phone</span>
               <p className="text-lg font-medium text-primary">
                 +91 7593 000 094
               </p>

@@ -1,10 +1,12 @@
 // "use client";
 
-// import React, { useRef } from "react";
+// import React, { useEffect, useRef } from "react";
 // import FlipCard from "./FlipCard";
 // import { Button } from "../ui/button";
 // import { useRouter } from "next/navigation";
 // import { StaticImageData } from "next/image";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
 // // Import images
 // import uk from "@/public/assets/UK.png";
 // import usa from "@/public/assets/country/Usa.jpg";
@@ -22,13 +24,13 @@
 //   {
 //     id: "card1",
 //     title: "Study in UK",
-//     description: `Home to renowned institutions like Oxford and Cambridge, the UK offers rigorous programs, short duration courses, and a strong academic tradition. Cities in the UK offers a student-friendly atmosphere, blending culture and connectivity. They offer a 1-year master’s degree with no compromise on academic standards, along with a 2-year stay-back option. With part-time work opportunities, the UK is ideal for career-focused learners.`,
+//     description: `Home to renowned institutions like Oxford and Cambridge, the UK offers rigorous programs, short duration courses, and a strong academic tradition. Cities in the UK offer a student-friendly atmosphere, blending culture and connectivity. They offer a 1-year master’s degree with no compromise on academic standards, along with a 2-year stay-back option. With part-time work opportunities, the UK is ideal for career-focused learners.`,
 //     image: uk,
 //   },
 //   {
 //     id: "card2",
 //     title: "Study in the USA",
-//     description: `The U.S. is a top destination for international students, offering prestigious universities like Harvard and MIT, a flexible education system, research projects and internship opportunities. Its diverse lifestyle—from city campuses to quiet towns—enhances the student experience. Offering a 2-year master's program and a 3-year stay-back option, students can gain valuable work experience after graduation through Optional Practical Training (OPT) and STEM extensions.`,
+//     description: `The U.S. is a top destination for international students, offering prestigious universities like Harvard and MIT, a flexible education system, research projects, and internship opportunities. Its diverse lifestyle—from city campuses to quiet towns—enhances the student experience. Offering a 2-year master's program and a 3-year stay-back option, students can gain valuable work experience after graduation through Optional Practical Training (OPT) and STEM extensions.`,
 //     image: usa,
 //   },
 //   {
@@ -49,8 +51,16 @@
 //   const carouselRef = useRef<HTMLDivElement>(null);
 //   const router = useRouter();
 
+//   useEffect(() => {
+//     AOS.init({
+//       duration: 1000,
+//       offset: 100,
+//       once: true,
+//     });
+//   }, []);
+
 //   return (
-//     <div className="relative overflow-hidden lg:min-h-screen">
+//     <div className="relative overflow-hidden py-16 lg:min-h-screen ">
 //       {/* Parallax Background */}
 //       <div
 //         className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"
@@ -63,27 +73,31 @@
 //       <div className="absolute inset-0 bg-black/80"></div>
 
 //       {/* Your content */}
-//       <div className="relative z-10 bg-transparent text-white">
-//         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-center lg:py-8">
+//       <div
+//         data-aos="fade-up"
+//         data-aos-duration="1000"
+//         data-aos-delay="100"
+//         data-aos-anchor-placement="top-bottom"
+//         className="relative z-10 bg-transparent flex flex-col gap-10 justify-center items-center text-white"
+//       >
+//         <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight text-center lg:py-8">
 //           Countries
 //         </h1>
 
 //         <div
 //           ref={carouselRef}
-//           className="w-full overflow-x-auto scroll-smooth scrollbar-hide flex justify-center"
+//           className="flex w-full items-center gap-5 px-10 lg:p-0 scroll-smooth no-scrollbar py-2 justify-start lg:justify-center overflow-auto "
 //         >
-//           <div className="flex gap-6 px-4 py-12 mb-6">
-//             {countries.map((country, index) => (
-//               <div key={index} className="flex-shrink-0">
-//                 <FlipCard
-//                   imageSrc={country.image}
-//                   title={country.title}
-//                   backDescription={country.description}
-//                   id={country.id}
-//                 />
-//               </div>
-//             ))}
-//           </div>
+//           {countries.map((country) => (
+//             <div key={country.id} className=" ">
+//               <FlipCard
+//                 imageSrc={country.image}
+//                 title={country.title}
+//                 backDescription={country.description}
+//                 id={country.id}
+//               />
+//             </div>
+//           ))}
 //         </div>
 
 //         {/* Center button */}
@@ -98,6 +112,7 @@
 // };
 
 // export default CountriesCarousel;
+
 
 "use client";
 
@@ -166,12 +181,12 @@ const CountriesCarousel: React.FC = () => {
       <div
         className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `url('assets/country/Usa.jpg')`,
+          backgroundImage: "url('/assets/textures/countryfullbg.avif')",
+          opacity: 0.4,
         }}
       ></div>
 
-      {/* Overlay to darken background */}
-      <div className="absolute inset-0 bg-black/80"></div>
+     
 
       {/* Your content */}
       <div
@@ -181,7 +196,7 @@ const CountriesCarousel: React.FC = () => {
         data-aos-anchor-placement="top-bottom"
         className="relative z-10 bg-transparent flex flex-col gap-10 justify-center items-center text-white"
       >
-        <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight text-center lg:py-8">
+        <h1 className="text-3xl text-primary md:text-5xl lg:text-5xl font-bold leading-tight text-center lg:py-8">
           Countries
         </h1>
 

@@ -34,11 +34,12 @@ export default function UniversitiesSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImageIndex((prevIndex) => (prevIndex + 1) % 2); // 2 images per university
-    }, 4000); // Change every 4 seconds
+      setImageIndex((prevIndex) => (prevIndex + 1) % 2); // Toggle between 2 images
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
     AOS.init({
       duration: 600,
@@ -48,25 +49,33 @@ export default function UniversitiesSection() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r  from-black  to-primary/40">
-      <section className="bg-black/90 text-white px-4 py-12 md:py-11 lg:py-4">
+    <div className="relative">
+      <section className="relative text-black px-4 py-12 md:py-11 lg:py-4 overflow-hidden">
+        {/* ✅ Texture background layer */}
         <div
-          // data-aos="fade-left"
-          // data-aos-duration="1000"
-          // data-aos-delay="100"
-          // data-aos-anchor-placement="top-center"
-          className="container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12"
-        >
+          className="absolute inset-0 z-0 "
+          style={{
+            backgroundImage: "url('/assets/textures/university.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover", // 👈 makes it fill the whole screen
+            backgroundPosition: "center", // 👈 centers the image
+            backgroundAttachment: "scroll", // or "fixed" for parallax effect
+            opacity: 0.2,
+          }}
+        ></div>
+
+        {/* ✅ Content Over Texture */}
+        <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12">
           {/* Heading */}
-          <div className="text-center max-w-4xl mx-auto  lg:mb-12 space-y-8">
-            <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider  relative">
+          <div className="text-center max-w-4xl mx-auto lg:mb-12 space-y-8">
+            <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider relative">
               <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2 text-primary text-base">
                 Universities
               </span>
             </h4>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold ">
-              Unlock New <span className="text-primary">Opportunities</span> With{" "}
-              <span className="text-primary">Insights</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              Unlock New <span className="text-primary">Opportunities</span>{" "}
+              With <span className="text-primary">Insights</span>
             </h2>
           </div>
 

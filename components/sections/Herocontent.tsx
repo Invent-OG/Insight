@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import herocontentimage from "@/public/assets/herocontentimage.png";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import herocontentimage from "@/public/assets/herocontentimage.png";
 import { Button } from "../ui/button";
 import { CircleDot } from "lucide-react";
 
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 50 },
+  },
 };
 
 const highlightKeywords = (text: string) => {
@@ -29,7 +33,7 @@ const highlightKeywords = (text: string) => {
   return text.split(pattern).map((part, i) =>
     keywords.includes(part) ||
     keywords.some((k) => k.toLowerCase() === part.toLowerCase()) ? (
-      <span key={i} className="text-red-500 font-semibold">
+      <span key={i} className="text-primary font-semibold">
         {part}
       </span>
     ) : (
@@ -59,15 +63,27 @@ const Layout2 = () => {
   const visibleContent = showFull ? content : content.slice(0, 2);
 
   return (
-    <div className="bg-gradient-to-r from-black to-primary/40 relative z-0">
-      <section className="bg-black text-white lg:py-10 py-20">
+    <div>
+      <section className="relative bg-white text-black py-20 lg:py-10 overflow-hidden">
+        {/* Texture background layer with opacity */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('/assets/textures/texture.avif')",
+            backgroundRepeat: "repeat",
+            backgroundSize: "auto",
+            opacity: 0.6, // Only the texture is semi-transparent
+          }}
+        />
+
+        {/* Main content */}
         <div
           data-aos="zoom-in-left"
-          className={`container px-6 md:px-20 md:py-20 lg:py-16 flex flex-col ${
+          className={`relative z-10 container px-6 md:px-20 md:py-20 lg:py-16 flex flex-col ${
             showFull
               ? "md:flex-col items-center text-center"
               : "md:flex-row items-center text-left"
-          } items-center gap-10`}
+          } gap-10`}
         >
           {/* Image */}
           <motion.div
@@ -101,7 +117,7 @@ const Layout2 = () => {
             } space-y-6`}
           >
             <motion.h2
-              className="lg:text-5xl md:text-4xl text-3xl font-bold text-white text-center md:text-left mb-6"
+              className="lg:text-5xl md:text-4xl text-3xl font-bold text-black text-center md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
@@ -134,8 +150,8 @@ const Layout2 = () => {
                     key={idx}
                     className={`text-base md:text-lg leading-relaxed tracking-wide flex gap-2 items-start ${
                       showFull
-                        ? "text-white/85 text-justify"
-                        : "text-white/90 text-center md:text-left"
+                        ? "text-black/85 text-justify"
+                        : "text-black/90 text-center md:text-left"
                     }`}
                     variants={textVariants}
                     initial="hidden"
@@ -157,7 +173,7 @@ const Layout2 = () => {
             <div className="text-center md:text-left">
               <Button
                 onClick={() => setShowFull((prev) => !prev)}
-                className="mt-2 bg-primary text-black px-4 py-2 font-semibold hover:bg-white transition-all"
+                className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-white transition-all"
               >
                 {showFull ? "Show Less" : "Read More"}
               </Button>
