@@ -65,14 +65,28 @@ const Layout2 = () => {
   return (
     <div>
       <section className="relative bg-white text-black py-20 lg:py-10 overflow-hidden">
-        {/* Texture background layer with opacity */}
+        {/* ✅ Mobile-only Parallax Texture */}
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundRepeat: "repeat",
             backgroundSize: "auto",
-            opacity: 0.6, // Only the texture is semi-transparent
+            backgroundAttachment: "fixed", // Parallax on mobile
+            backgroundPosition: "center",
+            opacity: 0.6, // Full clarity for mobile
+          }}
+        />
+
+        {/* ✅ Desktop Normal Texture */}
+        <div
+          className="absolute inset-0 z-0 hidden md:block"
+          style={{
+            backgroundImage: "url('/assets/textures/texture.avif')",
+            backgroundRepeat: "repeat",
+            backgroundSize: "auto",
+            backgroundAttachment: "scroll",
+            opacity: 0.8,
           }}
         />
 

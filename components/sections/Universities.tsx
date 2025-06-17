@@ -51,15 +51,28 @@ export default function UniversitiesSection() {
   return (
     <div className="relative">
       <section className="relative text-black px-4 py-12 md:py-11 lg:py-4 overflow-hidden">
-        {/* ✅ Texture background layer */}
+        {/* ✅ Mobile-only Parallax Background */}
         <div
-          className="absolute inset-0 z-0 "
+          className="absolute inset-0 z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/textures/university.jpg')",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "cover", // 👈 makes it fill the whole screen
-            backgroundPosition: "center", // 👈 centers the image
-            backgroundAttachment: "scroll", // or "fixed" for parallax effect
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed", // Parallax for mobile
+            opacity: 0.5, // Full clarity on mobile
+          }}
+        ></div>
+
+        {/* ✅ Desktop Background */}
+        <div
+          className="absolute inset-0 z-0 hidden md:block"
+          style={{
+            backgroundImage: "url('/assets/textures/university.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed", // No parallax for desktop
             opacity: 0.2,
           }}
         ></div>
