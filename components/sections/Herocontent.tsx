@@ -215,9 +215,7 @@
 
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useEffect, useRef, useState } from "react";
 import herocontentimage from "@/public/assets/herocontentimage.png";
 import { Button } from "../ui/button";
 import { CircleDot } from "lucide-react";
@@ -257,10 +255,7 @@ const highlightKeywords = (text: string) => {
 
 const Layout2 = () => {
   const [showFull, setShowFull] = useState(false);
-
-  useEffect(() => {
-    AOS.init({ duration: 300, offset: 100, once: true });
-  }, []);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const content = [
     "Feeling overwhelmed by the idea of studying abroad? You’re not alone — and we get it.",
@@ -304,7 +299,7 @@ const Layout2 = () => {
 
         {/* Main content */}
         <div
-          data-aos="zoom-in-left"
+          ref={sectionRef}
           className={`relative z-10 container px-6 md:px-20 md:py-20 lg:py-16 flex flex-col ${
             showFull
               ? "md:flex-col items-center text-center"
@@ -398,7 +393,15 @@ const Layout2 = () => {
 
             <div className="text-center md:text-left">
               <Button
-                onClick={() => setShowFull((prev) => !prev)}
+                onClick={() => {
+                  if (showFull && sectionRef.current) {
+                    sectionRef.current.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                  setShowFull((prev) => !prev);
+                }}
                 className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-primary/90 transition-all"
               >
                 {showFull ? "Show Less" : "Read More"}
