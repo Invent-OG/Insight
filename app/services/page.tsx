@@ -42,7 +42,7 @@ export default function Services() {
 
   useEffect(() => {
     AOS.init({
-      duration: 300,
+      duration: 100,
       offset: 100,
       once: true,
     });

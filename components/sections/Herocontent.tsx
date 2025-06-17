@@ -70,11 +70,12 @@ const Layout2 = () => {
           className="absolute inset-0 z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
-            backgroundRepeat: "repeat",
-            backgroundSize: "auto",
+            // backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
             backgroundAttachment: "fixed", // Parallax on mobile
             backgroundPosition: "center",
-            opacity: 0.6, // Full clarity for mobile
+            opacity: 0.6,
+            // Full clarity for mobile
           }}
         />
 
@@ -83,8 +84,8 @@ const Layout2 = () => {
           className="absolute inset-0 z-0 hidden md:block"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
-            backgroundRepeat: "repeat",
-            backgroundSize: "auto",
+            // backgroundRepeat: "repeat",
+            backgroundSize: "cover",
             backgroundAttachment: "fixed",
             opacity: 0.8,
           }}
@@ -187,7 +188,7 @@ const Layout2 = () => {
             <div className="text-center md:text-left">
               <Button
                 onClick={() => setShowFull((prev) => !prev)}
-                className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-white transition-all"
+                className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-primary/90 transition-all"
               >
                 {showFull ? "Show Less" : "Read More"}
               </Button>

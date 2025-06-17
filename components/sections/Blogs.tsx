@@ -174,11 +174,11 @@ export default function BlogsPage() {
         className="py-16 bg-red-50  "
       >
         <h4 className="text-primary text-center uppercase text-base font-medium tracking-wider">
-          — Services —
+          — Blogs —
         </h4>
         <div className="w-full flex flex-col items-center gap-16 px-0">
           <div className="text-center max-w-5xl mx-auto px-4">
-            <h2 className=" text-3xl md:text-4xl lg:text-5xl py-6 font-semibold">
+            <h2 className=" text-3xl md:text-4xl lg:text-5xl py-6 font-bold">
               Latest <span className="text-primary">Blog</span> Posts
             </h2>
             <p className="mb-4 text-muted-foreground md:text-base lg:text-lg">

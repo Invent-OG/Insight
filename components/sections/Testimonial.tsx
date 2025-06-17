@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useTestimonials } from "@/lib/queries/testimonials";
@@ -126,7 +125,9 @@ export default function Testimonials() {
               — Testimonials —
             </h4>
             <h2 className="lg:text-5xl md:text-4xl font-bold leading-tight">
-              See what our customers have to say about us.
+              See what our{" "}
+              <span className="text-primary">customers have to</span> say about
+              us.
             </h2>
           </div>
         </motion.div>
