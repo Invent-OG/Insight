@@ -85,7 +85,7 @@ const Layout2 = () => {
             backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundRepeat: "repeat",
             backgroundSize: "auto",
-            backgroundAttachment: "scroll",
+            backgroundAttachment: "fixed",
             opacity: 0.8,
           }}
         />

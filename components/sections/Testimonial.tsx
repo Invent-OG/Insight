@@ -112,7 +112,7 @@ export default function Testimonials() {
   const thirdColumn = testimonials.filter((_, i) => i % 3 === 2);
 
   return (
-    <section className="bg-gray-200 text-black relative py-16">
+    <section className="bg-gray-50 text-black relative py-16">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
