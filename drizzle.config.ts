@@ -3,8 +3,11 @@ import type { Config } from "drizzle-kit";
 export default {
   schema: "./lib/db/schema.ts",
   out: "./lib/db/migrations",
-  driver: "pg",
+  driver: "d1-http",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL!,
+    accountId: process.env.D1_ACCOUNT_ID!,
+    databaseId: process.env.D1_DATABASE_ID!,
+    token: process.env.D1_TOKEN!,
   },
+  dialect: "sqlite"
 } satisfies Config;
