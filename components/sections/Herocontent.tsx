@@ -87,7 +87,8 @@ const Layout2 = () => {
             // backgroundRepeat: "repeat",
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
-            opacity: 0.8,
+            backgroundPosition: "left center",
+            opacity: 0.6,
           }}
         />
 
