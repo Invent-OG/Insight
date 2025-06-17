@@ -47,12 +47,12 @@ export default function TestimonialForm({
 
   const form = useForm<TestimonialFormData>({
     resolver: zodResolver(testimonialSchema),
-    defaultValues: initialData || {
-      name: "",
-      role: "",
-      content: "",
-      youtubeUrl: "",
-      imageUrl: "",
+    defaultValues: {
+      name: initialData?.name ?? "",
+      role: initialData?.role ?? "",
+      content: initialData?.content ?? "",
+      youtubeUrl: initialData?.youtubeUrl ?? "",
+      imageUrl: initialData?.imageUrl ?? "",
     },
   });
 

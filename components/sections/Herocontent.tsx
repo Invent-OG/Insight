@@ -64,18 +64,16 @@ const Layout2 = () => {
 
   return (
     <div>
-      <section className="relative bg-white text-black py-20 lg:py-10 overflow-hidden">
+      <section className="relative  min-w-full flex justify-center text-black py-20 lg:py-10 overflow-hidden">
         {/* ✅ Mobile-only Parallax Texture */}
         <div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
-            // backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundAttachment: "fixed", // Parallax on mobile
+            backgroundAttachment: "fixed",
             backgroundPosition: "center",
             opacity: 0.6,
-            // Full clarity for mobile
           }}
         />
 
@@ -84,10 +82,10 @@ const Layout2 = () => {
           className="absolute inset-0 z-0 hidden md:block"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
-            // backgroundRepeat: "repeat",
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
-            opacity: 0.8,
+            backgroundPosition: "left center",
+            opacity: 0.6,
           }}
         />
 
@@ -97,8 +95,8 @@ const Layout2 = () => {
           className={`relative z-10 container px-6 md:px-20 md:py-20 lg:py-16 flex flex-col ${
             showFull
               ? "md:flex-col items-center text-center"
-              : "md:flex-row items-center text-left"
-          } gap-10`}
+              : "md:flex-row items-start md:items-center text-left"
+          } gap-10 max-w-[90%] md:max-w-[85%] mx-auto`}
         >
           {/* Image */}
           <motion.div

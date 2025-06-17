@@ -9,6 +9,9 @@ import DisplayCards from "@/components/ui/display-cards";
 import bgpar from "@/public/assets/herocontentimage.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
+import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
+import ourcorebg1 from "@/public/assets/textures/ourcorebg1.jpg"
 
 export default function About() {
   useEffect(() => {
@@ -397,17 +400,23 @@ to finish. Discover your path to international education with Insight
           </div>
         </section>
 
-        {/* Core Values Section */}
-        <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
-
         {/* Content */}
-        <div
-          data-aos="fade-down-right"
-          data-aos-duration="800"
-          data-aos-anchor-placement="top-end"
-          className=" relative z-10   "
-        >
-          <DisplayCards />
+        <div className="relative bg-red-100 w-full min-h-screen ">
+          {/* Background image with reduced opacity */}
+          <div className="absolute inset-0 w-full h-full z-0">
+            <Image
+              src={ourcorebg1}
+              alt="Background"
+              fill
+              className="opacity-70"
+              priority
+            />
+          </div>
+
+          {/* Foreground content on top of image */}
+          <div className="relative z-10 w-full h-full">
+            <RoadmapSection />
+          </div>
         </div>
       </main>
     </>

@@ -21,6 +21,8 @@ import malta from "@/public/assets/country/malta.jpg";
 import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
 import { motion } from "framer-motion";
+import { useCreateLead } from "@/lib/queries/leads"; // adjust path if needed
+
 import {
   Fragment,
   JSXElementConstructor,
@@ -286,6 +288,9 @@ export default function CountryPage() {
   );
 
   const [selectedSlug, setSelectedSlug] = useState(slug as string);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+
   const selectedSuggestions = suggestionMap[selectedSlug];
   const suggestedCards = countries.filter((c) =>
     selectedSuggestions.includes(c.slug)
@@ -297,14 +302,34 @@ export default function CountryPage() {
     interest: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: any) => {
+  const { mutate: createLead, isPending } = useCreateLead();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
-    // You can integrate backend logic here
+    createLead(
+      {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        interest: form.interest,
+      },
+      {
+        onSuccess: () => {
+          setForm({ name: "", email: "", phone: "", interest: "" });
+          setStatusMessage("Lead submitted successfully!");
+          setIsSuccess(true);
+        },
+        onError: (error) => {
+          console.error("Error creating lead:", error);
+          setStatusMessage("Failed to submit lead. Please try again.");
+          setIsSuccess(false);
+        },
+      }
+    );
   };
 
   return (
@@ -603,7 +628,7 @@ export default function CountryPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-[450px] bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 flex flex-col justify-between"
+            className="min-h-[450px] bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 flex flex-col justify-between"
           >
             <div>
               <h3 className="text-xl font-bold text-primary text-center mb-2">
@@ -614,7 +639,7 @@ export default function CountryPage() {
               </p>
             </div>
 
-            <div className="flex-1 overflow-y-auto space-y-7 pr-1 py-4">
+            <div className="flex-1 overflow-y-auto scrollbar-hide space-y-7 pr-1 py-4">
               <input
                 type="text"
                 name="name"
@@ -645,7 +670,7 @@ export default function CountryPage() {
               <input
                 type="text"
                 name="interest"
-                placeholder="Interest (e.g., Engineering)"
+                placeholder="Interest"
                 value={form.interest}
                 onChange={handleChange}
                 required
@@ -654,6 +679,13 @@ export default function CountryPage() {
             </div>
 
             <div>
+              <div className="h-5 mb-2 text-center text-sm font-medium">
+                {statusMessage && (
+                  <p className={isSuccess ? "text-green-400" : "text-red-400"}>
+                    {statusMessage}
+                  </p>
+                )}
+              </div>
               <button
                 type="submit"
                 className="w-full bg-primary text-black font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition"
@@ -674,7 +706,7 @@ export default function CountryPage() {
                 <Link href={`/countries/${c.slug}`} key={c.slug}>
                   <div
                     className={`cursor-pointer rounded-2xl overflow-hidden border transition-all duration-300
-        bg-white/5 text-white border-white/10 hover:bg-white/10`}
+            bg-white/5 text-white border-white/10 hover:bg-white/10`}
                   >
                     <div className="relative w-full h-36 md:h-32">
                       <Image
