@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const { currentPassword, newPassword } = await req.json();
 
-    const actualPassword = await getAdminPassword(); // Might throw
+    const actualPassword = await getAdminPassword();
 
     if (currentPassword !== actualPassword) {
       return NextResponse.json(
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await updateAdminPassword(newPassword); // Might throw
+    await updateAdminPassword(newPassword);
 
     return NextResponse.json({
       message: "Password updated successfully",
