@@ -176,19 +176,26 @@ const CountriesCarousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden py-16 lg:min-h-screen ">
-      {/* Parallax Background */}
+    <div className="relative overflow-hidden py-16 lg:min-h-screen">
+      {/* ✅ Mobile-Only Parallax Background */}
       <div
-        className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"
+        className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat  block lg:hidden"
         style={{
           backgroundImage: "url('/assets/textures/countryfullbg.avif')",
-          opacity: 0.4,
+          opacity: 0.5, // No opacity on mobile for clarity
         }}
       ></div>
 
-     
+      {/* ✅ Desktop Parallax Background (more faded) */}
+      <div
+        className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat hidden lg:block"
+        style={{
+          backgroundImage: "url('/assets/textures/countryfullbg.avif')",
+          opacity: 0.4, // Softer effect for large screens
+        }}
+      ></div>
 
-      {/* Your content */}
+      {/* Main Content */}
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
@@ -202,10 +209,10 @@ const CountriesCarousel: React.FC = () => {
 
         <div
           ref={carouselRef}
-          className="flex w-full items-center gap-5 px-10 lg:p-0 scroll-smooth no-scrollbar py-2 justify-start lg:justify-center overflow-auto "
+          className="flex w-full items-center gap-5 px-10 lg:p-0 scroll-smooth no-scrollbar py-2 justify-start lg:justify-center overflow-auto"
         >
           {countries.map((country) => (
-            <div key={country.id} className=" ">
+            <div key={country.id}>
               <FlipCard
                 imageSrc={country.image}
                 title={country.title}
@@ -216,7 +223,7 @@ const CountriesCarousel: React.FC = () => {
           ))}
         </div>
 
-        {/* Center button */}
+        {/* Centered Button */}
         <div className="flex justify-center lg:py-4 mb-4">
           <Button onClick={() => router.push("/countries")}>
             Explore Countries
