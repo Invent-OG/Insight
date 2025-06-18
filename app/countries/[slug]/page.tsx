@@ -22,6 +22,7 @@ import netherland from "@/public/assets/country/Netherland.jpg";
 import finland from "@/public/assets/country/Finland.jpg";
 import { motion } from "framer-motion";
 import { useCreateLead } from "@/lib/queries/leads"; // adjust path if needed
+import toast, { Toaster } from "react-hot-toast";
 
 import {
   Fragment,
@@ -320,13 +321,11 @@ export default function CountryPage() {
       {
         onSuccess: () => {
           setForm({ name: "", email: "", phone: "", interest: "" });
-          setStatusMessage("Lead submitted successfully!");
-          setIsSuccess(true);
+          toast.success("Lead submitted successfully!");
         },
         onError: (error) => {
           console.error("Error creating lead:", error);
-          setStatusMessage("Failed to submit lead. Please try again.");
-          setIsSuccess(false);
+          toast.error("Failed to submit lead. Please try again.");
         },
       }
     );
@@ -622,6 +621,8 @@ export default function CountryPage() {
 
         {/* Right Column - Form + Suggestions */}
         <div className="w-full lg:w-[30%] flex flex-col">
+          {/* ✅ Add Toaster Here */}
+          <Toaster position="top-right" reverseOrder={false} />
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
@@ -679,6 +680,7 @@ export default function CountryPage() {
             </div>
 
             <div>
+              {/* ✅ Added status message here */}
               <div className="h-5 mb-2 text-center text-sm font-medium">
                 {statusMessage && (
                   <p className={isSuccess ? "text-green-400" : "text-red-400"}>
@@ -686,6 +688,7 @@ export default function CountryPage() {
                   </p>
                 )}
               </div>
+
               <button
                 type="submit"
                 className="w-full bg-primary text-black font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition"

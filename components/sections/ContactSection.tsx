@@ -3,6 +3,8 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { useCreateLead } from "@/lib/queries/leads"; // adjust this path if necessary
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,8 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const createLead = useCreateLead();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -26,13 +30,19 @@ export default function ContactSection() {
     setLoading(true);
 
     try {
-      // Simulate a successful response without Nodemailer
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await createLead.mutateAsync({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        interest: formData.message, // "message" goes as "interest"
+      });
 
       setSuccess(true);
+      toast.success("Message sent successfully!");
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error("Error:", error);
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -43,6 +53,8 @@ export default function ContactSection() {
       className="bg-white text-black py-12 md:py-16 lg:py-20 px-6 flex justify-center flex-col gap-10"
       id="contact"
     >
+      <Toaster position="top-right" reverseOrder={false} />
+
       {/* Centered Heading */}
       <div className="text-center max-w-2xl mx-auto ">
         <h4 className="text-primary text-base uppercase tracking-wider mb-3">
@@ -102,9 +114,7 @@ export default function ContactSection() {
               required
               className="w-full p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
             />
-            <Button
-            className="text-white"
-            type="submit" disabled={loading}>
+            <Button className="text-white" type="submit" disabled={loading}>
               {loading ? "Sending..." : "— Contact Now —"}
             </Button>
             {success && (
@@ -115,7 +125,9 @@ export default function ContactSection() {
 
         {/* Right Side - Info */}
         <div className="flex flex-col justify-center">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">Lets Talk</h3>
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
+            Lets Talk
+          </h3>
           <p className="text-black mb-6">
             Schedule a consultation to discuss your study abroad goals
           </p>
