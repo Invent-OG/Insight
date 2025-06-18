@@ -1,7 +1,6 @@
 "use client";
 
-import React, { ReactNode, useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import React, { ReactNode } from "react";
 import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
 
 interface RoadmapProps {
@@ -18,19 +17,29 @@ interface CardProps {
 
 export default function Roadmap({ children }: RoadmapProps) {
   return (
-    <section className="relative w-full min-h-screen md:px-16">
-      {/* Background image */}
-
+    <section className="relative w-full min-h-screen md:px-16 bg-white overflow-hidden lg:py-16 py-10">
+      {/* ✅ Background Image with Opacity */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/assets/textures/ourcorebg1.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "scroll",
+          opacity: 0.2, // Adjust this value as needed (0.1 to 0.5 recommended)
+        }}
+      />
       {/* Heading at top */}
-      <div className="flex justify-center items-center pt-24 pb-12 text-center">
+      <div className="flex justify-center items-center  pb-12 text-center">
         <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-black">
-          Our Core Values
+          Our <span className="text-primary">Core</span> Values
         </h1>
       </div>
 
-      {/* Cards centered vertically */}
-      <section className="flex justify-center items-center md:p-16">
-        <article className="md:px-16 p-5 flex flex-col items-center gap-12">
+      {/* Cards in grid layout */}
+      <section className="flex justify-center items-center ">
+        <article className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {children}
         </article>
       </section>
@@ -39,40 +48,23 @@ export default function Roadmap({ children }: RoadmapProps) {
 }
 
 const RoadmapCard: React.FC<CardProps> = ({
-  index,
   logo,
   title,
   description,
   background,
 }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "start start"],
-  });
-
-  const rotate = useTransform(scrollYProgress, [0, 1], [40, -index * 4]);
-
   return (
     <div
-      ref={containerRef}
-      className="top-[80px] sticky flex justify-center h-screen"
+      className="p-8 rounded-[24px] flex flex-col gap-6 max-w-[450px] w-full shadow-md"
+      style={{ background }}
     >
-      <motion.div
-        className="py-10 px-8 rounded-[24px] flex flex-col gap-6 max-w-[450px] max-h-[320px] relative"
-        style={{
-          background: background,
-          rotate,
-        }}
-      >
-        <div className="text-4xl text-primary">{logo}</div>
-        <div className="flex flex-col gap-2">
-          <h1 className="font-bold text-2xl text-black">{title}</h1>
-          <p className="font-normal text-black text-sm md:text-lg">
-            {description}
-          </p>
-        </div>
-      </motion.div>
+      <div className="text-4xl text-red-500">{logo}</div>
+      <div className="flex flex-col gap-2">
+        <h1 className="font-bold text-2xl text-black">{title}</h1>
+        <p className="font-normal text-black text-sm md:text-lg">
+          {description}
+        </p>
+      </div>
     </div>
   );
 };
@@ -83,12 +75,7 @@ Roadmap.Card = RoadmapCard;
 
 export function RoadmapSection() {
   return (
-    <div
-      data-aos="fade-down-right"
-      data-aos-duration="800"
-      data-aos-anchor-placement="top-end"
-      className="relative z-10 min-h-screen"
-    >
+    <div className="relative z-10 min-h-screen bg-white">
       <Roadmap>
         <Roadmap.Card
           index={0}

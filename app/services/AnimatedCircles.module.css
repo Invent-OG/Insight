@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 
 .area {
-  background: linear-gradient(to left, #141414, #000000);
+  background: linear-gradient(to left, #f8f6f6, #f3f1f1);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -38,7 +38,7 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(187, 181, 181, 0.781);
+  background: rgba(116, 115, 115, 0.781);
   animation: animate 25s linear infinite;
   bottom: -150px;
 }
