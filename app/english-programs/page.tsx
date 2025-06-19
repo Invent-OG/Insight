@@ -680,16 +680,19 @@ const HomePage: React.FC = () => {
     <div className=" min-h-screen">
       {/* Hero Section */}
 
-      <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6  bg-gradient-to-r from-black to-primary/40 text-white relative overflow-hidden">
+      <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6  text-white relative overflow-hidden">
         {/* Parallax Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center "
           style={{
             backgroundImage: "url('/assets/country/malta.jpg')",
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
           }}
         ></div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-tr from-pink-400/30 via-cyan-300/20 to-purple-400/30 animate-gradient bg-[length:400%_400%]" />
 
         {/* Content */}
         <div className="relative z-10 space-y-10 max-w-5xl mx-auto">

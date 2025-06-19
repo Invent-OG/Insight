@@ -429,6 +429,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 import { BackgroundPaths } from "@/components/ui/background-paths";
+import { LampDemo } from "@/components/ui/lamp";
 import DisplayCards from "@/components/ui/display-cards";
 import bgpar from "@/public/assets/herocontentimage.png";
 import AOS from "aos";
@@ -483,7 +484,8 @@ export default function About() {
 
       <main className=" text-white min-h-screen relative">
         {/* BackgroundPaths component */}
-        <BackgroundPaths />
+        {/* <BackgroundPaths /> */}
+        <LampDemo />
 
         {/* Hero  sub content */}
         <section
@@ -598,7 +600,16 @@ export default function About() {
 
         {/* Founder Section */}
         <section className="relative lg:py-20 lg:mt-16 max-w-5xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center gap-10 bg-white overflow-hidden">
-          {/* Overlay removed for clean white background */}
+          {/* Background SVG Wave - Light Red (text-red-100) */}
+          <div className="absolute lg:bottom-20 bottom-0  left-0 w-full z-0 pointer-events-none">
+            <svg
+              viewBox="0 0 1440 320"
+              className="fill-current text-red-100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0,288L144,256L288,160L432,192L576,224L720,160L864,96L1008,160L1152,96L1296,160L1440,128L1440,320L1296,320L1152,320L1008,320L864,320L720,320L576,320L432,320L288,320L144,320L0,320Z" />
+            </svg>
+          </div>
 
           {/* Content (Left Side) */}
           <motion.blockquote
@@ -621,7 +632,6 @@ export default function About() {
             of the way.”
             <br />
             <br />
-            {/* Hidden on mobile, visible on md+ */}
             <span className="hidden md:inline text-red-600 font-semibold not-italic">
               — Founder Neshika
             </span>
@@ -645,7 +655,7 @@ export default function About() {
               />
             </motion.div>
 
-            {/* Founder name below image on mobile only */}
+            {/* Founder name on mobile */}
             <span className="mt-4 text-red-600 font-semibold not-italic md:hidden">
               — Founder Neshika
             </span>

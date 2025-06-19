@@ -17,29 +17,36 @@ interface CardProps {
 
 export default function Roadmap({ children }: RoadmapProps) {
   return (
-    <section className="relative w-full min-h-screen md:px-16 bg-white overflow-hidden lg:py-16 py-10">
+    <section className="relative w-full px-4 sm:px-6 md:px-10 lg:px-16 bg-white overflow-hidden py-10 lg:py-16">
       {/* ✅ Background Image with Opacity */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/assets/textures/ourcorebg1.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "scroll",
-          opacity: 0.2, // Adjust this value as needed (0.1 to 0.5 recommended)
-        }}
-      />
+      <div className="absolute inset-0 z-0 bg-mobile-right" />
+      <style jsx>{`
+        .bg-mobile-right {
+          background-image: url("/assets/ourcorebg2.svg");
+          background-repeat: no-repeat;
+          background-attachment: scroll;
+          background-size: cover;
+          background-position: center;
+          opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+          .bg-mobile-right {
+            background-position: right top;
+          }
+        }
+      `}</style>
+
       {/* Heading at top */}
-      <div className="flex justify-center items-center  pb-12 text-center">
-        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-black">
+      <div className="flex justify-center items-center pb-12 text-center z-10 relative">
+        <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-black leading-tight">
           Our <span className="text-primary">Core</span> Values
         </h1>
       </div>
 
       {/* Cards in grid layout */}
-      <section className="flex justify-center items-center ">
-        <article className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <section className="flex justify-center items-center relative z-10">
+        <article className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
           {children}
         </article>
       </section>
@@ -55,13 +62,13 @@ const RoadmapCard: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className="p-8 rounded-[24px] flex flex-col gap-6 max-w-[450px] w-full shadow-md"
+      className="p-6 sm:p-8 rounded-2xl flex flex-col gap-4 sm:gap-6 max-w-xs sm:max-w-sm md:max-w-md w-full shadow-md h-auto md:h-[340px] lg:h-[380px] xl:h-[250px] overflow-hidden"
       style={{ background }}
     >
-      <div className="text-4xl text-red-500">{logo}</div>
+      <div className="text-3xl sm:text-4xl text-red-500">{logo}</div>
       <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-2xl text-black">{title}</h1>
-        <p className="font-normal text-black text-sm md:text-lg">
+        <h1 className="font-bold text-xl sm:text-2xl text-black">{title}</h1>
+        <p className="font-normal text-sm sm:text-base md:text-lg text-black line-clamp-5">
           {description}
         </p>
       </div>
@@ -71,11 +78,11 @@ const RoadmapCard: React.FC<CardProps> = ({
 
 Roadmap.Card = RoadmapCard;
 
-// ---- Usage (inside your page or component) ----
+// ---- Usage Component ----
 
 export function RoadmapSection() {
   return (
-    <div className="relative z-10 min-h-screen bg-white">
+    <div className="relative z-10 bg-white">
       <Roadmap>
         <Roadmap.Card
           index={0}

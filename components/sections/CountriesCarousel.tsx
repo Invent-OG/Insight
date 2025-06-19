@@ -113,7 +113,6 @@
 
 // export default CountriesCarousel;
 
-
 "use client";
 
 import React, { useEffect, useRef } from "react";
@@ -179,10 +178,10 @@ const CountriesCarousel: React.FC = () => {
     <div className="relative overflow-hidden py-16 lg:min-h-screen">
       {/* ✅ Mobile-Only Parallax Background */}
       <div
-        className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat  block lg:hidden"
+        className="absolute inset-0 bg-scroll lg:bg-fixed bg-center bg-cover bg-no-repeat block lg:hidden"
         style={{
           backgroundImage: "url('/assets/textures/countryfullbg.avif')",
-          opacity: 0.5, // No opacity on mobile for clarity
+          opacity: 0.5,
         }}
       ></div>
 
