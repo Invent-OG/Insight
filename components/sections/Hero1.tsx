@@ -1,82 +1,3 @@
-// "use client";
-
-// import { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import Image from "next/image";
-
-// import herobg from "@/public/assets/hero1.webp";
-// import logo from "@/public/assets/logo.png"; // Use the same one from the original demo
-
-// gsap.registerPlugin(ScrollTrigger);
-
-// export default function Hero() {
-//   const cloudRef = useRef(null);
-
-//   useEffect(() => {
-//     // Cloud scroll upward effect
-//     gsap.to(cloudRef.current, {
-//       y: -200, // move cloud up
-//       ease: "none",
-//       scrollTrigger: {
-//         trigger: ".scroll-space", // anything with height to trigger scroll
-//         start: "top top",
-//         end: "bottom bottom",
-//         scrub: true,
-//       },
-//     });
-//   }, []);
-
-//   return (
-//     <>
-//       {/* Scroll space to enable scroll-based animation */}
-//       <div className="scroll-space h-[200vh] bg-transparent relative z-0">
-//         <section className="sticky top-0 h-screen w-full overflow-hidden">
-//           {/* Background Image */}
-//           <Image
-//             src={herobg}
-//             alt="Background"
-//             fill
-//             priority
-//             className="object-cover z-0"
-//           />
-
-//           {/* Cloud Image that moves */}
-//           <div
-//             ref={cloudRef}
-//             className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[300px] z-10 pointer-events-none"
-//           >
-//             <Image
-//               src={logo}
-//               alt="Cloud Parallax"
-//               width={300}
-//               height={150}
-//               className="object-contain opacity-90"
-//             />
-//           </div>
-
-//           {/* Content Layer */}
-//           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
-//             <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wide mb-4">
-//               INSIGHT
-//             </h1>
-//             <p className="text-xl font-medium md:text-2xl mb-8 max-w-2xl">
-//               Achieve Your Abroad study{" "}
-//               <span className="text-primary">Dreams with Us</span>
-//             </p>
-//             <button className="px-6 py-3 border border-white hover:bg-white hover:text-black transition">
-//               Discover
-//             </button>
-//           </div>
-
-//           {/* Overlay */}
-//           <div className="absolute inset-0 bg-black/40 z-10" />
-//         </section>
-//       </div>
-//     </>
-//   );
-// }
-
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -150,9 +71,10 @@ export default function ParallaxScene() {
       {/* The parallax scene sits here */}
       <div className="absolute inset-0 w-full h-full z-10">
         <svg
-          viewBox="0 0 1200 800"
+          viewBox="0 150 1200 800"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
+          className="w-full h-full block md:h-full md:object-cover object-contain"
+          preserveAspectRatio="xMidYMid slice"
         >
           <mask id="m">
             <g className="cloud1">
@@ -170,7 +92,7 @@ export default function ParallaxScene() {
             className="sky"
             xlinkHref="https://assets.codepen.io/721952/sky.jpg"
             width="1200"
-            height="590"
+            height="500"
           />
           <image
             className="mountBg"
@@ -200,23 +122,23 @@ export default function ParallaxScene() {
             className="cloud1"
             xlinkHref="https://assets.codepen.io/721952/cloud1.png"
             width="1200"
-            height="800"
+            height="1500"
           />
           <image
             className="cloud3"
             xlinkHref="https://assets.codepen.io/721952/cloud3.png"
             width="1200"
-            height="800"
+            height="1500"
           />
 
           {/* Heading */}
           <text
             x="50%"
-            y="35%"
+            y="40%"
             textAnchor="middle"
             fill="#fff"
             style={{
-              fontSize: "70px",
+              fontSize: "clamp(24px, 6vw, 60px)",
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 900,
             }}
@@ -225,33 +147,34 @@ export default function ParallaxScene() {
           </text>
 
           {/* Arrow */}
-          <polyline
-            className="arrow"
-            fill="#fff"
+          {/* <polyline
+            className="arrow animate-pulse fill-black-200"
             points="599,250 599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"
-          />
+            transform="translate(0, 80)"
+          /> */}
 
           {/* Masked call-to-action */}
           <g mask="url(#m)">
-            <rect fill="#fff" width="100%" height="100%" />
+            <rect fill="#FFF" width="100%" height="100%" />
             <text
               x="50%"
-              y="40%"
+              y="45%"
               textAnchor="middle"
               fill="#162a43"
               style={{
-                fontSize: "52px",
+                // fontSize: "52px",
+                fontSize: "clamp(24px, 5vw, 50px)",
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 900,
               }}
             >
-              <tspan x="50%" dy="0">
+              <tspan x="50%" dy="0.4em">
                 Achieve your
               </tspan>
-              <tspan x="50%" dy="1.2em">
+              <tspan x="50%" dy="1.3em">
                 global study
               </tspan>
-              <tspan x="50%" dy="1.2em">
+              <tspan x="50%" dy="1.3em">
                 dreams with us
               </tspan>
             </text>
@@ -264,11 +187,12 @@ export default function ParallaxScene() {
             height="100"
             opacity="0"
             x="550"
-            y="220"
+            y="100"
             style={{ cursor: "pointer" }}
           />
         </svg>
       </div>
+      
     </div>
   );
 }
