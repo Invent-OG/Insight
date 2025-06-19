@@ -68,7 +68,7 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full ">
+    <main className="w-full  ">
       <Hero1 />
       <Herocontent />
       <CountriesCarousel />
@@ -80,6 +80,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
