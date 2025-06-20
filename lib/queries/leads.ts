@@ -17,20 +17,34 @@ const fetchLeads = async (): Promise<{ leads: Lead[] }> => {
   return response.json();
 };
 
-// ✅ Create a new lead
 const createLead = async (
   data: Omit<Lead, "id" | "createdAt">
 ): Promise<Lead> => {
+  // 1. Save to Supabase (your existing API)
   const response = await fetch("/api/leads", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if (!response.ok) throw new Error("Failed to create lead");
-  const result = await response.json();
-  return result.lead;
-};
 
+  if (!response.ok) throw new Error("Failed to create lead in Supabase");
+
+  const savedLead = await response.json();
+
+  // 2. Also send to Zoho Bigin
+  try {
+    await fetch("/api/zoho/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    console.error("Zoho submission failed", error);
+    // Optional: log this somewhere or notify admin
+  }
+
+  return savedLead;
+};
 // ✅ Delete lead by ID
 const deleteLead = async (id: string): Promise<void> => {
   const response = await fetch(`/api/leads?id=${id}`, {

@@ -301,7 +301,7 @@ export default function CountryPage() {
     name: "",
     email: "",
     phone: "",
-    interest: "",
+    message: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -317,11 +317,11 @@ export default function CountryPage() {
         name: form.name,
         email: form.email,
         phone: form.phone,
-        interest: form.interest,
+        interest: form.message,
       },
       {
         onSuccess: () => {
-          setForm({ name: "", email: "", phone: "", interest: "" });
+          setForm({ name: "", email: "", phone: "", message: "" });
           toast.success("Lead submitted successfully!");
         },
         onError: (error) => {
@@ -644,7 +644,7 @@ export default function CountryPage() {
               </p>
             </div>
 
-            <div className="flex-1 overflow-y-auto scrollbar-hide space-y-7 pr-1 py-4">
+            <div className="flex-1 overflow-y-auto scrollbar-hide space-y-7 pr-1 py-4 text-black">
               <input
                 type="text"
                 name="name"
@@ -652,7 +652,7 @@ export default function CountryPage() {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary"
               />
               <input
                 type="email"
@@ -661,7 +661,7 @@ export default function CountryPage() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary"
               />
               <input
                 type="tel"
@@ -670,16 +670,16 @@ export default function CountryPage() {
                 value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary"
               />
               <input
                 type="text"
-                name="interest"
+                name="message"
                 placeholder="Interest"
-                value={form.interest}
+                value={form.message}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                className="w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary"
               />
             </div>
 
