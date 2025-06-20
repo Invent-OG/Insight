@@ -181,7 +181,6 @@ export default function Nav() {
             { name: "courses", route: "/courses" },
             { name: "english programs", route: "/english-programs" },
             { name: "blogs", route: "/blogs" },
-            { name: "testimonials", route: "/testimonials" },
             { name: "contact", route: "/contact" },
           ].map(({ name, route }) => (
             <li key={name}>

@@ -278,7 +278,10 @@ export default function Services() {
             ))}
           </ul>
 
-          <div className="relative z-10 px-4 sm:px-6 md:px-12 py-16 ">
+          <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10 ">
+            <h4 className="text-primary uppercase text-center text-base mb-6 tracking-wider">
+              — Services —
+            </h4>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-center text-black mb-12 leading-tight">
               What We <span className="text-primary">Offer</span>
             </h2>

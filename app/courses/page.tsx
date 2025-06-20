@@ -737,7 +737,7 @@ const Page = () => {
     <main className=" mx-auto  ">
       {/* Meta Title and Description */}
       <section
-        className="relative min-h-screen flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
+        className="relative min-h-screen  flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80')",
@@ -756,7 +756,7 @@ const Page = () => {
             Top Courses to <span className="text-primary">Study Abroad</span>
             &nbsp;
             {/* Pulsating underline */}
-            <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-2 animate-pulse"></span>
+            <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-6 animate-pulse"></span>
           </h1>
 
           <p className="max-w-3xl mx-auto text-red-500 text-lg md:text-xl font-medium leading-relaxed drop-shadow-md">
@@ -793,9 +793,9 @@ const Page = () => {
         data-aos="zoom-in-up"
         data-aos-duration="1000"
         data-aos-delay="100"
-        className="mb-16 bg-white py-12 px-4 sm:px-6 md:px-12 rounded-lg shadow-2xl max-w-4xl mx-auto"
+        className="mb-16  py-12 px-4 sm:px-6 md:px-12 rounded-lg  max-w-4xl mx-auto"
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl  font-extrabold text-black mb-10 text-center tracking-wide">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl  font-bold text-black mb-10 text-center tracking-wide">
           Explore <span className="text-primary">Top Courses Abroad</span>
         </h2>
 

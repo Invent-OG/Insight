@@ -36,6 +36,7 @@ import {
 } from "react";
 import Link from "next/link";
 import { countryData, CountryInfo } from "@/app/data/countryData";
+import { Button } from "@/components/ui/button";
 
 type Country = {
   title: string;
@@ -332,7 +333,7 @@ export default function CountryPage() {
   };
 
   return (
-    <section className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-12 py-16">
+    <section className="min-h-screen bg-white text-black px-4 sm:px-6 md:px-12 py-16">
       <div className="flex flex-col lg:flex-row gap-10 py-10 ">
         {/* Left Column - Main Content */}
         <motion.div
@@ -357,7 +358,9 @@ export default function CountryPage() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-              <span className="text-xl font-semibold">{country.title}</span>
+              <span className="text-xl text-white font-semibold">
+                {country.title}
+              </span>
             </div>
           </div>
 
@@ -366,13 +369,13 @@ export default function CountryPage() {
           <div>{country.description}</div>
 
           <div className="overflow-x-auto p-4">
-            <table className="min-w-full table-auto border border-white text-white bg-black">
-              <thead className="bg-gray-800 text-white">
+            <table className="min-w-full table-auto border border-white text-black bg-white ">
+              <thead className="bg-black/80 text-white ">
                 <tr>
-                  <th className="px-4 py-2 border border-white text-left">
+                  <th className="px-4 py-2 border border-gray-500 text-left">
                     Field
                   </th>
-                  <th className="px-4 py-2 border border-white text-left">
+                  <th className="px-4 py-2 border border-gray-500 text-left">
                     Details
                   </th>
                 </tr>
@@ -380,235 +383,236 @@ export default function CountryPage() {
               <tbody>
                 {countryContents.map((c, index) => (
                   <Fragment key={index}>
-                    <tr className="bg-gray-900">
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Country
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.country}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Tuition Fee Range
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.tuitionFeeRange}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Living Costs
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.livingCosts}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Duration of Courses
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.durationOfCourses}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Academic Requirements
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.academicRequirements}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Language Proficiency
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.languageProficiency}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         IELTS Waiver
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.ieltsWaiverAvailability}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Accepted Academic Gaps
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.acceptedAcademicGaps}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Work Experience Proof
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.workExperienceProof}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Funds Required for Visa
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.fundsRequiredForVisa}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Financial Sources
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.acceptableFinancialSources}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Eligible Sponsors
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.eligibleSponsors}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Minimum Family Income
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.minimumFamilyIncome}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Visa Type
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.visaType}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Visa Processing Time
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.visaProcessingTime}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Part-time Work Limit
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.partTimeWorkLimit}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Average Part-time Wages
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.averagePartTimeWages}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Internship Options
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.internshipOptions}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Post-Study Work
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.postStudyWorkOptions}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         PR Pathway
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.permanentResidencyPathway}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Spouse Dependent Visa
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.spouseDependentVisa}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Dependent Conditions
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.dependentConditions}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Scholarships
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.scholarshipOpportunities}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Healthcare Access
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.healthcareAccess}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Climate
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.climateWeather}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Cultural Environment
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.culturalEnvironment}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Currency
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.currency}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Intakes
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.intakes}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2 border border-white font-semibold">
+                    <tr className="hover:bg-red-600 hover:text-white hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out">
+                      <td className="px-4 py-2 border border-gray-500 font-semibold">
                         Popular Cities
                       </td>
-                      <td className="px-4 py-2 border border-white">
+                      <td className="px-4 py-2 border border-gray-500">
                         {c.popularCities}
                       </td>
                     </tr>
@@ -635,7 +639,7 @@ export default function CountryPage() {
               <h3 className="text-xl font-bold text-primary text-center mb-2">
                 Let’s Get Started
               </h3>
-              <p className="text-center text-sm text-gray-400 mb-4">
+              <p className="text-center text-sm text-gray-700 mb-4">
                 Submit your details for expert guidance
               </p>
             </div>
@@ -689,18 +693,18 @@ export default function CountryPage() {
                 )}
               </div>
 
-              <button
+              <Button
                 type="submit"
-                className="w-full bg-primary text-black font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition"
+                className="w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition"
               >
                 Submit
-              </button>
+              </Button>
             </div>
           </motion.form>
 
           {/* Suggested Countries */}
           <div className="mt-4">
-            <h4 className="text-white text-sm font-semibold mb-4">
+            <h4 className="text-black text-sm font-semibold mb-4">
               Popular Destinations:
             </h4>
 
@@ -709,7 +713,7 @@ export default function CountryPage() {
                 <Link href={`/countries/${c.slug}`} key={c.slug}>
                   <div
                     className={`cursor-pointer rounded-2xl overflow-hidden border transition-all duration-300
-            bg-white/5 text-white border-white/10 hover:bg-white/10`}
+            bg-gray-600 text-white  hover:bg-gray-900`}
                   >
                     <div className="relative w-full h-36 md:h-32">
                       <Image

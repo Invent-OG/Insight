@@ -363,14 +363,14 @@ export default function BlogsPage() {
         className="lg:py-16 py-20 w-full bg-red-100 text-black"
       >
         <h4 className="text-primary uppercase text-base text-center font-medium tracking-wider">
-          — Services —
+          — Blogs —
         </h4>
         <div className="w-full flex flex-col items-center gap-16 px-0">
           <div className="text-center max-w-5xl mx-auto px-4">
             <h2 className="mb-3 py-4 text-3xl md:text-4xl lg:text-5xl  font-bold ">
               Blog <span className="text-primary">Posts</span>
             </h2>
-            <p className="mb-8 text-muted-foreground md:text-base lg:text-lg">
+            <p className=" text-muted-foreground md:text-base lg:text-lg">
               Discover the latest trends, insights, and real-world stories from
               our team.
             </p>

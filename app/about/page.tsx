@@ -436,7 +436,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
 import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
-import ourcorebg1 from "@/public/assets/textures/ourcorebg1.jpg";
+import corebg from "@/public/assets/ourcorebg1.jpg"
 
 export default function About() {
   useEffect(() => {
@@ -850,7 +850,7 @@ to finish. Discover your path to international education with Insight
           {/* Background image with reduced opacity */}
           <div className="absolute inset-0 w-full h-full z-0">
             <Image
-              src={ourcorebg1}
+              src={corebg}
               alt="Background"
               fill
               className="opacity-70"

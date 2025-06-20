@@ -86,7 +86,7 @@ export default function UniversitiesSection() {
                 Universities
               </span>
             </h4>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl  font-bold">
               Unlock New <span className="text-primary">Opportunities</span>{" "}
               With <span className="text-primary">Insights</span>
             </h2>

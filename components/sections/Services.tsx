@@ -221,7 +221,7 @@ export default function ServicesSection() {
       </Head>
 
       <div className="">
-        <section className="bg-red-50 text-black flex flex-col items-center md:flex-col justify-center md:text-center ">
+        <section className="bg-red-50  flex flex-col items-center md:flex-col justify-center md:text-center ">
           <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row ">
             {/* Left side - Not sticky on mobile */}
             <div className="flex-1 self-start flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20">
@@ -229,11 +229,13 @@ export default function ServicesSection() {
                 — Services —
               </h4>
               <div className="h-px bg-gray-700 my-2"></div>
-              <h2 className="lg:text-5xl md:text-4xl text-3xl text-black font-extrabold">
+              <h2 className="lg:text-5xl md:text-4xl text-3xl text-black  font-bold">
                 Your Journey,{" "}
                 <span className="text-primary">Fully Supported</span>
               </h2>
-              <p className="text-black py-4">Every Step of the Way!</p>
+              <p className="text-black py-4 font-medium">
+                Every Step of the Way!
+              </p>
 
               {/* Show button only on large screens */}
               <div className="hidden lg:block">

@@ -338,7 +338,7 @@ const Layout2 = () => {
             } space-y-4`}
           >
             <motion.h2
-              className="lg:text-4xl md:text-4xl text-3xl font-bold text-black text-center md:text-left mb-6"
+              className="lg:text-4xl md:text-4xl text-3xl  font-bold text-black text-center md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}

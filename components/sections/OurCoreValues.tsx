@@ -18,38 +18,74 @@ interface CardProps {
 export default function Roadmap({ children }: RoadmapProps) {
   return (
     <section className="relative w-full px-4 sm:px-6 md:px-10 lg:px-16 bg-white overflow-hidden py-10 lg:py-16">
-      {/* ✅ Background Image with Opacity */}
-      <div className="absolute inset-0 z-0 bg-mobile-right" />
-      <style jsx>{`
-        .bg-mobile-right {
-          background-image: url("/assets/ourcorebg2.svg");
-          background-repeat: no-repeat;
-          background-attachment: scroll;
-          background-size: cover;
-          background-position: center;
-          opacity: 0.3;
-        }
+      {/* ✅ Background Layer with Texture */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-center opacity-40"
+        style={{
+          backgroundImage:
+            "url('https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?ga=GA1.1.772958153.1735922453&semt=ais_hybrid&w=740')",
+        }}
+      />
 
-        @media (max-width: 768px) {
-          .bg-mobile-right {
-            background-position: right top;
-          }
-        }
-      `}</style>
+      {/* ✅ Top-right SVG */}
+      <img
+        src="/assets/insight11.png"
+        alt="Decorative Top Right"
+        className="decorative-svg top-right"
+      />
 
-      {/* Heading at top */}
+      {/* ✅ Bottom-left SVG */}
+      <img
+        src="/assets/insight11.png"
+        alt="Decorative Bottom Left"
+        className="decorative-svg bottom-left"
+      />
+
+      {/* ✅ Heading Section */}
       <div className="flex justify-center items-center pb-12 text-center z-10 relative">
         <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-black leading-tight">
           Our <span className="text-primary">Core</span> Values
         </h1>
       </div>
 
-      {/* Cards in grid layout */}
+      {/* ✅ Cards Grid Section */}
       <section className="flex justify-center items-center relative z-10">
         <article className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
           {children}
         </article>
       </section>
+
+      {/* ✅ Styled JSX */}
+      <style jsx>{`
+        .decorative-svg {
+          position: absolute;
+          width: 200px;
+          height: auto;
+          opacity: 0.2;
+          z-index: 0;
+        }
+
+        .top-right {
+          top: 20px;
+          right: 60px;
+        }
+
+        .bottom-left {
+          bottom: 80px;
+          left: 50px;
+        }
+
+        @media (max-width: 768px) {
+          .bg-mobile-right {
+            background-position: top right;
+            
+          }
+
+          .decorative-svg {
+            width: 150px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

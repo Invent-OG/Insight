@@ -60,7 +60,7 @@ export default function ContactSection() {
         <h4 className="text-primary text-base uppercase tracking-wider mb-3">
           — Say Hello —
         </h4>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl py-4 font-bold leading-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl py-4 font-bold  leading-tight">
           Let Us Know Your Concern
           <br /> We Are <span className="text-primary">Always Ready.</span>
         </h2>
