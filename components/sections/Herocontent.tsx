@@ -272,7 +272,7 @@ const Layout2 = () => {
 
   return (
     <div>
-      <section className="relative  min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
+      <section className="relative min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
         {/* ✅ Mobile-only Parallax Texture */}
         <div
           className="absolute inset-0 z-0 block md:hidden"
