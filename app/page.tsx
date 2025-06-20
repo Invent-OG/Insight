@@ -41,34 +41,34 @@
 
 "use client";
 
-import Hero from "@/components/sections/Hero";
+import { useState, useEffect } from "react";
+import Hero1 from "@/components/sections/Hero1";
+import Herocontent from "@/components/sections/Herocontent";
+import CountriesCarousel from "@/components/sections/CountriesCarousel";
 import ServicesSection from "@/components/sections/Services";
 import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
-import Testimonial from "@/components/sections/Testimonial";
-import Herocontent from "@/components/sections/Herocontent";
 import Blogs from "@/components/sections/Blogs";
-import CountriesCarousel from "@/components/sections/CountriesCarousel";
-import Hero1 from "@/components/sections/Hero1";
-
-import { useState, useEffect } from "react";
+import Testimonial from "@/components/sections/Testimonial";
+import PopupFormModal from "@/components/sections/PopupFormModal"; // ⬅️ Add this line
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (loading) {
-    // return <Loading3D />;
-  }
+  // if (loading) {
+  //   // return <Loading3D />;
+  // }
 
   return (
-    <main className="w-full ">
+    <main className="w-full">
+      <PopupFormModal /> {/* ⬅️ Add the popup here */}
       <Hero1 />
       <Herocontent />
       <CountriesCarousel />
@@ -80,3 +80,4 @@ export default function Home() {
     </main>
   );
 }
+
