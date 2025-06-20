@@ -97,3 +97,10 @@
 //     </section>
 //   );
 // }
+// app/testimonials/page.tsx
+
+// All your code is commented, but still export something minimal:
+export default function TestimonialsPage() {
+  return null; // or <></>
+}
+
