@@ -1,5 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import React, { useRef } from "react";
 
 export default function MultiLayerParallax() {
@@ -19,9 +20,16 @@ export default function MultiLayerParallax() {
     >
       <motion.h1
         style={{ y: textY }}
-        className="font-bold text-white text-7xl md:text-9xl relative z-10"
+        className="font-bold flex flex-col justify-center items-center text-white text-7xl md:text-9xl relative z-10"
       >
-        PARALLAX
+        <Image
+          src={"/assets/logo.png"}
+          alt={""}
+          height={200}
+          width={200}
+          className="w-28 h-28  "
+        />
+        INSIGHT
       </motion.h1>
 
       <motion.div
@@ -42,6 +50,14 @@ export default function MultiLayerParallax() {
           backgroundSize: "cover",
         }}
       />
+      {/* <div
+        className="absolute inset-0  z-20"
+        style={{
+          backgroundImage: "url(/countries.png)",
+          backgroundPosition: "bottom",
+          backgroundSize: "cover",
+        }}
+      /> */}
     </div>
   );
 }
