@@ -9,6 +9,7 @@ export default function MultiLayerParallax() {
     offset: ["start start", "end start"],
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
 
   return (
@@ -18,7 +19,7 @@ export default function MultiLayerParallax() {
     >
       <motion.h1
         style={{ y: textY }}
-        className="font-bold text-primary text-7xl md:text-9xl relative z-10"
+        className="font-bold text-white text-7xl md:text-9xl relative z-10"
       >
         PARALLAX
       </motion.h1>
@@ -26,16 +27,17 @@ export default function MultiLayerParallax() {
       <motion.div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url(/assets/image-full.png)`,
+          backgroundImage: "url(/image-full.png)",
           backgroundPosition: "bottom",
           backgroundSize: "cover",
           y: backgroundY,
         }}
       />
+
       <div
         className="absolute inset-0 z-20"
         style={{
-          backgroundImage: `url(/assets/image-bottom.png)`,
+          backgroundImage: "url(/image-bottom.png)",
           backgroundPosition: "bottom",
           backgroundSize: "cover",
         }}

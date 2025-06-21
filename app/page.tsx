@@ -52,6 +52,7 @@ import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
 import PopupFormModal from "@/components/sections/PopupFormModal"; // ⬅️ Add this line
 import MultiLayerParallax from "@/components/sections/HeroParallax";
+import HeroParallaxContent from "@/components/sections/HeroParallaxContent";
 
 export default function Home() {
   // const [loading, setLoading] = useState(true);
@@ -71,8 +72,9 @@ export default function Home() {
     <main className="w-full">
       <PopupFormModal />
       <MultiLayerParallax />
-      <Hero1 />
-      <Herocontent />
+      <HeroParallaxContent />
+      {/* <Hero1 /> */}
+      {/* <Herocontent /> */}
       <CountriesCarousel />
       <ServicesSection />
       <UniversitiesSection />
