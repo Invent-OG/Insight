@@ -51,6 +51,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
 import PopupFormModal from "@/components/sections/PopupFormModal"; // ⬅️ Add this line
+import MultiLayerParallax from "@/components/sections/HeroParallax";
 
 export default function Home() {
   // const [loading, setLoading] = useState(true);
@@ -68,7 +69,8 @@ export default function Home() {
 
   return (
     <main className="w-full">
-      <PopupFormModal /> {/* ⬅️ Add the popup here */}
+      <PopupFormModal />
+      <MultiLayerParallax />
       <Hero1 />
       <Herocontent />
       <CountriesCarousel />
@@ -80,4 +82,3 @@ export default function Home() {
     </main>
   );
 }
-

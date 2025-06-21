@@ -61,7 +61,7 @@ export default function Roadmap({ children }: RoadmapProps) {
           position: absolute;
           width: 200px;
           height: auto;
-          opacity: 0.2;
+          opacity: 0.1;
           z-index: 0;
         }
 
@@ -78,7 +78,6 @@ export default function Roadmap({ children }: RoadmapProps) {
         @media (max-width: 768px) {
           .bg-mobile-right {
             background-position: top right;
-            
           }
 
           .decorative-svg {

@@ -334,6 +334,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import Link from "next/link";
+import MultiLayerParallax from "@/components/sections/HeroParallax";
 
 export default function BlogsPage() {
   const { data, isLoading, isError, error } = useBlogs();

@@ -6,10 +6,13 @@ import logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import whitelogo from "@/public/assets/whitelogo.png";
 
 export default function Nav() {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
+
+  console.log(pathname);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -127,9 +130,30 @@ export default function Nav() {
             tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && openMenu()}
           >
-            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
-            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm mb-[3px] transition-all duration-300" />
-            <span className="w-[20px] h-[3px] bg-[#faf9f9] rounded-sm transition-all duration-300" />
+            <span
+              className={cn(
+                "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
+                pathname === "/services" && !isScrolled
+                  ? "bg-black"
+                  : "bg-[#faf9f9]"
+              )}
+            />
+            <span
+              className={cn(
+                "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
+                pathname === "/services" && !isScrolled
+                  ? "bg-black"
+                  : "bg-[#faf9f9]"
+              )}
+            />
+            <span
+              className={cn(
+                "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
+                pathname === "/services" && !isScrolled
+                  ? "bg-black"
+                  : "bg-[#faf9f9]"
+              )}
+            />
           </div>
         )}
       </div>
@@ -142,11 +166,11 @@ export default function Nav() {
         {/* Nav Header */}
         <div className="flex items-center gap-2.5 px-5 pb-5">
           <Image
-            src={logo}
+            src={whitelogo}
             alt="Insight Logo"
             width={40}
             height={40}
-            className="rounded-full invert"
+            className="rounded-full "
           />
           <h2
             ref={headerRef}
@@ -182,17 +206,24 @@ export default function Nav() {
             { name: "english programs", route: "/english-programs" },
             { name: "blogs", route: "/blogs" },
             { name: "contact", route: "/contact" },
-          ].map(({ name, route }) => (
-            <li key={name}>
-              <a
-                href={route}
-                ref={addToLinksRef}
-                className="text-white text-xl font-medium no-underline opacity-0 pointer-events-none transition-colors duration-300 hover:text-gray-500 focus:text-primary focus:outline-none"
-              >
-                {name}
-              </a>
-            </li>
-          ))}
+          ].map(({ name, route }) => {
+            const isActive = pathname === route;
+
+            return (
+              <li key={name}>
+                <a
+                  href={route}
+                  ref={addToLinksRef}
+                  className={cn(
+                    "inline-block text-white text-xl font-medium no-underline opacity-0 pointer-events-none transition-colors duration-300 hover:text-gray-300 focus:text-primary focus:outline-none pl-3",
+                    isActive && "border-l-4 border-white/50 text-gray-300"
+                  )}
+                >
+                  {name}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </div>

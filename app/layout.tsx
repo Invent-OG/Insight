@@ -8,7 +8,7 @@ import Nav from "@/components/sections/Nav";
 import { Footer } from "@/components/footer-section";
 import Loading3D from "@/components/sections/Loading3D"; // ⬅️ Import here
 import FloatingContactButtons from "@/components/sections/FloatingContactButtons";
-
+import MultiLayerParallax from "@/components/sections/HeroParallax";
 
 const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
@@ -38,6 +38,7 @@ export default function RootLayout({
           <LenisProvider />
           <Nav />
           {isLoading ? <Loading3D /> : <main>{children}</main>}
+
           <Footer />
         </Providers>
         <FloatingContactButtons />
