@@ -702,6 +702,7 @@ const categoryIcons = {
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CountriesCarousel from "@/components/sections/CountriesCarousel";
 
 // Animation variants for framer-motion
 const cardVariants = {
@@ -1237,7 +1238,8 @@ const Page = () => {
           )}
         </div>
       </section>
-
+      {/* countries table are here  */}
+      <CountriesCarousel />
       {/* why these countries */}
       <div data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="100">
         <WhyTheseCountries />

@@ -178,7 +178,7 @@ export default function Nav() {
             { name: "home", route: "/" },
             { name: "services", route: "/services" },
             { name: "about", route: "/about" },
-            { name: "courses", route: "/courses" },
+            { name: "courses & countries", route: "/courses" },
             { name: "english programs", route: "/english-programs" },
             { name: "blogs", route: "/blogs" },
             { name: "contact", route: "/contact" },
