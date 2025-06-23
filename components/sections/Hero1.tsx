@@ -216,7 +216,6 @@ export default function VideoHero() {
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         muted
-        loop
         playsInline
       />
     </div>
