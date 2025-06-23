@@ -12,15 +12,14 @@ import MultiLayerParallax from "@/components/sections/HeroParallax";
 
 const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
-export const metadata: Metadata = {
-  title:
-    "Leading Solar Energy Solutions in Coimbatore | Nigaran Solar Tamil Nadu",
+export const metadata = {
+  title: "Insight | Expert Study Abroad Consultants for Global Education",
   description:
-    "Nigaran Solar offers top-quality solar panel solutions in Coimbatore and Tamil Nadu. We specialize in On-Grid, Off-Grid, and Hybrid Solar Systems for residential and commercial installations. Get your free solar consultation today!",
+    "Turn your study abroad dreams into reality with Insight. Insight’s expert guidance, trusted support, and global opportunities await!",
   keywords:
-    "solar energy, solar panels, solar power systems, on-grid solar, off-grid solar, hybrid solar systems, residential solar, commercial solar, solar solutions Tamil Nadu, solar companies in TamilNadu",
+    "study abroad, global education, international students, expert guidance, trusted support, study visa, international admissions, overseas education",
   icons: {
-    icon: "/favicon.png",
+    icon: "/assets/logo.png",
   },
 };
 

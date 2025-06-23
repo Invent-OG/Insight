@@ -220,7 +220,7 @@ export default function ServicesSection() {
         />
       </Head>
 
-      <div className="">
+      <div>
         <section className="bg-red-50  flex flex-col items-center md:flex-col justify-center md:text-center ">
           <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row ">
             {/* Left side - Not sticky on mobile */}
@@ -229,7 +229,7 @@ export default function ServicesSection() {
                 — Services —
               </h4>
               <div className="h-px bg-gray-700 my-2"></div>
-              <h2 className="lg:text-5xl md:text-4xl text-3xl text-black  font-bold">
+              <h2 className="lg:text-5xl md:text-4xl  text-3xl  text-black  font-bold">
                 Your Journey,{" "}
                 <span className="text-primary">Fully Supported</span>
               </h2>
@@ -241,7 +241,7 @@ export default function ServicesSection() {
               <div className="hidden lg:block">
                 <Button
                   onClick={() => router.push("/services")}
-                  className="md:mt-4 lg:mt-6 w-40 text-white"
+                  className="md:mt-4 lg:mt-6 w-40  text-white"
                 >
                   Go to Services
                 </Button>

@@ -1013,7 +1013,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* who can join us? */}
-      <section className="relative w-full py-20 px-4 text-black overflow-hidden bg-white">
+      <section className="relative w-full lg:py-10 md:py-8 px-4 text-black overflow-hidden bg-white">
         {/* Full-Width Black Themed SVG Background */}
         <svg
           className="absolute inset-0 w-full h-full"
@@ -1040,7 +1040,7 @@ const HomePage: React.FC = () => {
         </svg>
 
         {/* Centered Content */}
-        <div className="relative z-10 max-w-6xl mx-auto bg-transparent rounded-2xl p-6 sm:p-10">
+        <div className="relative z-10 max-w-6xl mx-auto bg-transparent rounded-2xl  p-6 sm:p-10">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -258,7 +258,7 @@ export default function UniversitiesSection() {
         ></div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-12">
+        <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-2">
           <div className="text-center max-w-4xl mx-auto lg:mb-12 space-y-8">
             <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider relative">
               <span className="before:content-['—'] before:mr-2 after:content-['—'] after:ml-2 text-primary text-base">

@@ -175,7 +175,7 @@ const CountriesCarousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden py-16 lg:min-h-screen">
+    <div className="relative overflow-hidden lg:py-5 py-6 lg:min-h-screen">
       {/* ✅ Mobile-Only Parallax Background */}
       <div
         className="absolute inset-0 bg-scroll lg:bg-fixed bg-center bg-cover bg-no-repeat block lg:hidden"

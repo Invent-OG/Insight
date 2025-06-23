@@ -391,13 +391,15 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
     <motion.div
       whileHover={{ scale: 1.05 }}
       onClick={handleClick}
-      className={`relative group p-6 rounded-2xl overflow-hidden bg-transparent border text-black transition-all duration-300`}
+      className={`relative group p-6 rounded-2xl overflow-hidden bg-transparent border text-black transition-all duration-300 ${
+        isHighlighted ? "cursor-pointer" : ""
+      }`}
     >
       {!isHighlighted && (
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary transition-all duration-300" />
       )}
       {isHighlighted && (
-        <span className="absolute top-2 right-2 bg-primary text-xs px-2 py-1 rounded-full text-white font-semibold z-10">
+        <span className="absolute top-2 right-2 hover:cursor-pointer bg-primary text-xs px-2 py-1 rounded-full text-white font-semibold z-10">
           Featured
         </span>
       )}

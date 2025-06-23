@@ -171,7 +171,7 @@ export default function BlogsPage() {
       <section
         data-aos="fade-up"
         data-aos-anchor-placement="top-center"
-        className="py-16 bg-red-50  "
+        className="lg:py-16 py-10 bg-red-50  "
       >
         <h4 className="text-primary text-center uppercase text-base font-medium tracking-wider">
           — Blogs —
