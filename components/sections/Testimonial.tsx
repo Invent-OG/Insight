@@ -83,12 +83,19 @@ import { useTestimonials } from "@/lib/queries/testimonials";
 import { TestimonialsColumn } from "@/components/testimonials-columns-1";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { RefreshCcw } from "lucide-react";
 
 export default function Testimonials() {
   const { data, isLoading, error } = useTestimonials();
 
-  if (isLoading)
-    return <p className="text-center text-white">Loading testimonials...</p>;
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center p-20 min-h-screen  space-y-3">
+        <RefreshCcw className="w-12 h-12 text-red-600 animate-spin" />
+        <p className="text-gray-600 text-lg">Loading testimonials...</p>
+      </div>
+    );
+  }
   if (error)
     return (
       <p className="text-center text-red-500">Error loading testimonials.</p>

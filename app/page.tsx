@@ -53,28 +53,29 @@ import Testimonial from "@/components/sections/Testimonial";
 import PopupFormModal from "@/components/sections/PopupFormModal"; // ⬅️ Add this line
 import MultiLayerParallax from "@/components/sections/HeroParallax";
 import HeroParallaxContent from "@/components/sections/HeroParallaxContent";
+import Loading from "@/components/sections/Loading3D";
 
 export default function Home() {
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  // if (loading) {
-  //   // return <Loading3D />;
-  // }
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main className="w-full">
       <PopupFormModal />
-      <MultiLayerParallax />
-      <HeroParallaxContent />
-      {/* <Hero1 /> */}
-      {/* <Herocontent /> */}
+      {/* <MultiLayerParallax /> */}
+      <Hero1 />
+      {/* <HeroParallaxContent /> */}
+      <Herocontent />
       <CountriesCarousel />
       <ServicesSection />
       <UniversitiesSection />

@@ -320,10 +320,151 @@
 //   );
 // }
 
+// "use client";
+
+// import { useBlogs } from "@/lib/queries/blogs";
+// import { ArrowRight } from "lucide-react";
+// import { useEffect, useState } from "react";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import {
+//   Card,
+//   CardContent,
+//   CardFooter,
+//   CardHeader,
+// } from "@/components/ui/card";
+// import Link from "next/link";
+// import MultiLayerParallax from "@/components/sections/HeroParallax";
+
+// export default function BlogsPage() {
+//   const { data, isLoading, isError, error } = useBlogs();
+//   const [page, setPage] = useState(1);
+//   const blogsPerPage = 10;
+
+//   useEffect(() => {
+//     AOS.init({ duration: 1000, offset: 100, once: true });
+//   }, []);
+
+//   if (isLoading) return <div className="text-white p-10">Loading...</div>;
+//   if (isError)
+//     return (
+//       <div className="text-red-500 p-10">Error: {(error as Error).message}</div>
+//     );
+
+//   const blogs = data?.blogs || [];
+//   const totalPages = Math.ceil(blogs.length / blogsPerPage);
+//   const startIndex = (page - 1) * blogsPerPage;
+//   const paginatedBlogs = blogs.slice(startIndex, startIndex + blogsPerPage);
+
+//   return (
+//     <main className="min-h-screen w-full ">
+//       <section
+//         data-aos="fade-up"
+//         data-aos-anchor-placement="top-center"
+//         className="lg:py-16 py-20 w-full bg-red-100 text-black"
+//       >
+//         <h4 className="text-primary uppercase text-base text-center font-medium tracking-wider">
+//           — Blogs —
+//         </h4>
+//         <div className="w-full flex flex-col items-center gap-16 px-0">
+//           <div className="text-center max-w-5xl mx-auto px-4">
+//             <h2 className="mb-3 py-4 text-3xl md:text-4xl lg:text-5xl  font-bold ">
+//               Blog <span className="text-primary">Posts</span>
+//             </h2>
+//             <p className=" text-muted-foreground md:text-base lg:text-lg">
+//               Discover the latest trends, insights, and real-world stories from
+//               our team.
+//             </p>
+//           </div>
+
+//           <div className="grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
+//             {paginatedBlogs.map((post) => (
+//               <Card
+//                 key={post.id}
+//                 className="min-h-[430px] flex flex-col justify-between overflow-hidden rounded-md border border-red-300 "
+//               >
+//                 <Link
+//                   href={`/blogs/${post.id}`}
+//                   className="relative w-full h-48 block"
+//                 >
+//                   {post.imageUrl ? (
+//                     <img
+//                       src={post.imageUrl}
+//                       alt={post.title}
+//                       className="w-full h-full object-cover object-center"
+//                     />
+//                   ) : (
+//                     <div className="bg-gray-700 w-full h-full flex items-center justify-center text-white">
+//                       No Image
+//                     </div>
+//                   )}
+//                 </Link>
+
+//                 <div className="flex flex-col flex-1 justify-between px-4">
+//                   <CardHeader className="px-0">
+//                     <h3 className="text-lg font-semibold hover:underline md:text-xl text-black">
+//                       <Link href={`/blogs/${post.id}`}>{post.title}</Link>
+//                     </h3>
+//                     <p className="text-sm text-muted-foreground text-primary">
+//                       {new Date(post.createdAt).toLocaleDateString()}
+//                     </p>
+//                   </CardHeader>
+
+//                   <CardContent className="px-0 pb-4 flex-1">
+//                     <p className="text-muted-foreground text-sm line-clamp-3">
+//                       {post.excerpt}
+//                     </p>
+//                   </CardContent>
+
+//                   <CardFooter className="px-0 pt-0">
+//                     <Link
+//                       href={`/blogs/${post.id}`}
+//                       className="flex items-center text-foreground hover:underline text-primary text-sm"
+//                     >
+//                       Read more
+//                       <ArrowRight className="ml-2 size-4 text-primary" />
+//                     </Link>
+//                   </CardFooter>
+//                 </div>
+//               </Card>
+//             ))}
+//           </div>
+
+//           {/* Pagination Controls */}
+//           {blogs.length > blogsPerPage && (
+//             <div className="flex items-center gap-4 mt-8">
+//               <button
+//                 onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+//                 disabled={page === 1}
+//                 className="px-4 py-2 bg-white/10 text-white rounded-md hover:bg-white/20 disabled:opacity-50"
+//               >
+//                 Previous
+//               </button>
+
+//               <span className="text-muted-foreground text-sm">
+//                 Page {page} of {totalPages}
+//               </span>
+
+//               <button
+//                 onClick={() =>
+//                   setPage((prev) => Math.min(prev + 1, totalPages))
+//                 }
+//                 disabled={page === totalPages}
+//                 className="px-4 py-2 bg-white/10 text-white rounded-md hover:bg-white/20 disabled:opacity-50"
+//               >
+//                 Next
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </section>
+//     </main>
+//   );
+// }
 "use client";
 
 import { useBlogs } from "@/lib/queries/blogs";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, RefreshCcw } from "lucide-react"; // fixed icon import
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -345,19 +486,59 @@ export default function BlogsPage() {
     AOS.init({ duration: 1000, offset: 100, once: true });
   }, []);
 
-  if (isLoading) return <div className="text-white p-10">Loading...</div>;
-  if (isError)
-    return (
-      <div className="text-red-500 p-10">Error: {(error as Error).message}</div>
-    );
+  // Fallback Blogs
+  const fallbackBlogs = [
+    {
+      id: "default-1",
+      title: "Placeholder Blog 1",
+      excerpt:
+        "This is a temporary placeholder excerpt. Actual data will load shortly.",
+      imageUrl: "https://via.placeholder.com/400x300.png?text=Loading...",
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "default-2",
+      title: "Placeholder Blog 2",
+      excerpt:
+        "This is a temporary placeholder excerpt. Actual data will load shortly.",
+      imageUrl: "https://via.placeholder.com/400x300.png?text=Loading...",
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "default-3",
+      title: "Placeholder Blog 3",
+      excerpt:
+        "This is a temporary placeholder excerpt. Actual data will load shortly.",
+      imageUrl: "https://via.placeholder.com/400x300.png?text=Loading...",
+      createdAt: new Date().toISOString(),
+    },
+  ];
 
-  const blogs = data?.blogs || [];
-  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+  // Actual and Fallback Logic
+  const actualBlogs = data?.blogs || [];
+  const blogs = actualBlogs.length > 0 ? actualBlogs : fallbackBlogs;
+
+  const totalPages = Math.ceil(actualBlogs.length / blogsPerPage);
   const startIndex = (page - 1) * blogsPerPage;
   const paginatedBlogs = blogs.slice(startIndex, startIndex + blogsPerPage);
 
+  if (isLoading && actualBlogs.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-20 min-h-screen  space-y-3">
+        <RefreshCcw className="w-12 h-12 text-red-600 animate-spin" />
+        <p className="text-gray-600 text-lg">Loading latest articles...</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-red-500 p-10">Error: {(error as Error).message}</div>
+    );
+  }
+
   return (
-    <main className="min-h-screen w-full ">
+    <main className="min-h-screen w-full">
       <section
         data-aos="fade-up"
         data-aos-anchor-placement="top-center"
@@ -368,10 +549,10 @@ export default function BlogsPage() {
         </h4>
         <div className="w-full flex flex-col items-center gap-16 px-0">
           <div className="text-center max-w-5xl mx-auto px-4">
-            <h2 className="mb-3 py-4 text-3xl md:text-4xl lg:text-5xl  font-bold ">
+            <h2 className="mb-3 py-4 text-3xl md:text-4xl lg:text-5xl font-bold">
               Blog <span className="text-primary">Posts</span>
             </h2>
-            <p className=" text-muted-foreground md:text-base lg:text-lg">
+            <p className="text-muted-foreground md:text-base lg:text-lg">
               Discover the latest trends, insights, and real-world stories from
               our team.
             </p>
@@ -381,10 +562,10 @@ export default function BlogsPage() {
             {paginatedBlogs.map((post) => (
               <Card
                 key={post.id}
-                className="min-h-[430px] flex flex-col justify-between overflow-hidden rounded-md border border-red-300 "
+                className="min-h-[430px] flex flex-col justify-between overflow-hidden rounded-md border border-red-300"
               >
                 <Link
-                  href={`/blogs/${post.id}`}
+                  href={actualBlogs.length > 0 ? `/blogs/${post.id}` : "#"}
                   className="relative w-full h-48 block"
                 >
                   {post.imageUrl ? (
@@ -403,7 +584,13 @@ export default function BlogsPage() {
                 <div className="flex flex-col flex-1 justify-between px-4">
                   <CardHeader className="px-0">
                     <h3 className="text-lg font-semibold hover:underline md:text-xl text-black">
-                      <Link href={`/blogs/${post.id}`}>{post.title}</Link>
+                      <Link
+                        href={
+                          actualBlogs.length > 0 ? `/blogs/${post.id}` : "#"
+                        }
+                      >
+                        {post.title}
+                      </Link>
                     </h3>
                     <p className="text-sm text-muted-foreground text-primary">
                       {new Date(post.createdAt).toLocaleDateString()}
@@ -418,7 +605,7 @@ export default function BlogsPage() {
 
                   <CardFooter className="px-0 pt-0">
                     <Link
-                      href={`/blogs/${post.id}`}
+                      href={actualBlogs.length > 0 ? `/blogs/${post.id}` : "#"}
                       className="flex items-center text-foreground hover:underline text-primary text-sm"
                     >
                       Read more
@@ -430,8 +617,8 @@ export default function BlogsPage() {
             ))}
           </div>
 
-          {/* Pagination Controls */}
-          {blogs.length > blogsPerPage && (
+          {/* Pagination Controls (Only when actual data has blogs) */}
+          {actualBlogs.length > 0 && actualBlogs.length > blogsPerPage && (
             <div className="flex items-center gap-4 mt-8">
               <button
                 onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

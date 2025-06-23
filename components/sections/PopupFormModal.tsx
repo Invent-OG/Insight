@@ -177,9 +177,9 @@ export default function PopupFormModal() {
   useEffect(() => {
     // ✅ Always open after 2 seconds when page loads
     const timer = setTimeout(() => {
-      console.log("⏰ Opening popup after 2s...");
+      console.log("⏰ Opening popup after 10s...");
       setIsOpen(true);
-    }, 2000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -244,15 +244,15 @@ export default function PopupFormModal() {
             ✅ Thank you! We’ll contact you soon.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-8 px-4">
-            <div className="flex flex-col md:flex-row gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 px-4">
+            <div className="flex flex-col md:flex-row gap-4">
               <input
                 name="name"
                 type="text"
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full rounded px-4 py-2 bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
               <input
@@ -261,19 +261,19 @@ export default function PopupFormModal() {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full rounded px-4 py-2 bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col md:flex-row gap-4">
               <input
                 name="phone"
                 type="tel"
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full rounded px-4 py-2 bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
               <input
@@ -282,7 +282,7 @@ export default function PopupFormModal() {
                 placeholder="Your Interest / Service"
                 value={formData.interest}
                 onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full rounded px-4 py-2 bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
             </div>

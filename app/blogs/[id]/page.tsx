@@ -208,6 +208,7 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Button } from "@/components/ui/button";
+import { RefreshCcw } from "lucide-react";
 
 export default function BlogDetailPage() {
   const params = useParams();
@@ -231,7 +232,15 @@ export default function BlogDetailPage() {
   const { data, isLoading, isError, error } = useBlog(id);
 
   if (!id) return <div className="text-red-500">Invalid blog ID</div>;
-  if (isLoading) return <div className="text-black p-10">Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen space-y-3">
+        <RefreshCcw className="w-12 h-12 text-red-600 animate-spin" />
+        <p className="text-gray-600 text-lg">Loading latest articles...</p>
+      </div>
+    );
+  }
+  
   if (isError)
     return (
       <div className="text-red-500 p-10">Error: {(error as Error).message}</div>

@@ -133,7 +133,8 @@ export default function Nav() {
             <span
               className={cn(
                 "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
-                pathname === "/services" && !isScrolled
+                (pathname === "/services" || pathname === "/contact") &&
+                  !isScrolled
                   ? "bg-black"
                   : "bg-[#faf9f9]"
               )}
@@ -141,7 +142,8 @@ export default function Nav() {
             <span
               className={cn(
                 "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
-                pathname === "/services" && !isScrolled
+                (pathname === "/services" || pathname === "/contact") &&
+                  !isScrolled
                   ? "bg-black"
                   : "bg-[#faf9f9]"
               )}
@@ -149,7 +151,8 @@ export default function Nav() {
             <span
               className={cn(
                 "w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300",
-                pathname === "/services" && !isScrolled
+                (pathname === "/services" || pathname === "/contact") &&
+                  !isScrolled
                   ? "bg-black"
                   : "bg-[#faf9f9]"
               )}
