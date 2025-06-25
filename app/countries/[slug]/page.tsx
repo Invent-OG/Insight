@@ -2,24 +2,24 @@
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
 
-import uk from "@/public/assets/UK.png";
-import usa from "@/public/assets/country/Usa.jpg";
-import ireland from "@/public/assets/country/Ireland.jpg";
-import canada from "@/public/assets/country/Canada (1).png";
-import australia from "@/public/assets/country/Australia.png";
-import newzealand from "@/public/assets/country/New Zealand (1).png";
-import france from "@/public/assets/country/France.jpg";
-import germany from "@/public/assets/country/Germany (1).png";
-import uae from "@/public/assets/country/UAE (1).png";
-import singapore from "@/public/assets/country/Singapore.png";
-import malaysia from "@/public/assets/country/Malaysia.png";
-import poland from "@/public/assets/country/Poland.png";
-import sweden from "@/public/assets/country/Sweden.png";
-import latvia from "@/public/assets/country/Latvia.jpg";
-import lithuania from "@/public/assets/country/Lithuania .jpg";
-import malta from "@/public/assets/country/malta.jpg";
-import netherland from "@/public/assets/country/Netherland.jpg";
-import finland from "@/public/assets/country/Finland.jpg";
+// import uk from "@/public/assets/UK.png";
+// import usa from "@/public/assets/country/Usa.jpg";
+// import ireland from "@/public/assets/country/Ireland.jpg";
+// import canada from "@/public/assets/country/Canada (1).png";
+// import australia from "@/public/assets/country/Australia.png";
+// import newzealand from "@/public/assets/country/New Zealand (1).png";
+// import france from "@/public/assets/country/France.jpg";
+// import germany from "@/public/assets/country/Germany (1).png";
+// import uae from "@/public/assets/country/UAE (1).png";
+// import singapore from "@/public/assets/country/Singapore.png";
+// import malaysia from "@/public/assets/country/Malaysia.png";
+// import poland from "@/public/assets/country/Poland.png";
+// import sweden from "@/public/assets/country/Sweden.png";
+// import latvia from "@/public/assets/country/Latvia.jpg";
+// import lithuania from "@/public/assets/country/Lithuania .jpg";
+// import malta from "@/public/assets/country/malta.jpg";
+// import netherland from "@/public/assets/country/Netherland.jpg";
+// import finland from "@/public/assets/country/Finland.jpg";
 import { motion } from "framer-motion";
 import { useCreateLead } from "@/lib/queries/leads"; // adjust path if needed
 import toast, { Toaster } from "react-hot-toast";
@@ -48,7 +48,7 @@ type Country = {
 const countries: Country[] = [
   {
     title: "Study in UK",
-    image: uk,
+    image: "/assets/country/UK.webp",
     slug: "uk",
     description: `Home to renowned institutions like Oxford and Cambridge, the UK
 offers rigorous programs, short duration courses, and a strong
@@ -60,7 +60,7 @@ the UK is ideal for career-focused learners.`,
   },
   {
     title: "Study in the USA",
-    image: usa,
+    image: "/assets/country/USA (1).webp",
     slug: "usa",
     description: `The U.S. is a top destination for international students, offering
 prestigious universities like Harvard and MIT, a flexible education
@@ -73,7 +73,7 @@ extensions`,
   },
   {
     title: "Study in Ireland",
-    image: ireland,
+    image: "/assets/country/Ireland.webp",
     slug: "ireland",
     description: `Ireland is home to prestigious universities like Trinity College Dublin
 and University College Dublin, known for academic excellence. With
@@ -85,7 +85,7 @@ long-term career and settlement opportunities.
   },
   {
     title: "Study in Canada",
-    image: canada,
+    image: "/assets/country/Canada (1).webp",
     slug: "canada",
     description: `Canada stands out for its world-class universities like the University
 of Toronto and McGill, inclusive society, and high standard of living.
@@ -96,7 +96,7 @@ long-term settlement.`,
   },
   {
     title: "Study in Australia",
-    image: australia,
+    image: "/assets/country/Australia.webp",
     slug: "australia",
     description: `Australia offers globally ranked universities, practical learning, and
 vibrant student life in cities like Sydney and Melbourne. Students
@@ -108,7 +108,7 @@ lifestyle.
   },
   {
     title: "Study in New Zealand",
-    image: newzealand,
+    image: "/assets/country/New zealand (1).webp",
     slug: "new-zealand",
     description: `New Zealand provides a peaceful and research-driven education
 experience at institutions like the University of Auckland. With its
@@ -119,7 +119,7 @@ personal growth.`,
   },
   {
     title: "Study in France",
-    image: france,
+    image: "/assets/country/France.webp",
     slug: "france",
     description: `With top-ranked universities, affordable tuition, and diverse English
 and French-taught programs, France welcomes international
@@ -134,7 +134,7 @@ apart.
   },
   {
     title: "Study in Germany",
-    image: germany,
+    image: "/assets/country/Germany (1).webp",
     slug: "germany",
     description: `Germany is known for top public universities like TUM and
 Heidelberg that offer tuition-free or low-cost education in
@@ -148,7 +148,7 @@ EU Blue Card residency.
   },
   {
     title: "Study in the UAE",
-    image: uae,
+    image: "/assets/country/UAE (2).webp",
     slug: "uae",
     description: `The UAE offers international-standard education in a safe,
 multicultural setting with campuses in Dubai and Abu Dhabi. With
@@ -158,7 +158,7 @@ income, and strong career prospects make it a dynamic choice.`,
   },
   {
     title: "Study in Singapore",
-    image: singapore,
+    image: "/assets/country/singapore.webp",
     slug: "singapore",
     description: `Singapore is Asia’s leading education hub, home to world-class
 institutions like NUS and NTU. It offers cutting-edge programs in
@@ -170,7 +170,7 @@ Asia-Pacific region.
   },
   {
     title: "Study in Malaysia",
-    image: malaysia,
+    image: "/assets/country/malaysia.webp",
     slug: "malaysia",
     description: `Malaysia offers globally recognized degrees at lower costs, with
 English widely spoken and vibrant multicultural campuses.
@@ -180,7 +180,7 @@ welcoming environment make it a great gateway to careers in Asia.`,
   },
   {
     title: "Study in Poland",
-    image: poland,
+    image: "/assets/country/poland.webp",
     slug: "poland",
     description: `Poland combines affordable living with top universities
 offering strong programs in various fields. Known for its
@@ -190,7 +190,7 @@ destination for international students.
   },
   {
     title: "Study in Sweden",
-    image: sweden,
+    image: "/assets/country/swedan.webp",
     slug: "sweden",
     description: `Sweden is renowned for its world-class education,
 innovation, and sustainability focus. With English widely
@@ -202,7 +202,7 @@ ideal for future innovators and researchers.
   },
   {
     title: "Study in Latvia",
-    image: latvia,
+    image: "/assets/country/Latvia.webp",
     slug: "latvia",
     description: `Latvia offers a range of quality, affordable education
 options, especially in fields like engineering, IT, and
@@ -212,7 +212,7 @@ experience and a growing international student community.
   },
   {
     title: "Study in Lithuania",
-    image: lithuania,
+    image: "/assets/country/Lithuania.webp",
     slug: "lithuania",
     description: `Lithuania offers high-quality, low-cost education in a
 vibrant, historical setting. Known for strong academic
@@ -221,7 +221,7 @@ hidden gem for international students.`,
   },
   {
     title: "Study in Malta",
-    image: malta,
+    image: "/assets/country/malta.jpg",
     slug: "malta",
     description: `Malta offers top-quality education in English, with a
 Mediterranean lifestyle that combines rich history, vibrant
@@ -231,7 +231,7 @@ location.`,
   },
   {
     title: "Study in Netherlands",
-    image: netherland,
+    image: "/assets/country/Netherland.jpg",
     slug: "netherlands",
     description: `The Netherlands is famous for its innovation and top-tier
 universities, many of which offer English-taught programs.
@@ -241,7 +241,7 @@ destination for career-focused students.
   },
   {
     title: "Study in Finland",
-    image: finland,
+    image: "/assets/country/Finland.jpg",
     slug: "finland",
     description: `Finland is known for its innovative education system,
 offering excellent universities with a focus on research and

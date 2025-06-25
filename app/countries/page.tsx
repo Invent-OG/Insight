@@ -6,48 +6,112 @@ import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 
 // Image imports
-import uk from "@/public/assets/UK.png";
-import usa from "@/public/assets/country/Usa.jpg";
-import ireland from "@/public/assets/country/Ireland.jpg";
-import canada from "@/public/assets/country/Canada (1).png";
-import australia from "@/public/assets/country/Australia.png";
-import newzealand from "@/public/assets/country/New Zealand (1).png";
-import france from "@/public/assets/country/France.jpg";
-import germany from "@/public/assets/country/Germany (1).png";
-import uae from "@/public/assets/country/UAE (1).png";
-import singapore from "@/public/assets/country/Singapore.png";
-import malaysia from "@/public/assets/country/Malaysia.png";
-import poland from "@/public/assets/country/Poland.png";
-import sweden from "@/public/assets/country/Sweden.png";
-import latvia from "@/public/assets/country/Latvia.jpg";
-import lithuania from "@/public/assets/country/Lithuania .jpg";
-import malta from "@/public/assets/country/malta.jpg";
-import netherland from "@/public/assets/country/Netherland.jpg";
-import finland from "@/public/assets/country/Finland.jpg";
+// import uk from "@/public/assets/UK.webp";
+// import usa from "@/public/assets/country/Usa.jpg";
+// import ireland from "@/public/assets/country/Ireland.jpg";
+// import canada from "@/public/assets/country/Canada (1).png";
+// import australia from "@/public/assets/country/Australia.png";
+// import newzealand from "@/public/assets/country/New Zealand (1).png";
+// import france from "@/public/assets/country/France.jpg";
+// import germany from "@/public/assets/country/Germany (1).png";
+// import uae from "@/public/assets/country/UAE (1).png";
+// import singapore from "@/public/assets/country/Singapore.png";
+// import malaysia from "@/public/assets/country/Malaysia.png";
+// import poland from "@/public/assets/country/Poland.png";
+// import sweden from "@/public/assets/country/Sweden.png";
+// import latvia from "@/public/assets/country/Latvia.jpg";
+// import lithuania from "@/public/assets/country/Lithuania .jpg";
+// import malta from "@/public/assets/country/malta.jpg";
+// import netherland from "@/public/assets/country/Netherland.jpg";
+// import finland from "@/public/assets/country/Finland.jpg";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ArrowBigDown } from "lucide-react";
 
 const countries = [
-  { title: "adasd", image: uk, slug: "sample" },
-  { title: "Study in UK", image: uk, slug: "uk" },
-  { title: "Study in USA", image: usa, slug: "usa" },
-  { title: "Study in Ireland", image: ireland, slug: "ireland" },
-  { title: "Study in Canada", image: canada, slug: "canada" },
-  { title: "Study in Australia", image: australia, slug: "australia" },
-  { title: "Study in New Zealand", image: newzealand, slug: "new-zealand" },
-  { title: "Study in France", image: france, slug: "france" },
-  { title: "Study in Germany", image: germany, slug: "germany" },
-  { title: "Study in  UAE", image: uae, slug: "uae" },
-  { title: "Study in Singapore", image: singapore, slug: "singapore" },
-  { title: "Study in Malaysia", image: malaysia, slug: "malaysia" },
-  { title: "Study in Poland", image: poland, slug: "poland" },
-  { title: "Study in Sweden", image: sweden, slug: "sweden" },
-  { title: "Study in Latvia", image: latvia, slug: "latvia" },
-  { title: "Study in Lithuania", image: lithuania, slug: "lithuania" },
-  { title: "Study in Malta", image: malta, slug: "malta" },
-  { title: "Study in Netherlands", image: netherland, slug: "netherlands" },
-  { title: "Study in Finland", image: finland, slug: "finland" },
+  { title: "adasd", image: "/assets/country/UK (1).png", slug: "sample" },
+  { title: "Study in UK", image: "/assets/country/UK.webp", slug: "uk" },
+  { title: "Study in USA", image: "/assets/country/USA (1).webp", slug: "usa" },
+  {
+    title: "Study in Ireland",
+    image: "/assets/country/Ireland.webp",
+    slug: "ireland",
+  },
+  {
+    title: "Study in Canada",
+    image: "/assets/country/Canada (1).webp",
+    slug: "canada",
+  },
+  {
+    title: "Study in Australia",
+    image: "/assets/country/Australia.webp",
+    slug: "australia",
+  },
+  {
+    title: "Study in New Zealand",
+    image: "/assets/country/New zealand (1).webp",
+    slug: "new-zealand",
+  },
+  {
+    title: "Study in France",
+    image: "/assets/country/France.webp",
+    slug: "france",
+  },
+  {
+    title: "Study in Germany",
+    image: "/assets/country/Germany (1).webp",
+    slug: "germany",
+  },
+  {
+    title: "Study in  UAE",
+    image: "/assets/country/UAE (2).webp",
+    slug: "uae",
+  },
+  {
+    title: "Study in Singapore",
+    image: "/assets/country/singapore.webp",
+    slug: "singapore",
+  },
+  {
+    title: "Study in Malaysia",
+    image: "/assets/country/malaysia.webp",
+    slug: "malaysia",
+  },
+  {
+    title: "Study in Poland",
+    image: "/assets/country/poland.webp",
+    slug: "poland",
+  },
+  {
+    title: "Study in Sweden",
+    image: "/assets/country/swedan.webp",
+    slug: "sweden",
+  },
+  {
+    title: "Study in Latvia",
+    image: "/assets/country/Latvia.webp",
+    slug: "latvia",
+  },
+  {
+    title: "Study in Lithuania",
+    image: "/assets/country/Lithuania.webp",
+    slug: "lithuania",
+  },
+  {
+    title: "Study in Malta",
+    image: "/assets/country/malta.jpg",
+    slug: "malta",
+  },
+  {
+    title: "Study in Netherlands",
+    image: "/assets/country/Netherland.jpg",
+    slug: "netherlands",
+  },
+  {
+    title: "Study in Finland",
+    image: "/assets/country/Finland.jpg",
+    slug: "finland",
+  },
 ];
 
 export default function StudyAbroadAnimation() {
