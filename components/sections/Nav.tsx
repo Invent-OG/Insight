@@ -8,7 +8,11 @@ import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import whitelogo from "@/public/assets/whitelogo.png";
 
-export default function Nav() {
+type Props = {
+  isLoading: boolean;
+};
+
+const Nav: React.FC<Props> = ({ isLoading }) => {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
 
@@ -98,7 +102,7 @@ export default function Nav() {
     }
   };
 
-  if (isAdmin) return null;
+  if (isAdmin || isLoading) return null;
 
   return (
     <div ref={wrapperRef}>
@@ -231,4 +235,6 @@ export default function Nav() {
       </nav>
     </div>
   );
-}
+};
+
+export default Nav;

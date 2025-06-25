@@ -72,8 +72,8 @@ export default function Home() {
   return (
     <main className="w-full">
       <PopupFormModal />
-      {/* <MultiLayerParallax /> */}
-      <Hero1 />
+      <MultiLayerParallax />
+      {/* <Hero1 /> */}
       {/* <HeroParallaxContent /> */}
       <Herocontent />
       <CountriesCarousel />

@@ -33,14 +33,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans`}>
-        <Providers>
-          <LenisProvider />
-          <Nav />
-          {isLoading ? <Loading3D /> : <main>{children}</main>}
-
-          <Footer />
-        </Providers>
-        <FloatingContactButtons />
+        {isLoading ? (
+          <Loading3D />
+        ) : (
+          <>
+            <Providers>
+              <LenisProvider />
+              <Nav isLoading={isLoading} />
+              <main>{children}</main>
+              <Footer />
+            </Providers>
+            <FloatingContactButtons />
+          </>
+        )}
       </body>
     </html>
   );

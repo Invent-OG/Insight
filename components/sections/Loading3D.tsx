@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-full bg-white">
+    <div className="flex flex-col items-center  justify-center h-screen w-full bg-white">
       {/* Logo with a rotating ring */}
       <div className="relative flex items-center justify-center">
         <div className="absolute rounded-full border-t-4 border-b-4 border-red-500 animate-spin h-24 w-24"></div>
