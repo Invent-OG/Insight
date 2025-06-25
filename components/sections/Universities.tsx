@@ -170,7 +170,7 @@ const universities = [
   },
   {
     name: "University of Tech Sydney",
-    images: ["/assets/univercites/University of Tech Sydney.webp"],
+    images: ["/assets/univercites/Tech sydney.webp"],
   },
 ];
 
