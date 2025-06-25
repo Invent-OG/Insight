@@ -436,7 +436,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
 import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
-import corebg from "@/public/assets/ourcorebg1.jpg"
+import ourcorevalue from "@/public/assets/about/ourcorevalue.webp";
+import ourServiceImage from "@/public/assets/about/Our services (about page).webp";
 
 export default function About() {
   useEffect(() => {
@@ -668,8 +669,7 @@ export default function About() {
           <div
             className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-75"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=80')",
+              backgroundImage: `url("/assets/about/Our services (about page).webp")`,
             }}
             aria-hidden="true"
           ></div>
@@ -850,7 +850,7 @@ to finish. Discover your path to international education with Insight
           {/* Background image with reduced opacity */}
           <div className="absolute inset-0 w-full h-full z-0">
             <Image
-              src={corebg}
+              src={ourcorevalue}
               alt="Background"
               fill
               className="opacity-70"

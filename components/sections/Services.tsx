@@ -171,22 +171,21 @@ const services = [
     title: "Counselling & Program Discovery",
     description:
       "Having trouble deciding on a course or country? We’ll help you explore your options based on your interests, background, and future goals. Our experienced team will guide you in finding the academic path that suits you best.",
-    image: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg",
+    image: "/assets/services/counselling & program discovery.webp",
     icon: "/icons/counseling.svg",
   },
   {
     title: "IELTS, Duolingo, PTE & English Speaking Training",
     description:
       "We offer personalized training for IELTS, Duolingo, and PTE exams to help students meet language proficiency requirements with confidence. Many universities in countries like the UK, Canada, and the USA accept IELTS waivers based on medium of instruction (MOI) or alternative tests like Duolingo or Pearson Test of English (PTE). We help you identify such universities and streamline the documentation process for eligibility.",
-    image:
-      "https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    image: "/assets/services/IELTS training.webp",
     icon: "/icons/selection.svg",
   },
   {
     title: "SOP Writing",
     description:
       "Your Statement of Purpose is your story — and we help you tell it well. Our team works with you to write a compelling, authentic SOP that highlights your goals, strengths, and personality. It’s not about using templates — it’s about helping your voice stand out and make an impact.",
-    image: "https://images.pexels.com/photos/6347727/pexels-photo-6347727.jpeg",
+    image: "/assets/services/SOP writing.webp",
     icon: "/icons/processing.svg",
   },
 ];

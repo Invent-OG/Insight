@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
+import ourcorevalues from "@/public/assets/about/ourcorevalue.webp";
 
 interface RoadmapProps {
   children: ReactNode;
@@ -20,25 +21,13 @@ export default function Roadmap({ children }: RoadmapProps) {
     <section className="relative w-full px-4 sm:px-6 md:px-10 lg:px-16 bg-white overflow-hidden py-10 lg:py-16">
       {/* ✅ Background Layer with Texture */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-center opacity-40"
+        className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-center opacity-90"
         style={{
-          backgroundImage:
-            "url('https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?ga=GA1.1.772958153.1735922453&semt=ais_hybrid&w=740')",
+          backgroundImage: `url(${ourcorevalues.src})`,
+          backgroundRepeat: "no-repeat", // no repeating
+          backgroundPosition: "center top", // move image position
+          backgroundAttachment: "fixed",
         }}
-      />
-
-      {/* ✅ Top-right SVG */}
-      <img
-        src="/assets/insight11.png"
-        alt="Decorative Top Right"
-        className="decorative-svg top-right"
-      />
-
-      {/* ✅ Bottom-left SVG */}
-      <img
-        src="/assets/insight11.png"
-        alt="Decorative Bottom Left"
-        className="decorative-svg bottom-left"
       />
 
       {/* ✅ Heading Section */}

@@ -165,7 +165,7 @@ export default function MultiLayerParallax() {
     light-sweep
   "
           style={{
-            WebkitTextStroke: "2px #fff",
+            WebkitTextStroke: "0.5px #f8f8f8",
           }}
         >
           Insight
@@ -182,15 +182,16 @@ export default function MultiLayerParallax() {
           opacity: 0,
         }}
         animate={{
-          x: ["-100%", "-10%", "100%"], // Left ➔ Center ➔ Right
+          x: ["-100%", "100%"], // Left ➔ Center ➔ Right
           y: ["100%", "0%", "0%"], // Bottom ➔ Center ➔ Stay Center
           scale: [1.5, 1, 1], // Zoom in ➔ Normal
           opacity: [0, 2, 1], // Fade in and stay
         }}
         transition={{
           times: [0, 0.6, 1], // 30% of the animation goes from bottom-left to center
-          duration: 12, // Total animation time
+          duration: 24, // Total animation time
           ease: "easeInOut",
+          repeat: Infinity, // Endless looping
         }}
         className="absolute inset-0 z-30 flex justify-center items-center"
       >

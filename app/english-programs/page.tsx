@@ -680,19 +680,20 @@ const HomePage: React.FC = () => {
     <div className=" min-h-screen">
       {/* Hero Section */}
 
-      <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6  text-white relative overflow-hidden">
+      <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6 text-white relative overflow-hidden">
         {/* Parallax Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center "
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/assets/country/malta.jpg')",
+            backgroundImage:
+              "url('/assets/englishprogram/heroenglishprogram.webp')",
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
           }}
-        ></div>
+        />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-tr from-pink-400/30 via-cyan-300/20 to-purple-400/30 animate-gradient bg-[length:400%_400%]" />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
         <div className="relative z-10 space-y-10 max-w-5xl mx-auto">
@@ -702,7 +703,7 @@ const HomePage: React.FC = () => {
           </h1>
           <p className="max-w-2xl mx-auto text-lg leading-7">
             We offer one-on-one training led by experts{" "}
-            <span className="italic font-semibold  bg-primary text-white px-1 rounded drop-shadow-sm">
+            <span className="italic font-semibold bg-primary text-white px-1 rounded drop-shadow-sm">
               certified by Trinity College London
             </span>
             . Go beyond theory with meaningful, result-oriented English coaching
@@ -898,7 +899,7 @@ const HomePage: React.FC = () => {
         className="relative bg-fixed bg-center bg-cover bg-no-repeat py-16 text-white"
         style={{
           backgroundImage:
-            "url('https://images.pexels.com/photos/5212333/pexels-photo-5212333.jpeg')",
+            "url('/assets/englishprogram/communicationclass.webp')",
         }}
       >
         {/* Overlay */}

@@ -216,7 +216,7 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import herocontentimage from "@/public/assets/herocontentimage.png";
+import herocontentimage from "@/public/assets/herocontentimage.webp";
 import { Button } from "../ui/button";
 import { CircleDot } from "lucide-react";
 
