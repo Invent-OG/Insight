@@ -157,14 +157,15 @@ export default function MultiLayerParallax() {
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="
-          font-orbitron
+    font-orbitron
     text-7xl md:text-9xl font-extrabold text-center drop-shadow-lg
     text-transparent 
     bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))]
-    from-slate-400 to-red-300 bg-clip-text
+    from-white via-black to-red-600 bg-clip-text
+    light-sweep
   "
           style={{
-            WebkitTextStroke: "2px rgba(255, 255, 255, 0.5)",
+            WebkitTextStroke: "2px #fff",
           }}
         >
           Insight
