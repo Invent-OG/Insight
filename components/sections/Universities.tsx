@@ -135,70 +135,42 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// ✅ Total 9 universities (3 cards per slide)
 const universities = [
   {
-    name: "University of Greenwich",
-    images: [
-      "https://images.pexels.com/photos/2305098/pexels-photo-2305098.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/3014015/pexels-photo-3014015.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "RWTH Aachen University",
+    images: ["/assets/univercites/RWTH AACHEN UNIVERSITY.webp"],
   },
   {
-    name: "Sheffield Hallam University",
-    images: [
-      "https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "Arizona State University",
+    images: ["/assets/univercites/Arizona state university.webp"],
   },
   {
-    name: "University of East Anglia",
-    images: [
-      "https://images.pexels.com/photos/32213218/pexels-photo-32213218/free-photo-of-students-socializing-at-university-campus-outdoors.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "University of Twente",
+    images: ["/assets/univercites/univeresity of twente.webp"],
   },
   {
-    name: "University of Manchester",
-    images: [
-      "https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/207684/pexels-photo-207684.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "Radboud University",
+    images: ["/assets/univercites/Radboud university.webp"],
   },
   {
-    name: "University of Birmingham",
-    images: [
-      "https://images.pexels.com/photos/289738/pexels-photo-289738.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "RMIT University",
+    images: ["/assets/univercites/RMIT university.webp"],
   },
   {
-    name: "University of Liverpool",
-    images: [
-      "https://images.pexels.com/photos/207684/pexels-photo-207684.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/289738/pexels-photo-289738.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "Drexel University",
+    images: ["/assets/univercites/Drexel university.webp"],
   },
   {
-    name: "University of Leeds",
-    images: [
-      "https://images.pexels.com/photos/60225/pexels-photo-60225.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "University of Oxford",
+    images: ["/assets/univercites/University of oxford.webp"],
   },
   {
-    name: "University of Nottingham",
-    images: [
-      "https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/290595/pexels-photo-290595.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "University of Cambridge",
+    images: ["/assets/univercites/University of Cambridge.webp"],
   },
   {
-    name: "King’s College London",
-    images: [
-      "https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/290595/pexels-photo-290595.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+    name: "University of Tech Sydney",
+    images: ["/assets/univercites/University of Tech Sydney.webp"],
   },
 ];
 
@@ -208,8 +180,8 @@ export default function UniversitiesSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImageIndex((prev) => (prev + 1) % 2);
-      setSlideIndex((prev) => (prev + 1) % 3); // 3 slides total (9 unis / 3 per slide)
+      setImageIndex((prev) => prev + 1);
+      setSlideIndex((prev) => (prev + 1) % 3);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -222,7 +194,6 @@ export default function UniversitiesSection() {
     });
   }, []);
 
-  // Get current 3 universities for the current slide
   const currentUniversities = universities.slice(
     slideIndex * 3,
     slideIndex * 3 + 3
@@ -242,8 +213,7 @@ export default function UniversitiesSection() {
             backgroundAttachment: "fixed",
             opacity: 0.5,
           }}
-        ></div>
-
+        />
         {/* Desktop Background */}
         <div
           className="absolute inset-0 z-0 hidden md:block"
@@ -255,9 +225,7 @@ export default function UniversitiesSection() {
             backgroundAttachment: "fixed",
             opacity: 0.2,
           }}
-        ></div>
-
-        {/* Content */}
+        />
         <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-2">
           <div className="text-center max-w-4xl mx-auto lg:mb-12 space-y-8">
             <h4 className="text-yellow-400 text-xs md:text-sm uppercase tracking-wider relative">
@@ -270,8 +238,6 @@ export default function UniversitiesSection() {
               With <span className="text-primary">Insights</span>
             </h2>
           </div>
-
-          {/* Cards Grid */}
           <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:py-4 py-6">
             {currentUniversities.map((uni, index) => (
               <div
@@ -279,17 +245,28 @@ export default function UniversitiesSection() {
                 className="relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]"
               >
                 <div className="relative w-full h-60 sm:h-64 md:h-72">
-                  {uni.images.map((img, imgIndex) => (
+                  {uni.images.length > 1 ? (
+                    uni.images.map((img, imgIndex) => (
+                      <Image
+                        key={imgIndex}
+                        src={img}
+                        alt={`${uni.name} Image ${imgIndex + 1}`}
+                        fill
+                        className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+                          imgIndex === imageIndex % uni.images.length
+                            ? "opacity-100"
+                            : "opacity-0"
+                        }`}
+                      />
+                    ))
+                  ) : (
                     <Image
-                      key={imgIndex}
-                      src={img}
-                      alt={`${uni.name} Image ${imgIndex + 1}`}
+                      src={uni.images[0]}
+                      alt={uni.name}
                       fill
-                      className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
-                        imgIndex === imageIndex ? "opacity-100" : "opacity-0"
-                      }`}
+                      className="object-cover w-full h-full"
                     />
-                  ))}
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
                   <h3 className="text-white text-lg font-bold uppercase tracking-wide">
@@ -304,3 +281,4 @@ export default function UniversitiesSection() {
     </div>
   );
 }
+
