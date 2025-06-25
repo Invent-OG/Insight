@@ -250,7 +250,60 @@ post-graduation opportunities, Finland is a top choice for
 international students.
 `,
   },
+  {
+    title: "Study in Armenia",
+    image: "/assets/country/Armenia.webp",
+    slug: "armenia",
+    description: `Finland is known for its innovative education system,
+offering excellent universities with a focus on research and
+creativity. With a high quality of life and diverse
+post-graduation opportunities, Finland is a top choice for
+international students.
+`,
+  },
+  {
+    title: "Study in Georgia",
+    image: "/assets/country/Georgia.webp",
+    slug: "georgia",
+    description: `Finland is known for its innovative education system,
+offering excellent universities with a focus on research and
+creativity. With a high quality of life and diverse
+post-graduation opportunities, Finland is a top choice for
+international students.
+`,
+  },
+  {
+    title: "Study in Uzbekistan",
+    image: "/assets/country/Uzbekistan.webp",
+    slug: "uzbekistan",
+    description: `Finland is known for its innovative education system,
+offering excellent universities with a focus on research and
+creativity. With a high quality of life and diverse
+post-graduation opportunities, Finland is a top choice for
+international students.
+`,
+  },
 ];
+// const suggestionMap: Record<string, string[]> = {
+//   uk: ["singapore", "latvia", "poland"],
+//   usa: ["france", "new-zealand", "poland"],
+//   ireland: ["singapore", "france", "sweden"],
+//   canada: ["poland", "uae", "uk"],
+//   australia: ["malta", "netherlands", "finland"],
+//   "new-zealand": ["singapore", "finland", "sweden"],
+//   france: ["singapore", "finland", "new-zealand"],
+//   germany: ["netherlands", "singapore", "australia"],
+//   uae: ["latvia", "usa", "lithuania"],
+//   singapore: ["malaysia", "germany", "uae"],
+//   malaysia: ["ireland", "lithuania", "singapore"],
+//   poland: ["latvia", "netherlands", "malta"],
+//   sweden: ["malaysia", "germany", "uae"],
+//   latvia: ["uae", "lithuania", "netherlands"],
+//   lithuania: ["finland", "australia", "new-zealand"],
+//   malta: ["ireland", "finland", "germany"],
+//   netherlands: ["germany", "usa", "poland"],
+//   finland: ["canada", "usa", "sweden"],
+// };
 const suggestionMap: Record<string, string[]> = {
   uk: ["singapore", "latvia", "poland"],
   usa: ["france", "new-zealand", "poland"],
@@ -270,6 +323,9 @@ const suggestionMap: Record<string, string[]> = {
   malta: ["ireland", "finland", "germany"],
   netherlands: ["germany", "usa", "poland"],
   finland: ["canada", "usa", "sweden"],
+  armenia: ["georgia", "uzbekistan", "poland"],
+  georgia: ["armenia", "uzbekistan", "lithuania"],
+  uzbekistan: ["armenia", "georgia", "finland"],
 };
 
 type PageProps = {
@@ -293,10 +349,15 @@ export default function CountryPage() {
   const [statusMessage, setStatusMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
-  const selectedSuggestions = suggestionMap[selectedSlug];
+  // const selectedSuggestions = suggestionMap[selectedSlug];
+  // const suggestedCards = countries.filter((c) =>
+  //   selectedSuggestions.includes(c.slug)
+  // );
+  const selectedSuggestions = suggestionMap[selectedSlug] || []; // Fallback to an empty array
   const suggestedCards = countries.filter((c) =>
     selectedSuggestions.includes(c.slug)
   );
+
   const [form, setForm] = useState({
     name: "",
     email: "",

@@ -112,6 +112,21 @@ const countries = [
     image: "/assets/country/Finland.jpg",
     slug: "finland",
   },
+  {
+    title: "Study in Armenia",
+    image: "/assets/country/Armenia.webp",
+    slug: "armenia",
+  },
+  {
+    title: "Study in Georgia",
+    image: "/assets/country/Georgia.webp",
+    slug: "georgia",
+  },
+  {
+    title: "Study in Uzbekistan",
+    image: "/assets/country/Uzbekistan.webp",
+    slug: "uzbekistan",
+  },
 ];
 
 export default function StudyAbroadAnimation() {
