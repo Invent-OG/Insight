@@ -274,7 +274,8 @@ const Layout2 = () => {
     <div>
       <section className="relative min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
         {/* ✅ Mobile-only Parallax Texture */}
-        <div
+        {/* ✅ Mobile-only Background with Zoom Effect */}
+        <motion.div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/servicebg.jpg')",
@@ -283,10 +284,16 @@ const Layout2 = () => {
             backgroundPosition: "center",
             opacity: 0.8,
           }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
 
-        {/* ✅ Desktop Normal Texture */}
-        <div
+        {/* ✅ Desktop Background with Zoom Effect */}
+        <motion.div
           className="absolute inset-0 z-0 hidden md:block"
           style={{
             backgroundImage: "url('/assets/servicebg.jpg')",
@@ -294,7 +301,12 @@ const Layout2 = () => {
             backgroundAttachment: "fixed",
             backgroundPosition: "left center",
             opacity: 0.8,
-            
+          }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
         />
 
@@ -324,12 +336,23 @@ const Layout2 = () => {
               },
             }}
           >
-            <Image
-              src={herocontentimage}
-              alt="Study Abroad Illustration"
-              className="rounded-lg shadow-lg w-full h-auto object-cover"
-              priority
-            />
+            <div className="rounded-lg shadow-lg w-full h-auto overflow-hidden">
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Image
+                  src={herocontentimage}
+                  alt="Study Abroad Illustration"
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+              </motion.div>
+            </div>
           </motion.div>
 
           {/* Text */}
