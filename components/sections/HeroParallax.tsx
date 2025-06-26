@@ -251,15 +251,19 @@ export default function MultiLayerParallax() {
   });
 
   // Parallax positions
+  const moonY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
-  const cloudY = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
-  const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div ref={ref} className="w-full h-screen overflow-hidden relative">
-      {/* 🌕 1. Moon as the full-screen background */}
-      <div className="absolute inset-0 z-10 h-[120vh]">
+      {/* 🌕 1. Moon as the full-screen background (with Parallax!) */}
+      <motion.div
+        style={{ y: moonY }}
+        className="absolute inset-0 z-10 h-[120vh]"
+      >
         <Image
           src={moon}
           alt="Moon Background"
@@ -271,21 +275,26 @@ export default function MultiLayerParallax() {
             lg:object-center      /* Desktop: keep centered */
           "
         />
-      </div>
+      </motion.div>
 
-      {/* 🌟 Logo */}
-      <Image
-        src={logo}
-        alt="Moon Background"
-        priority
-        className="
-            object-cover absolute opacity-15 z-10
+      {/* 🌟 Logo (with Parallax!) */}
+      <motion.div
+        style={{ y: logoY }}
+        className="absolute inset-0 z-10 pointer-events-none"
+      >
+        <Image
+          src={logo}
+          alt="Moon Background"
+          priority
+          className="
+            object-cover absolute opacity-15
             /* 📱 Mobile size (default) */
             h-[55vh] w-[100vw] -right-[48%] top-60
             /* 💻 Desktop size */
             lg:h-[150vh] lg:w-full lg:-right-[30%] lg:-top-20
           "
-      />
+        />
+      </motion.div>
 
       {/* ✈️ Plane (Highest Z-Index) */}
       <motion.div
@@ -340,26 +349,50 @@ export default function MultiLayerParallax() {
         </motion.h1>
       </motion.div>
 
-      {/* ☁️ 3. Cloud */}
+      {/* ☁️ 3a. Cloud 1: Left → Right (no scroll effect) */}
       <motion.div
-        style={{ y: cloudY }}
         initial={{
           x: "-100%",
-          y: "100%",
           scale: 1.5,
           opacity: 0,
         }}
         animate={{
           x: ["-100%", "100%"],
-          y: ["100%", "0%", "0%"],
           scale: [1.5, 1, 1],
           opacity: [0, 2, 1],
         }}
         transition={{
-          times: [0, 0.6, 1], // 30% of the animation goes from bottom-left to center
-          duration: 24, // Total animation time
+          times: [0, 0.6, 1],
+          duration: 24,
           ease: "easeInOut",
-          repeat: Infinity, // Endless looping
+          repeat: Infinity,
+        }}
+        className="absolute inset-0 z-30 flex justify-center items-center"
+      >
+        <Image
+          src={cloud}
+          alt="Cloud"
+          className="w-full h-auto object-contain"
+        />
+      </motion.div>
+
+      {/* ☁️ 3b. Cloud 2: Right → Left */}
+      <motion.div
+        initial={{
+          x: "100%",
+          scale: 1.5,
+          opacity: 0,
+        }}
+        animate={{
+          x: ["100%", "-100%"],
+          scale: [1.5, 1, 1],
+          opacity: [0, 2, 1],
+        }}
+        transition={{
+          times: [0, 0.6, 1],
+          duration: 24,
+          ease: "easeInOut",
+          repeat: Infinity,
         }}
         className="absolute inset-0 z-30 flex justify-center items-center"
       >
