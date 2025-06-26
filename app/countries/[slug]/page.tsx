@@ -254,33 +254,38 @@ international students.
     title: "Study in Armenia",
     image: "/assets/country/Armenia.webp",
     slug: "armenia",
-    description: `Finland is known for its innovative education system,
-offering excellent universities with a focus on research and
-creativity. With a high quality of life and diverse
-post-graduation opportunities, Finland is a top choice for
-international students.
+    description: `Armenia offers affordable, high-quality education with growing international
+recognition. Universities in Yerevan and other cities provide a mix of theoretical
+and practical learning, especially in medicine and IT. Students enjoy a welcoming
+environment, rich cultural heritage, and low living costs. With increasing
+opportunities for internships and work during studies, Armenia is an emerging
+destination for international students.
+
 `,
   },
   {
     title: "Study in Georgia",
     image: "/assets/country/Georgia.webp",
     slug: "georgia",
-    description: `Finland is known for its innovative education system,
-offering excellent universities with a focus on research and
-creativity. With a high quality of life and diverse
-post-graduation opportunities, Finland is a top choice for
-international students.
+    description: `Georgia is becoming an increasingly popular destination for international
+students, offering a wide range of English-medium programs in fields like
+medicine, business, and engineering Institutions in Tbilisi and Batumi offer
+modern education with low tuition fees and a friendly atmosphere. International
+students benefit from a multicultural experience, scenic landscapes, and
+simplified visa procedures. Georgia combines academic value with a vibrant
+lifestyle and growing career prospects.
 `,
   },
   {
     title: "Study in Uzbekistan",
     image: "/assets/country/Uzbekistan.webp",
     slug: "uzbekistan",
-    description: `Finland is known for its innovative education system,
-offering excellent universities with a focus on research and
-creativity. With a high quality of life and diverse
-post-graduation opportunities, Finland is a top choice for
-international students.
+    description: `Uzbekistan is rapidly developing as a study destination with government-backed
+reforms in higher education. Cities like Tashkent and Samarkand host institutions
+offering globally aligned curricula in medicine, technology, and business.
+Students experience a unique cultural blend, low cost of living, and increasing
+support for international learners. With its sunny climate and historic charm,
+Uzbekistan offers both quality education and cultural richness.
 `,
   },
 ];
