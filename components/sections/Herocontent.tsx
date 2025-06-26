@@ -277,7 +277,7 @@ const Layout2 = () => {
         <div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
-            backgroundImage: "url('/assets/textures/texture.avif')",
+            backgroundImage: "url('/assets/servicebg.jpg')",
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
@@ -289,11 +289,12 @@ const Layout2 = () => {
         <div
           className="absolute inset-0 z-0 hidden md:block"
           style={{
-            backgroundImage: "url('/assets/textures/texture.avif')",
+            backgroundImage: "url('/assets/servicebg.jpg')",
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
             backgroundPosition: "left center",
-            opacity: 0.6,
+            opacity: 0.9,
+            
           }}
         />
 

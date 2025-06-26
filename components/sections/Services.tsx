@@ -270,7 +270,7 @@ export default function ServicesSection() {
                             src={service.image}
                             alt={service.title}
                             fill
-                            className="object-cover opacity-30"
+                            className="object-cover opacity-50"
                           />
                           <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
                             <h3 className="sm:text-xl font-semibold text-white mb-2">
