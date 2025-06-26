@@ -279,9 +279,9 @@ const Layout2 = () => {
           style={{
             backgroundImage: "url('/assets/servicebg.jpg')",
             backgroundSize: "cover",
-            backgroundAttachment: "fixed",
+            backgroundAttachment: "scroll",
             backgroundPosition: "center",
-            opacity: 0.6,
+            opacity: 0.8,
           }}
         />
 
@@ -293,7 +293,7 @@ const Layout2 = () => {
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
             backgroundPosition: "left center",
-            opacity: 0.9,
+            opacity: 0.8,
             
           }}
         />
