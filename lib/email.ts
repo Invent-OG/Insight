@@ -1,49 +1,49 @@
-// import { Resend } from 'resend';
+import { Resend } from "resend";
 
-// const resend = new Resend(process.env.RESEND_API_KEY || '');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// export async function sendLeadThankYouEmail(email: string, name: string) {
-//   try {
-//     await resend.emails.send({
-//       from: 'Nigaran Solar <no-reply@nigaransolar.com>',
-//       to: email,
-//       subject: 'Thank You for Your Interest in Solar Energy',
-//       html: `
-//         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-//           <h1 style="color: #166534;">Thank you, ${name}!</h1>
-//           <p>We've received your inquiry about solar energy solutions. Our team will review your requirements and get back to you shortly.</p>
-//           <p>In the meantime, you can learn more about our services on our website.</p>
-//           <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-radius: 5px;">
-//             <p style="margin: 0;">Best regards,<br>The Nigaran Solar Team</p>
-//           </div>
-//         </div>
-//       `,
-//     });
-//   } catch (error) {
-//     console.error('Failed to send lead thank you email:', error);
-//     throw error;
-//   }
-// }
+export async function sendContactEmails({
+  name,
+  email,
+  phone,
+  message,
+}: {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}) {
+  const admin = await resend.emails.send({
+    from: "Insight Abroad <noreply@resend.dev>",
+    to: "rahulachuz69@gmail.com",
+    subject: `📬 New Inquiry from ${name}`,
+    html: `
+      <div style="font-family: sans-serif; line-height: 1.5;">
+        <h2 style="color: #EF4444;">New Contact Inquiry</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong><br/>${message}</p>
+      </div>
+    `,
+  });
 
-// export async function sendJobApplicationConfirmation(email: string, name: string, position: string) {
-//   try {
-//     await resend.emails.send({
-//       from: 'Nigaran Solar Careers <careers@nigaransolar.com>',
-//       to: email,
-//       subject: 'Application Received - Nigaran Solar',
-//       html: `
-//         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-//           <h1 style="color: #166534;">Thank you for applying, ${name}!</h1>
-//           <p>We've received your application for the <strong>${position}</strong> position at Nigaran Solar.</p>
-//           <p>Our hiring team will review your application and contact you if your qualifications match our requirements.</p>
-//           <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-radius: 5px;">
-//             <p style="margin: 0;">Best regards,<br>Nigaran Solar HR Team</p>
-//           </div>
-//         </div>
-//       `,
-//     });
-//   } catch (error) {
-//     console.error('Failed to send job application confirmation:', error);
-//     throw error;
-//   }
-// }
+  const user = await resend.emails.send({
+    from: "Insight Abroad <onboarding@resend.dev>",
+    to: email,
+    subject: `🎉 Thank You for Contacting Insight Abroad`,
+    html: `
+      <div style="font-family: sans-serif; line-height: 1.5;">
+        <h2>Hello ${name},</h2>
+        <p>Thank you for reaching out to <strong>Insight Abroad Services</strong>.</p>
+        <p>We’ve received your message and will get back to you shortly.</p>
+        <hr/>
+        <p><strong>Your Message:</strong><br/>${message}</p>
+        <br/>
+        <p>Warm regards,<br/><strong>Insight Abroad Team</strong></p>
+      </div>
+    `,
+  });
+
+  return { admin, user };
+}

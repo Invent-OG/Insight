@@ -87,18 +87,18 @@ export async function POST(req: Request) {
 
     // 3. Send admin email
     const adminEmail = await resend.emails.send({
-      from: "Insight Abroad <onboarding@resend.dev>",
+      from: "Insight Abroad <noreply@resend.dev>",
       to: "rahulachuz69@gmail.com",
       subject: `📬 New Inquiry from ${name}`,
       html: `
-        <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2 style="color: #EF4444;">New Contact Inquiry</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Message:</strong><br/>${message}</p>
-        </div>
-      `,
+    <div style="font-family: sans-serif; line-height: 1.5;">
+      <h2 style="color: #EF4444;">New Contact Inquiry</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Message:</strong><br/>${message}</p>
+    </div>
+  `,
     });
 
     // 4. Auto-response to user
