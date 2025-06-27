@@ -198,6 +198,173 @@
 //   );
 // }
 
+// "use client";
+
+// import { useParams } from "next/navigation";
+// import { useBlog } from "@/lib/queries/blogs";
+// import React, { useEffect, useRef, useState } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import { Button } from "@/components/ui/button";
+// import { RefreshCcw } from "lucide-react";
+
+// export default function BlogDetailPage() {
+//   const params = useParams();
+//   const id = typeof params?.id === "string" ? params.id : "";
+
+//   const [scrollY, setScrollY] = useState(0);
+//   const bannerRef = useRef<HTMLDivElement>(null);
+
+//   useEffect(() => {
+//     AOS.init({ once: true, duration: 700 });
+
+//     const handleScroll = () => {
+//       const currentScroll = window.scrollY;
+//       setScrollY(currentScroll);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   const { data, isLoading, isError, error } = useBlog(id);
+
+//   if (!id) return <div className="text-red-500">Invalid blog ID</div>;
+//   if (isLoading) {
+//     return (
+//       <div className="flex flex-col items-center justify-center min-h-screen space-y-3">
+//         <RefreshCcw className="w-12 h-12 text-red-600 animate-spin" />
+//         <p className="text-gray-600 text-lg">Loading latest articles...</p>
+//       </div>
+//     );
+//   }
+  
+//   if (isError)
+//     return (
+//       <div className="text-red-500 p-10">Error: {(error as Error).message}</div>
+//     );
+
+//   const blog = data?.blog;
+//   if (!blog) return <div className="text-gray-600 p-10">Blog not found</div>;
+
+//   return (
+//     <main className="bg-[#fefefe] min-h-screen text-black">
+//       {/* Banner with Image & Text Parallax */}
+//       <div
+//         className="relative h-[100vh] bg-black text-white overflow-hidden"
+//         ref={bannerRef}
+//       >
+//         {/* Parallax Image */}
+//         <div
+//           className="absolute inset-0 will-change-transform"
+//           style={{
+//             transform: `translateY(${scrollY * 0.3}px)`,
+//             transition: "transform 0.1s ease-out",
+//           }}
+//         >
+//           <Image
+//             src={blog.imageUrl}
+//             alt={blog.title}
+//             fill
+//             className="object-cover opacity-40"
+//             priority
+//           />
+//         </div>
+
+//         {/* Gradient Overlay */}
+//         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
+
+//         {/* Parallax Text */}
+//         <div
+//           className="relative z-10 flex items-center justify-center h-full px-4"
+//           style={{
+//             transform: `translateY(${scrollY * 0.15}px)`,
+//             transition: "transform 0.1s ease-out",
+//           }}
+//         >
+//           <h1
+//             className="text-3xl md:text-5xl font-bold text-center drop-shadow-lg"
+//             data-aos="fade-up"
+//           >
+//             {blog.title}
+//           </h1>
+//         </div>
+//       </div>
+
+//       {/* Blog Layout */}
+//       <div className="relative w-full">
+//         {/* Background Layer with Opacity */}
+//         <div
+//           className="absolute inset-0 z-0"
+//           style={{
+//             backgroundImage: "url('/assets/bgblogtexture.avif')",
+//             backgroundRepeat: "repeat",
+//             backgroundSize: "cover",
+//             backgroundAttachment: "fixed",
+//             opacity: 0.2,
+//           }}
+//         />
+
+//         {/* Blog Layout */}
+//         <div className="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto px-4 py-16">
+//           {/* Content */}
+//           <article
+//             className="col-span-1 md:col-span-3 order-2 md:order-1"
+//             data-aos="fade-up"
+//           >
+//             <div className="prose prose-lg md:prose-xl max-w-none prose-neutral prose-headings:text-black prose-p:text-gray-800 prose-a:text-red-600 prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic whitespace-pre-line">
+//               {blog.content}
+//             </div>
+//           </article>
+
+//           {/* Sidebar */}
+//           <aside className="col-span-1 order-1 md:order-2" data-aos="fade-left">
+//             <Link
+//               href="/blogs"
+//               className="inline-block mb-6 text-red-600 hover:underline font-medium"
+//             >
+//               ← Back to Blogs
+//             </Link>
+//             <div className="sticky top-20 space-y-4 text-sm text-gray-600">
+//               <p>
+//                 <strong>Published:</strong>
+//                 <br />
+//                 {new Date(blog.createdAt).toLocaleDateString()}
+//               </p>
+//               <p>
+//                 <strong>Category:</strong>
+//                 <br />
+//                 <span className="text-red-600 font-semibold">
+//                   {blog.category}
+//                 </span>
+//               </p>
+//             </div>
+//           </aside>
+//         </div>
+
+//         {/* Footer CTA */}
+//         <div className="relative z-10 py-10 text-center">
+//           <h3 className="text-xl font-semibold mb-4" data-aos="fade-up">
+//             Enjoyed this post?
+//           </h3>
+
+//           <Link href="/contact">
+//             <Button
+//               asChild
+//               className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+//               data-aos="fade-up"
+//               data-aos-delay="100"
+//             >
+//               <span>Get in Touch</span>
+//             </Button>
+//           </Link>
+//         </div>
+//       </div>
+//     </main>
+//   );
+// }
 "use client";
 
 import { useParams } from "next/navigation";
@@ -232,6 +399,7 @@ export default function BlogDetailPage() {
   const { data, isLoading, isError, error } = useBlog(id);
 
   if (!id) return <div className="text-red-500">Invalid blog ID</div>;
+
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen space-y-3">
@@ -240,7 +408,7 @@ export default function BlogDetailPage() {
       </div>
     );
   }
-  
+
   if (isError)
     return (
       <div className="text-red-500 p-10">Error: {(error as Error).message}</div>
@@ -314,9 +482,10 @@ export default function BlogDetailPage() {
             className="col-span-1 md:col-span-3 order-2 md:order-1"
             data-aos="fade-up"
           >
-            <div className="prose prose-lg md:prose-xl max-w-none prose-neutral prose-headings:text-black prose-p:text-gray-800 prose-a:text-red-600 prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic whitespace-pre-line">
-              {blog.content}
-            </div>
+            <div
+              className="prose prose-lg md:prose-xl max-w-none prose-neutral prose-headings:text-black prose-p:text-gray-800 prose-a:text-red-600 prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic whitespace-pre-line"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
           </article>
 
           {/* Sidebar */}
@@ -365,3 +534,4 @@ export default function BlogDetailPage() {
     </main>
   );
 }
+
