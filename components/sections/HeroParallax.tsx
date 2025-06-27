@@ -457,6 +457,9 @@ export default function MultiLayerParallax() {
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const logoX = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]); // slide from right to center
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 0.2]); // subtle fade in opacity max 0.2
+  const logoScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]); // subtle scale up
 
   // Add 'will-change: transform' to motion divs for GPU acceleration hint
   // This helps smooth animation on scroll
@@ -479,9 +482,14 @@ export default function MultiLayerParallax() {
       </motion.div>
       {/* 🌍 Globe (bottom-focused) */}
       <motion.div
-        className="absolute lg:top-[100%] top-[80%] w-full  z-50 pointer-events-none"
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 100, ease: "linear" }}
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, rotate: 360 }}
+        transition={{
+          y: { duration: 1, ease: "easeOut" },
+          opacity: { duration: 0, ease: "easeOut" },
+          rotate: { repeat: Infinity, duration: 100, ease: "linear" },
+        }}
+        className="absolute lg:top-[100%] top-[80%] w-full z-50 pointer-events-none"
         style={{ willChange: "transform" }}
       >
         <Image
@@ -491,6 +499,7 @@ export default function MultiLayerParallax() {
           className="w-full scale-[2.30] h-auto"
         />
       </motion.div>
+
       {/* 🎯 Center Text */}
       <motion.div
         style={{ willChange: "transform", y: textY }}
@@ -517,25 +526,27 @@ export default function MultiLayerParallax() {
             bg-clip-text
             light-sweep
           "
-          style={{
-            WebkitTextStroke: "0.5px #f8f8f8",
-          }}
         >
           Insight
         </motion.h1>
       </motion.div>
       {/* 🔆 Logo Parallax */}
       <motion.div
-        style={{ willChange: "transform", y: logoY }}
+        initial={{ y: -300, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         className="absolute inset-0 z-10 pointer-events-none"
       >
-        <Image
-          src={logo}
-          alt="Logo"
-          priority
-          className="object-cover absolute opacity-20 h-[55vh] w-[100vw] -right-[50%] top-72 lg:h-[150vh] lg:w-full lg:-right-[30.7%] lg:-top-20"
-        />
+        <motion.div style={{ y: logoY, willChange: "transform" }}>
+          <Image
+            src={logo}
+            alt="Logo"
+            priority
+            className="object-cover absolute opacity-20 h-[55vh] w-[100vw] -right-[50%] top-72 lg:h-[150vh] lg:w-full lg:-right-[30.7%] lg:-top-20"
+          />
+        </motion.div>
       </motion.div>
+
       {/* ✈️ Plane - Desktop (unchanged) */}
       <motion.div
         initial={{ x: "-100%", y: "60%" }}
@@ -667,4 +678,3 @@ export default function MultiLayerParallax() {
     </div>
   );
 }
-
