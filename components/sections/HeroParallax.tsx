@@ -451,18 +451,23 @@ export default function MultiLayerParallax() {
     offset: ["start start", "end start"],
   });
 
+  // Keep same transforms
   const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
+  // Add 'will-change: transform' to motion divs for GPU acceleration hint
+  // This helps smooth animation on scroll
+
   return (
     <div ref={ref} className="w-full h-screen overflow-hidden relative">
       {/* 🌌 Sky Background */}
       <motion.div
-        style={{ y: skyY }}
+        style={{ willChange: "transform", y: skyY }}
         className="absolute inset-0 z-0 h-[120vh]"
+        // hint for smoothness
       >
         <Image
           src={sky}
@@ -473,16 +478,11 @@ export default function MultiLayerParallax() {
         />
       </motion.div>
       {/* 🌍 Globe (bottom-focused) */}
-      {/* <Image
-        src={globe1}
-        alt="Bottom Globe"
-        priority
-        className=" absolute  top-[125%]  scale-[2.80]  z-50 pointer-events-none  "
-      /> */}
       <motion.div
         className="absolute lg:top-[100%] top-[80%] w-full  z-50 pointer-events-none"
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 100, ease: "linear" }}
+        style={{ willChange: "transform" }}
       >
         <Image
           src={globe1}
@@ -491,19 +491,9 @@ export default function MultiLayerParallax() {
           className="w-full scale-[2.30] h-auto"
         />
       </motion.div>
-      {/* ✨ Light Overlay */}
-      {/* <motion.div
-        style={{ y: lightY }}
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeOut" }}
-        className="absolute inset-0 w-full z-20 flex justify-center items-center"
-      >
-        <Image src={light} alt="Light" className="w-full object-cover" />
-      </motion.div> */}
       {/* 🎯 Center Text */}
       <motion.div
-        style={{ y: textY }}
+        style={{ willChange: "transform", y: textY }}
         className="absolute inset-0 flex uppercase flex-col justify-center items-center z-30 pointer-events-none"
       >
         <motion.p
@@ -523,8 +513,8 @@ export default function MultiLayerParallax() {
             font-orbitron
             text-7xl md:text-8xl font-extrabold text-center drop-shadow-lg
             text-transparent
-bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-black via-red-500 to-white
- bg-clip-text
+            bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-black via-red-500 to-white
+            bg-clip-text
             light-sweep
           "
           style={{
@@ -536,7 +526,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
       </motion.div>
       {/* 🔆 Logo Parallax */}
       <motion.div
-        style={{ y: logoY }}
+        style={{ willChange: "transform", y: logoY }}
         className="absolute inset-0 z-10 pointer-events-none"
       >
         <Image
@@ -552,8 +542,9 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
         animate={{ x: 0, y: -80 }}
         transition={{ duration: 2.5, ease: [0.25, 1, 0.5, 1] }}
         className="absolute inset-0 z-20 justify-center items-center bottom-[-10vh] lg:bottom-0 hidden lg:flex"
+        style={{ willChange: "transform" }}
       >
-        <motion.div style={{ y: planeY }}>
+        <motion.div style={{ y: planeY, willChange: "transform" }}>
           <Image
             src={plane}
             alt="Plane"
@@ -564,11 +555,12 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
       {/* ✈️ Plane - Mobile Only */}
       <motion.div
         initial={{ x: "-250%", y: "60%" }}
-        animate={{ x: 0, y: -90 }} // move to center-top
+        animate={{ x: 0, y: -90 }}
         transition={{ duration: 3.2, ease: "easeInOut" }}
         className="absolute inset-0 z-20 justify-center items-center bottom-[-8vh] flex lg:hidden"
+        style={{ willChange: "transform" }}
       >
-        <motion.div style={{ y: planeY }}>
+        <motion.div style={{ y: planeY, willChange: "transform" }}>
           <Image
             src={plane}
             alt="Plane"
@@ -576,7 +568,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           />
         </motion.div>
       </motion.div>
-      {/* ☁️ Cloud 1: Left → Right (Bottom Start) */}
+      {/* ☁️ Cloud 1 */}
       <motion.div
         initial={{ x: "-100%", y: "50%", scale: 1.5, opacity: 0 }}
         animate={{
@@ -592,6 +584,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           repeat: Infinity,
         }}
         className="absolute inset-0 z-20 flex justify-center items-center"
+        style={{ willChange: "transform" }}
       >
         <Image
           src={cloud}
@@ -599,7 +592,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           className="w-full h-auto object-contain"
         />
       </motion.div>
-      {/* ☁️ Cloud 2: Right → Left (Top-Right to Bottom-Left) */}
+      {/* ☁️ Cloud 2 */}
       <motion.div
         initial={{ x: "100%", y: "-40%", scale: 1.5, opacity: 0 }}
         animate={{
@@ -615,6 +608,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           repeat: Infinity,
         }}
         className="absolute inset-0 z-20 flex justify-center items-center"
+        style={{ willChange: "transform" }}
       >
         <Image
           src={cloud}
@@ -622,7 +616,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           className="w-full h-auto object-contain"
         />
       </motion.div>
-      {/* ☁️ Cloud 3: Left-Top → Right-Mid (Slower) */}
+      {/* ☁️ Cloud 3 */}
       <motion.div
         initial={{ x: "-120%", y: "-30%", scale: 1.3, opacity: 0 }}
         animate={{
@@ -638,6 +632,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           repeat: Infinity,
         }}
         className="absolute inset-0 z-10 flex justify-center items-center"
+        style={{ willChange: "transform" }}
       >
         <Image
           src={cloud}
@@ -645,7 +640,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           className="w-full h-auto object-contain"
         />
       </motion.div>
-      {/* ☁️ Cloud 4: Right-Bottom → Left-Top (Faster) */}
+      {/* ☁️ Cloud 4 */}
       <motion.div
         initial={{ x: "100%", y: "50%", scale: 1.2, opacity: 0 }}
         animate={{
@@ -661,6 +656,7 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
           repeat: Infinity,
         }}
         className="absolute inset-0 z-10 flex justify-center items-center"
+        style={{ willChange: "transform" }}
       >
         <Image
           src={cloud}
@@ -671,3 +667,4 @@ bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blac
     </div>
   );
 }
+
