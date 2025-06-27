@@ -1,5 +1,7 @@
 // app/layout.tsx
+"use client";
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Providers } from "./providers";
@@ -9,43 +11,41 @@ import { Footer } from "@/components/footer-section";
 import Loading3D from "@/components/sections/Loading3D"; // ⬅️ Import here
 import FloatingContactButtons from "@/components/sections/FloatingContactButtons";
 import MultiLayerParallax from "@/components/sections/HeroParallax";
+import Loading from "@/components/sections/Loading3D";
+import { useState, useEffect } from "react";
+import { LoaderProvider } from "@/components/LoaderProvider";
 
 const inter = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-
-export const metadata = {
-  title: "Insight | Expert Study Abroad Consultants for Global Education",
-  description:
-    "Turn your study abroad dreams into reality with Insight. Insight’s expert guidance, trusted support, and global opportunities await!",
-  keywords:
-    "study abroad, global education, international students, expert guidance, trusted support, study visa, international admissions, overseas education",
-  icons: {
-    icon: "/assets/logo.png",
-  },
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const isLoading = false; // 👈 Replace with your real loading state
+  // const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans`}>
-        {isLoading ? (
-          <Loading3D />
-        ) : (
-          <>
-            <Providers>
-              <LenisProvider />
-              <Nav isLoading={isLoading} />
-              <main>{children}</main>
-              <Footer />
-            </Providers>
-            <FloatingContactButtons />
-          </>
-        )}
+        {/* <LoaderProvider> */}
+        <Providers>
+          <LenisProvider />
+          <Nav isLoading={false} />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
+        <FloatingContactButtons />
+        {/* </LoaderProvider> */}
       </body>
     </html>
   );

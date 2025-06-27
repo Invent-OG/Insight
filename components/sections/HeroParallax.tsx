@@ -231,16 +231,219 @@
 //     </div>
 //   );
 // }
+// "use client";
+// import { motion, useScroll, useTransform } from "framer-motion";
+// import Image from "next/image";
+// import React, { useRef } from "react";
+
+// import moon from "@/public/assets/heroimages/moon.webp";
+// import plane from "@/public/assets/heroimages/Plane.webp";
+// import cloud from "@/public/assets/heroimages/cloud.webp";
+// import light from "@/public/assets/heroimages/light.webp";
+// import globe from "@/public/assets/heroimages/underglobe.webp";
+// import sky from "@/public/assets/heroimages/sky.webp"
+// import globe1 from "@/public/assets/heroimages/night earth.webp"
+// import logo from "@/public/assets/logo.png";
+
+// export default function MultiLayerParallax() {
+//   const ref = useRef(null);
+//   const { scrollYProgress } = useScroll({
+//     target: ref,
+//     offset: ["start start", "end start"],
+//   });
+
+//   // Parallax positions
+//   const moonY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+//   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+//   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
+//   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+//   const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+//   return (
+//     <div ref={ref} className="w-full h-screen overflow-hidden relative">
+//       {/* 🌕 1. Moon as the full-screen background (with Parallax!) */}
+//       <motion.div
+//         style={{ y: moonY }}
+//         className="absolute inset-0 z-10 h-[120vh]"
+//       >
+//         <Image
+//           src={moon}
+//           alt="Moon Background"
+//           fill
+//           priority
+//           className="
+//             object-cover
+//             object-[63%_40%]      /* Mobile: shift focus to left side */
+//             lg:object-center      /* Desktop: keep centered */
+//           "
+//         />
+//       </motion.div>
+
+//       {/* 🌟 Logo (with Parallax!) */}
+//       <motion.div
+//         style={{ y: logoY }}
+//         className="absolute inset-0 z-10 pointer-events-none"
+//       >
+//         <Image
+//           src={logo}
+//           alt="Moon Background"
+//           priority
+//           className="
+//             object-cover absolute opacity-15
+//             /* 📱 Mobile size (default) */
+//             h-[55vh] w-[100vw] -right-[48%] top-60
+//             /* 💻 Desktop size */
+//             lg:h-[150vh] lg:w-full lg:-right-[30%] lg:-top-20
+//           "
+//         />
+//       </motion.div>
+
+//       {/* ✈️ Plane (Highest Z-Index) */}
+//       <motion.div
+//         initial={{ x: "-100%", y: "60%" }}
+//         animate={{ x: 0, y: -80 }}
+//         transition={{
+//           duration: 2.5,
+//           ease: [0.25, 1, 0.5, 1], // Smooth "takeoff" feel
+//         }}
+//         className="absolute inset-0 z-10 flex justify-center items-center bottom-[-10vh] lg:bottom-0"
+//       >
+//         <motion.div style={{ y: planeY }}>
+//           <Image
+//             src={plane}
+//             alt="Plane"
+//             className="w-[70vw] h-[70vh] object-contain"
+//           />
+//         </motion.div>
+//       </motion.div>
+
+//       {/* 📝 Center Text Overlay (Second Highest) */}
+// <motion.div
+//   style={{ y: textY }}
+//   className="absolute inset-0 flex uppercase flex-col justify-center items-center z-30 pointer-events-none"
+// >
+//   <motion.p
+//     initial={{ opacity: 0 }}
+//     animate={{ opacity: 1 }}
+//     transition={{ duration: 1, delay: 1.3, ease: "easeOut" }}
+//     className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-slate-400 to-red-300 bg-clip-text text-transparent text-lg md:text-[2.5rem] text-center"
+//   >
+//     Beyond borders, better.
+//   </motion.p>
+
+//   <motion.h1
+//     initial={{ y: 30, opacity: 0, filter: "blur(10px)" }}
+//     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+//     transition={{ duration: 1.2, ease: "easeOut" }}
+//     className="
+//       font-orbitron
+//       text-7xl md:text-9xl font-extrabold text-center drop-shadow-lg
+//       text-transparent
+//       bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))]
+//       from-white via-black to-red-600 bg-clip-text
+//       light-sweep
+//     "
+//     style={{
+//       WebkitTextStroke: "0.5px #f8f8f8",
+//     }}
+//   >
+//     Insight
+//   </motion.h1>
+// </motion.div>
+
+//       {/* ☁️ 3a. Cloud 1: Left → Right (no scroll effect) */}
+//       <motion.div
+//         initial={{
+//           x: "-100%",
+//           scale: 1.5,
+//           opacity: 0,
+//         }}
+//         animate={{
+//           x: ["-100%", "100%"],
+//           scale: [1.5, 1, 1],
+//           opacity: [0, 2, 1],
+//         }}
+//         transition={{
+//           times: [0, 0.6, 1],
+//           duration: 24,
+//           ease: "easeInOut",
+//           repeat: Infinity,
+//         }}
+//         className="absolute inset-0 z-30 flex justify-center items-center"
+//       >
+//         <Image
+//           src={cloud}
+//           alt="Cloud"
+//           className="w-full h-auto object-contain"
+//         />
+//       </motion.div>
+
+//       {/* ☁️ 3b. Cloud 2: Right → Left */}
+//       <motion.div
+//         initial={{
+//           x: "100%",
+//           scale: 1.5,
+//           opacity: 0,
+//         }}
+//         animate={{
+//           x: ["100%", "-100%"],
+//           scale: [1.5, 1, 1],
+//           opacity: [0, 2, 1],
+//         }}
+//         transition={{
+//           times: [0, 0.6, 1],
+//           duration: 24,
+//           ease: "easeInOut",
+//           repeat: Infinity,
+//         }}
+//         className="absolute inset-0 z-30 flex justify-center items-center"
+//       >
+//         <Image
+//           src={cloud}
+//           alt="Cloud"
+//           className="w-full h-auto object-contain"
+//         />
+//       </motion.div>
+
+//       {/* 💡 4. Light */}
+//       <motion.div
+//         style={{ y: lightY }}
+//         initial={{ y: 100, opacity: 0 }}
+//         animate={{ y: 0, opacity: 1 }}
+//         transition={{ duration: 2.5, ease: "easeOut" }}
+//         className="absolute inset-0 lg:mt-0 mt-20 w-full z-20 flex justify-center items-center"
+//       >
+//         <Image src={light} alt="Light" className="w-full object-cover" />
+//       </motion.div>
+
+//       {/* 🌍 5. Under Globe (at the bottom) */}
+//       <motion.div
+//         initial={{ y: 100, opacity: 0 }}
+//         animate={{ y: 0, opacity: 1 }}
+//         transition={{ duration: 2.5, ease: "easeOut" }}
+//         className="absolute inset-0 flex justify-center items-end z-30"
+//       >
+//         <Image
+//           src={globe}
+//           alt="Globe"
+//           className="w-full absolute bottom-0 h-full object-cover"
+//         />
+//       </motion.div>
+//     </div>
+//   );
+// }
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import React, { useRef } from "react";
+import StarfieldCanvas from "@/components/sections/StarfieldCanvas";
 
-import moon from "@/public/assets/heroimages/moon.webp";
+
 import plane from "@/public/assets/heroimages/Plane.webp";
 import cloud from "@/public/assets/heroimages/cloud.webp";
 import light from "@/public/assets/heroimages/light.webp";
-import globe from "@/public/assets/heroimages/underglobe.webp";
+import sky from "@/public/assets/heroimages/moon.webp";
+import globe1 from "@/public/assets/heroimages/night earth.webp";
 import logo from "@/public/assets/logo.png";
 
 export default function MultiLayerParallax() {
@@ -250,8 +453,7 @@ export default function MultiLayerParallax() {
     offset: ["start start", "end start"],
   });
 
-  // Parallax positions
-  const moonY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -259,63 +461,50 @@ export default function MultiLayerParallax() {
 
   return (
     <div ref={ref} className="w-full h-screen overflow-hidden relative">
-      {/* 🌕 1. Moon as the full-screen background (with Parallax!) */}
+      <StarfieldCanvas /> {/* ✨ Starfield layer behind everything */}
+      {/* 🌌 Sky Background */}
       <motion.div
-        style={{ y: moonY }}
-        className="absolute inset-0 z-10 h-[120vh]"
+        style={{ y: skyY }}
+        className="absolute inset-0 z-0 h-[120vh]"
       >
         <Image
-          src={moon}
-          alt="Moon Background"
+          src={sky}
+          alt="Sky"
           fill
           priority
-          className="
-            object-cover
-            object-[63%_40%]      /* Mobile: shift focus to left side */
-            lg:object-center      /* Desktop: keep centered */
-          "
+          className="object-cover scale-100 object-[63%_40%] lg:object-center transition-transform duration-300"
         />
       </motion.div>
-
-      {/* 🌟 Logo (with Parallax!) */}
+      {/* 🌍 Globe (bottom-focused) */}
+      {/* <Image
+        src={globe1}
+        alt="Bottom Globe"
+        priority
+        className=" absolute  top-[125%]  scale-[2.80]  z-50 pointer-events-none  "
+      /> */}
       <motion.div
-        style={{ y: logoY }}
-        className="absolute inset-0 z-10 pointer-events-none"
+        className="absolute lg:top-[100%] top-[80%] w-full  z-50 pointer-events-none"
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 100, ease: "linear" }}
       >
         <Image
-          src={logo}
-          alt="Moon Background"
+          src={globe1}
+          alt="Bottom Globe"
           priority
-          className="
-            object-cover absolute opacity-15
-            /* 📱 Mobile size (default) */
-            h-[55vh] w-[100vw] -right-[48%] top-60
-            /* 💻 Desktop size */
-            lg:h-[150vh] lg:w-full lg:-right-[30%] lg:-top-20
-          "
+          className="w-full scale-[2.30] h-auto"
         />
       </motion.div>
-
-      {/* ✈️ Plane (Highest Z-Index) */}
-      <motion.div
-        initial={{ x: "-100%", y: "60%" }}
-        animate={{ x: 0, y: -80 }}
-        transition={{
-          duration: 2.5,
-          ease: [0.25, 1, 0.5, 1], // Smooth "takeoff" feel
-        }}
-        className="absolute inset-0 z-10 flex justify-center items-center bottom-[-10vh] lg:bottom-0"
+      {/* ✨ Light Overlay */}
+      {/* <motion.div
+        style={{ y: lightY }}
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 2.5, ease: "easeOut" }}
+        className="absolute inset-0 w-full z-20 flex justify-center items-center"
       >
-        <motion.div style={{ y: planeY }}>
-          <Image
-            src={plane}
-            alt="Plane"
-            className="w-[70vw] h-[70vh] object-contain"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 📝 Center Text Overlay (Second Highest) */}
+        <Image src={light} alt="Light" className="w-full object-cover" />
+      </motion.div> */}
+      {/* 🎯 Center Text */}
       <motion.div
         style={{ y: textY }}
         className="absolute inset-0 flex uppercase flex-col justify-center items-center z-30 pointer-events-none"
@@ -324,7 +513,7 @@ export default function MultiLayerParallax() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.3, ease: "easeOut" }}
-          className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-slate-400 to-red-300 bg-clip-text text-transparent text-lg md:text-[2.5rem] text-center"
+          className="bg-gradient-to-r from-red-400 via-white to-red-600 bg-clip-text text-transparent text-lg md:text-[1.8rem] text-center"
         >
           Beyond borders, better.
         </motion.p>
@@ -335,10 +524,10 @@ export default function MultiLayerParallax() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="
             font-orbitron
-            text-7xl md:text-9xl font-extrabold text-center drop-shadow-lg
-            text-transparent 
-            bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))]
-            from-white via-black to-red-600 bg-clip-text
+            text-7xl md:text-8xl font-extrabold text-center drop-shadow-lg
+            text-transparent
+bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-black via-red-500 to-white
+ bg-clip-text
             light-sweep
           "
           style={{
@@ -348,26 +537,64 @@ export default function MultiLayerParallax() {
           Insight
         </motion.h1>
       </motion.div>
-
-      {/* ☁️ 3a. Cloud 1: Left → Right (no scroll effect) */}
+      {/* 🔆 Logo Parallax */}
       <motion.div
-        initial={{
-          x: "-100%",
-          scale: 1.5,
-          opacity: 0,
-        }}
+        style={{ y: logoY }}
+        className="absolute inset-0 z-10 pointer-events-none"
+      >
+        <Image
+          src={logo}
+          alt="Logo"
+          priority
+          className="object-cover absolute opacity-20 h-[55vh] w-[100vw] -right-[50%] top-72 lg:h-[150vh] lg:w-full lg:-right-[30.7%] lg:-top-20"
+        />
+      </motion.div>
+      {/* ✈️ Plane - Desktop (unchanged) */}
+      <motion.div
+        initial={{ x: "-100%", y: "60%" }}
+        animate={{ x: 0, y: -80 }}
+        transition={{ duration: 2.5, ease: [0.25, 1, 0.5, 1] }}
+        className="absolute inset-0 z-20 justify-center items-center bottom-[-10vh] lg:bottom-0 hidden lg:flex"
+      >
+        <motion.div style={{ y: planeY }}>
+          <Image
+            src={plane}
+            alt="Plane"
+            className="w-[70vw] h-[70vh] object-contain"
+          />
+        </motion.div>
+      </motion.div>
+      {/* ✈️ Plane - Mobile Only */}
+      <motion.div
+        initial={{ x: "-250%", y: "60%" }}
+        animate={{ x: 0, y: -90 }} // move to center-top
+        transition={{ duration: 3.2, ease: "easeInOut" }}
+        className="absolute inset-0 z-20 justify-center items-center bottom-[-8vh] flex lg:hidden"
+      >
+        <motion.div style={{ y: planeY }}>
+          <Image
+            src={plane}
+            alt="Plane"
+            className="w-[85vw] h-[60vh] object-contain"
+          />
+        </motion.div>
+      </motion.div>
+      {/* ☁️ Cloud 1: Left → Right (Bottom Start) */}
+      <motion.div
+        initial={{ x: "-100%", y: "50%", scale: 1.5, opacity: 0 }}
         animate={{
-          x: ["-100%", "100%"],
-          scale: [1.5, 1, 1],
-          opacity: [0, 2, 1],
+          x: ["-20%", "100%"],
+          y: ["50%", "50%"],
+          scale: [1.5, 1],
+          opacity: [0, 1],
         }}
         transition={{
           times: [0, 0.6, 1],
-          duration: 24,
+          duration: 18,
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        className="absolute inset-0 z-30 flex justify-center items-center"
+        className="absolute inset-0 z-20 flex justify-center items-center"
       >
         <Image
           src={cloud}
@@ -375,18 +602,14 @@ export default function MultiLayerParallax() {
           className="w-full h-auto object-contain"
         />
       </motion.div>
-
-      {/* ☁️ 3b. Cloud 2: Right → Left */}
+      {/* ☁️ Cloud 2: Right → Left (Top-Right to Bottom-Left) */}
       <motion.div
-        initial={{
-          x: "100%",
-          scale: 1.5,
-          opacity: 0,
-        }}
+        initial={{ x: "100%", y: "-40%", scale: 1.5, opacity: 0 }}
         animate={{
-          x: ["100%", "-100%"],
-          scale: [1.5, 1, 1],
-          opacity: [0, 2, 1],
+          x: ["50%", "-100%"],
+          y: ["-40%", "50%"],
+          scale: [1.5, 1],
+          opacity: [0, 1],
         }}
         transition={{
           times: [0, 0.6, 1],
@@ -394,7 +617,7 @@ export default function MultiLayerParallax() {
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        className="absolute inset-0 z-30 flex justify-center items-center"
+        className="absolute inset-0 z-20 flex justify-center items-center"
       >
         <Image
           src={cloud}
@@ -402,29 +625,50 @@ export default function MultiLayerParallax() {
           className="w-full h-auto object-contain"
         />
       </motion.div>
-
-      {/* 💡 4. Light */}
+      {/* ☁️ Cloud 3: Left-Top → Right-Mid (Slower) */}
       <motion.div
-        style={{ y: lightY }}
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeOut" }}
-        className="absolute inset-0 lg:mt-0 mt-20 w-full z-20 flex justify-center items-center"
-      >
-        <Image src={light} alt="Light" className="w-full object-cover" />
-      </motion.div>
-
-      {/* 🌍 5. Under Globe (at the bottom) */}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeOut" }}
-        className="absolute inset-0 flex justify-center items-end z-30"
+        initial={{ x: "-120%", y: "-30%", scale: 1.3, opacity: 0 }}
+        animate={{
+          x: ["-50%", "100%"],
+          y: ["-30%", "0%"],
+          scale: [1.3, 1],
+          opacity: [0, 1],
+        }}
+        transition={{
+          times: [0, 0.5, 1],
+          duration: 30,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+        className="absolute inset-0 z-10 flex justify-center items-center"
       >
         <Image
-          src={globe}
-          alt="Globe"
-          className="w-full absolute bottom-0 h-full object-cover"
+          src={cloud}
+          alt="Cloud"
+          className="w-full h-auto object-contain"
+        />
+      </motion.div>
+      {/* ☁️ Cloud 4: Right-Bottom → Left-Top (Faster) */}
+      <motion.div
+        initial={{ x: "100%", y: "50%", scale: 1.2, opacity: 0 }}
+        animate={{
+          x: ["60%", "-120%"],
+          y: ["50%", "-20%"],
+          scale: [1.2, 1],
+          opacity: [0, 1],
+        }}
+        transition={{
+          times: [0, 0.4, 1],
+          duration: 14,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+        className="absolute inset-0 z-10 flex justify-center items-center"
+      >
+        <Image
+          src={cloud}
+          alt="Cloud"
+          className="w-full h-auto object-contain"
         />
       </motion.div>
     </div>

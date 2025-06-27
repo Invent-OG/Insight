@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Disallow: /admin
+
+# Host
+Host: https://www.insightabroadservices.org/
+
+# Sitemaps
+Sitemap: https://www.insightabroadservices.org/sitemap.xml

@@ -278,7 +278,7 @@ const Layout2 = () => {
         <motion.div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
-            backgroundImage: "url('/assets/servicebg.jpg')",
+            backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.8,
@@ -295,7 +295,7 @@ const Layout2 = () => {
         <div
           className="absolute inset-0 z-0 hidden md:block"
           style={{
-            backgroundImage: "url('/assets/servicebg.jpg')",
+            backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
             backgroundPosition: "left center",
