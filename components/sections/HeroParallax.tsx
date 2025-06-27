@@ -456,10 +456,6 @@ export default function MultiLayerParallax() {
   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const logoX = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]); // slide from right to center
-  const logoOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 0.2]); // subtle fade in opacity max 0.2
-  const logoScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]); // subtle scale up
 
   // Add 'will-change: transform' to motion divs for GPU acceleration hint
   // This helps smooth animation on scroll
@@ -594,7 +590,7 @@ export default function MultiLayerParallax() {
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        className="absolute inset-0 z-20 flex justify-center items-center"
+        className="absolute inset-0 z-10 flex justify-center items-center"
         style={{ willChange: "transform" }}
       >
         <Image
@@ -618,7 +614,7 @@ export default function MultiLayerParallax() {
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        className="absolute inset-0 z-20 flex justify-center items-center"
+        className="absolute inset-0 z-10 flex justify-center items-center"
         style={{ willChange: "transform" }}
       >
         <Image
