@@ -206,24 +206,25 @@ export default function UniversitiesSection() {
         <div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
-            backgroundImage: "url('/assets/textures/university.jpg')",
+            backgroundImage: "url('/assets/textures/university1.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-            opacity: 0.5,
+            backgroundPosition: "center 30%", // 👈 this is the key fix
+            backgroundAttachment: "scroll",
+            opacity: 0.9,
           }}
         />
+
         {/* Desktop Background */}
         <div
           className="absolute inset-0 z-0 hidden md:block"
           style={{
-            backgroundImage: "url('/assets/textures/university.jpg')",
+            backgroundImage: "url('/assets/textures/university1.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
-            opacity: 0.2,
+            opacity: 0.6,
           }}
         />
         <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-2">
@@ -281,4 +282,3 @@ export default function UniversitiesSection() {
     </div>
   );
 }
-
