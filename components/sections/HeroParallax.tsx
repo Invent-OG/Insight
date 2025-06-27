@@ -581,7 +581,7 @@ export default function MultiLayerParallax() {
       </motion.div>
       {/* ☁️ Cloud 1 */}
       <motion.div
-        initial={{ x: "-100%", y: "50%", scale: 1.5, opacity: 0 }}
+        initial={{ x: "-100%", y: "50%", scale: 1.5, opacity: 50 }}
         animate={{
           x: ["-20%", "100%"],
           y: ["50%", "50%"],
@@ -605,7 +605,7 @@ export default function MultiLayerParallax() {
       </motion.div>
       {/* ☁️ Cloud 2 */}
       <motion.div
-        initial={{ x: "100%", y: "-40%", scale: 1.5, opacity: 0 }}
+        initial={{ x: "100%", y: "-40%", scale: 1.5, opacity: 40 }}
         animate={{
           x: ["50%", "-100%"],
           y: ["-40%", "50%"],
@@ -629,7 +629,7 @@ export default function MultiLayerParallax() {
       </motion.div>
       {/* ☁️ Cloud 3 */}
       <motion.div
-        initial={{ x: "-120%", y: "-30%", scale: 1.3, opacity: 0 }}
+        initial={{ x: "-120%", y: "-30%", scale: 1.3, opacity: 30 }}
         animate={{
           x: ["-50%", "100%"],
           y: ["-30%", "0%"],
@@ -653,7 +653,7 @@ export default function MultiLayerParallax() {
       </motion.div>
       {/* ☁️ Cloud 4 */}
       <motion.div
-        initial={{ x: "100%", y: "50%", scale: 1.2, opacity: 0 }}
+        initial={{ x: "100%", y: "50%", scale: 1.2, opacity: 20 }}
         animate={{
           x: ["60%", "-120%"],
           y: ["50%", "-20%"],
