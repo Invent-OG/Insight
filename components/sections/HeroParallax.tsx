@@ -436,8 +436,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import React, { useRef } from "react";
-import StarfieldCanvas from "@/components/sections/StarfieldCanvas";
-
 
 import plane from "@/public/assets/heroimages/Plane.webp";
 import cloud from "@/public/assets/heroimages/cloud.webp";
@@ -461,7 +459,6 @@ export default function MultiLayerParallax() {
 
   return (
     <div ref={ref} className="w-full h-screen overflow-hidden relative">
-      <StarfieldCanvas /> {/* ✨ Starfield layer behind everything */}
       {/* 🌌 Sky Background */}
       <motion.div
         style={{ y: skyY }}
