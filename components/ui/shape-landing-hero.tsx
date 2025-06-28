@@ -408,7 +408,7 @@ function HeroGeometric({ badge }: HeroGeometricProps) {
         </motion.div>
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-400 via-transparent to-gray-600 pointer-events-none" />
     </div>
   );
 }

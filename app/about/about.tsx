@@ -231,9 +231,10 @@ export default function AboutPage() {
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
           {/* Background image with blur */}
           <div
-            className="absolute inset-0 bg-center bg-cover bg-fixed filter brightness-75"
+            className="absolute inset-0 bg-center bg-cover filter brightness-75 lg:bg-fixed"
             style={{
               backgroundImage: `url("/assets/about/Our services (about page).webp")`,
+              backgroundPositionX: "30%",
             }}
             aria-hidden="true"
           ></div>
@@ -412,15 +413,15 @@ to finish. Discover your path to international education with Insight
         {/* Content */}
         <div className="relative bg-red-100 w-full min-h-screen ">
           {/* Background image with reduced opacity */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            <Image
+          {/* <div className="absolute inset-0 w-full h-full z-0">
+            {/* <Image
               src={ourcorevalue}
               alt="Background"
               fill
               className="opacity-70"
               priority
-            />
-          </div>
+            /> */}
+          {/* </div> */} 
 
           {/* Foreground content on top of image */}
           <div className="relative z-10 w-full h-full">
