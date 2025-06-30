@@ -114,25 +114,24 @@ const Page = () => {
     <main className=" mx-auto  ">
       {/* Meta Title and Description */}
       <section
-        className="relative min-h-screen  flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80')",
-          backgroundAttachment: "fixed",
+          backgroundAttachment:
+            typeof window !== "undefined" && window.innerWidth < 640
+              ? "scroll"
+              : "fixed",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
       >
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none"></div>
-
-        {/* Content container */}
         <div>
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl  font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg">
             Top Courses to <span className="text-primary">Study Abroad</span>
             &nbsp;
-            {/* Pulsating underline */}
             <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-6 animate-pulse"></span>
           </h1>
 
@@ -147,8 +146,6 @@ const Page = () => {
             <div className="h-1 w-28 bg-red-600 rounded-full animate-pulse shadow-lg"></div>
           </div>
         </div>
-
-        {/* Scroll down indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
           <svg
             className="w-8 h-8"
