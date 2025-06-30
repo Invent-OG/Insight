@@ -226,7 +226,7 @@ export function Footer() {
         <div className="space-y-4">
           <Image src={logo} alt="Company Logo" className="h-10 w-10" />
           <p className="text-gray-300 mt-8 text-sm md:mt-0">
-            © {new Date().getFullYear()} Asme. All rights reserved.
+            © {new Date().getFullYear()} Insight. All rights reserved.
           </p>
         </div>
 
