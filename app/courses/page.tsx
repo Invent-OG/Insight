@@ -33,6 +33,7 @@ import {
   FaBook,
   FaNewspaper,
   FaGavel,
+  FaHeartbeat,
 } from "react-icons/fa";
 
 const categoryIcons = {
@@ -71,6 +72,7 @@ const categoryIcons = {
   "Philosophy, Politics, and Economics (PPE)": (
     <FaGavel className="w-6 h-6 text-red-600" />
   ),
+  "MBBS Courses Abroad": <FaHeartbeat className="w-6 h-6 text-red-600" />,
 };
 
 import Image from "next/image";
@@ -477,6 +479,33 @@ const Page = () => {
                 "Masters in Politics",
                 "Masters in Economics",
                 "Public Policy",
+              ],
+            },
+            {
+              category: "MBBS Courses Abroad",
+              image: fiftimg,
+              description: `"Pursue a globally recognized medical degree and unlock a world of healthcare
+opportunities. MBBS courses abroad offer high-quality education, state-of-the-art
+facilities, clinical exposure, and international recognition."`,
+              undergraduate: [
+                "General Medicine (MBBS)",
+                "Clinical Medicine",
+                "Surgery",
+                "Pediatrics",
+                "Dentistry (BDS)",
+                "Nursing",
+              ],
+              postgraduate: [
+                "Internal Medicine",
+                "General Surgery",
+                "Pediatrics",
+                "Orthopedics",
+                "Gynecology & Obstetrics",
+                "Cardiology",
+                "Radiology",
+                "Anesthesiology",
+                "Dermatology",
+                "Psychiatry",
               ],
             },
           ].map(
