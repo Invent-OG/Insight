@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <main className="w-full">
         <PopupFormModal />
