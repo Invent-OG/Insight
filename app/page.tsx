@@ -52,6 +52,7 @@ import MultiLayerParallax from "@/components/sections/HeroParallax";
 import HeroParallaxContent from "@/components/sections/HeroParallaxContent";
 import Loading from "@/components/sections/Loading3D";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 // export const metadata = {
 //   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -83,18 +84,23 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full">
-      <PopupFormModal />
-      <MultiLayerParallax />
-      {/* <Hero1 /> */}
-      {/* <HeroParallaxContent /> */}
-      <Herocontent />
-      <CountriesCarousel />
-      <ServicesSection />
-      <UniversitiesSection />
-      <ContactSection />
-      <Blogs />
-      <Testimonial />
-    </main>
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="w-full">
+        <PopupFormModal />
+        <MultiLayerParallax />
+        {/* <Hero1 /> */}
+        {/* <HeroParallaxContent /> */}
+        <Herocontent />
+        <CountriesCarousel />
+        <ServicesSection />
+        <UniversitiesSection />
+        <ContactSection />
+        <Blogs />
+        <Testimonial />
+      </main>
+    </>
   );
 }
