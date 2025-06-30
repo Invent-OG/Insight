@@ -462,7 +462,8 @@ import { supabase } from "@/lib/supabase/client";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
 const blogSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),

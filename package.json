@@ -86,7 +86,7 @@
     "@types/react-dom": "^19.1.6",
     "@types/three": "^0.177.0",
     "autoprefixer": "^10.4.21",
-    "drizzle-kit": "^0.31.1",
+    "drizzle-kit": "^0.18.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8.5.3",
