@@ -89,7 +89,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <main className="w-full">
-        <PopupFormModal />
+        {/* <PopupFormModal /> */}
         <MultiLayerParallax />
         {/* <Hero1 /> */}
         {/* <HeroParallaxContent /> */}
