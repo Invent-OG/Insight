@@ -77,7 +77,6 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CountriesCarousel from "@/components/sections/CountriesCarousel";
-import { LavaLamp } from "@/components/fluid-blob";
 
 // Animation variants for framer-motion
 const cardVariants = {
@@ -111,10 +110,6 @@ const Page = () => {
   }, []);
   return (
     <main className=" mx-auto  ">
-      <div className="min-h-screen">
-        <LavaLamp />
-      </div>
-
       {/* Meta Title and Description */}
       <section
         className="relative min-h-screen  flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
