@@ -514,7 +514,14 @@ export default function Contact() {
 
       <Toaster position="top-right" />
 
-      <main className="min-h-screen bg-white lg:py-16 py-16 px-6">
+      <main
+        className="min-h-screen bg-white lg:py-16 py-16 px-6"
+        style={{
+          backgroundImage:
+            "url('/assets/contactbg.jpg')",
+          backgroundRepeat: "repeat",
+        }}
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
           {/* Left Side: Heading + Contact Info */}
           <div className="flex flex-col justify-start space-y-10">
@@ -530,7 +537,6 @@ export default function Contact() {
 
             {/* Contact Info Section */}
             <div className="text-gray-700 text-sm space-y-5" data-aos="fade-up">
-              {/* Phone */}
               <div className="flex items-center gap-2">
                 <Phone className="text-red-600 w-4 h-4" />
                 <span>
@@ -541,7 +547,6 @@ export default function Contact() {
                 </span>
               </div>
 
-              {/* Email */}
               <div className="flex items-center gap-2">
                 <Mail className="text-red-600 w-4 h-4" />
                 <span>
@@ -555,7 +560,6 @@ export default function Contact() {
                 </span>
               </div>
 
-              {/* Address */}
               <div className="flex items-start gap-2">
                 <MapPin className="text-red-600 w-4 h-4 mt-1" />
                 <span>
@@ -566,7 +570,6 @@ export default function Contact() {
                 </span>
               </div>
 
-              {/* Hours */}
               <div className="flex items-start gap-2">
                 <Clock className="text-red-600 w-4 h-4 mt-1" />
                 <div>

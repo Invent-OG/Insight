@@ -98,7 +98,7 @@ export default function AboutPage() {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+                src="/assets/about/Pathway to international education (about page).webp"
                 alt="International education"
                 className="object-cover rounded-lg w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 shadow-lg"
               />
@@ -421,7 +421,7 @@ to finish. Discover your path to international education with Insight
               className="opacity-70"
               priority
             /> */}
-          {/* </div> */} 
+          {/* </div> */}
 
           {/* Foreground content on top of image */}
           <div className="relative z-10 w-full h-full">

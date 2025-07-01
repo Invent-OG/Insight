@@ -10,7 +10,7 @@ export default function FloatingContactButtons() {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <div className="fixed z-50 flex flex-col gap-3 bottom-5 right-5">
+    <div className="fixed  z-50 flex flex-col gap-3 bottom-5 right-5">
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/919629472748" // Replace with your number
