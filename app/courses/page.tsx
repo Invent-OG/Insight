@@ -89,6 +89,7 @@ const cardVariants = {
 
 const Page = () => {
   const [showContent, setShowContent] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     function onScroll() {
@@ -102,6 +103,15 @@ const Page = () => {
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkMobile = () => setIsMobile(window.innerWidth < 640);
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
   }, []);
 
   useEffect(() => {
@@ -119,18 +129,18 @@ const Page = () => {
         style={{
           backgroundImage:
             "url('/assets/course/Top courses to study abroad.webp')",
-          backgroundAttachment:
-            typeof window !== "undefined" && window.innerWidth < 640
-              ? "scroll"
-              : "fixed",
-          backgroundPosition: "48% center ",
+          backgroundAttachment: isMobile ? "scroll" : "fixed", // ✅ Responsive parallax
+          backgroundPosition: "48% center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           opacity: 1,
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none"></div>
-        <div>
+        {/* ✅ Background overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none z-0"></div>
+
+        {/* ✅ Content */}
+        <div className="relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -138,7 +148,6 @@ const Page = () => {
             className="text-white text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg"
           >
             Top Courses to <span className="text-primary">Study Abroad</span>
-            &nbsp;
             <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-6 animate-pulse"></span>
           </motion.h1>
 
@@ -164,7 +173,8 @@ const Page = () => {
           </motion.div>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce">
+        {/* ✅ Down Arrow */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce z-10">
           <svg
             className="w-8 h-8"
             fill="none"
