@@ -498,7 +498,6 @@ export default function Contact() {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -516,11 +515,11 @@ export default function Contact() {
 
       <main
         className="min-h-screen bg-white lg:py-16 py-16 px-6"
-        style={{
-          backgroundImage:
-            "url('/assets/contactbg.jpg')",
-          backgroundRepeat: "repeat",
-        }}
+        // style={{
+        //   backgroundImage:
+        //     "url('/assets/contactbg.jpg')",
+        //   backgroundRepeat: "repeat",
+        // }}
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
           {/* Left Side: Heading + Contact Info */}
