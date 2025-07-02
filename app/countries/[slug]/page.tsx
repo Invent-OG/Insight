@@ -1,37 +1,12 @@
 "use client";
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
-
-// import uk from "@/public/assets/UK.png";
-// import usa from "@/public/assets/country/Usa.jpg";
-// import ireland from "@/public/assets/country/Ireland.jpg";
-// import canada from "@/public/assets/country/Canada (1).png";
-// import australia from "@/public/assets/country/Australia.png";
-// import newzealand from "@/public/assets/country/New Zealand (1).png";
-// import france from "@/public/assets/country/France.jpg";
-// import germany from "@/public/assets/country/Germany (1).png";
-// import uae from "@/public/assets/country/UAE (1).png";
-// import singapore from "@/public/assets/country/Singapore.png";
-// import malaysia from "@/public/assets/country/Malaysia.png";
-// import poland from "@/public/assets/country/Poland.png";
-// import sweden from "@/public/assets/country/Sweden.png";
-// import latvia from "@/public/assets/country/Latvia.jpg";
-// import lithuania from "@/public/assets/country/Lithuania .jpg";
-// import malta from "@/public/assets/country/malta.jpg";
-// import netherland from "@/public/assets/country/Netherland.jpg";
-// import finland from "@/public/assets/country/Finland.jpg";
 import { motion } from "framer-motion";
 import { useCreateLead } from "@/lib/queries/leads"; // adjust path if needed
 import toast, { Toaster } from "react-hot-toast";
 
 import {
   Fragment,
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-  use,
   useState,
 } from "react";
 import Link from "next/link";
@@ -289,26 +264,6 @@ Uzbekistan offers both quality education and cultural richness.
 `,
   },
 ];
-// const suggestionMap: Record<string, string[]> = {
-//   uk: ["singapore", "latvia", "poland"],
-//   usa: ["france", "new-zealand", "poland"],
-//   ireland: ["singapore", "france", "sweden"],
-//   canada: ["poland", "uae", "uk"],
-//   australia: ["malta", "netherlands", "finland"],
-//   "new-zealand": ["singapore", "finland", "sweden"],
-//   france: ["singapore", "finland", "new-zealand"],
-//   germany: ["netherlands", "singapore", "australia"],
-//   uae: ["latvia", "usa", "lithuania"],
-//   singapore: ["malaysia", "germany", "uae"],
-//   malaysia: ["ireland", "lithuania", "singapore"],
-//   poland: ["latvia", "netherlands", "malta"],
-//   sweden: ["malaysia", "germany", "uae"],
-//   latvia: ["uae", "lithuania", "netherlands"],
-//   lithuania: ["finland", "australia", "new-zealand"],
-//   malta: ["ireland", "finland", "germany"],
-//   netherlands: ["germany", "usa", "poland"],
-//   finland: ["canada", "usa", "sweden"],
-// };
 const suggestionMap: Record<string, string[]> = {
   uk: ["singapore", "latvia", "poland"],
   usa: ["france", "new-zealand", "poland"],
@@ -353,11 +308,6 @@ export default function CountryPage() {
   const [selectedSlug, setSelectedSlug] = useState(slug as string);
   const [statusMessage, setStatusMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-
-  // const selectedSuggestions = suggestionMap[selectedSlug];
-  // const suggestedCards = countries.filter((c) =>
-  //   selectedSuggestions.includes(c.slug)
-  // );
   const selectedSuggestions = suggestionMap[selectedSlug] || []; // Fallback to an empty array
   const suggestedCards = countries.filter((c) =>
     selectedSuggestions.includes(c.slug)

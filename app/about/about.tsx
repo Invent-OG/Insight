@@ -3,17 +3,10 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Head from "next/head";
-import { BackgroundPaths } from "@/components/ui/background-paths";
 import { LampDemo } from "@/components/ui/lamp";
-import DisplayCards from "@/components/ui/display-cards";
-import bgpar from "@/public/assets/herocontentimage.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
-import { Sparkles, UserCog, Lightbulb, Handshake } from "lucide-react";
-import ourcorevalue from "@/public/assets/about/ourcorevalue.webp";
-import ourServiceImage from "@/public/assets/about/Our services (about page).webp";
 
 export default function AboutPage() {
   useEffect(() => {

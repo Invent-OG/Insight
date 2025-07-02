@@ -1,7 +1,6 @@
 // components/FloatingContactButtons.tsx
 "use client";
 
-import { Phone, MessageSquare, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 

@@ -1,32 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Link from "next/link";
 import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
-
-// Image imports
-// import uk from "@/public/assets/UK.webp";
-// import usa from "@/public/assets/country/Usa.jpg";
-// import ireland from "@/public/assets/country/Ireland.jpg";
-// import canada from "@/public/assets/country/Canada (1).png";
-// import australia from "@/public/assets/country/Australia.png";
-// import newzealand from "@/public/assets/country/New Zealand (1).png";
-// import france from "@/public/assets/country/France.jpg";
-// import germany from "@/public/assets/country/Germany (1).png";
-// import uae from "@/public/assets/country/UAE (1).png";
-// import singapore from "@/public/assets/country/Singapore.png";
-// import malaysia from "@/public/assets/country/Malaysia.png";
-// import poland from "@/public/assets/country/Poland.png";
-// import sweden from "@/public/assets/country/Sweden.png";
-// import latvia from "@/public/assets/country/Latvia.jpg";
-// import lithuania from "@/public/assets/country/Lithuania .jpg";
-// import malta from "@/public/assets/country/malta.jpg";
-// import netherland from "@/public/assets/country/Netherland.jpg";
-// import finland from "@/public/assets/country/Finland.jpg";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ArrowBigDown } from "lucide-react";
 
 const countries = [
   { title: "adasd", image: "/assets/country/UK (1).png", slug: "sample" },
@@ -299,16 +277,6 @@ export default function StudyAbroadAnimation() {
             <div className="inner relative z-10 w-full h-full flex items-end justify-center">
               <div className="absolute lg:bottom-0 bottom-1/4 w-full lg:bg-gradient-to-t flex gap-5 flex-col justify-center items-center from-black via-black/50 to-transparent px-4 py-6">
                 <h2 className="section-title text-4xl md:text-6xl font-bold  flex gap-3  text-center">
-                  {/* {country.title.split(" ").map((word, i) => (
-                    <span
-                      key={i}
-                      className={`flex ${
-                        i === 2 ? "text-primary" : "text-white"
-                      }`}
-                    >
-                      {word}
-                    </span>
-                  ))} */}
                   {country.title}
                 </h2>
                 <Button

@@ -1,18 +1,4 @@
-// // /app/api/zoho/callback/route.ts
 
-// import { NextRequest } from "next/server";
-
-// export async function GET(req: NextRequest) {
-//   const { searchParams } = new URL(req.url);
-//   const code = searchParams.get("code");
-
-//   if (!code) {
-//     return new Response("Missing code", { status: 400 });
-//   }
-
-//   return new Response(`Authorization Code: ${code}`, { status: 200 });
-// }
-// app/api/zoho/callback/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 

@@ -191,19 +191,7 @@ const Page = () => {
       </section>
 
       {/* Combined Courses Section */}
-      <div
-      // style={{
-      //   backgroundImage: "url('/assets/course/coursesbg2.jpg')",
-      //   backgroundAttachment:
-      //     typeof window !== "undefined" && window.innerWidth < 640
-      //       ? "scroll"
-      //       : "fixed",
-      //   backgroundPosition: " center ",
-      //   backgroundRepeat: "no-repeat",
-      //   backgroundSize: "cover",
-      //   opacity: 1,
-      // }}
-      >
+      <div>
         <section
           data-aos="zoom-in-up"
           data-aos-duration="1000"
