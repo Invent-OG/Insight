@@ -27,6 +27,7 @@ const createLead = async (
     body: JSON.stringify(data),
   });
 
+  
   if (!response.ok) throw new Error("Failed to create lead in Supabase");
 
   const savedLead = await response.json();
