@@ -1,4 +1,3 @@
-
 "use client";
 
 import "./globals.css";
@@ -11,6 +10,7 @@ import PopupFormModal from "@/components/sections/PopupFormModal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -30,7 +30,6 @@ export default function RootLayout({
             <Footer />
           </Providers>
           <FloatingContactButtons />
-          <PopupFormModal />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </body>

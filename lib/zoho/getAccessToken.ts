@@ -1,4 +1,13 @@
-export async function getZohoAccessToken(): Promise<string> {
+let cachedToken: string | null = null;
+let tokenExpiry: number | null = null;
+
+export const getZohoAccessToken = async (): Promise<string> => {
+  const now = Date.now();
+
+  if (cachedToken && tokenExpiry && now < tokenExpiry) {
+    return cachedToken;
+  }
+
   const params = new URLSearchParams({
     refresh_token: process.env.ZB_REFRESH_TOKEN!,
     client_id: process.env.ZB_CLIENT_ID!,
@@ -6,25 +15,23 @@ export async function getZohoAccessToken(): Promise<string> {
     grant_type: "refresh_token",
   });
 
-  const res = await fetch("https://accounts.zoho.in/oauth/v2/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params.toString(),
-  });
+  const response = await fetch(
+    `https://accounts.zoho.in/oauth/v2/token?${params}`,
+    {
+      method: "POST",
+    }
+  );
 
-  const data = await res.json();
+  const data = await response.json();
 
-  // Optional: helpful logging during dev
-  if (process.env.NODE_ENV === "development") {
-    console.log("Zoho access token response:", data);
+  if (!response.ok || !data.access_token) {
+    console.error("Zoho Token Error:", data);
+    throw new Error("Failed to fetch Zoho access token");
   }
+  console.log("Zoho token response:", data);
+  cachedToken = data.access_token;
+  // Token expires in 3600s = 1 hour
+  tokenExpiry = now + (data.expires_in || 3600) * 1000 - 60 * 1000; // refresh 1 min early
 
-  if (!data.access_token) {
-    console.error("Zoho Token Error Response:", data);
-    throw new Error("❌ Failed to fetch Zoho access token");
-  }
-
-  return data.access_token;
-}
+  return cachedToken!;
+};
