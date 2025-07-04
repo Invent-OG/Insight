@@ -14,7 +14,7 @@ export default function FloatingContactButtons() {
       {/* WhatsApp Button */}
 
       <a
-        href="https://wa.me/919629472748" // Replace with your number
+        href="https://wa.me/918270883451" // Replace with your number
         target="_blank"
         rel="noopener noreferrer"
         className="p-4 text-white transition-transform transform bg-green-500 rounded-full shadow-lg hover:bg-green-600 hover:scale-105"

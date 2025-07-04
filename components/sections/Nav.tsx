@@ -119,8 +119,8 @@ const Nav: React.FC<Props> = ({ isLoading }) => {
           onClick={() => router.push("/")}
           src={logo}
           alt="Insight Logo"
-          width={60}
-          height={60}
+          width={85}
+          height={85}
           className="object-cover hover:cursor-pointer"
         />
 

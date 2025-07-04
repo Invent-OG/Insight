@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { FaPhoneAlt } from "react-icons/fa";
@@ -141,9 +139,7 @@ export default function ContactSection() {
             </div>
             <div>
               <span className="text-sm text-black">Phone</span>
-              <p className="text-lg font-medium text-primary">
-                +91 7593 000 094
-              </p>
+              <p className="text-lg font-medium text-primary">+91 8270883451</p>
             </div>
           </div>
         </div>

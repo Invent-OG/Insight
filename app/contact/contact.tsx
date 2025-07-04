@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -114,7 +115,7 @@ export default function Contact() {
                       href="mailto:admin@insightabroadservices.org"
                       className="text-red-600"
                     >
-                      admin@insightabroadservices.org
+                      Info@insightabroadservices.org
                     </a>
                   </span>
                 </div>
@@ -140,6 +141,57 @@ export default function Contact() {
                       <li>Saturday: 10:00 AM – 3:00 PM</li>
                       <li>Sunday: Closed</li>
                     </ul>
+                  </div>
+                </div>
+
+                {/* Social Media Links */}
+                <div className="flex gap-4 pt-4">
+                  {/* Instagram */}
+                  <div className="relative group">
+                    <a
+                      href="https://www.instagram.com/yourpage"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white rounded-full p-3 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110"
+                      aria-label="Instagram"
+                    >
+                      <FaInstagram className="w-5 h-5" />
+                    </a>
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-transform duration-300 ease-out bg-red-600 text-white text-xs px-3 py-1 rounded z-10 shadow-[0_0_8px_rgba(255,0,0,0.6)]">
+                      Instagram
+                    </span>
+                  </div>
+
+                  {/* Facebook */}
+                  <div className="relative group">
+                    <a
+                      href="https://www.facebook.com/yourpage"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white rounded-full p-3 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110"
+                      aria-label="Facebook"
+                    >
+                      <FaFacebookF className="w-5 h-5" />
+                    </a>
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-transform duration-300 ease-out bg-red-600 text-white text-xs px-3 py-1 rounded z-10 shadow-[0_0_8px_rgba(255,0,0,0.6)]">
+                      Facebook
+                    </span>
+                  </div>
+
+                  {/* LinkedIn */}
+                  <div className="relative group">
+                    <a
+                      href="https://www.linkedin.com/company/yourpage"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white rounded-full p-3 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110"
+                      aria-label="LinkedIn"
+                    >
+                      <FaLinkedinIn className="w-5 h-5" />
+                    </a>
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-transform duration-300 ease-out bg-red-600 text-white text-xs px-3 py-1 rounded z-10 shadow-[0_0_8px_rgba(255,0,0,0.6)]">
+                      LinkedIn
+                    </span>
                   </div>
                 </div>
               </div>

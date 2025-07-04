@@ -291,7 +291,7 @@ export default function MultiLayerParallax() {
           transition={{ duration: 1, delay: 1.3 }}
           className="center-subtitle"
         >
-          Beyond borders, better.
+          Beyond borders better
         </motion.p>
 
         <motion.h1
