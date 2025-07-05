@@ -1,416 +1,189 @@
 // "use client";
 
-// import { motion } from "framer-motion";
-// import { cn } from "@/lib/utils";
 // import { Button } from "./button";
-// import { useEffect } from "react";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
+// import { motion } from "framer-motion";
+// import CountUp from "react-countup";
 
-// function ElegantShape({
-//   className,
-//   delay = 0,
-//   width = 400,
-//   height = 100,
-//   rotate = 0,
-//   gradient = "from-white/[0.08]",
-// }: {
-//   className?: string;
-//   delay?: number;
-//   width?: number;
-//   height?: number;
-//   rotate?: number;
-//   gradient?: string;
-// }) {
+// export function HeroGeometric({ badge }: { badge?: string }) {
 //   return (
-//     <motion.div
-//       initial={{
-//         opacity: 0,
-//         y: -150,
-//         rotate: rotate - 15,
-//       }}
-//       animate={{
-//         opacity: 1,
-//         y: 0,
-//         rotate: rotate,
-//       }}
-//       transition={{
-//         duration: 2.4,
-//         delay,
-//         ease: [0.23, 0.86, 0.39, 0.96],
-//         opacity: { duration: 1.2 },
-//       }}
-//       className={cn("absolute", className)}
-//     >
-//       <motion.div
-//         animate={{
-//           y: [0, 15, 0],
-//         }}
-//         transition={{
-//           duration: 12,
-//           repeat: Number.POSITIVE_INFINITY,
-//           ease: "easeInOut",
-//         }}
-//         style={{
-//           width,
-//           height,
-//         }}
-//         className="relative"
-//       >
-//         <div
-//           className={cn(
-//             "absolute inset-0 rounded-full",
-//             "bg-gradient-to-r to-transparent",
-//             gradient,
-//             "backdrop-blur-[2px] border-2 border-white/[0.15]",
-//             "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
-//             "after:absolute after:inset-0 after:rounded-full",
-//             "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
-//           )}
+//     <section className="relative bg-white min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden">
+//       {/* 🖼️ Custom Background Blurred Decoration */}
+//       <div className="absolute inset-0 -z-10">
+//         <img
+//           src="/assets/about/Our services (about page).webp"
+//           alt="Background"
+//           className="w-full h-full object-cover opacity-10 blur-sm"
 //         />
-//       </motion.div>
-//     </motion.div>
-//   );
-// }
-
-// type HeroGeometricProps = {
-//   badge?: string;
-// };
-
-// function HeroGeometric({ badge }: HeroGeometricProps) {
-//   const fadeUpVariants = {
-//     hidden: { opacity: 0, y: 30 },
-//     visible: (i: number) => ({
-//       opacity: 1,
-//       y: 0,
-//       transition: {
-//         duration: 1,
-//         delay: 0.5 + i * 0.2,
-//         ease: [0.25, 0.4, 0.25, 1],
-//       },
-//     }),
-//   };
-//   useEffect(() => {
-//     AOS.init({
-//       duration: 600,
-//       offset: 100,
-//       once: true,
-//     })
-//   }, []);
-//   return (
-//     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
-//       <div className="absolute inset-0 bg-gradient-to-br w-full from-indigo-900/10 via-transparent to-rose-900/10 blur-3xl" />
-
-//       <div className="absolute inset-0 overflow-hidden">
-//         <ElegantShape
-//           delay={0.3}
-//           width={600}
-//           height={140}
-//           rotate={12}
-//           gradient="from-indigo-700/[0.15]"
-//           className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
-//         />
-
-//         <ElegantShape
-//           delay={0.5}
-//           width={500}
-//           height={120}
-//           rotate={-15}
-//           gradient="from-rose-700/[0.15]"
-//           className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
-//         />
-
-//         <ElegantShape
-//           delay={0.4}
-//           width={300}
-//           height={80}
-//           rotate={-8}
-//           gradient="from-violet-700/[0.15]"
-//           className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
-//         />
-
-//         <ElegantShape
-//           delay={0.6}
-//           width={200}
-//           height={60}
-//           rotate={20}
-//           gradient="from-amber-700/[0.15]"
-//           className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
-//         />
-
-//         <ElegantShape
-//           delay={0.7}
-//           width={150}
-//           height={40}
-//           rotate={-25}
-//           gradient="from-cyan-700/[0.15]"
-//           className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
-//         />
+//         <div className="absolute inset-0 bg-white/90" />
 //       </div>
 
+//       {/* 💬 Main Content */}
 //       <motion.div
-//         data-aos="fade-down"
-//         data-aos-duration="800"
-//         data-aos-anchor-placement="top-start"
-//         className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-12"
+//         initial={{ opacity: 0, y: 20 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         transition={{ duration: 1 }}
+//         className="max-w-3xl mx-auto space-y-6"
 //       >
 //         {badge && (
-//           <motion.span
-//             initial={{ opacity: 0, y: -20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 1, delay: 0.3 }}
-//             className="inline-block bg-red-500 text-white px-3  rounded-full text-xs font-semibold lg:mb-4 "
-//           >
+//           <div className="inline-block bg-red-600 text-white text-xs px-4 py-1 rounded-full font-semibold tracking-wide">
 //             {badge}
-//           </motion.span>
+//           </div>
 //         )}
 
-//         <motion.h1
-//           custom={1}
-//           variants={fadeUpVariants}
-//           initial="hidden"
-//           animate="visible"
-//           className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight text-white py-6"
-//         >
-//           Start Your <span className="text-primary">Global Journey</span> With
-//           Expert <span className="text-primary">Guidance</span>
-//         </motion.h1>
+//         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+//           Start Your <span className="text-red-600">Global Journey</span> With
+//           Expert <span className="text-red-600">Guidance</span>
+//         </h1>
 
-//         <motion.p
-//           custom={2}
-//           variants={fadeUpVariants}
-//           initial="hidden"
-//           animate="visible"
-//           className="lg:mt-6 mt-0  leading-8 text-lg sm:text-xl md:text-2xl font-medium text-white/60 max-w-3xl mx-auto"
-//         >
+//         <p className="text-gray-600 text-lg sm:text-xl max-w-2xl mx-auto">
 //           End-to-end services to make your study abroad dream smooth,
-//           stress-free, and successful.
-//         </motion.p>
+//           stress-free, and successful. Explore top universities and scholarships
+//           across the globe.
+//         </p>
 
-//         <motion.div
-//           custom={3}
-//           variants={fadeUpVariants}
-//           initial="hidden"
-//           animate="visible"
-//           className="lg:mt-20 lg:py-2 mt-6 "
-//         >
-//           <Button className="flex justify-center items-center text-center mx-auto  text-white">
-//             Get Personalized Assistance Now
-//           </Button>
-//         </motion.div>
+//         <Button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full transition mt-4">
+//           Get Personalized Assistance Now
+//         </Button>
 //       </motion.div>
 
-//       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none" />
-//     </div>
+//       {/* 🧊 Floating Stats Card with CountUp */}
+//       <motion.div
+//         initial={{ opacity: 0, y: 40 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         transition={{ delay: 1.2, duration: 0.8 }}
+//         className="mt-16 bg-white shadow-xl border border-gray-200 rounded-xl px-8 py-6 flex flex-wrap gap-8 justify-center max-w-4xl"
+//       >
+//         <div className="text-center">
+//           <p className="text-2xl font-bold text-red-600">
+//             <CountUp end={1000} duration={2} suffix="+" />
+//           </p>
+//           <p className="text-sm text-gray-600">Students Assisted</p>
+//         </div>
+//         <div className="text-center">
+//           <p className="text-2xl font-bold text-red-600">
+//             <CountUp end={25} duration={2} suffix="+" />
+//           </p>
+//           <p className="text-sm text-gray-600">Countries Covered</p>
+//         </div>
+//         <div className="text-center">
+//           <p className="text-2xl font-bold text-red-600">
+//             <CountUp end={98} duration={2} suffix="%" />
+//           </p>
+//           <p className="text-sm text-gray-600">Visa Success Rate</p>
+//         </div>
+//       </motion.div>
+//     </section>
 //   );
 // }
-
-// export { HeroGeometric };
 "use client";
 
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-function ElegantShape({
-  className,
-  delay = 0,
-  width = 400,
-  height = 100,
-  rotate = 0,
-  gradient = "from-white/[0.08]",
-}: {
-  className?: string;
-  delay?: number;
-  width?: number;
-  height?: number;
-  rotate?: number;
-  gradient?: string;
-}) {
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: -150,
-        rotate: rotate - 15,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        rotate: rotate,
-      }}
-      transition={{
-        duration: 2.4,
-        delay,
-        ease: [0.23, 0.86, 0.39, 0.96],
-        opacity: { duration: 1.2 },
-      }}
-      className={cn("absolute", className)}
-    >
-      <motion.div
-        animate={{
-          y: [0, 15, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        style={{
-          width,
-          height,
-        }}
-        className="relative"
-      >
-        <div
-          className={cn(
-            "absolute inset-0 rounded-full",
-            "bg-gradient-to-r to-transparent",
-            gradient,
-            "backdrop-blur-[2px] border-2 border-white/[0.15]",
-            "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
-            "after:absolute after:inset-0 after:rounded-full",
-            "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
-          )}
-        />
-      </motion.div>
-    </motion.div>
-  );
-}
+export function HeroGeometric({ badge }: { badge?: string }) {
+  const [ref, inView] = useInView({ triggerOnce: false });
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
-type HeroGeometricProps = {
-  badge?: string;
-};
-
-function HeroGeometric({ badge }: HeroGeometricProps) {
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        delay: 0.5 + i * 0.2,
-        ease: [0.25, 0.4, 0.25, 1],
-      },
-    }),
-  };
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      offset: 100,
-      once: true,
-    });
-  }, []);
+    if (inView) {
+      setShouldAnimate(true);
+    } else {
+      setShouldAnimate(false);
+    }
+  }, [inView]);
+  const router = useRouter()
+
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white">
-      <div className="absolute inset-0 bg-gradient-to-br w-full " />
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden bg-gradient-to-br from-[#1f1c2c] via-[#3a2c56] to-[#928DAB] text-white">
+      {/* 🌊 Decorative SVG Top Wave */}
+      <svg
+        className="absolute top-0 left-0 w-full h-32 sm:h-48 md:h-64 -z-0"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#ffffff0d"
+          d="M0,160L60,160C120,160,240,160,360,144C480,128,600,96,720,117.3C840,139,960,213,1080,218.7C1200,224,1320,160,1380,128L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+        ></path>
+      </svg>
 
-      <div className="absolute inset-0 overflow-hidden ">
-        <ElegantShape
-          delay={0.3}
-          width={600}
-          height={140}
-          rotate={12}
-          gradient="from-red-700/[0.2]"
-          className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
-        />
+      {/* 🌊 Decorative SVG Bottom Wave */}
+      <svg
+        className="absolute bottom-0 left-0 w-full h-32 sm:h-48 md:h-64 -z-0 rotate-180"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#ffffff0d"
+          d="M0,160L60,160C120,160,240,160,360,144C480,128,600,96,720,117.3C840,139,960,213,1080,218.7C1200,224,1320,160,1380,128L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+        ></path>
+      </svg>
 
-        <ElegantShape
-          delay={0.5}
-          width={500}
-          height={120}
-          rotate={-15}
-          gradient="from-red-700/[0.2]"
-          className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
-        />
-
-        <ElegantShape
-          delay={0.4}
-          width={300}
-          height={80}
-          rotate={-8}
-          gradient="from-rose-700/[0.2]"
-          className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
-        />
-
-        <ElegantShape
-          delay={0.6}
-          width={200}
-          height={60}
-          rotate={20}
-          gradient="from-pink-700/[0.2]"
-          className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
-        />
-
-        <ElegantShape
-          delay={0.7}
-          width={150}
-          height={40}
-          rotate={-25}
-          gradient="from-rose-700/[0.2]"
-          className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
-        />
-      </div>
-
+      {/* 💬 Main Content */}
       <motion.div
-        data-aos="fade-down"
-        data-aos-duration="800"
-        data-aos-anchor-placement="top-start"
-        className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="max-w-3xl mx-auto space-y-6 z-10"
       >
         {badge && (
-          <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="inline-block bg-red-500 text-white px-3  rounded-full text-xs font-semibold lg:mb-4 "
-          >
+          <div className="inline-block bg-red-600 text-white text-xs px-4 py-1 rounded-full font-semibold tracking-wide">
             {badge}
-          </motion.span>
+          </div>
         )}
 
-        <motion.h1
-          custom={1}
-          variants={fadeUpVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-4xl md:text-4xl lg:text-6xl font-bold leading-tight text-black py-6"
-        >
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
           Start Your <span className="text-primary">Global Journey</span> With
           Expert <span className="text-primary">Guidance</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          custom={2}
-          variants={fadeUpVariants}
-          initial="hidden"
-          animate="visible"
-          className="lg:mt-6 mt-0 leading-8 text-lg sm:text-xl md:text-2xl font-medium text-gray-800 max-w-3xl mx-auto"
-        >
+        <p className="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
           End-to-end services to make your study abroad dream smooth,
-          stress-free, and successful.
-        </motion.p>
+          stress-free, and successful. Explore top universities and scholarships
+          across the globe.
+        </p>
 
-        <motion.div
-          custom={3}
-          variants={fadeUpVariants}
-          initial="hidden"
-          animate="visible"
-          className="lg:mt-20 lg:py-2 mt-6 "
-        >
-          <Button className="flex justify-center items-center text-center mx-auto  text-white">
-            Get Personalized Assistance Now
-          </Button>
-        </motion.div>
+        <Button onClick={() => router.push("/contact")} className="text-white px-6 py-3 rounded-full transition mt-4 bg-red-600 hover:bg-red-700">
+          Get Personalized Assistance Now
+        </Button>
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-400 via-transparent to-gray-600 pointer-events-none" />
-    </div>
+      {/* 📊 Stats Section with scroll-triggered CountUp */}
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full px-6 z-10"
+      >
+        {/* Card 1 */}
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-red-600 mb-2">
+            {shouldAnimate && <CountUp end={1000} duration={2} suffix="+" />}
+          </p>
+          <p className="text-sm font-medium text-gray-700">Students Assisted</p>
+        </div>
+
+        {/* Card 2 */}
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-red-600 mb-2">
+            {shouldAnimate && <CountUp end={25} duration={2} suffix="+" />}
+          </p>
+          <p className="text-sm font-medium text-gray-700">Countries Covered</p>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-red-600 mb-2">
+            {shouldAnimate && <CountUp end={98} duration={2} suffix="%" />}
+          </p>
+          <p className="text-sm font-medium text-gray-700">Visa Success Rate</p>
+        </div>
+      </motion.div>
+    </section>
   );
 }
-
-export { HeroGeometric };

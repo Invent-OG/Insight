@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { LampDemo } from "@/components/ui/lamp";
+import  {LampDemo} from "@/components/ui/lamp";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
@@ -43,7 +43,9 @@ export default function AboutPage() {
       <main className=" text-white min-h-screen relative">
         {/* BackgroundPaths component */}
         {/* <BackgroundPaths /> */}
-        <LampDemo />
+        <div className="relative h-screen w-screen">
+          <LampDemo />
+        </div>
 
         {/* Hero  sub content */}
         <section
