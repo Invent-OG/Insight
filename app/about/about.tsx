@@ -3,10 +3,11 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import  {LampDemo} from "@/components/ui/lamp";
+import { LampDemo } from "@/components/ui/lamp";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
+import OurServicesInfo from "@/components/sections/OurServicesInfo";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -224,185 +225,7 @@ export default function AboutPage() {
 
         {/* Offerings Section */}
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
-          {/* Background image with blur */}
-          <div
-            className="absolute inset-0 bg-center bg-cover filter brightness-75 lg:bg-fixed"
-            style={{
-              backgroundImage: `url("/assets/about/Our services (about page).webp")`,
-              backgroundPositionX: "30%",
-            }}
-            aria-hidden="true"
-          ></div>
-
-          {/* Blue translucent overlay */}
-          <div
-            className="absolute inset-0 bg-black opacity-30 pointer-events-none"
-            aria-hidden="true"
-          ></div>
-
-          {/* Content container */}
-          <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-10 px-6">
-            {/* Left Content */}
-            <motion.div
-              data-aos="fade-right"
-              data-aos-duration="800"
-              data-aos-anchor-placement="top-start"
-              initial={{ opacity: 0, y: 70 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="md:w-1/2 w-full flex-1 p-6 sm:p-8 rounded-3xl shadow-lg flex flex-col relative bg-transparent"
-              style={{ minHeight: "auto" }}
-            >
-              {/* Glowing Circles */}
-              <div className="absolute -top-7 -left-7 w-36 h-36 sm:w-48 sm:h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              <div className="absolute -bottom-7 -right-7 w-36 h-36 sm:w-48 sm:h-48 bg-red-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-
-              {/* Heading */}
-              <motion.h2
-                initial={{ x: -40, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.9 }}
-                viewport={{ once: true }}
-                className="text-3xl sm:text-4xl font-extrabold text-red-400 mb-8 py-8 lg:py-0 sm:mb-10 relative z-10 flex items-center gap-3 sm:gap-4"
-              >
-                <span className="bg-gradient-to-r from-red-500 to-red-700 text-transparent bg-clip-text">
-                  Our Services
-                </span>
-                <span className="w-12 sm:w-16 h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-full animate-pulse"></span>
-              </motion.h2>
-
-              {/* Paragraphs with hover effect */}
-              <motion.div className="relative z-10 space-y-6 sm:space-y-8 flex-1">
-                {[
-                  {
-                    delay: 0,
-                    text: `Whether you're aspiring to study in the UK, USA, Canada, Australia,
-New Zealand, Ireland, Europe, UAE, Singapore, or Malaysia, we
-provide end-to-end support to make your journey smooth and
-stress-free.`,
-                    icon: (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-red-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 12l2 2 4-4"
-                        />
-                      </svg>
-                    ),
-                    extraClass: "",
-                  },
-                  {
-                    delay: 0.2,
-                    text: `We work with top-ranked universities and a wide range of academic
-programs, ensuring that your choices align with your career goals
-and personal preferences. We never limit your options—instead, we
-empower you with choices that truly fit your ambitions.`,
-                    icon: null,
-                    extraClass: "border-l-4 border-red-500 pl-5",
-                  },
-                  {
-                    delay: 0.4,
-                    text: `At Insight, we pride ourselves on our professional, kind, and
-transparent approach. We’re always available to answer your
-questions—big or small—and we actively involve parents in the
-process to build trust and clarity. Our goal is to provide not just a
-service, but a life-changing experience.`,
-                    icon: null,
-                    extraClass: "bg-gray-800 bg-opacity-30 p-4 rounded-lg",
-                  },
-                  {
-                    delay: 0.6,
-                    text: `Whether you're just beginning to explore your study abroad options
-or ready to start your application, we’re here to guide you from start
-to finish. Discover your path to international education with Insight
-—Coimbatore’s trusted study abroad consultants.`,
-                    icon: (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-red-500 flex-shrink-0 inline-block mr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 8v4l3 3"
-                        />
-                      </svg>
-                    ),
-                    extraClass: "flex items-center gap-3",
-                  },
-                  {
-                    delay: 0.8,
-                    text: `Let us be your guide to a world of educational possibilities and unforgettable experiences abroad.`,
-                    icon: null,
-                    extraClass: "italic border-t border-gray-700 pt-4",
-                  },
-                ].map(({ delay, text, icon, extraClass }, i) => (
-                  <motion.p
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay }}
-                    viewport={{ once: true }}
-                    className={`text-base sm:text-lg text-gray-300 leading-relaxed transition-transform duration-300 hover:-translate-y-1 cursor-default ${extraClass}`}
-                  >
-                    {icon && (
-                      <span className="inline-block mr-2 p-1.5 bg-red-600 rounded-full">
-                        {icon}
-                      </span>
-                    )}
-                    {text}
-                  </motion.p>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* Right Accordion */}
-            <motion.div
-              data-aos="fade-left"
-              data-aos-duration="800"
-              data-aos-anchor-placement="top-start"
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="md:w-1/2 mb-6 lg:mb-0 w-full flex-1 p-8 bg-gradient-to-r from-black/20 via-black/10 to-black/20 rounded-3xl"
-            >
-              <div className="flex flex-col gap-5">
-                {[
-                  "IELTS coaching in Coimbatore by certified professionals",
-                  "Personalized study abroad counselling",
-                  "Assistance with university applications and admissions",
-                  "Help with securing scholarships and financial aid",
-                  "Complete student visa support and guidance",
-                  "Flight booking, accommodation, and airport pickup services",
-                  "Pre-departure and post-arrival support",
-                  "Part-Time Guidance",
-                ].map((service, i) => (
-                  <div
-                    key={i}
-                    className="cursor-pointer flex items-center gap-4 p-4 bg-white/10 rounded-lg hover:bg-red-700 transition"
-                  >
-                    <div className="w-2 h-12 bg-red-600 rounded-md"></div>
-                    <p className="text-white font-semibold text-lg">
-                      {service}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+          <OurServicesInfo />
         </section>
 
         {/* Content */}
