@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
 import OurServicesInfo from "@/components/sections/OurServicesInfo";
+import OurTeam from "@/components/sections/OurTeam";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -222,6 +223,11 @@ export default function AboutPage() {
             </span>
           </div>
         </section>
+
+        {/* Founder Team section  */}
+        <div>
+          <OurTeam />
+        </div>
 
         {/* Offerings Section */}
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">

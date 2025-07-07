@@ -227,9 +227,9 @@ export default function PopupFormModal() {
           <LucideMessageCircleMore className="w-5 h-5" />
           {showPopover && (
             <div className="absolute right-full mr-3 bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow-lg whitespace-nowrap animate-bounce transition-all duration-500">
-              ✨ Contact Us!
+              Contact Us!
             </div>
-          )} 
+          )}
         </button>
       </div>
 
