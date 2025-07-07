@@ -66,38 +66,25 @@ export default function ServicesSection() {
       </Head>
 
       <div className="relative">
-        {/* Decorative SVG Background Image */}
-        <div
-          className="absolute bg:bottom-20 bottom-20 top-2/5 left-0 w-24 h-24 sm:w-36 sm:h-36 opacity-80 z-0 block"
-          style={{
-            backgroundImage:
-              "url('https://cdn-icons-png.flaticon.com/512/7978/7978776.png')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "contain",
-            backgroundPosition: "left center",
-            backgroundAttachment: "scroll",
-          }}
-        ></div>
-
+        {/* Section with sticky left + scrollable right */}
         <section className="relative z-10 flex flex-col items-center md:flex-col justify-center md:text-center">
-          <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row">
-            {/* Left side - Not sticky on mobile */}
-            <div className="flex-1 self-start flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20">
+          <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row lg:items-start">
+            {/* Left Side - Sticky */}
+            <div className="flex-1 flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20 lg:self-start lg:h-[calc(100vh-10rem)]">
               <h4 className="text-primary uppercase text-base tracking-wider">
                 — Services —
               </h4>
-              <div className="h-px bg-gray-700 my-2"></div>
+              <div className="h-px bg-white my-2 w-full max-w-xs"></div>
 
-              {/* ✨ New Glow Effect Background Behind Heading */}
-              <div className="relative px-4 py-2 rounded-xl overflow-hidden">
+              <div className="relative px-4 md:py-4 lg:py-4 py-3 rounded-xl overflow-hidden">
                 <div
-                  className="absolute inset-0 -z-10 rounded-xl blur-md opacity-80"
+                  className="absolute inset-0 -z-10 rounded-xl  blur-md opacity-90"
                   style={{
                     background:
-                      "radial-gradient(circle at center,rgba(255, 0, 0, 0.2)	, transparent 80%)",
+                      "radial-gradient(circle at center,rgba(255, 0, 0, 0.2), transparent 95%)",
                   }}
                 ></div>
-                <h2 className="lg:text-5xl md:text-4xl text-3xl text-black font-bold">
+                <h2 className="lg:text-5xl md:text-4xl text-3xl  text-black font-bold">
                   Your Journey,{" "}
                   <span className="text-primary">Fully Supported</span>
                 </h2>
@@ -107,7 +94,6 @@ export default function ServicesSection() {
                 Every Step of the Way!
               </p>
 
-              {/* Show button only on large screens */}
               <div className="hidden lg:block">
                 <Button
                   onClick={() => router.push("/services")}
@@ -118,7 +104,7 @@ export default function ServicesSection() {
               </div>
             </div>
 
-            {/* Right side - Cards container */}
+            {/* Right Side - Scrollable Cards */}
             <div className="flex-1 w-full">
               <ContainerScroll className="py-4 space-y-8">
                 {services.map((service, index) => {
@@ -130,14 +116,13 @@ export default function ServicesSection() {
                   return (
                     <React.Fragment key={index}>
                       <CardSticky
-                        key={index}
                         index={index + 2}
                         className="rounded-2xl text-xl bg-black overflow-hidden p-0 shadow-md lg:backdrop-blur-md transform transition duration-300 hover:scale-[1.02] hover:shadow-xl"
                         incrementY={30}
                         incrementZ={10}
                       >
                         <div className="relative w-full flex flex-col sm:flex-row h-auto sm:h-[270px]">
-                          {/* Left Side: Image */}
+                          {/* Image */}
                           <div className="relative w-full sm:w-1/2 h-[200px] sm:h-full">
                             <Image
                               src={service.image}
@@ -147,7 +132,7 @@ export default function ServicesSection() {
                             />
                           </div>
 
-                          {/* Right Side: Content */}
+                          {/* Content */}
                           <div className="w-full sm:w-1/2 bg-[#fefefe] p-5 flex flex-col justify-between">
                             <div className="space-y-4 h-full flex flex-col">
                               {/* Title */}
@@ -160,7 +145,7 @@ export default function ServicesSection() {
                                 </div>
                               </div>
 
-                              {/* Description Box */}
+                              {/* Description */}
                               <div className="border-l-4 border-primary pl-4 bg-[#f4f6f8] p-3 rounded text-[#374151] text-sm sm:text-base leading-snug flex-grow">
                                 {displayedText}
                               </div>
@@ -186,7 +171,7 @@ export default function ServicesSection() {
                 })}
               </ContainerScroll>
 
-              {/* Mobile-only button */}
+              {/* Mobile button */}
               <div className="flex justify-center lg:hidden mt-8">
                 <Button
                   onClick={() => router.push("/services")}

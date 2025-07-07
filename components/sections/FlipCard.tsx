@@ -95,7 +95,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
               {title}
             </h1>
           </div>
-          <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-transparent border border-primary/20 p-6 rounded-lg shadow-md flex flex-col justify-center items-center text-center text-black overflow-hidden">
+          <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-black/60 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-xl flex flex-col justify-center items-center text-center text-white overflow-hidden">
             <div className="relative z-10 w-full h-full flex flex-col justify-center">
               <p
                 className={`text-base leading-relaxed transition duration-700 ease-in-out transform hover:scale-105 text-justify ${

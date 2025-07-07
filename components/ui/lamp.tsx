@@ -111,253 +111,89 @@
 //     </div>
 //   );
 // };
-// "use client";
-// import React from "react";
-// import { motion } from "framer-motion";
-// import { cn } from "@/lib/utils";
-
-// export function LampDemo() {
-//   return (
-//     <SVGBackgroundContainer>
-//       <motion.h1
-//         initial={{ opacity: 0, y: 40 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ duration: 1, ease: "easeOut" }}
-//         className="text-center text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-pink-500 to-yellow-500 text-transparent bg-clip-text drop-shadow-lg"
-//       >
-//         Insight Educator <br /> Abroad Services
-//       </motion.h1>
-
-//       <motion.p
-//         initial={{ opacity: 0, y: 20 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ delay: 0.4, duration: 1 }}
-//         className="mt-6 text-lg text-white/80 text-center max-w-2xl"
-//       >
-//         Helping students achieve their dreams by providing world-class education
-//         consultation.
-//       </motion.p>
-//     </SVGBackgroundContainer>
-//   );
-// }
-
-// export const SVGBackgroundContainer = ({
-//   children,
-//   className,
-// }: {
-//   children: React.ReactNode;
-//   className?: string;
-// }) => {
-//   return (
-//     <div
-//       className={cn(
-//         "relative min-h-screen w-full bg-black flex flex-col items-center justify-center px-6 overflow-hidden",
-//         className
-//       )}
-//     >
-//       {/* SVG Background Pattern */}
-//       <svg
-//         className="absolute inset-0 w-full h-full z-0 opacity-20"
-//         xmlns="http://www.w3.org/2000/svg"
-//         preserveAspectRatio="xMidYMid slice"
-//         viewBox="0 0 100 100"
-//       >
-//         <defs>
-//           <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-//             <stop
-//               offset="0%"
-//               style={{ stopColor: "#ec4899", stopOpacity: 1 }}
-//             />
-//             <stop
-//               offset="100%"
-//               style={{ stopColor: "#facc15", stopOpacity: 1 }}
-//             />
-//           </linearGradient>
-//         </defs>
-//         <circle cx="20" cy="20" r="10" fill="url(#grad1)" />
-//         <circle cx="80" cy="80" r="10" fill="url(#grad1)" />
-//         <circle cx="50" cy="50" r="8" fill="url(#grad1)" />
-//         <circle cx="70" cy="30" r="5" fill="url(#grad1)" />
-//         <circle cx="30" cy="70" r="5" fill="url(#grad1)" />
-//       </svg>
-
-//       {/* Subtle Background Blur Glow */}
-//       <div className="absolute inset-0 bg-gradient-to-br from-pink-500 via-yellow-400 to-purple-500 opacity-10 blur-3xl z-0" />
-
-//       {/* Content */}
-//       <div className="relative z-10 text-white text-center">{children}</div>
-//     </div>
-//   );
-// };
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-const IMAGES = [
-  "https://images.pexels.com/photos/30922300/pexels-photo-30922300.jpeg",
-  "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
-];
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export function LampDemo() {
-  const [current, setCurrent] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    null
-  );
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollDirection(currentScrollY > lastScrollY.current ? "down" : "up");
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % IMAGES.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-      anchorPlacement: "top-bottom",
-    });
-  }, []);
-
+  const router = useRouter();
   return (
-    <DiagonalHero>
-      {/* Left Side Content */}
-      <div className="z-10 w-full md:w-1/2 space-y-6 md:space-y-16 px-4 md:px-0">
-        <h1
-          data-aos="fade-right"
-          className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text text-white drop-shadow-md flex items-center gap-3"
+    <section className="relative min-h-screen bg-[hsl(210,47%,23%)] flex items-center px-4 py-12 overflow-hidden">
+      {/* Main Content */}
+      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-4 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          className="w-40 h-40 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 fill-[hsl(210,46%,27%)]"
         >
-          <span className="inline-block text-4xl sm:text-4xl md:text-5xl  mt-32 md:-mt-10 relative left-2 md:left-4 animate-spin-slow">
-            🌍
-          </span>
-
-          <span className="mt-40 lg:mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-800  via-red-500 to-blue-600">
-            Insight Educator <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800  via-red-500 to-blue-600">
-              Abroad Services
-            </span>
-          </span>
-        </h1>
-
-        <div
-          data-aos="flip-left"
-          className="max-w-lg mx-auto lg:left-8 text-gray-800 text-base md:text-lg px-6 py-5 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden bg-white/70 backdrop-blur-md"
+          <polygon points="0,0 100,50 0,100" />
+        </svg>
+      </div>
+      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-20 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          className="w-40 h-40 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 fill-[hsl(210,46%,27%)]"
         >
-          <span className="block text-xl mb-2 font-bold text-rose-600 relative z-10">
-            🎓 Expert Guidance
-          </span>
+          <polygon points="0,0 100,50 0,100" />
+        </svg>
+      </div>
+      <div className="absolute top-1/2 left-56 md:top-6 md:left-6 lg:top-10 lg:right-10 lg:left-auto lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          className="w-40 h-40 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 fill-[hsl(210,46%,27%)] rotate-180 opacity-40"
+        >
+          <polygon points="0,0 100,50 0,100" />
+        </svg>
+      </div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-300 via-orange-300 to-yellow-200 opacity-30 animate-pulse z-0 rounded-2xl" />
-          <div className="relative z-10">
+      <div className="relative z-10 max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Left Content */}
+        <div className="text-white space-y-6">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <span className="text-primary">Insight Educator</span> Abroad
+            Services
+          </h1>
+          <p className="text-base text-white/90">
             We provide expert guidance to help students explore global education
             opportunities with clarity, confidence, and care.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => router.push("/services")}
+              className="px-6 py-3 bg-white text-primary font-semibold rounded hover:bg-gray-300 transition"
+            >
+              Explore Our Services
+            </button>
+            <button
+              onClick={() => router.push("/contact")}
+              className="px-6 py-3 bg-primary text-white font-semibold rounded hover:bg-red-700 transition"
+            >
+              Get Free Consultation
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* Right Image */}
-      <motion.div
-        initial={{ opacity: 0, x: 60 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        className="w-full md:w-1/2 relative overflow-hidden mt-10 md:mt-0"
-      >
-        <div className="relative w-full sm:w-[80%] md:w-[70%] max-w-[600px] h-[250px] sm:h-[300px] md:h-[400px] mx-auto rounded-xl overflow-hidden shadow-xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`logo-${current}`}
-              className="absolute inset-0 z-20 flex items-center justify-center bg-white/50"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              exit={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.img
-                src="/assets/logo.png"
-                alt="Logo"
-                className="lg:w-60 lg:h-60 w-24 h-24 opacity-40 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain"
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={IMAGES[current]}
-              src={IMAGES[current]}
-              alt="Study Abroad"
-              className="w-full h-full object-cover absolute top-0 left-0 z-10"
-              initial={{ opacity: 0, rotateX: 90 }}
-              animate={{ opacity: 1, rotateX: 0 }}
-              exit={{ opacity: 0, rotateX: -90 }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-            />
-          </AnimatePresence>
+        {/* Right Image */}
+        <div className="w-full h-64 sm:h-80 md:h-96">
+          <img
+            src="/assets/about/aboutpage.webp"
+            alt="Study Abroad"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
         </div>
-      </motion.div>
-    </DiagonalHero>
-  );
-}
-
-export const DiagonalHero = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <section
-      className={cn(
-        `relative bg-gradient-to-tr from-yellow-100 via-pink-100 to-orange-50 min-h-screen text-black flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-20 py-20 overflow-hidden`,
-        className
-      )}
-    >
-      {/* Background Zoom */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center z-0 bg-fixed"
-        style={{
-          backgroundImage: "url('/assets/aboutpage.webp')",
-          backgroundPositionY: "20%",
-          backgroundPositionX: "50%",
-        }}
-        initial={{ scale: 1.1 }}
-        animate={{ scale: [1.1, 1.15, 1.1] }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <div className="absolute inset-0 backdrop-brightness-100" />
-      </motion.div>
-
-      {/* Floating Blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-100px] right-[-60px] w-[250px] h-[250px] bg-yellow-300 rounded-full opacity-30 blur-3xl animate-float hidden md:block" />
-        <div className="absolute bottom-[-80px] left-[-60px] w-[220px] h-[220px] bg-pink-400 rounded-full opacity-30 blur-2xl animate-float-slow hidden md:block" />
       </div>
 
-      {/* Foreground Content */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
-        {children}
+      {/* Bottom Right Wave SVG */}
+      <div className="absolute bottom-0 right-0 w-full z-0">
+        <svg viewBox="0 0 1440 320">
+          <path
+            fill="#ffffff10"
+            d="M0,160L80,160C160,160,320,160,480,154.7C640,149,800,139,960,149.3C1120,160,1280,192,1360,208L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          />
+        </svg>
       </div>
     </section>
   );
-};
-
+}

@@ -14,7 +14,7 @@ export async function sendContactEmails({
   message: string;
 }) {
   const admin = await resend.emails.send({
-    from: "Insight Abroad <noreply@resend.dev>",
+    from: "Insight Abroad <noreply@insightabroadservices.org>",
     to: "rahulachuz69@gmail.com",
     subject: `📬 New Inquiry from ${name}`,
     html: `
@@ -29,7 +29,7 @@ export async function sendContactEmails({
   });
 
   const user = await resend.emails.send({
-    from: "Insight Abroad <onboarding@resend.dev>",
+    from: "Insight Abroad <noreply@insightabroadservices.org>",
     to: email,
     subject: `🎉 Thank You for Contacting Insight Abroad`,
     html: `

@@ -5,7 +5,7 @@ export default function AdminPage() {
     <div>
       <AdminHeader title="Welcome to Admin Panel" />
       <p className="text-muted-foreground">
-        Select an option from the sidebar to manage your solar company's content.
+        Select an option from the sidebar to manage your Insight content.
       </p>
     </div>
   );

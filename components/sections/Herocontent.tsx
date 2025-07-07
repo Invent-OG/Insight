@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -69,7 +68,7 @@ const Layout2 = () => {
             backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.8,
+            opacity: 0.1,
           }}
           animate={{ scale: [1, 1.1, 1] }}
           transition={{
@@ -87,7 +86,7 @@ const Layout2 = () => {
             backgroundSize: "cover",
             backgroundAttachment: "fixed",
             backgroundPosition: "left center",
-            opacity: 0.8,
+            opacity: 0.1,
           }}
         />
 
@@ -143,14 +142,16 @@ const Layout2 = () => {
             } space-y-4`}
           >
             <motion.h2
-              className="lg:text-4xl md:text-4xl text-3xl  font-bold text-black text-center md:text-left mb-6"
+              className="lg:text-4xl md:text-3xl text-3xl  font-bold text-wrap text-black text-center md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={textVariants}
             >
-              Your Global Education Starts Here –{" "}
-              <span className="text-primary">We Make It Happen</span>
+              Your Global Education Starts Here{" "}
+              <span className="text-primary text-nowrap">
+                We Make It Happen
+              </span>
             </motion.h2>
 
             {/* Content Block */}

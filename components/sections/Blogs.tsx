@@ -47,7 +47,7 @@ export default function BlogsPage() {
         data-aos-anchor-placement="top-center"
         className="lg:py-16 py-10 bg-gray-100"
       >
-        <h4 className="text-red-600 text-center uppercase text-base font-medium tracking-wider">
+        <h4 className="text-primary text-center uppercase text-base font-medium tracking-wider">
           — Blogs —
         </h4>
 
@@ -55,7 +55,7 @@ export default function BlogsPage() {
           {/* Section Heading */}
           <div className="text-center max-w-5xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl lg:text-5xl py-6 font-bold">
-              Latest <span className="text-red-600">Blog</span> Posts
+              Latest <span className="text-primary">Blog</span> Posts
             </h2>
             <p className="mb-4 text-gray-600 font-semibold md:text-base lg:text-lg">
               Stay updated with trends, stories, and insights.
@@ -63,7 +63,7 @@ export default function BlogsPage() {
             <Button
               variant="link"
               asChild
-              className="text-lg font-semibold text-red-600 hover:text-red-700"
+              className="text-lg font-semibold text-primary hover:text-red-700"
             >
               <Link href="/blogs">
                 Explore All Blogs
@@ -104,7 +104,7 @@ export default function BlogsPage() {
                     <h3 className="text-lg font-semibold hover:underline line-clamp-2">
                       <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                     </h3>
-                    <p className="text-sm text-red-600">
+                    <p className="text-sm text-primary">
                       {new Date(post.createdAt).toLocaleDateString()}
                     </p>
                   </CardHeader>
@@ -120,7 +120,7 @@ export default function BlogsPage() {
                   <CardFooter className="px-4 pb-4 mt-auto">
                     <Link
                       href={`/blogs/${post.id}`}
-                      className="flex items-center text-red-600 hover:underline text-sm font-medium"
+                      className="flex items-center text-primary hover:underline text-sm font-medium"
                     >
                       Read more
                       <ArrowRight className="ml-2 size-4" />

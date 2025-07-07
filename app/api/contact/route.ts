@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { db } from "@/lib/db";
@@ -56,7 +55,7 @@ export async function POST(req: Request) {
 
     // 3. Send admin email
     const adminEmail = await resend.emails.send({
-      from: "Insight Abroad <noreply@resend.dev>",
+      from: "Insight Abroad <noreply@insightabroadservices.org>",
       to: "rahulachuz69@gmail.com",
       subject: `📬 New Inquiry from ${name}`,
       html: `
@@ -72,7 +71,7 @@ export async function POST(req: Request) {
 
     // 4. Auto-response to user
     const userReply = await resend.emails.send({
-      from: "Insight Abroad <onboarding@resend.dev>",
+      from: "Insight Abroad <noreply@insightabroadservices.org>",
       to: email,
       subject: `🎉 Thank You for Contacting Insight Abroad`,
       html: `
@@ -101,4 +100,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

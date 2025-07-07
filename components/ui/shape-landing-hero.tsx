@@ -112,6 +112,7 @@ export function HeroGeometric({ badge }: { badge?: string }) {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundPositionX: "10%",
+          opacity: 0.2,
         }}
       ></motion.div>
 
