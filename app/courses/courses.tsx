@@ -128,7 +128,7 @@ export const CoursesPage = () => {
         className="relative min-h-screen flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
         style={{
           backgroundImage:
-            "url('/assets/course/Top courses to study abroad.webp')",
+            "url('/assets/course/courses and countries page.webp')",
           backgroundAttachment: isMobile ? "scroll" : "fixed", // ✅ Responsive parallax
           backgroundPosition: "48% center",
           backgroundRepeat: "no-repeat",
@@ -136,9 +136,6 @@ export const CoursesPage = () => {
           opacity: 1,
         }}
       >
-        {/* ✅ Background overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-60 pointer-events-none z-0"></div>
-
         {/* ✅ Content */}
         <div className="relative z-10">
           <motion.h1

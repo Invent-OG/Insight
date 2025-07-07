@@ -83,6 +83,8 @@ import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export function HeroGeometric({ badge }: { badge?: string }) {
   const [ref, inView] = useInView({ triggerOnce: false });
@@ -95,40 +97,30 @@ export function HeroGeometric({ badge }: { badge?: string }) {
       setShouldAnimate(false);
     }
   }, [inView]);
-  const router = useRouter()
-
+  const router = useRouter();
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  }, []);
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden bg-gradient-to-br from-[#1f1c2c] via-[#3a2c56] to-[#928DAB] text-white">
-      {/* 🌊 Decorative SVG Top Wave */}
-      <svg
-        className="absolute top-0 left-0 w-full h-32 sm:h-48 md:h-64 -z-0"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#ffffff0d"
-          d="M0,160L60,160C120,160,240,160,360,144C480,128,600,96,720,117.3C840,139,960,213,1080,218.7C1200,224,1320,160,1380,128L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-        ></path>
-      </svg>
-
-      {/* 🌊 Decorative SVG Bottom Wave */}
-      <svg
-        className="absolute bottom-0 left-0 w-full h-32 sm:h-48 md:h-64 -z-0 rotate-180"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#ffffff0d"
-          d="M0,160L60,160C120,160,240,160,360,144C480,128,600,96,720,117.3C840,139,960,213,1080,218.7C1200,224,1320,160,1380,128L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-        ></path>
-      </svg>
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center z-0 bg-no-repeat md:bg-fixed" // fixed only on md+
+        style={{
+          backgroundImage: "url('/assets/services/services page.webp')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundPositionX: "10%",
+        }}
+      ></motion.div>
 
       {/* 💬 Main Content */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="max-w-3xl mx-auto space-y-6 z-10"
+        data-aos="fade-down"
+        data-appear="true"
+        data-aos-duration="1000"
+        className="max-w-3xl mx-auto space-y-2 z-10"
       >
         {badge && (
           <div className="inline-block bg-red-600 text-white text-xs px-4 py-1 rounded-full font-semibold tracking-wide">
@@ -136,18 +128,21 @@ export function HeroGeometric({ badge }: { badge?: string }) {
           </div>
         )}
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+        <h1 className="text-4xl sm:text-4xl lg:text-5xl mt-4 lg:mt-0 lg:font-extrabold font-bold text-white leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
           Start Your <span className="text-primary">Global Journey</span> With
           Expert <span className="text-primary">Guidance</span>
         </h1>
 
-        <p className="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="text-white  text-xl sm:text-base md:text-2xl max-w-2xl lg:py-10 py-6 mx-auto relative z-10 drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">
           End-to-end services to make your study abroad dream smooth,
           stress-free, and successful. Explore top universities and scholarships
           across the globe.
         </p>
 
-        <Button onClick={() => router.push("/contact")} className="text-white px-6 py-3 rounded-full transition mt-4 bg-red-600 hover:bg-red-700">
+        <Button
+          onClick={() => router.push("/contact")}
+          className="text-white lg:text-base text-md px-6 py-3 transition mt-4 bg-primary hover:bg-red-600"
+        >
           Get Personalized Assistance Now
         </Button>
       </motion.div>
@@ -158,30 +153,30 @@ export function HeroGeometric({ badge }: { badge?: string }) {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full px-6 z-10"
+        className="lg:mt-16 backdrop-blur-sm mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-4 lg:max-w-5xl w-full max-w-xs px-6 z-10"
       >
         {/* Card 1 */}
-        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
-          <p className="text-4xl font-extrabold text-red-600 mb-2">
+        <div className=" rounded-2xl  shadow-md p-6 text-center border border-blue-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-primary mb-2">
             {shouldAnimate && <CountUp end={1000} duration={2} suffix="+" />}
           </p>
-          <p className="text-sm font-medium text-gray-700">Students Assisted</p>
+          <p className="text-sm font-medium text-gray-200">Students Assisted</p>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
-          <p className="text-4xl font-extrabold text-red-600 mb-2">
+        <div className=" rounded-2xl  shadow-md p-6 text-center border border-blue-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-primary mb-2">
             {shouldAnimate && <CountUp end={25} duration={2} suffix="+" />}
           </p>
-          <p className="text-sm font-medium text-gray-700">Countries Covered</p>
+          <p className="text-sm font-medium text-gray-200">Countries Covered</p>
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6 text-center border border-gray-200 hover:scale-105 transition duration-300">
-          <p className="text-4xl font-extrabold text-red-600 mb-2">
+        <div className=" rounded-2xl shadow-md p-6 text-center border border-blue-200 hover:scale-105 transition duration-300">
+          <p className="text-4xl font-extrabold text-primary mb-2">
             {shouldAnimate && <CountUp end={98} duration={2} suffix="%" />}
           </p>
-          <p className="text-sm font-medium text-gray-700">Visa Success Rate</p>
+          <p className="text-sm font-medium text-gray-200">Visa Success Rate</p>
         </div>
       </motion.div>
     </section>

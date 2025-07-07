@@ -1,6 +1,6 @@
 "use client";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {
   CheckCircle,
   BookOpenCheck,
@@ -58,15 +58,21 @@ const paragraphs = [
 
 export default function OurServicesInfo() {
   const [tab, setTab] = useState("about");
+  const [expandedCards, setExpandedCards] = useState(
+    Array(paragraphs.length).fill(false)
+  );
+
+  const toggleExpand = (index: number) => {
+    setExpandedCards((prev) =>
+      prev.map((val, i) => (i === index ? !val : val))
+    );
+  };
+
   return (
-    <section className="relative bg-gradient-to-br from-white via-red-50 to-white py-24 px-6 sm:px-10 lg:px-24 overflow-hidden">
+    <section className="relative bg-white py-24 px-6 sm:px-10 lg:px-24 overflow-hidden">
+      {/* Background SVG blob */}
       <div className="absolute top-[-100px] left-[-100px] z-0 opacity-10 pointer-events-none">
-        <svg
-          viewBox="0 0 200 200"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 200 200" width="500" height="500">
           <path
             fill="#f87171"
             d="M43.6,-69.4C57.5,-63.9,71.5,-53.6,76.4,-40.3C81.2,-27,76.9,-10.7,70.9,3.3C64.9,17.2,57.2,28.8,47.6,40.5C38,52.3,26.5,64.1,13.1,70.4C-0.3,76.7,-15.6,77.5,-30.6,72.8C-45.7,68.2,-60.6,57.9,-65.3,44.1C-70,30.3,-64.6,13.2,-63.3,-4.6C-61.9,-22.5,-64.7,-41.2,-57.1,-52.2C-49.5,-63.2,-31.5,-66.5,-15.2,-70.3C1.1,-74.2,22.2,-78.9,43.6,-69.4Z"
@@ -75,31 +81,36 @@ export default function OurServicesInfo() {
         </svg>
       </div>
 
+      {/* Tabs */}
       <div className="relative z-10 max-w-6xl mx-auto mb-12 text-center">
         <h2 className="text-4xl font-extrabold text-red-600 mb-4">
           Our Services
         </h2>
-        <div className="inline-flex bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
-          <button
-            onClick={() => setTab("about")}
-            className={`px-6 py-2 text-sm font-medium transition duration-300 ${
-              tab === "about"
-                ? "bg-red-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            About Insight
-          </button>
-          <button
-            onClick={() => setTab("services")}
-            className={`px-6 py-2 text-sm font-medium transition duration-300 ${
-              tab === "services"
-                ? "bg-red-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            Our Services
-          </button>
+        <div className="flex justify-center">
+          <div className="inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200">
+            <button
+              onClick={() => setTab("about")}
+              className={`px-6 py-2 text-sm font-medium rounded-full transition-all duration-300
+        ${
+          tab === "about"
+            ? "bg-red-600 text-white shadow-md"
+            : "text-gray-700 hover:text-red-600"
+        }`}
+            >
+              About Insight
+            </button>
+            <button
+              onClick={() => setTab("services")}
+              className={`px-6 py-2 text-sm font-medium rounded-full transition-all duration-300
+        ${
+          tab === "services"
+            ? "bg-red-600 text-white shadow-md"
+            : "text-gray-700 hover:text-red-600"
+        }`}
+            >
+              Our Services
+            </button>
+          </div>
         </div>
       </div>
 
@@ -113,7 +124,7 @@ export default function OurServicesInfo() {
             transition={{ duration: 0.6 }}
             className="relative z-10 max-w-6xl mx-auto space-y-20"
           >
-            {/* Hero Image */}
+            {/* Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -128,15 +139,12 @@ export default function OurServicesInfo() {
               />
             </motion.div>
 
-            {/* Timeline Layout */}
+            {/* Timeline */}
             <section className="relative max-w-6xl mx-auto px-6 sm:px-10 py-16">
-              {/* Vertical line */}
               <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-red-200 z-0" />
-
               <div className="relative z-10 flex flex-col gap-16">
                 {paragraphs.map((text, i) => {
                   const Icon = icons[i];
-
                   return (
                     <motion.div
                       key={i}
@@ -146,15 +154,10 @@ export default function OurServicesInfo() {
                       transition={{ delay: i * 0.2, duration: 0.6 }}
                       viewport={{ once: false }}
                     >
-                      {/* Aligned Dot + Icon */}
                       <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{
-                          delay: i * 0.2,
-                          duration: 0.5,
-                          ease: "easeOut",
-                        }}
+                        transition={{ delay: i * 0.2, duration: 0.5 }}
                         viewport={{ once: false }}
                         className="flex flex-col items-center relative z-10"
                       >
@@ -165,17 +168,32 @@ export default function OurServicesInfo() {
 
                       {/* Text Card */}
                       <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: i * 0.2 + 0.1,
-                          duration: 0.6,
-                          ease: "easeOut",
-                        }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.2 + 0.1, duration: 0.6 }}
                         viewport={{ once: false }}
-                        className="bg-white border border-gray-200 shadow-md rounded-2xl p-6 text-[17px] leading-relaxed text-gray-800 w-full"
-                        dangerouslySetInnerHTML={{ __html: text }}
-                      />
+                        className="bg-white border-l-[5px] border-red-400 shadow-md rounded-xl p-6 text-[16.5px] leading-relaxed text-gray-800 w-full relative overflow-hidden group"
+                      >
+                        <div className="absolute top-4 right-4 text-red-400 text-xl opacity-20 group-hover:opacity-40 transition duration-500">
+                          <i className="fas fa-university" />
+                        </div>
+
+                        <div
+                          className={`relative z-10 ${
+                            expandedCards[i] ? "" : "line-clamp-5"
+                          } transition-all duration-300`}
+                          dangerouslySetInnerHTML={{ __html: text }}
+                        />
+
+                        {text.length > 200 && (
+                          <button
+                            onClick={() => toggleExpand(i)}
+                            className="mt-4 text-sm font-medium text-red-500 hover:underline focus:outline-none block md:hidden"
+                          >
+                            {expandedCards[i] ? "Show Less" : "Read More"}
+                          </button>
+                        )}
+                      </motion.div>
                     </motion.div>
                   );
                 })}
@@ -189,35 +207,29 @@ export default function OurServicesInfo() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="relative z-10 max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4"
+            className="relative z-10 max-w-5xl mx-auto space-y-8 px-4"
           >
             {bulletItems.map((item, i) => (
               <motion.div
                 key={i}
-                variants={fadeInUp}
-                custom={i + 1}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
-                whileHover={{ scale: 1.03 }}
                 transition={{
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 12,
-                  delay: i * 0.1,
+                  delay: i * 0.15,
+                  duration: 0.6,
+                  ease: "easeOut",
                 }}
-                className="relative group bg-white/60 backdrop-blur-lg border border-gray-200 rounded-2xl shadow-lg p-6 overflow-hidden transition-all"
+                className="relative pl-10 border-l-[3px] border-red-400 bg-white rounded-lg shadow-md p-6 group hover:shadow-lg transition"
               >
-                {/* Animated Icon Ring */}
-                <div className="relative mb-4">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-100 to-white scale-110 blur-md opacity-50" />
-                  <div className="relative z-10 w-12 h-12 flex items-center justify-center rounded-full border-2 border-red-500 bg-white text-red-600 shadow-md transition duration-300 group-hover:bg-red-600 group-hover:text-white">
-                    <item.icon className="w-6 h-6" />
-                  </div>
+                {/* Glowing Icon Circle */}
+                <div className="absolute -left-[25px] top-6 w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-red-400 text-red-600 shadow-md">
+                  <div className="absolute inset-0 rounded-full bg-red-300 opacity-30 blur-md animate-pulse" />
+                  <item.icon className="relative z-10 w-5 h-5" />
                 </div>
 
                 {/* Text */}
-                <p className="relative z-10 text-gray-800 text-[16.5px] leading-relaxed">
+                <p className="text-[16.5px] text-gray-800 leading-relaxed">
                   {item.text}
                 </p>
               </motion.div>

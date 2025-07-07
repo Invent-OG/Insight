@@ -5,6 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* globe rotate in aboutpage  */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 6s linear infinite;
+  }
+}
 /* In globals.css */
 @keyframes lightSweep {
   0% {

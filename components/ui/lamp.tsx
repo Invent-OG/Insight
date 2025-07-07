@@ -193,6 +193,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const IMAGES = [
   "https://images.pexels.com/photos/30922300/pexels-photo-30922300.jpeg",
@@ -204,12 +206,7 @@ export function LampDemo() {
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
     null
   );
-  const [hasMounted, setHasMounted] = useState(false);
   const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -229,79 +226,38 @@ export function LampDemo() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      anchorPlacement: "top-bottom",
+    });
+  }, []);
+
   return (
     <DiagonalHero>
       {/* Left Side Content */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        className="z-10 w-full md:w-1/2 space-y-6 md:space-y-16 px-4 md:px-0"
-      >
-        <motion.h1
-          className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-orange-500 to-yellow-400 drop-shadow-md flex items-center gap-3"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+      <div className="z-10 w-full md:w-1/2 space-y-6 md:space-y-16 px-4 md:px-0">
+        <h1
+          data-aos="fade-right"
+          className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text text-white drop-shadow-md flex items-center gap-3"
         >
-          <motion.span
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
-            className="inline-block text-4xl sm:text-4xl md:text-5xl text-yellow-500 mt-32 md:-mt-10 relative left-2 md:left-4"
-          >
+          <span className="inline-block text-4xl sm:text-4xl md:text-5xl  mt-32 md:-mt-10 relative left-2 md:left-4 animate-spin-slow">
             🌍
-          </motion.span>
-
-          <span className="mt-40 lg:mt-4">
-            Insight Educator <br />
-            {hasMounted && (
-              <motion.span
-                key={scrollDirection}
-                initial={{
-                  backgroundImage:
-                    "linear-gradient(to right, #f43f5e, #f97316, #facc15)",
-                  WebkitBackgroundClip: "text",
-                  color: "transparent",
-                  opacity: 1,
-                  scale: 1,
-                  x: 0,
-                }}
-                animate={
-                  scrollDirection === "down"
-                    ? {
-                        backgroundImage:
-                          "linear-gradient(to right, #a78bfa, #ec4899, #f43f5e)",
-                        WebkitBackgroundClip: "text",
-                        color: "transparent",
-                        scale: 1.15,
-                        x: [0, 5, -5, 3, 0],
-                        opacity: 1,
-                      }
-                    : {
-                        backgroundImage:
-                          "linear-gradient(to right, #f43f5e, #f97316, #facc15)",
-                        WebkitBackgroundClip: "text",
-                        color: "transparent",
-                        scale: 0.95,
-                        x: 0,
-                        opacity: 0.8,
-                      }
-                }
-                transition={{ duration: 0.7, ease: "easeInOut" }}
-                className="inline-block px-1"
-              >
-                Abroad Services
-              </motion.span>
-            )}
           </span>
-        </motion.h1>
 
-        {/* ✅ Changed from motion.p to motion.div to avoid invalid HTML */}
-        <motion.div
+          <span className="mt-40 lg:mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-800  via-red-500 to-blue-600">
+            Insight Educator <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800  via-red-500 to-blue-600">
+              Abroad Services
+            </span>
+          </span>
+        </h1>
+
+        <div
+          data-aos="flip-left"
           className="max-w-lg mx-auto lg:left-8 text-gray-800 text-base md:text-lg px-6 py-5 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden bg-white/70 backdrop-blur-md"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
         >
           <span className="block text-xl mb-2 font-bold text-rose-600 relative z-10">
             🎓 Expert Guidance
@@ -312,8 +268,8 @@ export function LampDemo() {
             We provide expert guidance to help students explore global education
             opportunities with clarity, confidence, and care.
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Right Image */}
       <motion.div
@@ -368,28 +324,30 @@ export const DiagonalHero = ({
   return (
     <section
       className={cn(
-        `relative  bg-gradient-to-tr from-yellow-100 via-pink-100 to-orange-50 min-h-screen  text-black flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-20 py-20 overflow-hidden`,
+        `relative bg-gradient-to-tr from-yellow-100 via-pink-100 to-orange-50 min-h-screen text-black flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-20 py-20 overflow-hidden`,
         className
       )}
     >
       {/* Background Zoom */}
       <motion.div
-        className="absolute inset-0 bg-cover bg-center z-0"
+        className="absolute inset-0 bg-cover bg-center z-0 bg-fixed"
         style={{
-          backgroundImage: "url('/assets/aboutbg1.png')",
+          backgroundImage: "url('/assets/aboutpage.webp')",
           backgroundPositionY: "20%",
-          backgroundPositionX: "30%",
+          backgroundPositionX: "50%",
         }}
-        initial={{ scale: 1 }}
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ scale: 1.1 }}
+        animate={{ scale: [1.1, 1.15, 1.1] }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       >
         <div className="absolute inset-0 backdrop-brightness-100" />
       </motion.div>
 
       {/* Floating Blobs */}
-      {/* Floating Blobs */}
-      {/* Floating Blobs - Safe and Responsive */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-100px] right-[-60px] w-[250px] h-[250px] bg-yellow-300 rounded-full opacity-30 blur-3xl animate-float hidden md:block" />
         <div className="absolute bottom-[-80px] left-[-60px] w-[220px] h-[220px] bg-pink-400 rounded-full opacity-30 blur-2xl animate-float-slow hidden md:block" />
