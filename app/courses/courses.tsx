@@ -473,7 +473,7 @@ export const CoursesPage = () => {
               },
               {
                 category: "Media, Journalism, and Communication",
-                image: fiftimg,
+                image: fourimg,
                 description:
                   "Learn to craft compelling stories and navigate the modern media landscape. Develop communication skills for careers in journalism, PR, and digital content.",
                 undergraduate: [
@@ -493,7 +493,7 @@ export const CoursesPage = () => {
               },
               {
                 category: "Philosophy, Politics, and Economics (PPE)",
-                image: sixtimg,
+                image: fiftimg,
                 description:
                   "Study the intersection of ideas, governance, and economics. This interdisciplinary program equips you with tools to understand and influence complex systems.",
                 undergraduate: ["Philosophy", "Politics", "Economics"],
@@ -506,7 +506,7 @@ export const CoursesPage = () => {
               },
               {
                 category: "MBBS Courses Abroad",
-                image: fiftimg,
+                image: sixtimg,
                 description: `"Pursue a globally recognized medical degree and unlock a world of healthcare
 opportunities. MBBS courses abroad offer high-quality education, state-of-the-art
 facilities, clinical exposure, and international recognition."`,
@@ -575,13 +575,11 @@ facilities, clinical exposure, and international recognition."`,
                   </summary>
 
                   {/* 🔥 Image first */}
-                  <div className="w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-md py-4 h-[200px]">
+                  <div className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md h-[400px]">
                     <Image
-                      src={image} // fallback to firimg or a default
+                      src={image}
                       alt={category}
-                      width={600}
-                      height={300}
-                      className="object-cover"
+                      className="w-full h-full object-contain"
                       loading="lazy"
                     />
                   </div>
