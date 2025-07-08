@@ -170,16 +170,6 @@ const HomePage: React.FC = () => {
         data-aos-duration="2000"
         className="relative flex flex-col justify-center overflow-hidden py-16 px-4 bg-white mx-auto"
       >
-        {/* Top wave */}
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
-          <svg
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-            className="w-full h-20 fill-current text-black opacity-20"
-          >
-            <path d="M0,0V46.29c47.18,22.6,108.6,32.85,172.4,24,74.47-10.57,131.38-43.92,204.1-57,70.21-12.58,147.34-6.28,218.1,18,86.65,29.78,172.43,74.68,263.4,72,61.41-1.79,113.53-22.73,172.4-44.79V0Z"></path>
-          </svg>
-        </div>
 
         <motion.h2
           className="lg:text-5xl text-3xl font-bold text-center mb-12 text-black relative z-10"
@@ -279,17 +269,6 @@ const HomePage: React.FC = () => {
               </Card>
             </motion.div>
           ))}
-        </div>
-
-        {/* Bottom wave */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-            className="w-full h-20 fill-current text-black opacity-20"
-          >
-            <path d="M0,0V46.29c47.18,22.6,108.6,32.85,172.4,24,74.47-10.57,131.38-43.92,204.1-57,70.21-12.58,147.34-6.28,218.1,18,86.65,29.78,172.43,74.68,263.4,72,61.41-1.79,113.53-22.73,172.4-44.79V0Z"></path>
-          </svg>
         </div>
       </section>
 

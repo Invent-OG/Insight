@@ -113,14 +113,78 @@
 // };
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export function LampDemo() {
   const router = useRouter();
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Scroll animations
+      gsap.from(".lamp-text", {
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".lamp-text",
+          start: "top 80%",
+        },
+      });
+
+      gsap.from(".lamp-image", {
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        delay: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".lamp-image",
+          start: "top 80%",
+        },
+      });
+
+      // Floating shapes animation
+      gsap.to(".float1", {
+        y: 20,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".float2", {
+        x: 15,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".float3", {
+        y: -20,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-screen bg-[hsl(210,47%,23%)] flex items-center px-4 py-12 overflow-hidden">
-      {/* Main Content */}
-      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-4 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen bg-[hsl(210,47%,23%)] flex items-center px-4 py-12 overflow-hidden"
+    >
+      {/* === Floating SVGs === */}
+      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-4 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md float1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
@@ -129,7 +193,7 @@ export function LampDemo() {
           <polygon points="0,0 100,50 0,100" />
         </svg>
       </div>
-      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-20 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+      <div className="absolute top-24 -left-4 md:top-6 md:left-6 lg:top-20 lg:-left-10 lg:bg-[hsl(210,47%,23%)] p-2 rounded-md float2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
@@ -138,7 +202,7 @@ export function LampDemo() {
           <polygon points="0,0 100,50 0,100" />
         </svg>
       </div>
-      <div className="absolute top-1/2 left-56 md:top-6 md:left-6 lg:top-10 lg:right-10 lg:left-auto lg:bg-[hsl(210,47%,23%)] p-2 rounded-md">
+      <div className="absolute top-1/2 left-56 md:top-6 md:left-6 lg:top-10 lg:right-10 lg:left-auto lg:bg-[hsl(210,47%,23%)] p-2 rounded-md float3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
@@ -148,18 +212,21 @@ export function LampDemo() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Content */}
-        <div className="text-white space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            <span className="text-primary">Insight Educator</span> Abroad
-            Services
+      {/* === Content === */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col-reverse md:grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
+        {/* === Text === */}
+        <div className="text-white space-y-6 lamp-text">
+          <h1 className="text-4xl md:text-5xl font-bold md:font-extrabold leading-tight">
+            <span className=" px-2 py-1 rounded text-primary inline-block">
+              Insight Educator
+            </span>{" "}
+            Abroad Services
           </h1>
           <p className="text-base text-white/90">
             We provide expert guidance to help students explore global education
             opportunities with clarity, confidence, and care.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-6">
             <button
               onClick={() => router.push("/services")}
               className="px-6 py-3 bg-white text-primary font-semibold rounded hover:bg-gray-300 transition"
@@ -175,17 +242,17 @@ export function LampDemo() {
           </div>
         </div>
 
-        {/* Right Image */}
-        <div className="w-full h-64 sm:h-80 md:h-96">
+        {/* === Image === */}
+        <div className="w-full h-64 sm:h-80 md:h-96 lamp-image">
           <img
             src="/assets/about/aboutpage.webp"
             alt="Study Abroad"
-            className="w-full h-full object-cover rounded-lg shadow-lg"
+            className="w-full h-full object-cover shadow-lg"
           />
         </div>
       </div>
 
-      {/* Bottom Right Wave SVG */}
+      {/* === Wave Background === */}
       <div className="absolute bottom-0 right-0 w-full z-0">
         <svg viewBox="0 0 1440 320">
           <path
@@ -197,3 +264,4 @@ export function LampDemo() {
     </section>
   );
 }
+
