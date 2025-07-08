@@ -75,8 +75,22 @@ export default function OurTeam() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white py-16 px-6 overflow-hidden"
+      className="relative w-full min-h-screen bg-white py-16 px-6 overflow-hidden "
     >
+      <div
+        className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/assets/textures/countrycard.avif')",
+          opacity: 0.1,
+          backgroundAttachment:
+            typeof window !== "undefined" && window.innerWidth > 768
+              ? "fixed"
+              : "scroll",
+          backgroundSize: "cover",
+          backgroundRepeat: "repeat",
+        }}
+      />
+
       {/* === Floating Decorations === */}
       <svg
         className="absolute left-[-60px] top-[-60px] w-60 h-60 z-0 animate-floating"

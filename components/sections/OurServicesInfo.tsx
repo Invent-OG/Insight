@@ -69,7 +69,7 @@ export default function OurServicesInfo() {
   };
 
   return (
-    <section className="relative bg-white py-24 px-6 sm:px-10 lg:px-24 overflow-hidden">
+    <section className="relative bg-white py-16 px-6 sm:px-10 lg:px-24 overflow-hidden">
       {/* Background SVG blob */}
       <div className="absolute top-[-100px] left-[-100px] z-0 opacity-10 pointer-events-none">
         <svg viewBox="0 0 200 200" width="500" height="500">

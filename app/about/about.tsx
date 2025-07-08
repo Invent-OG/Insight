@@ -233,25 +233,11 @@ export default function AboutPage() {
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
           <OurServicesInfo />
         </section>
-
-        {/* Content */}
-        <div className="relative bg-red-100 w-full min-h-screen ">
-          {/* Background image with reduced opacity */}
-          {/* <div className="absolute inset-0 w-full h-full z-0">
-            {/* <Image
-              src={ourcorevalue}
-              alt="Background"
-              fill
-              className="opacity-70"
-              priority
-            /> */}
-          {/* </div> */}
-
-          {/* Foreground content on top of image */}
-          <div className="relative z-10 w-full h-full">
+                  {/* our core values  */}
+          <div >
             <RoadmapSection />
           </div>
-        </div>
+       
       </main>
     </>
   );
