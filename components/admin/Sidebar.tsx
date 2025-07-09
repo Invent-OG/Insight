@@ -25,11 +25,6 @@ const navItems = [
     href: "/admin/testimonials",
     icon: <MessageSquare className="h-5 w-5" />,
   },
-  // {
-  //   label: "Careers",
-  //   href: "/admin/careers",
-  //   icon: <Briefcase className="h-5 w-5" />,
-  // },
   {
     label: "Blog",
     href: "/admin/blog",
@@ -90,7 +85,10 @@ export default function Sidebar() {
               <Button
                 key={item.href}
                 variant={pathname === item.href ? "secondary" : "ghost"}
-                className="w-full justify-start  "
+                className={cn(
+                  pathname === item.href ? "text-white" : "text-black",
+                  "w-full justify-start  "
+                )}
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect } from "react";
@@ -49,9 +48,8 @@ const footerLinks: FooterSection[] = [
     label: "Resources",
     links: [
       { title: "Blog", href: "/blogs" },
-      { title: "Changelog", href: "/changelog" },
-      { title: "Brand", href: "/brand" },
       { title: "Help", href: "/contact" },
+      { title: "Admin Login", href: "/admin" },
     ],
   },
   {
