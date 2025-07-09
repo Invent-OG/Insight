@@ -5,10 +5,7 @@ import { motion } from "framer-motion";
 import { useCreateLead } from "@/lib/queries/leads"; // adjust path if needed
 import toast, { Toaster } from "react-hot-toast";
 
-import {
-  Fragment,
-  useState,
-} from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { countryData, CountryInfo } from "@/app/data/countryData";
 import { Button } from "@/components/ui/button";
@@ -295,8 +292,17 @@ type PageProps = {
 };
 
 export default function CountryPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const params = useParams(); // ✅ Correct way in client components
   const slug = params.slug;
+  const [selectedSlug, setSelectedSlug] = useState(slug as string);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
   const country = countries.find((c) => c.slug === params.slug);
   if (!country) notFound();
@@ -305,20 +311,10 @@ export default function CountryPage() {
     (c) => c.country.toLowerCase() === params.slug
   );
 
-  const [selectedSlug, setSelectedSlug] = useState(slug as string);
-  const [statusMessage, setStatusMessage] = useState("");
-  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
   const selectedSuggestions = suggestionMap[selectedSlug] || []; // Fallback to an empty array
   const suggestedCards = countries.filter((c) =>
     selectedSuggestions.includes(c.slug)
   );
-
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });

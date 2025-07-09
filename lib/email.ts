@@ -6,12 +6,12 @@ export async function sendContactEmails({
   name,
   email,
   phone,
-  message,
+  interest,
 }: {
   name: string;
   email: string;
   phone: string;
-  message: string;
+  interest: string;
 }) {
   const admin = await resend.emails.send({
     from: "Insight Abroad <no-reply@insightabroadservices.org>",
@@ -23,7 +23,7 @@ export async function sendContactEmails({
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Message:</strong><br/>${message}</p>
+        <p><strong>interest:</strong><br/>${interest}</p>
       </div>
     `,
   });
@@ -36,9 +36,9 @@ export async function sendContactEmails({
       <div style="font-family: sans-serif; line-height: 1.5;">
         <h2>Hello ${name},</h2>
         <p>Thank you for reaching out to <strong>Insight Abroad Services</strong>.</p>
-        <p>We’ve received your message and will get back to you shortly.</p>
+        <p>We’ve received your interest and will get back to you shortly.</p>
         <hr/>
-        <p><strong>Your Message:</strong><br/>${message}</p>
+        <p><strong>Your interest:</strong><br/>${interest}</p>
         <br/>
         <p>Warm regards,<br/><strong>Insight Abroad Team</strong></p>
       </div>

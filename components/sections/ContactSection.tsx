@@ -5,6 +5,8 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useCreateLead } from "@/lib/queries/leads"; // ✅ Import the hook
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -77,43 +79,39 @@ export default function ContactSection() {
         {/* Left Side - Form */}
         <div>
           <form className="space-y-4" onSubmit={handleSubmit}>
-            <input
+            <Input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
               required
-              className="w-full p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
             />
             <div className="flex gap-4">
-              <input
+              <Input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
                 required
-                className="w-1/2 p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
               />
-              <input
+              <Input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter your Phone"
                 required
-                className="w-1/2 p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
               />
             </div>
-            <textarea
+            <Textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Your message"
               rows={5}
               required
-              className="w-full p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
             />
             <Button
               className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold text-white"

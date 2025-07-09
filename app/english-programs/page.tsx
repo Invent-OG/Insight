@@ -11,6 +11,7 @@ law, and design.
 "`,
   keywords:
     "study abroad, overseas education consultants, IELTS coaching Coimbatore, international education, student visa support",
+  icon: "/assets/logo.png",
 };
 
 const englishprogram = () => {

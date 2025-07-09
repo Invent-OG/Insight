@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       ...data,
     };
 
-    // await sendContactEmails(data.whatsappNumber + "@whatsapp.com", data.name);
+    await sendContactEmails(data);
 
     const [lead] = await db.insert(leads).values(newLead).returning();
 

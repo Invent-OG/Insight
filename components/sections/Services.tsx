@@ -96,8 +96,8 @@ export default function ServicesSection() {
 
               <div className="hidden lg:block">
                 <Button
+                  variant={"default"}
                   onClick={() => router.push("/services")}
-                  className=" text-white bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold"
                 >
                   Go to Services
                 </Button>
@@ -175,7 +175,7 @@ export default function ServicesSection() {
               <div className="flex justify-center lg:hidden mt-8">
                 <Button
                   onClick={() => router.push("/services")}
-                  className="w-40"
+                  variant={"default"}
                 >
                   Go to Services
                 </Button>
