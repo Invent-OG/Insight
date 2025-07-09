@@ -1,80 +1,3 @@
-// "use client";
-
-// import { Button } from "./button";
-// import { motion } from "framer-motion";
-// import CountUp from "react-countup";
-
-// export function HeroGeometric({ badge }: { badge?: string }) {
-//   return (
-//     <section className="relative bg-white min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden">
-//       {/* 🖼️ Custom Background Blurred Decoration */}
-//       <div className="absolute inset-0 -z-10">
-//         <img
-//           src="/assets/about/Our services (about page).webp"
-//           alt="Background"
-//           className="w-full h-full object-cover opacity-10 blur-sm"
-//         />
-//         <div className="absolute inset-0 bg-white/90" />
-//       </div>
-
-//       {/* 💬 Main Content */}
-//       <motion.div
-//         initial={{ opacity: 0, y: 20 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ duration: 1 }}
-//         className="max-w-3xl mx-auto space-y-6"
-//       >
-//         {badge && (
-//           <div className="inline-block bg-red-600 text-white text-xs px-4 py-1 rounded-full font-semibold tracking-wide">
-//             {badge}
-//           </div>
-//         )}
-
-//         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
-//           Start Your <span className="text-red-600">Global Journey</span> With
-//           Expert <span className="text-red-600">Guidance</span>
-//         </h1>
-
-//         <p className="text-gray-600 text-lg sm:text-xl max-w-2xl mx-auto">
-//           End-to-end services to make your study abroad dream smooth,
-//           stress-free, and successful. Explore top universities and scholarships
-//           across the globe.
-//         </p>
-
-//         <Button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full transition mt-4">
-//           Get Personalized Assistance Now
-//         </Button>
-//       </motion.div>
-
-//       {/* 🧊 Floating Stats Card with CountUp */}
-//       <motion.div
-//         initial={{ opacity: 0, y: 40 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ delay: 1.2, duration: 0.8 }}
-//         className="mt-16 bg-white shadow-xl border border-gray-200 rounded-xl px-8 py-6 flex flex-wrap gap-8 justify-center max-w-4xl"
-//       >
-//         <div className="text-center">
-//           <p className="text-2xl font-bold text-red-600">
-//             <CountUp end={1000} duration={2} suffix="+" />
-//           </p>
-//           <p className="text-sm text-gray-600">Students Assisted</p>
-//         </div>
-//         <div className="text-center">
-//           <p className="text-2xl font-bold text-red-600">
-//             <CountUp end={25} duration={2} suffix="+" />
-//           </p>
-//           <p className="text-sm text-gray-600">Countries Covered</p>
-//         </div>
-//         <div className="text-center">
-//           <p className="text-2xl font-bold text-red-600">
-//             <CountUp end={98} duration={2} suffix="%" />
-//           </p>
-//           <p className="text-sm text-gray-600">Visa Success Rate</p>
-//         </div>
-//       </motion.div>
-//     </section>
-//   );
-// }
 "use client";
 
 import { Button } from "./button";
@@ -85,10 +8,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function HeroGeometric({ badge }: { badge?: string }) {
   const [ref, inView] = useInView({ triggerOnce: false });
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
     if (inView) {
@@ -129,7 +55,7 @@ export function HeroGeometric({ badge }: { badge?: string }) {
           </div>
         )}
 
-        <h1 className="text-4xl sm:text-4xl lg:text-5xl mt-4 lg:mt-0 lg:font-extrabold font-bold text-white leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+        <h1 className=" text-4xl sm:text-4xl lg:text-5xl mt-4 lg:mt-0 lg:font-extrabold font-bold text-white leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
           Start Your <span className="text-primary">Global Journey</span> With
           Expert <span className="text-primary">Guidance</span>
         </h1>

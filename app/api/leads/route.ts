@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { leads } from "@/lib/db/schema";
 import { eq, asc } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
+import { sendContactEmails } from "@/lib/email";
 
 // Zod validation schema for input
 const leadSchema = z.object({
@@ -23,6 +24,8 @@ export async function POST(req: Request) {
       id: uuidv4(),
       ...data,
     };
+
+    // await sendContactEmails(data.whatsappNumber + "@whatsapp.com", data.name);
 
     const [lead] = await db.insert(leads).values(newLead).returning();
 

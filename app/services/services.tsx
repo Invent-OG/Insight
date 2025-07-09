@@ -13,16 +13,17 @@ import { GiDiploma, GiGraduateCap } from "react-icons/gi";
 import { IoDocumentText } from "react-icons/io5";
 
 import { motion, useViewportScroll, useTransform } from "framer-motion";
-import AnimatedBackground from "@/components/ui/animated-background"; // Adjust path as needed
-import { HeroGeometric } from "@/components/ui/shape-landing-hero"; // Adjust path as needed
+import AnimatedBackground from "@/components/ui/animated-background";
+import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import "@/app/globals.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useRouter } from "next/navigation";
 import animatedStyles from "@/app/services/AnimatedCircles.module.css";
+import ServicesHero from "@/components/sections/ServicesHero";
 
-// Animation variants for fade-in and slide-up on mount
+// Animation variants
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -34,11 +35,22 @@ const fadeUpVariants = {
 
 export default function Services() {
   const { scrollY } = useViewportScroll();
-
-  // Map scrollY to background Y position for parallax effect
   const bgY = useTransform(scrollY, [0, 500], ["0%", "30%"], {
     clamp: false,
   });
+
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCards = () => {
+    if (cardsRef.current) {
+      const yOffset = -80; // adjust if you have a sticky header
+      const y =
+        cardsRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     AOS.init({
@@ -58,20 +70,21 @@ export default function Services() {
         />
       </Head>
 
-      <main className=" min-h-screen w-full text-gray-100">
+      <main className="min-h-screen w-full text-gray-100">
         {/* Hero Section */}
         <div>
-          <HeroGeometric />
+          <ServicesHero scrollToCards={scrollToCards} />
         </div>
+
         {/* Services Section */}
-        <section className={`${animatedStyles.area} relative`}>
+        <section ref={cardsRef} className={`${animatedStyles.area} relative`}>
           <ul className={animatedStyles.circles}>
             {Array.from({ length: 10 }).map((_, i) => (
               <li key={i}></li>
             ))}
           </ul>
 
-          <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10 ">
+          <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10">
             <h4 className="text-primary uppercase text-center text-base mb-6 tracking-wider">
               — Services —
             </h4>
@@ -79,7 +92,7 @@ export default function Services() {
               What We <span className="text-primary">Offer</span>
             </h2>
 
-            <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+            <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, idx) => (
                 <AnimatedBackground
                   key={idx}
@@ -161,7 +174,6 @@ interface ServiceCardProps {
   index: number;
 }
 
-// ✅ HIGHLIGHTED second card only
 function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
   const { scrollYProgress } = useViewportScroll();
 
@@ -180,6 +192,7 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
       router.push("/english-programs");
     }
   };
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}

@@ -1,4 +1,3 @@
-
 "use client";
 import Herocontent from "@/components/sections/Herocontent";
 import CountriesCarousel from "@/components/sections/CountriesCarousel";
@@ -47,9 +46,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <main className="w-full">
-    
         <MultiLayerParallax />
-       
         <Herocontent />
         <CountriesCarousel />
         <ServicesSection />

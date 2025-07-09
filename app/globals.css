@@ -6,6 +6,51 @@
 @tailwind utilities;
 
 
+/* Custom fade-in animations */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s forwards;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 1s forwards;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+.animation-delay-700 {
+  animation-delay: 0.7s;
+}
+
 /* globe rotate in aboutpage  */
 @layer utilities {
   .animate-spin-slow {
