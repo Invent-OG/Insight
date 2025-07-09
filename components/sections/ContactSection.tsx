@@ -115,7 +115,11 @@ export default function ContactSection() {
               required
               className="w-full p-3 bg-transparent border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none"
             />
-            <Button className="text-white" type="submit" disabled={loading}>
+            <Button
+              className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold text-white"
+              type="submit"
+              disabled={loading}
+            >
               {loading ? "Sending..." : "— Contact Now —"}
             </Button>
             {success && (

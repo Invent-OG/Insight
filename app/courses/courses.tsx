@@ -80,6 +80,7 @@ import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CountriesCarousel from "@/components/sections/CountriesCarousel";
+import CoursesHero from "@/components/sections/CoursesHero";
 
 // Animation variants for framer-motion
 const cardVariants = {
@@ -124,68 +125,9 @@ export const CoursesPage = () => {
   return (
     <main className=" mx-auto  ">
       {/* Meta Title and Description */}
-      <section
-        className="relative min-h-screen flex items-center justify-center px-6 sm:px-12 lg:px-24 text-center overflow-hidden"
-        style={{
-          backgroundImage:
-            "url('/assets/course/courses and countries page.webp')",
-          backgroundAttachment: isMobile ? "scroll" : "fixed", // ✅ Responsive parallax
-          backgroundPosition: "48% center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          opacity: 1,
-        }}
-      >
-        {/* ✅ Content */}
-        <div className="relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="text-white text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-wide drop-shadow-lg"
-          >
-            Top Courses to <span className="text-primary">Study Abroad</span>
-            <span className="block h-2 w-32 bg-red-600 rounded-full mx-auto mt-6 animate-pulse"></span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="max-w-3xl mx-auto text-primary text-lg md:text-xl font-bold leading-relaxed drop-shadow-md"
-          >
-            <span className="inline-block border-l-4 border-red-600 pl-5 italic">
-              Explore the best courses to study abroad in 12+ countries – from
-              business and tech to healthcare, law, and design.
-            </span>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="mt-12 flex justify-center"
-          >
-            <div className="h-1 w-28 bg-red-600 rounded-full animate-pulse shadow-lg"></div>
-          </motion.div>
-        </div>
-
-        {/* ✅ Down Arrow */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-red-500 animate-bounce z-10">
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
-        </div>
-      </section>
+      <div>
+        <CoursesHero />
+      </div>
 
       {/* Combined Courses Section */}
       <div>

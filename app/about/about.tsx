@@ -3,12 +3,12 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { LampDemo } from "@/components/ui/lamp";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
 import OurServicesInfo from "@/components/sections/OurServicesInfo";
 import OurTeam from "@/components/sections/OurTeam";
+import AboutHero from "@/components/sections/AboutHero";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -43,10 +43,9 @@ export default function AboutPage() {
   return (
     <>
       <main className=" text-white min-h-screen relative">
-        {/* BackgroundPaths component */}
-        {/* <BackgroundPaths /> */}
-        <div className="relative h-screen w-screen">
-          <LampDemo />
+        <div className="relative h-screen w-screen ">
+          {/* <LampDemo /> */}
+          <AboutHero />
         </div>
 
         {/* Hero  sub content */}
@@ -233,11 +232,10 @@ export default function AboutPage() {
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
           <OurServicesInfo />
         </section>
-                  {/* our core values  */}
-          <div >
-            <RoadmapSection />
-          </div>
-       
+        {/* our core values  */}
+        <div>
+          <RoadmapSection />
+        </div>
       </main>
     </>
   );

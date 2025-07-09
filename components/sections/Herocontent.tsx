@@ -208,7 +208,7 @@ const Layout2 = () => {
                   }
                   setShowFull((prev) => !prev);
                 }}
-                className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-primary/90 transition-all"
+                className="mt-2 bg-primary text-white px-4 py-2 font-semibold hover:bg-transparent hover:border hover:border-black hover:text-black transition-all"
               >
                 {showFull ? "Show Less" : "Read More"}
               </Button>

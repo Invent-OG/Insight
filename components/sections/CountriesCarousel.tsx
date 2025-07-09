@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useEffect, useRef } from "react";
@@ -8,7 +6,6 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 
 interface Country {
   id: string;
@@ -106,7 +103,10 @@ const CountriesCarousel: React.FC = () => {
 
         {/* Centered Button */}
         <div className="flex justify-center lg:py-4 mb-4">
-          <Button onClick={() => router.push("/countries")}>
+          <Button
+            className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold"
+            onClick={() => router.push("/countries")}
+          >
             Explore Countries
           </Button>
         </div>

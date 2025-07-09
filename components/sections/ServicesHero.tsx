@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const slides = [
   "https://resonance.bestlooker.pro/images/full-width-images/section-bg-7.jpg",
-  "https://resonance.bestlooker.pro/images/full-width-images/section-bg-8.jpg",
+  // "https://resonance.bestlooker.pro/images/full-width-images/section-bg-8.jpg",
   "https://resonance.bestlooker.pro/images/full-width-images/section-bg-9.jpg",
 ];
 

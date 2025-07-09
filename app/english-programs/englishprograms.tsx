@@ -26,6 +26,7 @@ import {
   Activity,
 } from "lucide-react";
 import { CalendarCheck, UserCheck, Eye } from "lucide-react";
+import EnglishProgramHero from "@/components/sections/EnglishProgramHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,40 +129,12 @@ const HomePage: React.FC = () => {
   const icons = [Lightbulb, Target, Rocket, Users, ShieldCheck, Star];
 
   return (
-    <div className=" min-h-screen">
+    <div>
       {/* Hero Section */}
 
-      <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6 text-white relative overflow-hidden">
-        {/* Parallax Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('/assets/englishprogram/heroenglishprogram.webp')",
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center",
-          }}
-        />
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50"></div>
-
-        {/* Content */}
-        <div className="relative z-10 space-y-10 max-w-5xl mx-auto">
-          <h1 className="lg:text-5xl text-3xl font-bold mb-4">
-            Achieve <span className="text-primary">English Excellence</span> –
-            Personalized and <span className="text-primary">Practical</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg leading-7">
-            We offer one-on-one training led by experts{" "}
-            <span className="italic font-semibold bg-primary text-white px-1 rounded drop-shadow-sm">
-              certified by Trinity College London
-            </span>
-            . Go beyond theory with meaningful, result-oriented English coaching
-            that’s tailored to your needs.
-          </p>
-        </div>
-      </section>
+      <div>
+        <EnglishProgramHero />
+      </div>
 
       {/* English Proficiency Tests */}
       <section
@@ -170,7 +143,6 @@ const HomePage: React.FC = () => {
         data-aos-duration="2000"
         className="relative flex flex-col justify-center overflow-hidden py-16 px-4 bg-white mx-auto"
       >
-
         <motion.h2
           className="lg:text-5xl text-3xl font-bold text-center mb-12 text-black relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -356,7 +328,7 @@ const HomePage: React.FC = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-lg text-white leading-relaxed">
                 Our English communication training is ideal for students,
                 professionals, and anyone looking to gain fluency and confidence
                 in spoken English.
@@ -366,18 +338,18 @@ const HomePage: React.FC = () => {
                 <h3 className="text-xl font-semibold text-primary mb-2">
                   Our Method:
                 </h3>
-                <p className="text-gray-300 leading-relaxed mb-2">
+                <p className="text-white leading-relaxed mb-2">
                   We follow a{" "}
                   <span className="text-primary font-medium">
                     “speak first, learn rules later”
                   </span>{" "}
                   approach.
                 </p>
-                <p className="text-gray-300 leading-relaxed mb-2">
+                <p className="text-white leading-relaxed mb-2">
                   Students begin with spoken practice in everyday situations –
                   this builds natural fluency and confidence.
                 </p>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-white leading-relaxed">
                   As they grow more comfortable, we introduce grammar,
                   vocabulary, and sentence patterns with clear usage-based
                   explanations.
@@ -400,40 +372,38 @@ const HomePage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-2">
                   <Volume2 className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">
-                    Spoken English and pronunciation
-                  </p>
+                  <p className="text-white">Spoken English and pronunciation</p>
                 </div>
 
                 <div className="flex items-start space-x-2">
                   <FileText className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">Grammar and sentence framing</p>
+                  <p className="text-white">Grammar and sentence framing</p>
                 </div>
 
                 <div className="flex items-start space-x-2">
                   <BookOpen className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">
+                  <p className="text-white">
                     Vocabulary development (basic to advanced)
                   </p>
                 </div>
 
                 <div className="flex items-start space-x-2">
                   <Presentation className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">
+                  <p className="text-white">
                     Presentation and interview preparation
                   </p>
                 </div>
 
                 <div className="flex items-start space-x-2">
                   <Mic className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">
+                  <p className="text-white">
                     Accent reduction and real-life speaking skills
                   </p>
                 </div>
 
                 <div className="flex items-start space-x-2">
                   <Activity className="w-5 h-5 text-primary mt-1" />
-                  <p className="text-gray-300">
+                  <p className="text-white">
                     Real-time feedback and progress tracking
                   </p>
                 </div>

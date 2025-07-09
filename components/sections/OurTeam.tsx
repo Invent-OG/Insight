@@ -37,60 +37,11 @@ const teamMembers = [
 ];
 
 export default function OurTeam() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Animate header
-      gsap.from(".team-header", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".team-header",
-          start: "top 80%",
-        },
-      });
-
-      // Animate all cards together with stagger
-      gsap.from(".team-card", {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".team-card",
-          start: "top 90%",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="relative w-full min-h-screen bg-white py-16 px-6 overflow-hidden "
     >
-      <div
-        className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/assets/textures/countrycard.avif')",
-          opacity: 0.1,
-          backgroundAttachment:
-            typeof window !== "undefined" && window.innerWidth > 768
-              ? "fixed"
-              : "scroll",
-          backgroundSize: "cover",
-          backgroundRepeat: "repeat",
-        }}
-      />
-
       {/* === Floating Decorations === */}
       <svg
         className="absolute left-[-60px] top-[-60px] w-60 h-60 z-0 animate-floating"
@@ -168,34 +119,6 @@ export default function OurTeam() {
           </div>
         ))}
       </div>
-
-      {/* === Floating Animation Keyframes === */}
-      <style jsx>{`
-        .animate-floating {
-          animation: float 8s ease-in-out infinite;
-        }
-        .animate-floating-reverse {
-          animation: float-reverse 6s ease-in-out infinite;
-        }
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
-        }
-        @keyframes float-reverse {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(12px);
-          }
-        }
-      `}</style>
     </section>
   );
 }

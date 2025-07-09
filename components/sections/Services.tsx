@@ -97,7 +97,7 @@ export default function ServicesSection() {
               <div className="hidden lg:block">
                 <Button
                   onClick={() => router.push("/services")}
-                  className="md:mt-4 lg:mt-6 w-40 text-white"
+                  className=" text-white bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold"
                 >
                   Go to Services
                 </Button>

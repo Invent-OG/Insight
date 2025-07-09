@@ -119,7 +119,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
                       setShowFullDesc(false);
                     }
                   }}
-                  className="mt-6 bg-primary hover:bg-primary/80 text-white font-semibold px-5 py-2 rounded-md border focus:outline-none focus:ring-2 transition-colors duration-300 select-none"
+                  className="mt-6 bg-primary hover:bg-transparent hover:border hover:border-black hover:text-white  font-semibold px-5 py-2 rounded-md  focus:outline-none focus:ring-2 transition-colors duration-300 select-none"
                   aria-label={showFullDesc ? "Show less" : "Read more"}
                   style={{ wordSpacing: "0.15em" }}
                 >
