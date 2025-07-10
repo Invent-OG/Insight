@@ -19,8 +19,8 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      <HeroSection />
-      {/* <MultiLayerParallax /> */}
+      {/* <HeroSection /> */}
+      <MultiLayerParallax />
       <Herocontent />
       <CountriesCarousel />
       <ServicesSection />
