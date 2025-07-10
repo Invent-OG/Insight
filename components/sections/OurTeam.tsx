@@ -1,8 +1,4 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
 const teamMembers = [
   {
     name: "Adam John",
@@ -37,11 +33,8 @@ const teamMembers = [
 ];
 
 export default function OurTeam() {
-
   return (
-    <section
-      className="relative w-full min-h-screen bg-white py-16 px-6 overflow-hidden "
-    >
+    <section className="relative w-full min-h-screen bg-white py-16 px-6 overflow-hidden ">
       {/* === Floating Decorations === */}
       <svg
         className="absolute left-[-60px] top-[-60px] w-60 h-60 z-0 animate-floating"
@@ -104,17 +97,6 @@ export default function OurTeam() {
                 </h3>
                 <p className="text-sm text-red-600">{member.role}</p>
               </div>
-            </div>
-            <div className="p-5 flex justify-center gap-6 text-gray-500 text-xl border-t border-gray-100">
-              <a href="#" className="hover:text-orange-500 transition">
-                <i className="fab fa-twitter" />
-              </a>
-              <a href="#" className="hover:text-orange-500 transition">
-                <i className="fab fa-linkedin" />
-              </a>
-              <a href="#" className="hover:text-orange-500 transition">
-                <i className="fab fa-github" />
-              </a>
             </div>
           </div>
         ))}

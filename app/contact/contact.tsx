@@ -18,8 +18,6 @@ export default function Contact() {
     interest: "",
   });
 
-  console.log(formData);
-
   const { mutate, isPending, isSuccess, isError } = useCreateLead();
 
   const handleChange = (
@@ -54,15 +52,19 @@ export default function Contact() {
   }, [isSuccess, isError]);
 
   return (
-    <main className="bg-white">
+    <main className="bg-white ">
       {/* CONTACT FORM SECTION (With background) */}
       <section
-        className="min-h-screen lg:py-16 py-16 px-6"
+        className="relative min-h-screen lg:py-16 py-16 px-6 "
         style={{
-          backgroundImage: "url('/assets/contactbg.jpg')",
-          backgroundRepeat: "repeat",
+          backgroundImage: "url('/assets/contactbg45.jpg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          // backgroundPositionY: "90%",
+          backgroundPosition: "50% 100% ",
         }}
       >
+        <div className="absolute inset-0 bg-white opacity-90" />
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
           {/* Left Side: Heading + Contact Info */}
           <div className="flex flex-col justify-start space-y-10">

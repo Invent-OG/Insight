@@ -15,7 +15,7 @@ export default function EnglishProgramHero() {
   }, []);
 
   return (
-    <section className="flex flex-col text-center justify-center py-20 min-h-screen px-6 text-white relative overflow-hidden">
+    <section className="flex flex-col text-center justify-center py-20 min-h-screen  text-white relative overflow-hidden">
       {/* 🔲 Background Image with Parallax (desktop) and Scroll (mobile) */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -29,7 +29,7 @@ export default function EnglishProgramHero() {
       />
 
       {/* 🔲 Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black bg-opacity-80" />
 
       {/* 🔲 Content */}
       <div className="relative z-10 space-y-10 max-w-5xl mx-auto">

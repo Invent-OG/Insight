@@ -112,33 +112,13 @@ export default function AboutPage() {
                 },
               }}
             >
-              <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug text-left"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.1 } },
-                }}
-              >
-                {"Your pathway to international education"
-                  .split(" ")
-                  .map((word, i) => (
-                    <motion.span
-                      key={i}
-                      className={word === "international" ? "text-primary" : ""}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        delay: i * 0.12,
-                      }}
-                    >
-                      {word}{" "}
-                    </motion.span>
-                  ))}
-              </motion.h1>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug text-left">
+                Your pathway to{" "}
+                <span className="text-primary text-nowrap">
+                  international education
+                </span>
+              </div>
+
               <motion.p
                 className="text-base sm:text-lg text-white leading-relaxed max-w-lg text-left"
                 initial={{ opacity: 0, y: 10 }}

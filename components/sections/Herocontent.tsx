@@ -142,16 +142,18 @@ const Layout2 = () => {
             } space-y-4`}
           >
             <motion.h2
-              className="lg:text-4xl md:text-3xl text-3xl  font-bold text-wrap text-black text-center md:text-left mb-6"
+              className="lg:text-4xl md:text-3xl text-3xl  font-bold lg:text-nowrap md:text-pretty text-black text-center md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={textVariants}
             >
-              Your Global Education Starts Here{" "}
-              <span className="text-primary text-nowrap">
-                We Make It Happen
-              </span>
+              Your Global Education Starts Here <br />
+              <div>
+                <span className="text-primary text-nowrap">
+                  We Make It Happen
+                </span>
+              </div>
             </motion.h2>
 
             {/* Content Block */}

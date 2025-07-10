@@ -61,52 +61,40 @@ export default function Services() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Our Services | End-to-End Study Abroad Support – Insight</title>
-        <meta
-          name="description"
-          content="From counselling to visa and guaranteed accommodation, get expert support for your global study journey every step of the way."
-        />
-      </Head>
+    <main className="min-h-screen w-full text-gray-100">
+      {/* Hero Section */}
+      <ServicesHero scrollToCards={scrollToCards} />
 
-      <main className="min-h-screen w-full text-gray-100">
-        {/* Hero Section */}
-        <div>
-          <ServicesHero scrollToCards={scrollToCards} />
-        </div>
+      {/* Services Section */}
+      <section ref={cardsRef} className={`${animatedStyles.area} relative`}>
+        <ul className={animatedStyles.circles}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <li key={i}></li>
+          ))}
+        </ul>
 
-        {/* Services Section */}
-        <section ref={cardsRef} className={`${animatedStyles.area} relative`}>
-          <ul className={animatedStyles.circles}>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <li key={i}></li>
+        <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10">
+          <h4 className="text-primary uppercase text-center text-base mb-6 tracking-wider">
+            — Services —
+          </h4>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-center text-black mb-12 leading-tight">
+            What We <span className="text-primary">Offer</span>
+          </h2>
+
+          <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, idx) => (
+              <AnimatedBackground
+                key={idx}
+                enableHover={true}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <ServiceCard {...service} index={idx} />
+              </AnimatedBackground>
             ))}
-          </ul>
-
-          <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10">
-            <h4 className="text-primary uppercase text-center text-base mb-6 tracking-wider">
-              — Services —
-            </h4>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-center text-black mb-12 leading-tight">
-              What We <span className="text-primary">Offer</span>
-            </h2>
-
-            <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service, idx) => (
-                <AnimatedBackground
-                  key={idx}
-                  enableHover={true}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <ServiceCard {...service} index={idx} />
-                </AnimatedBackground>
-              ))}
-            </div>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }
 
