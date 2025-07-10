@@ -110,6 +110,8 @@ const services = [
     title: "IELTS, Duolingo, & PTE Training",
     description:
       "We offer personalized training for IELTS, Duolingo, and PTE exams to help you meet language requirements with confidence. We also identify universities accepting MOI-based waivers or alternative tests, and guide you through the documentation process.",
+    route: "/english-programs",
+    featured: true,
   },
   {
     icon: <IoDocumentText size={45} className="text-black" />,
@@ -122,6 +124,8 @@ const services = [
     title: "Financial & Loan Guidance",
     description:
       "Studying abroad is a big investment, and we make it manageable. Get help understanding tuition, living expenses, and securing scholarships or education loans (collateral & non-collateral) from public and private banks.",
+    route: "/loan_assistance",
+    featured: true,
   },
   {
     icon: <GiDiploma size={45} className="text-black" />,
@@ -160,9 +164,18 @@ interface ServiceCardProps {
   title: string;
   description: string;
   index: number;
+  route?: string;
+  featured?: boolean;
 }
 
-function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
+function ServiceCard({
+  icon,
+  title,
+  description,
+  index,
+  route,
+  featured,
+}: ServiceCardProps) {
   const { scrollYProgress } = useViewportScroll();
 
   const yRangeStart = 0 + index * 0.1;
@@ -171,13 +184,11 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
     clamp: false,
   });
 
-  const isHighlighted = index === 1;
-
   const router = useRouter();
 
   const handleClick = () => {
-    if (isHighlighted) {
-      router.push("/english-programs");
+    if (route) {
+      router.push(route);
     }
   };
 
@@ -186,17 +197,19 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
       whileHover={{ scale: 1.05 }}
       onClick={handleClick}
       className={`relative group p-6 rounded-2xl overflow-hidden bg-transparent border text-black transition-all duration-300 ${
-        isHighlighted ? "cursor-pointer" : ""
+        route ? "cursor-pointer" : ""
       }`}
     >
-      {!isHighlighted && (
-        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary transition-all duration-300" />
-      )}
-      {isHighlighted && (
-        <span className="absolute top-2 right-2 hover:cursor-pointer bg-primary text-xs px-2 py-1 rounded-full text-white font-semibold z-10">
+      {featured && (
+        <span className="absolute top-2 right-2 bg-primary text-xs px-2 py-1 rounded-full text-white font-semibold z-10">
           Featured
         </span>
       )}
+
+      {!featured && (
+        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary transition-all duration-300" />
+      )}
+
       <div className="relative z-10">
         <div className="text-2xl mb-2">{icon}</div>
         <h3 className="text-xl font-bold text-primary">{title}</h3>
