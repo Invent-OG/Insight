@@ -259,6 +259,13 @@ export default function MultiLayerParallax() {
   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
+  // Flare diagonal movement
+  const flareX1 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const flareY1 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
+  const flareX2 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const flareY2 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
   return (
     <div ref={ref} className="parallax-container">
       {/* 🌌 Sky Background */}
@@ -268,19 +275,7 @@ export default function MultiLayerParallax() {
       >
         <Image src={sky} alt="Sky" fill priority className="sky-img" />
       </motion.div>
-      {/* 🌍 Globe */}
-      {/* <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, rotate: 360 }}
-        transition={{
-          y: { duration: 1, ease: "easeOut" },
-          opacity: { duration: 0, ease: "easeOut" },
-          rotate: { repeat: Infinity, duration: 100, ease: "linear" },
-        }}
-        className="globe"
-      >
-        <Image src={globe1} alt="Globe" priority className="globe-img" />
-      </motion.div> */}
+
       {/* Earth - curved bottom */}
       <div>
         <Image
@@ -289,26 +284,37 @@ export default function MultiLayerParallax() {
           width={800}
           height={800}
           priority
-          className="object-fill h-full w-full -bottom-48 absolute  z-40"
+          className="absolute w-full h-full bottom-0 sm:-bottom-48 z-40 object-cover lg:md:top-44 top-56 object-bottom sm:object-fill"
         />
 
         {/* Flare - light overlay near top of Earth */}
-        <Image
-          src="/assets/flare.png"
-          alt="flare"
-          priority
-          width={800}
-          height={800}
-          className="object-contain h-full w-full absolute top-14 z-30  pointer-events-none"
-        />
-        <Image
-          src="/assets/flare.png"
-          alt="flare"
-          priority
-          width={800}
-          height={800}
-          className="object-contain h-full w-full absolute top-14  z-40 opacity-70 pointer-events-none"
-        />
+        <motion.div
+          style={{ x: flareX1, y: flareY1 }}
+          className="object-contain h-full w-full absolute lg:top-36 top-28 z-30 bg-opacity-60 opacity-60 pointer-events-none"
+        >
+          <Image
+            src="/assets/flare.png"
+            alt="flare"
+            priority
+            width={800}
+            height={800}
+            className="object-contain h-full w-full"
+          />
+        </motion.div>
+
+        <motion.div
+          style={{ x: flareX2, y: flareY2 }}
+          className="object-contain h-full w-full absolute lg:top-20 top-10 z-40 opacity-70 pointer-events-none"
+        >
+          <Image
+            src="/assets/flare.png"
+            alt="flare"
+            priority
+            width={800}
+            height={800}
+            className="object-contain h-full w-full"
+          />
+        </motion.div>
       </div>
 
       <motion.div style={{ y: textY }} className="center-text ">
@@ -325,31 +331,12 @@ export default function MultiLayerParallax() {
           initial={{ y: 30, opacity: 0, filter: "blur(10px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.2 }}
-          className="font-bold text-8xl text-primary text-opacity-100 z-50"
+          className="font-extrabold lg:text-8xl text-7xl font-eurostile lg:font-extrabold text-primary text-opacity-100 z-50"
         >
           Insight
         </motion.h1>
       </motion.div>
 
-      {/* <motion.div style={{ y: textY }} className="center-text">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
-          className="center-subtitle "
-        >
-          Beyond borders better
-        </motion.p>
-
-        <motion.h1
-          initial={{ y: 30, opacity: 0, filter: "blur(10px)" }}
-          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.2 }}
-          className="center-title "
-        >
-          Insight
-        </motion.h1>
-      </motion.div> */}
       {/* Logo */}
       <motion.div
         initial={{ y: -300, opacity: 0 }}
@@ -361,6 +348,7 @@ export default function MultiLayerParallax() {
           <Image src={logo} alt="Logo" priority className="logo-img" />
         </motion.div>
       </motion.div>
+
       {/* Plane - Desktop */}
       <motion.div
         initial={{ x: "-100%", y: "60%" }}
@@ -372,10 +360,11 @@ export default function MultiLayerParallax() {
           <Image src={plane} alt="Plane" className="plane-img-desktop" />
         </motion.div>
       </motion.div>
+
       {/* Plane - Mobile */}
       <motion.div
         initial={{ x: "-250%", y: "60%" }}
-        animate={{ x: 0, y: -90 }}
+        animate={{ x: 0, y: -100 }}
         transition={{ duration: 3.2, ease: "easeInOut" }}
         className="plane-mobile"
       >
@@ -383,6 +372,7 @@ export default function MultiLayerParallax() {
           <Image src={plane} alt="Plane" className="plane-img-mobile" />
         </motion.div>
       </motion.div>
+
       {/* Clouds */}
       {[1, 2, 3, 4].map((id) => (
         <motion.div
