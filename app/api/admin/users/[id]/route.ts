@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
+import { NextRequest } from "next/server";
+
 
 // Schema for updating user
 const updateUserSchema = z.object({
@@ -19,8 +21,10 @@ const changePasswordSchema = z.object({
 });
 
 // GET - Fetch a specific user
+
+// Use this format for all handlers
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -54,7 +58,7 @@ export async function GET(
 
 // PATCH - Update user details
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -119,7 +123,7 @@ export async function PATCH(
 
 // PUT - Change password
 export async function PUT(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -175,7 +179,7 @@ export async function PUT(
 
 // DELETE - Delete a user
 export async function DELETE(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
