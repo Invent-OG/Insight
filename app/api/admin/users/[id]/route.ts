@@ -19,11 +19,15 @@ const changePasswordSchema = z.object({
 });
 
 // GET - Fetch a specific user
-export async function GET(
-  req: NextRequest,
-  context: { params: Record<string, string> }
-) {
-  const userId = context.params.id;
+export async function GET(req: NextRequest) {
+  const userId = req.nextUrl.pathname.split("/").pop();
+
+  if (!userId) {
+    return NextResponse.json(
+      { success: false, error: "User ID is required" },
+      { status: 400 }
+    );
+  }
 
   try {
     const [user] = await db
@@ -55,16 +59,19 @@ export async function GET(
 }
 
 // PATCH - Update user details
-export async function PATCH(
-  req: NextRequest,
-  context: { params: Record<string, string> }
-) {
-  const userId = context.params.id;
+export async function PATCH(req: NextRequest) {
+  const userId = req.nextUrl.pathname.split("/").pop();
 
   try {
     const body = await req.json();
     const data = updateUserSchema.parse(body);
 
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "User ID is required" },
+        { status: 400 }
+      );
+    }
     const [existingUser] = await db
       .select()
       .from(users)
@@ -119,16 +126,19 @@ export async function PATCH(
 }
 
 // PUT - Change password
-export async function PUT(
-  req: NextRequest,
-  context: { params: Record<string, string> }
-) {
-  const userId = context.params.id;
+export async function PUT(req: NextRequest) {
+  const userId = req.nextUrl.pathname.split("/").pop();
 
   try {
     const body = await req.json();
     const { currentPassword, newPassword } = changePasswordSchema.parse(body);
 
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "User ID is required" },
+        { status: 400 }
+      );
+    }
     const [user] = await db.select().from(users).where(eq(users.id, userId));
     if (!user) {
       return NextResponse.json(
@@ -173,11 +183,15 @@ export async function PUT(
 }
 
 // DELETE - Delete a user
-export async function DELETE(
-  req: NextRequest,
-  context: { params: Record<string, string> }
-) {
-  const userId = context.params.id;
+export async function DELETE(req: NextRequest) {
+  const userId = req.nextUrl.pathname.split("/").pop();
+
+  if (!userId) {
+    return NextResponse.json(
+      { success: false, error: "User ID is required" },
+      { status: 400 }
+    );
+  }
 
   try {
     const [user] = await db.select().from(users).where(eq(users.id, userId));

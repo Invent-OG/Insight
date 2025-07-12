@@ -38,7 +38,7 @@
 //   };
 
 //   return (
-//     <div className="min-h-screen flex items-center justify-center bg-background">
+//     <div className="flex items-center justify-center min-h-screen bg-background">
 //       <motion.div
 //         initial={{ opacity: 0, y: 20 }}
 //         animate={{ opacity: 1, y: 0 }}
@@ -46,9 +46,9 @@
 //         className="w-full max-w-md"
 //       >
 //         <Card>
-//           <CardHeader className="space-y-1 flex flex-col items-center">
-//             <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center mb-4">
-//               <Lock className="h-6 w-6 text-primary-foreground" />
+//           <CardHeader className="flex flex-col items-center space-y-1">
+//             <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-primary">
+//               <Lock className="w-6 h-6 text-primary-foreground" />
 //             </div>
 //             <CardTitle className="text-2xl">Admin Login</CardTitle>
 //             <CardDescription>
@@ -58,7 +58,7 @@
 //           <CardContent>
 //             <form onSubmit={handleSubmit} className="space-y-4">
 //               {error && (
-//                 <div className="p-3 rounded bg-destructive/10 text-destructive text-sm">
+//                 <div className="p-3 text-sm rounded bg-destructive/10 text-destructive">
 //                   {error}
 //                 </div>
 //               )}
@@ -171,7 +171,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="flex items-center justify-center min-h-screen bg-background">
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
@@ -179,8 +179,8 @@ export default function AdminLoginPage() {
         className="w-full max-w-md px-4"
       >
         <Card>
-          <CardHeader className="space-y-1 flex flex-col items-center">
-            <div className="mb-4 flex items-center justify-center">
+          <CardHeader className="flex flex-col items-center space-y-1">
+            <div className="flex items-center justify-center mb-4">
               <Image
                 title="Insight-Logo"
                 src="/assets/logo.png"
@@ -201,7 +201,7 @@ export default function AdminLoginPage() {
                 className="space-y-4"
               >
                 {error && (
-                  <div className="p-3 rounded bg-destructive/10 text-destructive text-sm">
+                  <div className="p-3 text-sm rounded bg-destructive/10 text-destructive">
                     {error}
                   </div>
                 )}

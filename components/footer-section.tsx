@@ -49,7 +49,7 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: "Blog", href: "/blogs" },
       { title: "Help", href: "/contact" },
-      { title: "Admin Login", href: "/admin" },
+      { title: "Admin Login", href: "/admin/login" },
     ],
   },
   {
