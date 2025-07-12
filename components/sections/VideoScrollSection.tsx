@@ -19,10 +19,10 @@ export default function VideoScrollSection() {
     video.pause();
     video.currentTime = 0;
 
-    let trigger = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: "+=5000", // initial value; will be updated dynamically
+      end: "+=3000", // controls how long the section stays pinned
       scrub: true,
       pin: true,
       onUpdate: (self) => {
@@ -36,32 +36,6 @@ export default function VideoScrollSection() {
           });
         }
       },
-    });
-
-    // Wait for metadata to load so we can use video.duration
-    video.addEventListener("loadedmetadata", () => {
-      if (trigger) {
-        const durationInPixels = video.duration * 1000;
-        trigger.kill();
-        trigger = ScrollTrigger.create({
-          trigger: section,
-          start: "top top",
-          end: "+=" + durationInPixels,
-          scrub: true,
-          pin: true,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            if (video.duration) {
-              gsap.to(video, {
-                currentTime: video.duration * progress,
-                ease: "none",
-                overwrite: true,
-                duration: 0.1,
-              });
-            }
-          },
-        });
-      }
     });
 
     // Optional: Animate opacity
