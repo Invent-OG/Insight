@@ -1,11 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
-import { NextRequest } from "next/server";
-
 
 // Schema for updating user
 const updateUserSchema = z.object({
@@ -21,12 +19,12 @@ const changePasswordSchema = z.object({
 });
 
 // GET - Fetch a specific user
-
-// Use this format for all handlers
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const userId = context.params.id;
+
   try {
     const [user] = await db
       .select({
@@ -37,7 +35,7 @@ export async function GET(
         createdAt: users.createdAt,
       })
       .from(users)
-      .where(eq(users.id, params.id));
+      .where(eq(users.id, userId));
 
     if (!user) {
       return NextResponse.json(
@@ -59,17 +57,18 @@ export async function GET(
 // PATCH - Update user details
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const userId = context.params.id;
+
   try {
     const body = await req.json();
     const data = updateUserSchema.parse(body);
 
-    // Check if user exists
     const [existingUser] = await db
       .select()
       .from(users)
-      .where(eq(users.id, params.id));
+      .where(eq(users.id, userId));
     if (!existingUser) {
       return NextResponse.json(
         { success: false, error: "User not found" },
@@ -77,7 +76,6 @@ export async function PATCH(
       );
     }
 
-    // If email is being changed, check if it's already in use
     if (data.email && data.email !== existingUser.email) {
       const [emailExists] = await db
         .select()
@@ -91,11 +89,10 @@ export async function PATCH(
       }
     }
 
-    // Update user
     const [updatedUser] = await db
       .update(users)
       .set(data)
-      .where(eq(users.id, params.id))
+      .where(eq(users.id, userId))
       .returning({
         id: users.id,
         name: users.name,
@@ -124,14 +121,15 @@ export async function PATCH(
 // PUT - Change password
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const userId = context.params.id;
+
   try {
     const body = await req.json();
     const { currentPassword, newPassword } = changePasswordSchema.parse(body);
 
-    // Check if user exists
-    const [user] = await db.select().from(users).where(eq(users.id, params.id));
+    const [user] = await db.select().from(users).where(eq(users.id, userId));
     if (!user) {
       return NextResponse.json(
         { success: false, error: "User not found" },
@@ -139,7 +137,6 @@ export async function PUT(
       );
     }
 
-    // Verify current password
     const isPasswordValid = await verifyPassword(
       currentPassword,
       user.password
@@ -151,14 +148,12 @@ export async function PUT(
       );
     }
 
-    // Hash new password
     const hashedPassword = await hashPassword(newPassword);
 
-    // Update password
     await db
       .update(users)
       .set({ password: hashedPassword })
-      .where(eq(users.id, params.id));
+      .where(eq(users.id, userId));
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -180,11 +175,12 @@ export async function PUT(
 // DELETE - Delete a user
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const userId = context.params.id;
+
   try {
-    // Check if user exists
-    const [user] = await db.select().from(users).where(eq(users.id, params.id));
+    const [user] = await db.select().from(users).where(eq(users.id, userId));
     if (!user) {
       return NextResponse.json(
         { success: false, error: "User not found" },
@@ -192,8 +188,7 @@ export async function DELETE(
       );
     }
 
-    // Delete user
-    await db.delete(users).where(eq(users.id, params.id));
+    await db.delete(users).where(eq(users.id, userId));
 
     return NextResponse.json({ success: true });
   } catch (error) {
