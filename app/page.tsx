@@ -21,9 +21,10 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* <HeroSection /> */}
-      <div className="h-screen relative">
-        <Spline scene="https://prod.spline.design/ejhkBgQAm79AyNpP/scene.splinecode" />
-        <div className="absolute uppercase bg-primary font-bold text-4xl  py-4 px-5 text-white bottom-0 right-0">
+      <div className="relative h-screen">
+        {/* <Spline scene="https://prod.spline.design/ejhkBgQAm79AyNpP/scene.splinecode" /> */}
+        <Spline scene="https://prod.spline.design/gWbmQiAnSwvycQ1g/scene.splinecode" />
+        <div className="absolute bottom-0 right-0 px-5 py-4 text-4xl font-bold text-white uppercase bg-primary">
           Beyond borders better
         </div>
       </div>
