@@ -8,6 +8,7 @@ import Testimonial from "@/components/sections/Testimonial";
 import MultiLayerParallax from "@/components/sections/HeroParallax";
 import { HeroSection } from "@/components/hero-odyssey";
 import Spline from "@splinetool/react-spline/next";
+import VideoScrollSection from "@/components/sections/VideoScrollSection";
 
 export const metadata = {
   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -28,7 +29,15 @@ export default function Home() {
         </div>
       </div> */}
 
-      <MultiLayerParallax />
+      <video
+        className="top-0 left-0 object-cover w-full h-full "
+        src="/videos/banner.mp4"
+        autoPlay
+        muted
+      />
+
+      {/* <VideoScrollSection /> */}
+      {/* <MultiLayerParallax /> */}
       <Herocontent />
       <CountriesCarousel />
       <ServicesSection />
