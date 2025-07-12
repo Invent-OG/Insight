@@ -30,7 +30,7 @@ export default function Home() {
       </div> */}
 
       <video
-        className="top-0 left-0 object-cover w-full h-full "
+        className="top-0 left-0 object-cover w-full h-screen "
         src="/videos/banner.mp4"
         autoPlay
         muted
