@@ -70,9 +70,9 @@ export function Footer() {
 
   return (
     <footer
-      data-aos="fade-up"
-      data-aos-duration="2000"
-      className="relative w-full flex flex-col items-center justify-center rounded-t-4xl px-6 py-12 lg:py-16 text-white bg-black"
+      // data-aos="fade-up"
+      // data-aos-duration="2000"
+      className="relative z-50 flex flex-col items-center justify-center w-full px-6 py-12 text-white bg-black rounded-t-4xl lg:py-16"
     >
       {/* Background Map Overlay */}
       <div
@@ -90,7 +90,7 @@ export function Footer() {
       </div>
 
       {/* Decorative top line */}
-      <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur z-10" />
+      <div className="absolute top-0 z-10 w-1/3 h-px -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/20 right-1/2 left-1/2 blur" />
 
       {/* Spinning Globe in Corner (optional) */}
       <div className="absolute lg:-left-10 lg:bottom-52  -left-10 -top-5 w-24 h-24 opacity-[5%] pointer-events-none z-10">
@@ -111,32 +111,32 @@ export function Footer() {
       </div>
 
       {/* Main Content */}
-      <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8 relative z-20">
+      <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
         {/* Logo and copyright */}
         <div className="space-y-4">
-          <Image src={logo} alt="Company Logo" className="h-10 w-10" />
-          <p className="text-gray-300 mt-8 text-sm md:mt-0">
+          <Image src={logo} alt="Company Logo" className="w-10 h-10" />
+          <p className="mt-8 text-sm text-gray-300 md:mt-0">
             © {new Date().getFullYear()} Insight. All rights reserved.
           </p>
         </div>
 
         {/* Links */}
-        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+        <div className="grid grid-cols-2 gap-8 mt-10 md:grid-cols-4 xl:col-span-2 xl:mt-0">
           {footerLinks.map((section) => (
             <div key={section.label} className="mb-10 md:mb-0">
-              <h3 className="text-xs font-semibold uppercase tracking-wide">
+              <h3 className="text-xs font-semibold tracking-wide uppercase">
                 {section.label}
               </h3>
-              <ul className="text-gray-300 mt-4 space-y-2 text-sm">
+              <ul className="mt-4 space-y-2 text-sm text-gray-300">
                 {section.links.map((link, i) => (
                   <li key={i}>
                     <a
                       href={link.href}
-                      className="hover:text-white inline-flex items-center transition-all duration-300"
+                      className="inline-flex items-center transition-all duration-300 hover:text-white"
                     >
                       {link.icon && (
                         <link.icon
-                          className="me-1 h-4 w-4"
+                          className="w-4 h-4 me-1"
                           aria-hidden="true"
                         />
                       )}
