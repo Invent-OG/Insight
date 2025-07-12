@@ -21,25 +21,30 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      {/* <HeroSection /> */}
-      {/* <div className="relative h-screen">
-        <Spline scene="https://prod.spline.design/gWbmQiAnSwvycQ1g/scene.splinecode" />
-        <div className="absolute bottom-0 right-0 px-5 py-4 text-4xl font-bold text-white uppercase bg-primary">
-          Beyond borders better
-        </div>
-      </div> */}
-
       <video
-        className="top-0 left-0 object-cover w-full h-screen "
+        className="top-0 left-0 hidden object-cover w-full h-screen lg:block"
         autoPlay
         loop
         muted
-        preload="auto" // or "metadata" for lighter load
+        preload="auto"
         playsInline
+        disableRemotePlayback
+        poster="/images/placeholder.jpg"
       >
         <source src="/videos/banner.mp4" type="video/mp4" />
       </video>
-
+      <video
+        className="top-0 left-0 block object-cover w-full h-screen lg:hidden"
+        autoPlay
+        loop
+        muted
+        preload="auto"
+        playsInline
+        disableRemotePlayback
+        poster="/images/placeholder.jpg"
+      >
+        <source src="/videos/banner M.mp4" type="video/mp4" />
+      </video>
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
       <Herocontent />
