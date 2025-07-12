@@ -5,8 +5,6 @@ import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
-import Video from "next-video";
-import DesktopBanner from "/videos/banner.mp4";
 
 export const metadata = {
   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -19,18 +17,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      <div className="top-0 left-0 block object-cover w-full h-screen lg:hidden">
-        <Video
-          src={DesktopBanner}
-          autoPlay
-          muted
-          controls={false}
-          playsInline
-          disableRemotePlayback
-        />
-      </div>
-
-      {/* <video
+      <video
         className="top-0 left-0 hidden object-cover w-full h-screen lg:block"
         autoPlay
         loop
@@ -53,7 +40,7 @@ export default function Home() {
         poster="/images/placeholder.jpg"
       >
         <source src="/videos/banner M.mp4" type="video/mp4" />
-      </video> */}
+      </video>
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
       <Herocontent />
