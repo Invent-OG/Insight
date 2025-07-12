@@ -21,14 +21,14 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* <HeroSection /> */}
-      {/* <div className="h-screen relative">
+      <div className="h-screen relative">
         <Spline scene="https://prod.spline.design/ejhkBgQAm79AyNpP/scene.splinecode" />
         <div className="absolute uppercase bg-primary font-bold text-4xl  py-4 px-5 text-white bottom-0 right-0">
           Beyond borders better
         </div>
-      </div> */}
+      </div>
 
-      <MultiLayerParallax />
+      {/* <MultiLayerParallax /> */}
       <Herocontent />
       <CountriesCarousel />
       <ServicesSection />
