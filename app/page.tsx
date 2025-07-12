@@ -31,10 +31,14 @@ export default function Home() {
 
       <video
         className="top-0 left-0 object-cover w-full h-screen "
-        src="/videos/banner.mp4"
         autoPlay
+        loop
         muted
-      />
+        preload="auto" // or "metadata" for lighter load
+        playsInline
+      >
+        <source src="/videos/banner.mp4" type="video/mp4" />
+      </video>
 
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
