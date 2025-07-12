@@ -57,12 +57,12 @@ export default function VideoScrollSection() {
   return (
     <div
       ref={sectionRef}
-      className="flex items-center justify-center h-[110vh] bg-black"
+      className="flex items-center justify-center h-[110vh]  bg-black"
     >
       <video
         ref={videoRef}
         src="/videos/banner.mp4"
-        className="w-full transition-all opacity-0 will-change-transform"
+        className="w-full h-screen transition-all opacity-0 will-change-transform"
         muted
         preload="auto"
       />
