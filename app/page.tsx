@@ -9,6 +9,8 @@ import MultiLayerParallax from "@/components/sections/HeroParallax";
 import { HeroSection } from "@/components/hero-odyssey";
 import Spline from "@splinetool/react-spline/next";
 import VideoScrollSection from "@/components/sections/VideoScrollSection";
+import Video from "next-video";
+import DesktopBanner from "/videos/banner.mp4";
 
 export const metadata = {
   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -21,7 +23,18 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      <video
+      <div className="hidden object-cover w-full h-screen lg:block">
+        <Video
+          src={DesktopBanner}
+          autoPlay
+          muted
+          controls={false}
+          playsInline
+          disableRemotePlayback
+        />
+      </div>
+
+      {/* <video
         className="top-0 left-0 hidden object-cover w-full h-screen lg:block"
         autoPlay
         loop
@@ -44,7 +57,7 @@ export default function Home() {
         poster="/images/placeholder.jpg"
       >
         <source src="/videos/banner M.mp4" type="video/mp4" />
-      </video>
+      </video> */}
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
       <Herocontent />
