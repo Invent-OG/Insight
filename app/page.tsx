@@ -29,14 +29,14 @@ export default function Home() {
         </div>
       </div> */}
 
-      <video
+      {/* <video
         className="top-0 left-0 object-cover w-full h-screen "
         src="/videos/banner.mp4"
         autoPlay
         muted
-      />
+      /> */}
 
-      {/* <VideoScrollSection /> */}
+      <VideoScrollSection />
       {/* <MultiLayerParallax /> */}
       <Herocontent />
       <CountriesCarousel />
