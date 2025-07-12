@@ -5,10 +5,6 @@ import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
-import MultiLayerParallax from "@/components/sections/HeroParallax";
-import { HeroSection } from "@/components/hero-odyssey";
-import Spline from "@splinetool/react-spline/next";
-import VideoScrollSection from "@/components/sections/VideoScrollSection";
 import Video from "next-video";
 import DesktopBanner from "/videos/banner.mp4";
 
@@ -23,7 +19,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      <div className="hidden object-cover w-full h-screen lg:block">
+      <div className="top-0 left-0 block object-cover w-full h-screen lg:hidden">
         <Video
           src={DesktopBanner}
           autoPlay
