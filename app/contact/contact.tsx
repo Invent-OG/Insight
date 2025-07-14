@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import toast from "react-hot-toast";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
