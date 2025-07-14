@@ -55,6 +55,8 @@ function LogoExp() {
             start: "top top",
             end: "bottom top",
             scrub: true,
+            // ✅ Add endTrigger to avoid overlapping footer scroll
+            endTrigger: whiteRef.current,
           },
         }
       );
@@ -99,7 +101,7 @@ function LogoExp() {
         {/* White overlay section (scrolls up over black) */}
         <div
           ref={whiteRef}
-          className="absolute top-0 left-0 w-full min-h-screen bg-white text-black flex items-center justify-center z-20"
+          className="absolute top-0 left-0 w-full h-full bg-white text-black flex items-center justify-center z-20"
         >
           <div className="max-w-3xl px-6 text-center">
             <h2 className="text-3xl font-semibold mb-6">Our Mission</h2>

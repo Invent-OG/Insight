@@ -269,7 +269,6 @@ export default function Services() {
   );
 }
 
-// function ServiceCard({
 //   icon,
 //   title,
 //   description,

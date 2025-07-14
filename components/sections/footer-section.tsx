@@ -66,35 +66,36 @@ const footerLinks: FooterSection[] = [
 export function Footer() {
   const footerRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        footerRef.current,
-        { yPercent: 100 },
-        {
-          yPercent: 0,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top bottom",
-            end: "top center",
-            scrub: true,
-          },
-        }
-      );
-    }, footerRef);
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.fromTo(
+      footerRef.current,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top bottom",
+          toggleActions: "play none none none", // only play once
+        },
+      }
+    );
+  }, footerRef);
 
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);
+
 
   return (
     <footer
       ref={footerRef}
-      className="relative z-50 flex flex-col items-center justify-center w-full bg-black text-white px-6 py-12"
+      className="relative z-50 h-[50vh] flex flex-col items-center justify-center w-full bg-black text-white px-6 py-12"
     >
-      {/* Footer Content */}
       <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-        {/* Logo and copyright */}
+        {/* Logo + Copyright */}
         <div className="space-y-4">
           <Image src={logo} alt="Company Logo" className="w-10 h-10" />
           <p className="mt-8 text-sm text-gray-300 md:mt-0">
@@ -102,7 +103,7 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Links */}
+        {/* Footer Links */}
         <div className="grid grid-cols-2 gap-8 mt-10 md:grid-cols-4 xl:col-span-2 xl:mt-0">
           {footerLinks.map((section) => (
             <div key={section.label}>
