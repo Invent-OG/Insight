@@ -5,8 +5,6 @@ import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
-import VideoScrollSection from "@/components/sections/VideoScrollSection";
-import { Mouse } from "lucide-react";
 import { FaAngleDown } from "react-icons/fa6";
 
 export const metadata = {
