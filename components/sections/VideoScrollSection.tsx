@@ -66,6 +66,7 @@ export default function VideoScrollSection() {
         src={src}
         className="object-cover w-full h-screen opacity-0 lg:transition-all will-change-transform"
         muted
+        playsInline
         preload="auto"
       />
     </div>
