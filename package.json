@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & npx next-video sync -w",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -52,7 +52,6 @@
     "next": "^15.3.5",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
-    "nodemailer": "^7.0.3",
     "ogl": "^1.0.11",
     "pg": "^8.16.0",
     "postgres": "^3.4.5",

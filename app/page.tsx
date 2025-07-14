@@ -5,10 +5,9 @@ import UniversitiesSection from "@/components/sections/Universities";
 import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
-import MultiLayerParallax from "@/components/sections/HeroParallax";
-import { HeroSection } from "@/components/hero-odyssey";
-import Spline from "@splinetool/react-spline/next";
 import VideoScrollSection from "@/components/sections/VideoScrollSection";
+import { Mouse } from "lucide-react";
+import { FaAngleDown } from "react-icons/fa6";
 
 export const metadata = {
   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -21,24 +20,36 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      {/* <HeroSection /> */}
-      {/* <div className="relative h-screen">
-        <Spline scene="https://prod.spline.design/gWbmQiAnSwvycQ1g/scene.splinecode" />
-        <div className="absolute bottom-0 right-0 px-5 py-4 text-4xl font-bold text-white uppercase bg-primary">
-          Beyond borders better
-        </div>
-      </div> */}
-
-      <video
-        className="top-0 left-0 object-cover w-full h-screen "
-        autoPlay
-        loop
-        muted
-        preload="auto" // or "metadata" for lighter load
-        playsInline
-      >
-        <source src="/videos/banner.mp4" type="video/mp4" />
-      </video>
+      <div className="relative w-full">
+        <video
+          className="relative z-10 hidden object-cover w-full h-screen lg:block"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          disableRemotePlayback
+          poster="/images/placeholder.jpg"
+        >
+          <source src="/videos/bannerS.mp4" type="video/mp4" />
+        </video>
+        <FaAngleDown className="absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce" />
+      </div>
+      <div className="relative w-full">
+        <video
+          className="block object-cover w-full h-screen lg:hidden"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          disableRemotePlayback
+          poster="/images/placeholder.jpg"
+        >
+          <source src="/videos/banner M.mp4" type="video/mp4" />
+        </video>
+        <FaAngleDown className="absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce" />
+      </div>
 
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
