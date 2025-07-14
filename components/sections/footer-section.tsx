@@ -90,7 +90,7 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative z-50 flex flex-col min-h-[300px] items-center justify-center w-full bg-black text-white px-6 py-12"
+      className="relative z-50 flex flex-col items-center justify-center w-full bg-black text-white px-6 py-12"
     >
       {/* Footer Content */}
       <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
