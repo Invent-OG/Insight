@@ -6,6 +6,8 @@ import ContactSection from "@/components/sections/ContactSection";
 import Blogs from "@/components/sections/Blogs";
 import Testimonial from "@/components/sections/Testimonial";
 import VideoScrollSection from "@/components/sections/VideoScrollSection";
+import { Mouse } from "lucide-react";
+import { FaAngleDown } from "react-icons/fa6";
 
 export const metadata = {
   title: "Insight | Expert Study Abroad Consultants for Global Education",
@@ -18,18 +20,22 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
-      {/* <video
-        className="top-0 left-0 hidden object-cover w-full h-screen lg:block"
-        autoPlay
-        loop
-        muted
-        preload="auto"
-        playsInline
-        disableRemotePlayback
-        poster="/images/placeholder.jpg"
-      >
-        <source src="/videos/banner.mp4" type="video/mp4" />
-      </video>
+      <div className="relative">
+        <video
+          className="relative top-0 left-0 z-10 hidden object-cover w-full h-screen lg:block"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          disableRemotePlayback
+          poster="/images/placeholder.jpg"
+        >
+          <source src="/videos/bannerS.mp4" type="video/mp4" />
+        </video>
+        <FaAngleDown className="absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce" />
+      </div>
+
       <video
         className="top-0 left-0 block object-cover w-full h-screen lg:hidden"
         autoPlay
@@ -41,8 +47,9 @@ export default function Home() {
         poster="/images/placeholder.jpg"
       >
         <source src="/videos/banner M.mp4" type="video/mp4" />
-      </video> */}
-      <VideoScrollSection />
+      </video>
+
+      {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
       <Herocontent />
       <CountriesCarousel />

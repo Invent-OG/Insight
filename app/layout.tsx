@@ -17,34 +17,41 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // useEffect(() => {
-  //   console.log("Loading started");
-  //   const timer = setTimeout(() => {
-  //     console.log("Loading ended");
-  //     setLoading(false);
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  const [queryClient] = useState(() => new QueryClient());
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    console.log("Loading started");
+    const timer = setTimeout(() => {
+      console.log("Loading ended");
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <html lang="en">
       <body className="font-sans ">
         <link rel="icon" href="/favicon.ico" />
 
-        <Providers>
-          <Toaster />
-          <LenisProvider />
-          {/* {loading ? (
+        <QueryClientProvider client={queryClient}>
+          <Providers>
+            <Toaster />
+            <LenisProvider />
+            {loading ? (
               <Loading />
             ) : (
-              <> */}
-          <Nav isLoading={false} />
-          <main>{children}</main>
-          <Footer />
-          <FloatingContactButtons />
-          {/* </>
-            )} */}
-        </Providers>
+              <>
+                <Nav isLoading={false} />
+                <main>{children}</main>
+                <Footer />
+                <FloatingContactButtons />
+              </>
+            )}
+          </Providers>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </body>
     </html>
   );
