@@ -19,37 +19,39 @@ export default function VideoScrollSection() {
     video.pause();
     video.currentTime = 0;
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: "+=3000", // controls how long the section stays pinned
-      scrub: true,
-      pin: true,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        if (video.duration) {
-          gsap.to(video, {
-            currentTime: video.duration * progress,
-            ease: "none",
-            overwrite: true,
-            duration: 0.1,
-          });
-        }
-      },
-    });
-
-    // Optional: Animate opacity
-    gsap.to(video, {
-      scrollTrigger: {
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+      ScrollTrigger.create({
         trigger: section,
-        start: "top center",
-        end: "bottom center",
-        // scrub: true,
-      },
-      opacity: 1,
-      scale: 1,
-      duration: 1,
-    });
+        start: "top top",
+        end: "+=3000", // controls how long the section stays pinned
+        scrub: true,
+        pin: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          if (video.duration) {
+            gsap.to(video, {
+              currentTime: video.duration * progress,
+              ease: "none",
+              overwrite: true,
+              duration: 0.1,
+            });
+          }
+        },
+      });
+
+      // Optional: Animate opacity
+      gsap.to(video, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top center",
+          end: "bottom center",
+          // scrub: true,
+        },
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+      });
+    }
 
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
