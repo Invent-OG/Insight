@@ -57,7 +57,7 @@ export default function VideoScrollSection() {
   const isMobile =
     typeof window !== "undefined" &&
     !window.matchMedia("(min-width: 1024px)").matches;
-  const src = isMobile ? "/videos/banner M S.mp4" : "/videos/bannerS.mp4";
+  const src = isMobile ? "/videos/banner M.mp4" : "/videos/bannerS.mp4";
 
   return (
     <div ref={sectionRef}>
