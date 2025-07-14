@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   FacebookIcon,
@@ -8,22 +8,23 @@ import {
   LinkedinIcon,
   YoutubeIcon,
 } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "@/public/assets/whitelogo.png";
 import footerbg from "@/public/assets/footerbg.jpg";
 
-interface FooterLink {
+gsap.registerPlugin(ScrollTrigger);
+
+type FooterLink = {
   title: string;
   href: string;
-  icon?: React.ComponentType<{ className?: string }>;
-}
+  icon?: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+};
 
-interface FooterSection {
+type FooterSection = {
   label: string;
   links: FooterLink[];
-}
+};
 
 const footerLinks: FooterSection[] = [
   {
@@ -64,36 +65,46 @@ const footerLinks: FooterSection[] = [
 ];
 
 export function Footer() {
+  const footerRef = useRef(null);
+
   useEffect(() => {
-    AOS.init({ once: true }); // animation setup
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        footerRef.current,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top bottom",
+            end: "top center",
+            scrub: true,
+          },
+        }
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <footer
-      // data-aos="fade-up"
-      // data-aos-duration="2000"
-      className="relative z-50 flex flex-col items-center justify-center w-full px-6 py-12 text-white bg-black rounded-t-4xl lg:py-16"
+      ref={footerRef}
+      className="relative z-50 flex flex-col items-center justify-center w-full min-h-screen px-6 py-12 text-white bg-black"
     >
-      {/* Background Map Overlay */}
-      <div
-        data-aos="fade-down"
-        data-aos-duration="3000"
-        className="absolute inset-0 z-0"
-      >
+      {/* Background Image
+      <div className="absolute inset-0 z-0">
         <Image
           src={footerbg}
-          alt="World map background"
+          alt="Footer background"
           fill
-          className="object-cover object-center opacity-5"
-          priority
+          className="object-cover opacity-5"
         />
-      </div>
+      </div> */}
 
-      {/* Decorative top line */}
-      <div className="absolute top-0 z-10 w-1/3 h-px -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/20 right-1/2 left-1/2 blur" />
-
-      {/* Spinning Globe in Corner (optional) */}
-      <div className="absolute lg:-left-10 lg:bottom-52  -left-10 -top-5 w-24 h-24 opacity-[5%] pointer-events-none z-10">
+      {/* Spinning Globe (optional)
+      <div className="absolute lg:-left-10 lg:bottom-52 -left-10 -top-5 w-24 h-24 opacity-[5%] pointer-events-none z-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 64 64"
@@ -108,9 +119,9 @@ export function Footer() {
           <ellipse cx="32" cy="32" rx="30" ry="12" />
           <ellipse cx="32" cy="32" rx="30" ry="20" />
         </svg>
-      </div>
+      </div> */}
 
-      {/* Main Content */}
+      {/* Footer Content */}
       <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
         {/* Logo and copyright */}
         <div className="space-y-4">
@@ -123,7 +134,7 @@ export function Footer() {
         {/* Links */}
         <div className="grid grid-cols-2 gap-8 mt-10 md:grid-cols-4 xl:col-span-2 xl:mt-0">
           {footerLinks.map((section) => (
-            <div key={section.label} className="mb-10 md:mb-0">
+            <div key={section.label}>
               <h3 className="text-xs font-semibold tracking-wide uppercase">
                 {section.label}
               </h3>
@@ -137,7 +148,7 @@ export function Footer() {
                       {link.icon && (
                         <link.icon
                           className="w-4 h-4 me-1"
-                          aria-hidden="true"
+                          aria-hidden={true}
                         />
                       )}
                       {link.title}
