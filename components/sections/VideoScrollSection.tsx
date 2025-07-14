@@ -54,15 +54,17 @@ export default function VideoScrollSection() {
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
+  const isMobile =
+    typeof window !== "undefined" &&
+    !window.matchMedia("(min-width: 1024px)").matches;
+  const src = isMobile ? "/videos/banner M S.mp4" : "/videos/bannerS.mp4";
+
   return (
-    <div
-      ref={sectionRef}
-      className="flex items-center justify-center h-[110vh]  bg-black"
-    >
+    <div ref={sectionRef}>
       <video
         ref={videoRef}
-        src="/videos/banner.mp4"
-        className="w-full h-screen transition-all opacity-0 will-change-transform"
+        src={src}
+        className="object-cover w-full h-screen opacity-0 lg:transition-all will-change-transform"
         muted
         preload="auto"
       />
