@@ -140,14 +140,14 @@ export default function ServicesSection() {
                               <div>
                                 <div className="flex items-center gap-2 mb-1">
                                   <FaArrowRight className="text-primary text-sm sm:text-base flex-shrink-0" />
-                                  <h3 className="text-xl sm:text-2xl font-extrabold text-[#111827]">
+                                  <h3 className="text-xl sm:text-2xl font-bold text-[#111827]">
                                     {service.title}
                                   </h3>
                                 </div>
                               </div>
 
                               {/* Description */}
-                              <div className="border-l-4 border-primary pl-4 bg-[#f4f6f8] p-3 rounded text-[#374151] text-sm sm:text-base leading-snug flex-grow">
+                              <div className="border-l-4 border-r-4  border-primary pl-4 bg-[#f4f6f8] p-3 rounded text-[#374151] text-sm sm:text-base leading-snug flex-grow">
                                 {displayedText}
                               </div>
 

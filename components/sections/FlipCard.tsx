@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -32,7 +31,12 @@ interface FlipCardProps {
   backDescription: string;
 }
 
-const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescription }) => {
+const FlipCard: React.FC<FlipCardProps> = ({
+  id,
+  imageSrc,
+  title,
+  backDescription,
+}) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [animateDesc, setAnimateDesc] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -96,9 +100,9 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
             </h1>
           </div>
           <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-black/60 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-xl flex flex-col justify-center items-center text-center text-white overflow-hidden">
-            <div className="relative z-10 w-full h-full flex flex-col justify-center">
+            <div className="relative z-10 w-full h-full flex flex-col gap-8 justify-center">
               <p
-                className={`text-base leading-relaxed transition duration-700 ease-in-out transform hover:scale-105 text-justify ${
+                className={`text-lg leading-normal transition duration-700 ease-in-out transform hover:scale-105 text-justify ${
                   animateDesc ? "animate-fadeSlideIn" : ""
                 }`}
                 style={{
@@ -169,5 +173,3 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
 };
 
 export default FlipCard;
-
-
