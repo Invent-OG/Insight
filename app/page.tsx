@@ -35,19 +35,21 @@ export default function Home() {
         </video>
         <FaAngleDown className="absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce" />
       </div>
-
-      <video
-        className="top-0 left-0 block object-cover w-full h-screen lg:hidden"
-        autoPlay
-        loop
-        muted
-        preload="auto"
-        playsInline
-        disableRemotePlayback
-        poster="/images/placeholder.jpg"
-      >
-        <source src="/videos/banner M.mp4" type="video/mp4" />
-      </video>
+      <div className="relative">
+        <video
+          className="top-0 left-0 block object-cover w-full h-screen lg:hidden"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          disableRemotePlayback
+          poster="/images/placeholder.jpg"
+        >
+          <source src="/videos/banner M.mp4" type="video/mp4" />
+        </video>
+        <FaAngleDown className="absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce" />
+      </div>
 
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
