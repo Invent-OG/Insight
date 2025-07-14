@@ -61,14 +61,25 @@ export default function VideoScrollSection() {
 
   return (
     <div ref={sectionRef}>
-      <video
+      {/* <video
         ref={videoRef}
         src={src}
         className="object-cover w-full h-screen opacity-0 lg:transition-all will-change-transform"
         muted
         playsInline
         preload="auto"
-      />
+      /> */}
+      <video
+        ref={videoRef}
+        className="object-cover w-full h-screen opacity-0 lg:transition-all will-change-transform"
+        autoPlay
+        muted
+        preload="auto"
+        playsInline
+        disableRemotePlayback
+      >
+        <source src={src} type="video/mp4" />
+      </video>
     </div>
   );
 }
