@@ -223,9 +223,9 @@ export default function AboutPage() {
           <RoadmapSection />
         </>
         {/* logo explain section   */}
-        <>
-          <LogoExp/>
-        </>
+        <div className="min-h-screen">
+          <LogoExp />
+        </div>
       </main>
     </>
   );

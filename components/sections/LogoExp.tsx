@@ -15,7 +15,7 @@ function LogoExp() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Logo zoom-in scroll
+      // Logo zoom and pin effect
       gsap.fromTo(
         imageRef.current,
         { scale: 1 },
@@ -32,7 +32,7 @@ function LogoExp() {
         }
       );
 
-      // Background transition
+      // Background fade to dark
       gsap.to(sectionRef.current, {
         backgroundColor: "#1a1a1a",
         scrollTrigger: {
@@ -43,7 +43,7 @@ function LogoExp() {
         },
       });
 
-      // White section parallax effect - slide over black
+      // Slide white section upward over black section
       gsap.fromTo(
         whiteRef.current,
         { yPercent: 100 },
@@ -65,7 +65,7 @@ function LogoExp() {
 
   return (
     <>
-      {/* Logo Zoom Section */}
+      {/* Logo Section */}
       <section
         ref={sectionRef}
         className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden"
@@ -81,15 +81,14 @@ function LogoExp() {
         </div>
       </section>
 
-      {/* Black Content Section */}
+      {/* Content Section (Black + Sliding White) */}
       <section
         ref={blackRef}
-        className="relative bg-black text-white py-32 px-6 flex justify-center z-10 min-h-[100vh]"
+        className="relative min-h-screen bg-black text-white overflow-hidden flex items-center justify-center"
       >
-        <div className="max-w-3xl text-lg leading-8 z-10 relative">
-          <h2 className="text-3xl font-semibold mb-6 text-center">
-            More About the Logo
-          </h2>
+        {/* Black Text */}
+        <div className="max-w-3xl z-10 px-6 text-center">
+          <h2 className="text-3xl font-semibold mb-6">More About the Logo</h2>
           <p>
             Our logo symbolizes strength, unity, and forward-thinking
             innovation. The curved elements represent a global presence and
@@ -97,15 +96,13 @@ function LogoExp() {
           </p>
         </div>
 
-        {/* White Section that overlaps the black section */}
+        {/* White overlay section (scrolls up over black) */}
         <div
           ref={whiteRef}
-          className="absolute top-0 left-0 w-full bg-white text-black py-32 px-6 flex justify-center z-20"
+          className="absolute top-0 left-0 w-full h-full bg-white text-black flex items-center justify-center z-20"
         >
-          <div className="max-w-3xl text-lg leading-8">
-            <h2 className="text-3xl font-semibold mb-6 text-center">
-              Our Mission
-            </h2>
+          <div className="max-w-3xl px-6 text-center">
+            <h2 className="text-3xl font-semibold mb-6">Our Mission</h2>
             <p>
               We empower students and professionals with the knowledge, tools,
               and guidance they need to succeed on the global stage. From

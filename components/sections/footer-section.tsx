@@ -11,7 +11,6 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "@/public/assets/whitelogo.png";
-import footerbg from "@/public/assets/footerbg.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,36 +90,8 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative z-50 flex flex-col items-center justify-center w-full min-h-screen px-6 py-12 text-white bg-black"
+      className="relative z-50 flex flex-col min-h-[300px] items-center justify-center w-full bg-black text-white px-6 py-12"
     >
-      {/* Background Image
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={footerbg}
-          alt="Footer background"
-          fill
-          className="object-cover opacity-5"
-        />
-      </div> */}
-
-      {/* Spinning Globe (optional)
-      <div className="absolute lg:-left-10 lg:bottom-52 -left-10 -top-5 w-24 h-24 opacity-[5%] pointer-events-none z-10">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 64 64"
-          fill="none"
-          stroke="white"
-          strokeWidth="2"
-          className="w-full h-full animate-[spin_20s_linear_infinite]"
-        >
-          <circle cx="32" cy="32" r="30" />
-          <path d="M32 2c0 12 0 48 0 60" />
-          <path d="M2 32c12 0 48 0 60 0" />
-          <ellipse cx="32" cy="32" rx="30" ry="12" />
-          <ellipse cx="32" cy="32" rx="30" ry="20" />
-        </svg>
-      </div> */}
-
       {/* Footer Content */}
       <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
         {/* Logo and copyright */}
