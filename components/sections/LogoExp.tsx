@@ -15,7 +15,7 @@ function LogoExp() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Logo zoom and pin effect
+      // Logo zoom & pin
       gsap.fromTo(
         imageRef.current,
         { scale: 1 },
@@ -32,7 +32,7 @@ function LogoExp() {
         }
       );
 
-      // Background fade to dark
+      // Background transition to dark
       gsap.to(sectionRef.current, {
         backgroundColor: "#1a1a1a",
         scrollTrigger: {
@@ -43,7 +43,7 @@ function LogoExp() {
         },
       });
 
-      // Slide white section upward over black section
+      // Slide white section over black (curtain effect)
       gsap.fromTo(
         whiteRef.current,
         { yPercent: 100 },
@@ -52,11 +52,9 @@ function LogoExp() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: blackRef.current,
-            start: "top top",
-            end: "bottom top",
+            start: "top bottom",
+            end: "top top",
             scrub: true,
-            // ✅ Add endTrigger to avoid overlapping footer scroll
-            endTrigger: whiteRef.current,
           },
         }
       );
@@ -83,12 +81,12 @@ function LogoExp() {
         </div>
       </section>
 
-      {/* Content Section (Black + Sliding White) */}
+      {/* Black Section with White Overlay */}
       <section
         ref={blackRef}
-        className="relative min-h-screen bg-black text-white overflow-hidden flex items-center justify-center"
+        className="relative h-screen bg-black text-white flex items-center justify-center overflow-hidden"
       >
-        {/* Black Text */}
+        {/* Black Content */}
         <div className="max-w-3xl z-10 px-6 text-center">
           <h2 className="text-3xl font-semibold mb-6">More About the Logo</h2>
           <p>
@@ -98,10 +96,10 @@ function LogoExp() {
           </p>
         </div>
 
-        {/* White overlay section (scrolls up over black) */}
+        {/* White Overlay Content (Slides up) */}
         <div
           ref={whiteRef}
-          className="absolute top-0 left-0 w-full h-full bg-white text-black flex items-center justify-center z-20"
+          className="absolute top-0 left-0 w-full h-screen bg-white text-black flex items-center justify-center z-20"
         >
           <div className="max-w-3xl px-6 text-center">
             <h2 className="text-3xl font-semibold mb-6">Our Mission</h2>

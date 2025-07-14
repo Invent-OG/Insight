@@ -14,18 +14,7 @@ import logo from "@/public/assets/whitelogo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type FooterLink = {
-  title: string;
-  href: string;
-  icon?: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-};
-
-type FooterSection = {
-  label: string;
-  links: FooterLink[];
-};
-
-const footerLinks: FooterSection[] = [
+const footerLinks = [
   {
     label: "Product",
     links: [
@@ -66,36 +55,37 @@ const footerLinks: FooterSection[] = [
 export function Footer() {
   const footerRef = useRef(null);
 
-useEffect(() => {
-  const ctx = gsap.context(() => {
-    gsap.fromTo(
-      footerRef.current,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom",
-          toggleActions: "play none none none", // only play once
-        },
-      }
-    );
-  }, footerRef);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        footerRef.current,
+        { y: 100, opacity: 1 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top bottom", // when footer enters view
+            end: "top top+=400",
+            scrub: true, // parallax-like effect
+          },
+        }
+      );
+    }, footerRef);
 
-  return () => ctx.revert();
-}, []);
-
+    return () => ctx.revert();
+  }, []);
 
   return (
     <footer
       ref={footerRef}
-      className="relative z-50 h-[50vh] flex flex-col items-center justify-center w-full bg-black text-white px-6 py-12"
+      className="relative z-50 flex flex-col items-center justify-center w-full h-[80vh] px-6 py-12 text-white bg-black"
     >
+      {/* Footer Content */}
       <div className="relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-        {/* Logo + Copyright */}
+        {/* Logo and copyright */}
         <div className="space-y-4">
           <Image src={logo} alt="Company Logo" className="w-10 h-10" />
           <p className="mt-8 text-sm text-gray-300 md:mt-0">
@@ -103,7 +93,7 @@ useEffect(() => {
           </p>
         </div>
 
-        {/* Footer Links */}
+        {/* Links */}
         <div className="grid grid-cols-2 gap-8 mt-10 md:grid-cols-4 xl:col-span-2 xl:mt-0">
           {footerLinks.map((section) => (
             <div key={section.label}>
@@ -117,10 +107,10 @@ useEffect(() => {
                       href={link.href}
                       className="inline-flex items-center transition-all duration-300 hover:text-white"
                     >
-                      {link.icon && (
+                      {"icon" in link && link.icon && (
                         <link.icon
                           className="w-4 h-4 me-1"
-                          aria-hidden={true}
+                          aria-hidden="true"
                         />
                       )}
                       {link.title}

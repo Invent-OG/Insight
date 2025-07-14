@@ -33,13 +33,6 @@ export default function AboutPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      offset: 100,
-      once: true,
-    });
-  }, []);
 
   return (
     <>
@@ -51,9 +44,6 @@ export default function AboutPage() {
 
         {/* Hero  sub content */}
         <section
-          data-aos="fade-down"
-          data-aos-duration="800"
-          data-aos-anchor-placement="top-start"
           className="hero flex items-center min-h-screen filter brightness-95 bg-center bg-cover px-8 relative overflow-hidden"
           style={{
             backgroundImage: `url('https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg')`, // Replace with your preferred texture
@@ -210,9 +200,9 @@ export default function AboutPage() {
           </section>
         </div>
         {/* Founder Team section  */}
-        <div>
+        <>
           <OurTeam />
-        </div>
+        </>
 
         {/* Offerings Section */}
         <section className="relative lg:py-20 lg:mt-14 w-full overflow-x-hidden">
