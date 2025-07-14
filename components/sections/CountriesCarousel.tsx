@@ -105,7 +105,7 @@ const CountriesCarousel: React.FC = () => {
         </div>
 
         {/* Centered Button */}
-        <div className="flex justify-center lg:py-4 mb-4">
+        <div className="flex justify-center lg:py-6 mb-4">
           <Button
             className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold"
             onClick={() => router.push("/countries")}

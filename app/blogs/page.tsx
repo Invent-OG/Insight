@@ -84,11 +84,11 @@ export default function BlogsPage() {
 
   return (
     <main className="min-h-screen w-full bg-gray-100 text-gray-800">
-      <section className="py-16">
+      <section className="py-20">
         <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Blogs —
         </h4>
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 px-4">
+        <div className="max-w-7xl mx-auto flex flex-col items-center py-10 gap-12 px-4">
           {/* Featured Blog Slider (Auto) */}
           {featuredBlog && !isSearching && (
             <div className="w-full">

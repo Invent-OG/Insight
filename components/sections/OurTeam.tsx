@@ -34,7 +34,7 @@ const teamMembers = [
 
 export default function OurTeam() {
   return (
-    <section className="relative w-full min-h-screen bg-white py-10 px-6 overflow-hidden ">
+    <section className="relative w-full min-h-screen bg-gray-50 py-10 px-6 overflow-hidden ">
       {/* === Floating Decorations === */}
       <svg
         className="absolute left-[-60px] top-[-60px] w-60 h-60 z-0 animate-floating"

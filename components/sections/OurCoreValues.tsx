@@ -24,12 +24,12 @@ export default function Roadmap({ children }: RoadmapProps) {
   }, []);
 
   return (
-    <section className="relative px-4 sm:px-6 md:px-10 lg:px-16 py-12 sm:py-16 md:py-20 bg-gray-200 overflow-hidden">
+    <section className="relative px-4 sm:px-6 md:px-10 lg:px-16 py-6 lg:py-10 sm:py-16  bg-gray-200 overflow-hidden">
       {/* Section Title */}
       <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
         — core —
       </h4>
-      <div className="relative z-10 text-center mb-10 sm:mb-12 ">
+      <div className="relative z-10 text-center mb-10 py-4 sm:mb-12 ">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
           Our <span className="text-primary">Core</span> Values
         </h2>

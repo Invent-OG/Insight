@@ -69,7 +69,7 @@ export default function OurServicesInfo() {
   };
 
   return (
-    <section className="relative bg-white py-16 px-6 sm:px-10 lg:px-24 overflow-hidden">
+    <section className="relative bg-white py-10 px-6 sm:px-10  overflow-hidden">
       {/* Background SVG blob */}
       <div className="absolute top-[-100px] left-[-100px] z-0 opacity-10 pointer-events-none">
         <svg viewBox="0 0 200 200" width="500" height="500">
@@ -82,15 +82,18 @@ export default function OurServicesInfo() {
       </div>
 
       {/* Tabs */}
-      <div className="relative z-10 max-w-6xl mx-auto mb-12 text-center">
-        <h2 className="text-4xl font-extrabold text-red-600 mb-4">
+      <div  className="relative z-10 max-w-6xl mx-auto mb-10 text-center">
+        <h4 className=" uppercase text-base  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          — Insight Cares —
+        </h4>
+        <h2 className="text-4xl font-extrabold text-red-600 py-2">
           Our Services
         </h2>
-        <div className="flex justify-center">
+        <div className="flex justify-center py-2">
           <div className="inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200">
             <button
               onClick={() => setTab("about")}
-              className={`px-6 py-2 text-sm font-medium rounded-full transition-all duration-300
+              className={`px-6  text-sm font-medium rounded-full transition-all duration-300
         ${
           tab === "about"
             ? "bg-red-600 text-white shadow-md"
@@ -122,7 +125,7 @@ export default function OurServicesInfo() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="relative z-10 max-w-6xl mx-auto space-y-20"
+            className="relative z-10 max-w-5xl mx-auto space-y-10"
           >
             {/* Image */}
             <motion.div
@@ -172,7 +175,7 @@ export default function OurServicesInfo() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.2 + 0.1, duration: 0.6 }}
                         viewport={{ once: false }}
-                        className="bg-white border-l-[5px] border-red-400 shadow-md rounded-xl p-6 text-[16.5px] leading-relaxed text-gray-800 w-full relative overflow-hidden group"
+                        className="bg-zinc-50 border-l-[5px] border-r-[5px]  border-red-400 shadow-md rounded-xl p-6 text-[16.5px] leading-relaxed text-gray-800 w-full relative overflow-hidden group"
                       >
                         <div className="absolute top-4 right-4 text-red-400 text-xl opacity-20 group-hover:opacity-40 transition duration-500">
                           <i className="fas fa-university" />
@@ -207,7 +210,7 @@ export default function OurServicesInfo() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="relative z-10 max-w-5xl mx-auto space-y-8 px-4"
+            className="relative z-10 max-w-2xl mx-auto space-y-8 px-4"
           >
             {bulletItems.map((item, i) => (
               <motion.div
@@ -220,7 +223,7 @@ export default function OurServicesInfo() {
                   duration: 0.6,
                   ease: "easeOut",
                 }}
-                className="relative pl-10 border-l-[3px] border-red-400 bg-white rounded-lg shadow-md p-6 group hover:shadow-lg transition"
+                className="relative pl-10 border-l-[3px] border-r-[3px] border-red-400 bg-white rounded-lg shadow-md p-6 group hover:shadow-lg transition"
               >
                 {/* Glowing Icon Circle */}
                 <div className="absolute -left-[25px] top-6 w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-red-400 text-red-600 shadow-md">
