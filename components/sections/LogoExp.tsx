@@ -20,7 +20,7 @@ function LogoExp() {
         imageRef.current,
         { scale: 1 },
         {
-          scale: 3,
+          scale: 1.5,
           ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -100,7 +100,7 @@ function LogoExp() {
         {/* White Section that overlaps the black section */}
         <div
           ref={whiteRef}
-          className="absolute top-50% left-0 w-full bg-white text-black py-32 px-6 flex justify-center z-20"
+          className="absolute top-0 left-0 w-full bg-white text-black py-32 px-6 flex justify-center z-20"
         >
           <div className="max-w-3xl text-lg leading-8">
             <h2 className="text-3xl font-semibold mb-6 text-center">
