@@ -13,7 +13,7 @@ export default function VideoScrollSection() {
 
   useEffect(() => {
     const isMobile = window.innerWidth < 1024;
-    setSrc(isMobile ? "/videos/banner M S.mp4" : "/videos/bannerS.mp4");
+    setSrc(isMobile ? "/videos/banner M.mp4" : "/videos/bannerS.mp4");
 
     const video = videoRef.current;
     const section = sectionRef.current;
