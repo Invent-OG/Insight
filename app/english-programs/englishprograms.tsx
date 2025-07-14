@@ -143,11 +143,11 @@ const HomePage: React.FC = () => {
         data-aos-duration="2000"
         className="relative flex flex-col justify-center overflow-hidden py-10 px-4 bg-gray-50 mx-auto"
       >
-        <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+        <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — test prep —
         </h4>
         <motion.h2
-          className="lg:text-5xl text-3xl font-bold text-center mb-16 py-2 text-black relative z-10"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 py-2 text-black relative z-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -254,12 +254,12 @@ const HomePage: React.FC = () => {
         data-aos-duration="1000"
         className="relative bg-white py-10 overflow-hidden"
       >
-        <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+        <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Our training —
         </h4>
         <div className="relative z-10 py-2 max-w-6xl mx-auto px-4">
           {/* Centered Heading */}
-          <h2 className="text-5xl font-bold text-center text-black mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-black mb-16">
             What <span className="text-primary">Makes</span> Our Training{" "}
             <span className="text-primary">Different?</span>
           </h2>
@@ -316,7 +316,7 @@ const HomePage: React.FC = () => {
         {/* Content */}
 
         <div className="relative max-w-6xl mx-auto px-4 z-10">
-          <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
             — english classes —
           </h4>
           <motion.h2
@@ -324,7 +324,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-5xl font-bold text-center mb-16 py-2 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 py-2 text-white"
           >
             English <span className="text-primary">Communication</span> Classes
           </motion.h2>
@@ -452,7 +452,7 @@ const HomePage: React.FC = () => {
 
         {/* Centered Content */}
         <div className="relative z-10 max-w-6xl mx-auto bg-transparent rounded-2xl  p-6 sm:p-10">
-          <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
             — join us —
           </h4>
           <motion.h2
@@ -460,7 +460,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-5xl font-bold text-center mb-14 text-black"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center lg:py-0 py-2 mb-14 text-black"
           >
             Who Can <span className="text-primary">Join?</span>
           </motion.h2>
@@ -527,7 +527,7 @@ const HomePage: React.FC = () => {
       <section
         data-aos="fade-up"
         data-aos-anchor-placement="top-start"
-        className="lg:py-10 py-8 px-2 flex pb-14 items-center justify-center bg-white  text-center"
+        className="lg:py-10 py-8  px-2 flex pb-14 items-center justify-center bg-white  text-center"
       >
         <motion.div
           className="max-w-2xl space-y-8"
@@ -536,7 +536,7 @@ const HomePage: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-5xl font-extrabold text-black mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
             Why <span className="text-primary">Choose</span> Insight?
           </h2>
           <p className="text-black text-lg leading-relaxed py-2 mb-6">

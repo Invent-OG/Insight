@@ -354,7 +354,7 @@ export default function CountryPage() {
           transition={{ duration: 0.6 }}
           className="w-full lg:w-[70%] space-y-6"
         >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
             Take the First Step Toward Your Global Education!
           </h1>
           <h2 className="text-xl font-semibold">

@@ -59,14 +59,14 @@ const Layout2 = () => {
 
   return (
     <div>
-      <section className="relative  min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
+      <section className="relative  min-w-full flex justify-center text-black py-20 lg:py-10   overflow-hidden">
         {/* ✅ Mobile-only Parallax Texture */}
         {/* ✅ Mobile-only Zoom In/Out Effect */}
-        <h4 className="absolute uppercase text-base  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+        <h4 className="absolute uppercase lg:text-base text-sm top-0 lg:py-8 py-8 tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Dream. Plan. Go. —
         </h4>
         <motion.div
-          className="absolute inset-0 z-0 block md:hidden"
+          className="absolute inset-0  z-0 block md:hidden"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundSize: "cover",
@@ -83,7 +83,7 @@ const Layout2 = () => {
 
         {/* ✅ Desktop Normal Texture */}
         <div
-          className="absolute inset-0 z-0 hidden md:block"
+          className="absolute inset-0 z-0  hidden md:block"
           style={{
             backgroundImage: "url('/assets/textures/texture.avif')",
             backgroundSize: "cover",
@@ -146,13 +146,13 @@ const Layout2 = () => {
             } space-y-4`}
           >
             <motion.h2
-              className="lg:text-4xl md:text-3xl text-3xl  font-bold lg:text-nowrap md:text-pretty text-black text-center md:text-left mb-6"
+              className="lg:text-4xl md:text-4xl text-3xl lg:font-bold font-bold lg:text-nowrap text-nowrap text-black text-start md:text-left mb-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={textVariants}
             >
-              Your Global Education Starts Here <br />
+              Start Your Global Journey <br />
               <div>
                 <span className="text-primary text-nowrap">
                   We Make It Happen
@@ -174,17 +174,17 @@ const Layout2 = () => {
                 exit={{ opacity: 0, y: -20, transition: { duration: 0.4 } }}
                 className={`transition-all overflow-hidden ${
                   showFull
-                    ? "relative bg-white/10 border border-white/10 backdrop-blur-lg shadow-xl p-6 rounded-xl space-y-6 scrollbar-hide max-h-[30rem] overflow-y-auto"
+                    ? "relative bg-white/10  border border-white/10 backdrop-blur-lg shadow-xl p-6 rounded-xl space-y-6 scrollbar-hide max-h-[30rem] overflow-y-auto"
                     : "space-y-6"
                 }`}
               >
                 {visibleContent.map((para, idx) => (
                   <motion.p
                     key={idx}
-                    className={`text-base md:text-lg leading-relaxed tracking-wide flex gap-2 items-start ${
+                    className={`text-xl md:text-lg leading-normal tracking-wide flex gap-2 items-start ${
                       showFull
                         ? "text-black/85 text-justify"
-                        : "text-black/90 text-center md:text-left"
+                        : "text-black/90  md:text-left"
                     }`}
                     variants={textVariants}
                     initial="hidden"

@@ -139,15 +139,15 @@ export default function Services() {
         {/* Section Content */}
         <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10 max-w-7xl w-full  mx-auto">
           {/* Heading */}
-          <h4 className="uppercase text-base tracking-[0.20em]  text-primary text-center font-bold text-shadow-sm">
+          <h4 className="uppercase text-sm lg:text-base tracking-[0.20em]  text-primary text-center font-bold text-shadow-sm">
             — Services —
           </h4>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl py-6 font-bold text-center text-black mb-10 leading-tight">
+          <h2 className="lg:text-4xl md:text-4xl text-3xl py-6 font-bold text-center text-black leading-tight">
             What We <span className="text-primary">Offer</span>
           </h2>
 
           {/* Tabs */}
-          <div className="w-full mb-10 overflow-hidden">
+          <div className="w-full lg:mb-10 mb-4 overflow-hidden">
             <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 overflow-x-auto sm:overflow-visible">
               {services.map((service, idx) => {
                 const isFeatured =

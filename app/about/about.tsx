@@ -112,7 +112,7 @@ export default function AboutPage() {
                 },
               }}
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug text-left">
+              <div className="lg:text-4xl md:text-4xl text-3xl font-bold mb-6 leading-snug text-left">
                 Your pathway to{" "}
                 <span className="text-primary text-nowrap">
                   international education
@@ -120,7 +120,7 @@ export default function AboutPage() {
               </div>
 
               <motion.p
-                className="text-base sm:text-lg text-white leading-relaxed max-w-lg text-left"
+                className="text-xl sm:text-lg lg:text-xl text-white leading-relaxed max-w-lg text-left"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -140,11 +140,11 @@ export default function AboutPage() {
         </section>
 
         {/* Founder Section */}
-        <div className="lg:py-10 py-6">
-          <h4 className="uppercase  text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+        <div className="lg:py-10 py-8">
+          <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
             — founder —
           </h4>
-          <section className="relative lg:py-20 lg:mt-10 max-w-5xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center gap-10 bg-white overflow-hidden">
+          <section className="relative lg:py-20 lg:mt-10 max-w-5xl mx-auto px-6 py-8 flex flex-col-reverse md:flex-row items-center gap-10 bg-white overflow-hidden">
             {/* Background SVG Wave - Light Red (text-red-100) */}
 
             <div className="absolute lg:bottom-20 bottom-0  left-0 w-full z-0 pointer-events-none">

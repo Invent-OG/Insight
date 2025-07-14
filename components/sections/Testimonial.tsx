@@ -139,7 +139,7 @@ export default function Testimonials() {
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
         >
           <div className="text-center  max-w-2xl mx-auto mb-12">
-            <h4 className="uppercase text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
+            <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
               — Testimonials —
             </h4>
             <h2 className="lg:text-5xl md:text-4xl py-6 text-3xl lg:font-bold font-bold">

@@ -81,10 +81,10 @@ const CountriesCarousel: React.FC = () => {
         data-aos-anchor-placement="top-bottom"
         className="relative z-10 bg-transparent flex flex-col  justify-center items-center text-white"
       >
-        <h4 className="uppercase text-base py-5 tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+        <h4 className="uppercase lg:text-base text-sm lg:py-5 py-6  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Dream Destinations—
         </h4>
-        <h1 className="text-3xl text-primary md:text-5xl lg:text-5xl pb-10 font-bold leading-tight text-center ">
+        <h1 className="lg:text-4xl md:text-4xl text-3xl text-primary  lg:pb-10 pb:8 lg:py-0 py-2 font-bold leading-tight text-center ">
           Countries
         </h1>
 
@@ -105,7 +105,7 @@ const CountriesCarousel: React.FC = () => {
         </div>
 
         {/* Centered Button */}
-        <div className="flex justify-center lg:py-6 mb-4">
+        <div className="flex justify-center lg:py-6 py-4 lg:mb-4 mb-0">
           <Button
             className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold"
             onClick={() => router.push("/countries")}

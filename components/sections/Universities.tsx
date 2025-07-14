@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -98,12 +97,12 @@ export default function UniversitiesSection() {
             opacity: 0.5,
           }}
         />
-        <div className="relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 lg:py-2">
-          <div className="text-center max-w-4xl mx-auto lg:mb-12 space-y-8">
-            <h4 className="uppercase text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
+        <div className="relative z-10 container mx-auto max-w-7xl  md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2">
+          <div className="text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4">
+            <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
               — Universities —
             </h4>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h2 className="lg:text-4xl md:text-4xl text-3xl font-bold">
               Unlock New <span className="text-primary">Opportunities</span>{" "}
               With <span className="text-primary">Insights</span>
             </h2>

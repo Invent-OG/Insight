@@ -71,13 +71,13 @@ export default function ServicesSection() {
           <div className="container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row lg:items-start">
             {/* Left Side - Sticky */}
             <div className="flex-1 flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20 lg:self-start lg:h-[calc(100vh-10rem)]">
-              <h4 className="uppercase text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
+              <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
                 — Services —
               </h4>
 
               <div className="h-px bg-white my-2 w-full max-w-xs"></div>
 
-              <div className="relative px-4 md:py-4 lg:py-4 py-3 rounded-xl overflow-hidden">
+              <div className="relative px-4 md:py-4 lg:py-4 rounded-xl overflow-hidden">
                 <div
                   className="absolute inset-0 -z-10 rounded-xl  blur-md opacity-90"
                   style={{
@@ -91,7 +91,7 @@ export default function ServicesSection() {
                 </h2>
               </div>
 
-              <p className="text-black py-4 font-medium">
+              <p className="text-black lg:py-4 py-0 font-medium">
                 Every Step of the Way!
               </p>
 

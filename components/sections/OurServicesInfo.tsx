@@ -82,12 +82,12 @@ export default function OurServicesInfo() {
       </div>
 
       {/* Tabs */}
-      <div  className="relative z-10 max-w-6xl mx-auto mb-10 text-center">
-        <h4 className=" uppercase text-base  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+      <div className="relative z-10 max-w-6xl mx-auto mb-10 text-center">
+        <h4 className=" uppercase text-sm lg:text-base  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Insight Cares —
         </h4>
-        <h2 className="text-4xl font-extrabold text-red-600 py-2">
-          Our Services
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black py-2">
+          Our <span className="text-primary"> Services</span>
         </h2>
         <div className="flex justify-center py-2">
           <div className="inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200">
