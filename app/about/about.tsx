@@ -9,6 +9,7 @@ import Roadmap, { RoadmapSection } from "@/components/sections/OurCoreValues";
 import OurServicesInfo from "@/components/sections/OurServicesInfo";
 import OurTeam from "@/components/sections/OurTeam";
 import AboutHero from "@/components/sections/AboutHero";
+import LogoExp from "@/components/sections/LogoExp";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -218,9 +219,13 @@ export default function AboutPage() {
           <OurServicesInfo />
         </section>
         {/* our core values  */}
-        <div>
+        <>
           <RoadmapSection />
-        </div>
+        </>
+        {/* logo explain section   */}
+        <>
+          <LogoExp/>
+        </>
       </main>
     </>
   );

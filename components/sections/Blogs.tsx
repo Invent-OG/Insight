@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useBlogs } from "@/lib/queries/blogs";
