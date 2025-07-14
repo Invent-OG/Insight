@@ -79,9 +79,12 @@ const CountriesCarousel: React.FC = () => {
         data-aos-duration="1000"
         data-aos-delay="100"
         data-aos-anchor-placement="top-bottom"
-        className="relative z-10 bg-transparent flex flex-col gap-10 justify-center items-center text-white"
+        className="relative z-10 bg-transparent flex flex-col  justify-center items-center text-white"
       >
-        <h1 className="text-3xl text-primary md:text-5xl lg:text-5xl  font-bold leading-tight text-center lg:py-8">
+        <h4 className="uppercase text-base py-5 tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          — Dream Destinations—
+        </h4>
+        <h1 className="text-3xl text-primary md:text-5xl lg:text-5xl pb-10 font-bold leading-tight text-center ">
           Countries
         </h1>
 

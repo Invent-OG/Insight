@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useTestimonials } from "@/lib/queries/testimonials";
@@ -130,7 +129,7 @@ export default function Testimonials() {
   const thirdColumn = testimonials.filter((_, i) => i % 3 === 2);
 
   return (
-    <section className="bg-gray-50 text-black relative py-16">
+    <section className="bg-gray-50 text-black relative py-10">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -139,11 +138,11 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
         >
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h4 className="text-primary text-sm uppercase tracking-wider mb-3">
+          <div className="text-center  max-w-2xl mx-auto mb-12">
+            <h4 className="uppercase text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
               — Testimonials —
             </h4>
-            <h2 className="lg:text-5xl md:text-4xl text-3xl lg:font-bold font-bold">
+            <h2 className="lg:text-5xl md:text-4xl py-6 text-3xl lg:font-bold font-bold">
               See what our{" "}
               <span className="text-primary">customers have to</span> say about
               us.
@@ -167,5 +166,3 @@ export default function Testimonials() {
     </section>
   );
 }
-
-

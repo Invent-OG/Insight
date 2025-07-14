@@ -140,69 +140,74 @@ export default function AboutPage() {
         </section>
 
         {/* Founder Section */}
-        <section className="relative lg:py-20 lg:mt-16 max-w-5xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center gap-10 bg-white overflow-hidden">
-          {/* Background SVG Wave - Light Red (text-red-100) */}
-          <div className="absolute lg:bottom-20 bottom-0  left-0 w-full z-0 pointer-events-none">
-            <svg
-              viewBox="0 0 1440 320"
-              className="fill-current text-red-100"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M0,288L144,256L288,160L432,192L576,224L720,160L864,96L1008,160L1152,96L1296,160L1440,128L1440,320L1296,320L1152,320L1008,320L864,320L720,320L576,320L432,320L288,320L144,320L0,320Z" />
-            </svg>
-          </div>
+        <div className="lg:py-10 py-6">
+          <h4 className="uppercase  text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+            — founder —
+          </h4>
+          <section className="relative lg:py-20 lg:mt-10 max-w-5xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center gap-10 bg-white overflow-hidden">
+            {/* Background SVG Wave - Light Red (text-red-100) */}
 
-          {/* Content (Left Side) */}
-          <motion.blockquote
-            initial={{ x: -50, opacity: 0, rotate: -2 }}
-            whileInView={{ x: 0, opacity: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative text-black italic text-lg border-l-4 border-red-600 pl-6 md:w-2/3 z-10"
-          >
-            “Our founder,{" "}
-            <span className="text-red-600 font-semibold not-italic">
-              Neshika
-            </span>
-            , brings a wealth of personal and professional experience to the
-            table. Having pursued her education in the UK and being an
-            IELTS-certified trainer from Trinity University, she understands
-            firsthand the challenges and opportunities international students
-            face. Her passion for education and commitment to student success
-            drives our team to deliver expert, personalized guidance every step
-            of the way.”
-            <br />
-            <br />
-            <span className="hidden md:inline text-red-600 font-semibold not-italic">
-              — Founder Neshika
-            </span>
-          </motion.blockquote>
+            <div className="absolute lg:bottom-20 bottom-0  left-0 w-full z-0 pointer-events-none">
+              <svg
+                viewBox="0 0 1440 320"
+                className="fill-current text-red-100"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0,288L144,256L288,160L432,192L576,224L720,160L864,96L1008,160L1152,96L1296,160L1440,128L1440,320L1296,320L1152,320L1008,320L864,320L720,320L576,320L432,320L288,320L144,320L0,320Z" />
+              </svg>
+            </div>
 
-          {/* Image (Right Side) */}
-          <div className="flex flex-col items-center md:items-start md:w-auto z-10">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0, rotateY: 180 }}
-              whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            {/* Content (Left Side) */}
+            <motion.blockquote
+              initial={{ x: -50, opacity: 0, rotate: -2 }}
+              whileInView={{ x: 0, opacity: 1, rotate: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-8 border-red-600/70 shadow-xl flex-shrink-0"
+              className="relative text-black italic text-lg border-l-4 border-red-600 pl-6 md:w-2/3 z-10"
             >
-              <Image
-                src="https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg"
-                alt="Founder Neshika"
-                width={240}
-                height={240}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
+              “Our founder,{" "}
+              <span className="text-red-600 font-semibold not-italic">
+                Neshika
+              </span>
+              , brings a wealth of personal and professional experience to the
+              table. Having pursued her education in the UK and being an
+              IELTS-certified trainer from Trinity University, she understands
+              firsthand the challenges and opportunities international students
+              face. Her passion for education and commitment to student success
+              drives our team to deliver expert, personalized guidance every
+              step of the way.”
+              <br />
+              <br />
+              <span className="hidden md:inline text-red-600 font-semibold not-italic">
+                — Founder Neshika
+              </span>
+            </motion.blockquote>
 
-            {/* Founder name on mobile */}
-            <span className="mt-4 text-red-600 font-semibold not-italic md:hidden">
-              — Founder Neshika
-            </span>
-          </div>
-        </section>
+            {/* Image (Right Side) */}
+            <div className="flex flex-col items-center md:items-start md:w-auto z-10">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0, rotateY: 180 }}
+                whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
+                transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-8 border-red-600/70 shadow-xl flex-shrink-0"
+              >
+                <Image
+                  src="https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg"
+                  alt="Founder Neshika"
+                  width={240}
+                  height={240}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
 
+              {/* Founder name on mobile */}
+              <span className="mt-4 text-red-600 font-semibold not-italic md:hidden">
+                — Founder Neshika
+              </span>
+            </div>
+          </section>
+        </div>
         {/* Founder Team section  */}
         <div>
           <OurTeam />

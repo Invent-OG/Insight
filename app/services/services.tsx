@@ -124,7 +124,6 @@ export default function Services() {
   return (
     <main className="min-h-screen w-full text-gray-900">
       <ServicesHero scrollToCards={scrollToCards} />
-      
 
       <section
         ref={cardsRef}
@@ -138,12 +137,12 @@ export default function Services() {
         </ul>
 
         {/* Section Content */}
-        <div className="relative z-10 px-4 sm:px-6 md:px-12 py-16 max-w-7xl w-full  mx-auto">
+        <div className="relative z-10 px-4 sm:px-6 md:px-12 py-10 max-w-7xl w-full  mx-auto">
           {/* Heading */}
-          <h4 className="text-primary uppercase text-center text-sm sm:text-base mb-4 tracking-wider">
+          <h4 className="uppercase text-base tracking-[0.20em]  text-primary text-center font-bold text-shadow-sm">
             — Services —
           </h4>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-black mb-10 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl py-6 font-bold text-center text-black mb-10 leading-tight">
             What We <span className="text-primary">Offer</span>
           </h2>
 

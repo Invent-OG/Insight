@@ -53,14 +53,14 @@ export default function ContactSection() {
 
   return (
     <section
-      className="bg-white text-black py-12 md:py-16 lg:py-20 px-6 flex justify-center flex-col gap-10"
+      className="bg-white text-black py-12 md:py-16 lg:py-10 px-6 flex justify-center flex-col gap-10"
       id="contact"
     >
       <Toaster position="top-right" reverseOrder={false} />
 
       {/* Centered Heading */}
       <div className="text-center max-w-2xl mx-auto">
-        <h4 className="text-primary text-base uppercase tracking-wider mb-3">
+        <h4 className="uppercase text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
           — Say Hello —
         </h4>
         <h2 className="text-3xl md:text-4xl lg:text-5xl py-4 font-bold leading-tight">

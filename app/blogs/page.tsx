@@ -85,7 +85,7 @@ export default function BlogsPage() {
   return (
     <main className="min-h-screen w-full bg-gray-100 text-gray-800">
       <section className="py-16">
-        <h4 className="text-primary uppercase text-base text-center mb-8 font-medium tracking-wide">
+        <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
           — Blogs —
         </h4>
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 px-4">

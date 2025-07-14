@@ -143,6 +143,9 @@ const HomePage: React.FC = () => {
         data-aos-duration="2000"
         className="relative flex flex-col justify-center overflow-hidden py-16 px-4 bg-white mx-auto"
       >
+        <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          — test prep —
+        </h4>
         <motion.h2
           className="lg:text-5xl text-3xl font-bold text-center mb-12 text-black relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -251,6 +254,9 @@ const HomePage: React.FC = () => {
         data-aos-duration="1000"
         className="relative bg-white py-16 overflow-hidden"
       >
+        <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          — Our training —
+        </h4>
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           {/* Centered Heading */}
           <h2 className="text-5xl font-bold text-center text-black mb-16">
@@ -308,7 +314,11 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-black/70 z-0"></div>
 
         {/* Content */}
+
         <div className="relative max-w-6xl mx-auto px-4 z-10">
+          <h4 className="uppercase text-base tracking-[0.20em] text-white text-center font-bold text-shadow-sm">
+            — english classes —
+          </h4>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -442,6 +452,9 @@ const HomePage: React.FC = () => {
 
         {/* Centered Content */}
         <div className="relative z-10 max-w-6xl mx-auto bg-transparent rounded-2xl  p-6 sm:p-10">
+          <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+            — join us —
+          </h4>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -523,6 +536,9 @@ const HomePage: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
+          <h4 className="uppercase text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+            — join us —
+          </h4>
           <h2 className="text-5xl font-extrabold text-black mb-6">
             Why <span className="text-primary">Choose</span> Insight?
           </h2>

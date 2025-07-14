@@ -59,9 +59,12 @@ const Layout2 = () => {
 
   return (
     <div>
-      <section className="relative min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
+      <section className="relative  min-w-full flex justify-center text-black py-20 lg:py-10  overflow-hidden">
         {/* ✅ Mobile-only Parallax Texture */}
         {/* ✅ Mobile-only Zoom In/Out Effect */}
+        <h4 className="absolute uppercase text-base  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm">
+          — Dream. Plan. Go. —
+        </h4>
         <motion.div
           className="absolute inset-0 z-0 block md:hidden"
           style={{
@@ -136,6 +139,7 @@ const Layout2 = () => {
           </motion.div>
 
           {/* Text */}
+
           <div
             className={`w-full ${
               showFull ? "md:w-full mt-4" : "md:w-1/2"
