@@ -15,7 +15,7 @@ function LogoExp() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Logo zoom & pin
+      // Logo zoom-in and pin
       gsap.fromTo(
         imageRef.current,
         { scale: 1 },
@@ -43,7 +43,7 @@ function LogoExp() {
         },
       });
 
-      // Slide white section over black (curtain effect)
+      // Slide white section over black section
       gsap.fromTo(
         whiteRef.current,
         { yPercent: 100 },
@@ -52,8 +52,8 @@ function LogoExp() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: blackRef.current,
-            start: "top bottom",
-            end: "top top",
+            start: "top top",
+            end: "bottom top",
             scrub: true,
           },
         }
@@ -65,7 +65,7 @@ function LogoExp() {
 
   return (
     <>
-      {/* Logo Section */}
+      {/* Logo Zoom Section */}
       <section
         ref={sectionRef}
         className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden"
@@ -81,29 +81,33 @@ function LogoExp() {
         </div>
       </section>
 
-      {/* Black Section with White Overlay */}
+      {/* Black + White Scroll Section */}
       <section
         ref={blackRef}
-        className="relative h-screen bg-black text-white flex items-center justify-center overflow-hidden"
+        className="relative bg-black text-white min-h-screen flex items-center justify-center overflow-hidden"
       >
         {/* Black Content */}
-        <div className="max-w-3xl z-10 px-6 text-center">
-          <h2 className="text-3xl font-semibold mb-6">More About the Logo</h2>
-          <p>
+        <div className="max-w-3xl text-lg leading-8 z-10 px-6">
+          <h2 className="text-3xl font-semibold mb-6 text-center">
+            More About the Logo
+          </h2>
+          <p className="text-center">
             Our logo symbolizes strength, unity, and forward-thinking
             innovation. The curved elements represent a global presence and
             movement, while the sharp points denote direction and growth.
           </p>
         </div>
 
-        {/* White Overlay Content (Slides up) */}
+        {/* White Section slides over */}
         <div
           ref={whiteRef}
-          className="absolute top-0 left-0 w-full h-screen bg-white text-black flex items-center justify-center z-20"
+          className="absolute top-0 left-0 w-full h-full bg-white text-black flex items-center justify-center z-20"
         >
-          <div className="max-w-3xl px-6 text-center">
-            <h2 className="text-3xl font-semibold mb-6">Our Mission</h2>
-            <p>
+          <div className="max-w-3xl text-lg leading-8 px-6">
+            <h2 className="text-3xl font-semibold mb-6 text-center">
+              Our Mission
+            </h2>
+            <p className="text-center">
               We empower students and professionals with the knowledge, tools,
               and guidance they need to succeed on the global stage. From
               education consulting to international partnerships, our team
