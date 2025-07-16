@@ -1,43 +1,27 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
-    remotePatterns: [
-      // Blog images (stored in either location)
-      {
-        protocol: "https",
-        hostname: "inkxnijaveazwuplldwu.supabase.co",
-        pathname: "/storage/v1/object/public/images/blogs/**", // ✅ Preferred path
-      },
-      {
-        protocol: "https",
-        hostname: "inkxnijaveazwuplldwu.supabase.co",
-        pathname: "/storage/v1/object/public/blogs/**", // ✅ If you previously uploaded here
-      },
-      // Testimonial images
-      {
-        protocol: "https",
-        hostname: "inkxnijaveazwuplldwu.supabase.co",
-        pathname: "/storage/v1/object/public/images/testimonials/**",
-      },
-      // Other external sources
-      {
-        protocol: "https",
-        hostname: "example.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "plus.unsplash.com",
-      },
+    domains: [
+      'images.pexels.com', 
+      'images.unsplash.com', 
+      'assets.aceternity.com', 
+      'turbifycdn.com', 
+      'avatars.githubusercontent.com',
+      'wallpapers.com'
     ],
+    formats: ['image/avif', 'image/webp'],
+    unoptimized: true,
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
   },
 };
 

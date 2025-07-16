@@ -1,11 +1,10 @@
+'use client';
 
-"use client";
-
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,23 +12,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useCreateBlog, useUpdateBlog } from "@/lib/queries/blogs";
-import { toast } from "sonner";
-import { supabase } from "@/lib/supabase/client";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
-
-
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useCreateBlog, useUpdateBlog } from '@/lib/queries/blogs';
+import { toast } from 'sonner';
+import { supabase } from '@/lib/supabase/client';
+import { Textarea } from '../ui/textarea';
 
 const blogSchema = z.object({
-  title: z.string().min(2, "Title must be at least 2 characters"),
-  excerpt: z.string().min(10, "Excerpt must be at least 10 characters"),
-  content: z.string().min(50, "Content must be at least 50 characters"),
-  imageUrl: z.string().url("Image upload is required"),
-  category: z.string().min(2, "Category must be at least 2 characters"),
+  title: z.string().min(2, 'Title must be at least 2 characters'),
+  excerpt: z.string().min(10, 'Excerpt must be at least 10 characters'),
+  content: z.string().min(50, 'Content must be at least 50 characters'),
+  imageUrl: z.string().url('Image upload is required'),
+  category: z.string().min(2, 'Category must be at least 2 characters'),
 });
 
 type BlogFormData = z.infer<typeof blogSchema>;
@@ -49,25 +44,23 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
   const form = useForm<BlogFormData>({
     resolver: zodResolver(blogSchema),
     defaultValues: initialData || {
-      title: "",
-      excerpt: "",
-      content: "",
-      imageUrl: "",
-      category: "",
+      title: '',
+      excerpt: '',
+      content: '',
+      imageUrl: '',
+      category: '',
     },
   });
 
   const handleImageUpload = async (file: File) => {
-    const fileExt = file.name.split(".").pop();
+    const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const filePath = `blogs/${fileName}`;
 
-    const { error } = await supabase.storage
-      .from("images")
-      .upload(filePath, file);
-    if (error) throw new Error("Image upload failed");
+    const { error } = await supabase.storage.from('images').upload(filePath, file);
+    if (error) throw new Error('Image upload failed');
 
-    const { data } = supabase.storage.from("images").getPublicUrl(filePath);
+    const { data } = supabase.storage.from('images').getPublicUrl(filePath);
     return data.publicUrl;
   };
 
@@ -79,37 +72,37 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
       } else {
         await createBlogMutation.mutateAsync(data);
       }
-      toast.success(initialData ? "Blog updated" : "Blog created");
+      toast.success(initialData ? 'Blog updated' : 'Blog created');
       onClose();
     } catch {
-      toast.error("Failed to submit blog");
+      toast.error('Failed to submit blog');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="bg-card rounded-lg p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">
-          {initialData ? "Edit Blog Post" : "Create New Blog Post"}
+    <div className='bg-card rounded-lg p-6'>
+      <div className='flex justify-between items-center mb-6'>
+        <h2 className='text-xl font-semibold'>
+          {initialData ? 'Edit Blog Post' : 'Create New Blog Post'}
         </h2>
-        <Button variant="ghost" onClick={onClose}>
+        <Button variant='ghost' onClick={onClose}>
           Cancel
         </Button>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
           {/* Title */}
           <FormField
             control={form.control}
-            name="title"
+            name='title'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Enter blog title" />
+                  <Input {...field} placeholder='Enter blog title' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,12 +112,12 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
           {/* Category */}
           <FormField
             control={form.control}
-            name="category"
+            name='category'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Enter blog category" />
+                  <Input {...field} placeholder='Enter blog category' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,12 +127,12 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
           {/* Excerpt */}
           <FormField
             control={form.control}
-            name="excerpt"
+            name='excerpt'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Excerpt</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Short summary" />
+                  <Input {...field} placeholder='Short summary' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -149,16 +142,15 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
           {/* Content with Rich Editor */}
           <FormField
             control={form.control}
-            name="content"
+            name='content'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Content (Rich Text)</FormLabel>
                 <FormControl>
-                  <ReactQuill
-                    theme="snow"
-                    value={field.value}
-                    onChange={field.onChange}
-                    className="h-64 mb-2"
+                  <Textarea
+                    {...field}
+                    placeholder='Write your blog content here...'
+                    className='h-64'
                   />
                 </FormControl>
                 <FormMessage />
@@ -167,22 +159,18 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
           />
 
           {/* Toggle Preview */}
-          <div className="flex justify-end lg:py-6 py-10">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setShowPreview(!showPreview)}
-            >
-              {showPreview ? "Hide Preview" : "Show Preview"}
+          <div className='flex justify-end lg:py-6 py-10'>
+            <Button type='button' variant='outline' onClick={() => setShowPreview(!showPreview)}>
+              {showPreview ? 'Hide Preview' : 'Show Preview'}
             </Button>
           </div>
 
           {/* Preview Section */}
           {showPreview && (
-            <div className="border rounded p-4 bg-white shadow-inner prose max-w-none overflow-auto">
+            <div className='border rounded p-4 bg-white shadow-inner prose max-w-none overflow-auto'>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: form.watch("content"),
+                  __html: form.watch('content'),
                 }}
               />
             </div>
@@ -193,46 +181,40 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
             <FormLabel>Upload Image</FormLabel>
             <FormControl>
               <Input
-                type="file"
-                accept="image/*"
+                type='file'
+                accept='image/*'
                 onChange={async (e) => {
                   const file = e.target.files?.[0];
                   if (!file) return;
                   try {
                     const url = await handleImageUpload(file);
-                    form.setValue("imageUrl", url);
-                    toast.success("Image uploaded successfully");
+                    form.setValue('imageUrl', url);
+                    toast.success('Image uploaded successfully');
                   } catch {
-                    toast.error("Image upload failed");
+                    toast.error('Image upload failed');
                   }
                 }}
               />
             </FormControl>
-            {form.watch("imageUrl") && (
+            {form.watch('imageUrl') && (
               <img
-                src={form.watch("imageUrl")}
-                alt="Preview"
-                className="mt-4 w-full max-h-48 object-cover rounded-md"
+                src={form.watch('imageUrl')}
+                alt='Preview'
+                className='mt-4 w-full max-h-48 object-cover rounded-md'
               />
             )}
             <FormMessage />
           </FormItem>
 
           {/* Submit Button */}
-          <div className="flex justify-end gap-4">
+          <div className='flex justify-end gap-4'>
             <Button
-              type="submit"
+              type='submit'
               disabled={
-                isSubmitting ||
-                createBlogMutation.isPending ||
-                updateBlogMutation.isPending
+                isSubmitting || createBlogMutation.isPending || updateBlogMutation.isPending
               }
             >
-              {isSubmitting
-                ? "Saving..."
-                : initialData
-                ? "Update Blog"
-                : "Create Blog"}
+              {isSubmitting ? 'Saving...' : initialData ? 'Update Blog' : 'Create Blog'}
             </Button>
           </div>
         </form>
