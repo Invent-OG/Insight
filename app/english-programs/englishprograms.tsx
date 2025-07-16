@@ -125,13 +125,13 @@ const HomePage: React.FC = () => {
         // data-aos='zoom-in-down'
         // data-aos-anchor-placement='top-start'
         // data-aos-duration='2000'
-        className='relative flex flex-col justify-center overflow-hidden py-10 px-4 bg-gray-50 mx-auto'
+        className='relative flex flex-col justify-center px-4 py-10 mx-auto overflow-hidden bg-gray-50'
       >
         <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
           — test prep —
         </h4>
         <motion.h2
-          className='text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 py-2 text-black relative z-10'
+          className='relative z-10 py-2 mb-16 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -140,7 +140,7 @@ const HomePage: React.FC = () => {
           <span className='text-primary'>Preparation</span>
         </motion.h2>
 
-        <div className='relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center'>
+        <div className='relative grid max-w-6xl grid-cols-1 gap-8 mx-auto md:grid-cols-3 justify-items-center'>
           {[
             'IELTS – Academic & General',
             'PTE – Pearson Test of English',
@@ -152,7 +152,7 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Card className='bg-white rounded-xl border border-gray-300 shadow-xl h-full hover:shadow-rose-400/50 transition duration-300 p-5 relative'>
+              <Card className='relative h-full p-5 transition duration-300 bg-white border border-gray-300 shadow-xl rounded-xl hover:shadow-rose-400/50'>
                 <div className='absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-800 to-primary rounded-t-xl'></div>
                 <CardHeader className='mb-3'>
                   <h3 className='text-xl font-extrabold text-black'>{title}</h3>
@@ -230,19 +230,19 @@ const HomePage: React.FC = () => {
         data-aos='fade-up'
         data-aos-anchor-placement='top-start'
         data-aos-duration='1000'
-        className='relative bg-white py-10 overflow-hidden'
+        className='relative py-10 overflow-hidden bg-white'
       >
         <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
           — Our training —
         </h4>
-        <div className='relative z-10 py-2 max-w-6xl mx-auto px-4'>
-          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-center text-black mb-16'>
+        <div className='relative z-10 max-w-6xl px-4 py-2 mx-auto'>
+          <h2 className='mb-16 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl'>
             What <span className='text-primary'>Makes</span> Our Training{' '}
             <span className='text-primary'>Different?</span>
           </h2>
 
-          <div className='flex flex-col lg:flex-row items-stretch gap-12 '>
-            <div className='w-full lg:w-1/2 flex justify-center items-center'>
+          <div className='flex flex-col items-stretch gap-12 lg:flex-row '>
+            <div className='flex items-center justify-center w-full lg:w-1/2'>
               <img
                 src='https://www.vinsys.com/static/media/training/course/banner/vinsysBannerimage_ac1BtCc.svg'
                 alt='Online Training Illustration'
@@ -250,8 +250,8 @@ const HomePage: React.FC = () => {
               />
             </div>
 
-            <div className='w-full lg:w-1/2 flex flex-col justify-center'>
-              <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-14  '>
+            <div className='flex flex-col justify-center w-full lg:w-1/2'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-14 '>
                 {benefits.map((item, index) => {
                   const Icon = icons[index % icons.length]; // rotate icons if fewer than benefits
                   return (
@@ -262,10 +262,10 @@ const HomePage: React.FC = () => {
                       }}
                       className='relative p-6 lg:w-72 bg-white mx-auto rounded-2xl border border-white/90 shadow-lg bg-gradient-to-br from-white/10 to-white/5  transition-transform hover:scale-105 hover:rotate-[1deg] duration-300 flex items-center gap-4 min-h-[120px]'
                     >
-                      <div className='bg-black/10 rounded-full p-2 shadow-inner'>
-                        <Icon className='text-primary w-6 h-6' />
+                      <div className='p-2 rounded-full shadow-inner bg-black/10'>
+                        <Icon className='w-6 h-6 text-primary' />
                       </div>
-                      <p className='text-black text-base leading-snug'>{item}</p>
+                      <p className='text-base leading-snug text-black'>{item}</p>
                     </div>
                   );
                 })}
@@ -276,7 +276,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* English Communication Classes */}
-      <section className='relative  text-white py-10 overflow-hidden'>
+      <section className='relative py-10 overflow-hidden text-white'>
         <div
           className='absolute inset-0 bg-cover '
           style={{
@@ -285,7 +285,7 @@ const HomePage: React.FC = () => {
         />
         <div className='absolute inset-0 bg-black/85 '></div>
 
-        <div className='relative max-w-6xl mx-auto px-4 z-10'>
+        <div className='relative z-10 max-w-6xl px-4 mx-auto'>
           <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
             — english classes —
           </h4>
@@ -294,12 +294,12 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 py-2 text-white'
+            className='py-2 mb-16 text-3xl font-bold text-center text-white sm:text-4xl md:text-5xl'
           >
             English <span className='text-primary'>Communication</span> Classes
           </motion.h2>
 
-          <div className='grid md:grid-cols-2 gap-12 items-start'>
+          <div className='grid items-start gap-12 md:grid-cols-2'>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -307,23 +307,23 @@ const HomePage: React.FC = () => {
               viewport={{ once: true }}
               className='space-y-6'
             >
-              <p className='text-lg text-white leading-relaxed'>
+              <p className='text-lg leading-relaxed text-white'>
                 Our English communication training is ideal for students, professionals, and anyone
                 looking to gain fluency and confidence in spoken English.
               </p>
 
               <div>
-                <h3 className='text-xl font-semibold text-primary mb-2'>Our Method:</h3>
-                <p className='text-white leading-relaxed mb-2'>
+                <h3 className='mb-2 text-xl font-semibold text-primary'>Our Method:</h3>
+                <p className='mb-2 leading-relaxed text-white'>
                   We follow a{' '}
-                  <span className='text-primary font-medium'>“speak first, learn rules later”</span>{' '}
+                  <span className='font-medium text-primary'>“speak first, learn rules later”</span>{' '}
                   approach.
                 </p>
-                <p className='text-white leading-relaxed mb-2'>
+                <p className='mb-2 leading-relaxed text-white'>
                   Students begin with spoken practice in everyday situations – this builds natural
                   fluency and confidence.
                 </p>
-                <p className='text-white leading-relaxed'>
+                <p className='leading-relaxed text-white'>
                   As they grow more comfortable, we introduce grammar, vocabulary, and sentence
                   patterns with clear usage-based explanations.
                 </p>
@@ -339,34 +339,34 @@ const HomePage: React.FC = () => {
             >
               <h3 className='text-xl font-semibold text-primary'>Key Areas We Cover:</h3>
 
-              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+              <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
                 <div className='flex items-start space-x-2'>
-                  <Volume2 className='w-5 h-5 text-primary mt-1' />
+                  <Volume2 className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Spoken English and pronunciation</p>
                 </div>
 
                 <div className='flex items-start space-x-2'>
-                  <FileText className='w-5 h-5 text-primary mt-1' />
+                  <FileText className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Grammar and sentence framing</p>
                 </div>
 
                 <div className='flex items-start space-x-2'>
-                  <BookOpen className='w-5 h-5 text-primary mt-1' />
+                  <BookOpen className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Vocabulary development (basic to advanced)</p>
                 </div>
 
                 <div className='flex items-start space-x-2'>
-                  <Presentation className='w-5 h-5 text-primary mt-1' />
+                  <Presentation className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Presentation and interview preparation</p>
                 </div>
 
                 <div className='flex items-start space-x-2'>
-                  <Mic className='w-5 h-5 text-primary mt-1' />
+                  <Mic className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Accent reduction and real-life speaking skills</p>
                 </div>
 
                 <div className='flex items-start space-x-2'>
-                  <Activity className='w-5 h-5 text-primary mt-1' />
+                  <Activity className='w-5 h-5 mt-1 text-primary' />
                   <p className='text-white'>Real-time feedback and progress tracking</p>
                 </div>
               </div>
@@ -376,7 +376,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* who can join us? */}
-      <section className='relative w-full  py-2 px-4 text-black overflow-hidden bg-white'>
+      <section className='relative w-full px-4 py-2 overflow-hidden text-black bg-white'>
         {/* Full-Width Black Themed SVG Background */}
         <svg
           className='absolute inset-0 w-full h-full'
@@ -403,7 +403,7 @@ const HomePage: React.FC = () => {
         </svg>
 
         {/* Centered Content */}
-        <div className='relative z-10 max-w-6xl mx-auto bg-transparent rounded-2xl  p-6 sm:p-10'>
+        <div className='relative z-10 max-w-6xl p-6 mx-auto bg-transparent rounded-2xl sm:p-10'>
           <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
             — join us —
           </h4>
@@ -412,7 +412,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='text-3xl sm:text-4xl md:text-5xl font-bold text-center lg:py-0 py-2 mb-14 text-black'
+            className='py-2 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl lg:py-0 mb-14'
           >
             Who Can <span className='text-primary'>Join?</span>
           </motion.h2>
@@ -422,44 +422,44 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='bg-transparent border-l-4 border-r-4 border-primary p-10 rounded-2xl shadow-xl space-y-6'
+            className='p-10 space-y-6 bg-transparent border-l-4 border-r-4 shadow-xl border-primary rounded-2xl'
           >
-            <p className='text-lg text-gray-800 leading-relaxed'>
+            <p className='text-lg leading-relaxed text-gray-800'>
               Everyone is welcome! Whether you're a{' '}
-              <span className='text-primary font-semibold'>school student</span>,{' '}
-              <span className='text-primary font-semibold'>graduate</span>,{' '}
-              <span className='text-primary font-semibold'>working professional</span>,{' '}
-              <span className='text-primary font-semibold'>homemaker</span>, or{' '}
-              <span className='text-primary font-semibold'>elder</span>, we tailor the sessions to
+              <span className='font-semibold text-primary'>school student</span>,{' '}
+              <span className='font-semibold text-primary'>graduate</span>,{' '}
+              <span className='font-semibold text-primary'>working professional</span>,{' '}
+              <span className='font-semibold text-primary'>homemaker</span>, or{' '}
+              <span className='font-semibold text-primary'>elder</span>, we tailor the sessions to
               suit your goals.
             </p>
 
-            <p className='text-gray-800 leading-relaxed'>
+            <p className='leading-relaxed text-gray-800'>
               No prior knowledge is needed – we start from{' '}
-              <span className='text-primary font-semibold'>your level</span> and build from there.
+              <span className='font-semibold text-primary'>your level</span> and build from there.
             </p>
 
-            <div className='pt-6 border-t border-gray-300 grid md:grid-cols-3 gap-4 text-gray-800'>
-              <div className='flex items-start bg-white p-4 rounded-xl border border-gray-300 space-x-3 shadow-sm'>
-                <CalendarCheck className='text-primary w-6 h-6 mt-1' />
+            <div className='grid gap-4 pt-6 text-gray-800 border-t border-gray-300 md:grid-cols-3'>
+              <div className='flex items-start p-4 space-x-3 bg-white border border-gray-300 shadow-sm rounded-xl'>
+                <CalendarCheck className='w-6 h-6 mt-1 text-primary' />
                 <span>
-                  <span className='text-primary font-medium'>Flexible scheduling</span> based on
+                  <span className='font-medium text-primary'>Flexible scheduling</span> based on
                   your convenience
                 </span>
               </div>
 
-              <div className='flex items-start bg-white p-4 rounded-xl border border-gray-300 space-x-3 shadow-sm'>
-                <UserCheck className='text-primary w-6 h-6 mt-1' />
+              <div className='flex items-start p-4 space-x-3 bg-white border border-gray-300 shadow-sm rounded-xl'>
+                <UserCheck className='w-6 h-6 mt-1 text-primary' />
                 <span>
-                  <span className='text-primary font-medium'>One-on-one attention</span> from
+                  <span className='font-medium text-primary'>One-on-one attention</span> from
                   trained experts
                 </span>
               </div>
 
-              <div className='flex items-start bg-white p-4 rounded-xl border border-gray-300 space-x-3 shadow-sm'>
-                <Eye className='text-primary w-6 h-6 mt-1' />
+              <div className='flex items-start p-4 space-x-3 bg-white border border-gray-300 shadow-sm rounded-xl'>
+                <Eye className='w-6 h-6 mt-1 text-primary' />
                 <span>
-                  <span className='text-primary font-medium'>Demo session</span> available before
+                  <span className='font-medium text-primary'>Demo session</span> available before
                   enrollment
                 </span>
               </div>
@@ -469,11 +469,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Why Choose Insight */}
-      <section
-        data-aos='fade-up'
-        data-aos-anchor-placement='top-start'
-        className='lg:py-10 py-8  px-2 flex pb-14 items-center justify-center bg-white  text-center'
-      >
+      <section className='flex items-center justify-center px-2 py-8 text-center bg-gray-50 lg:py-10 pb-14'>
         <motion.div
           className='max-w-2xl space-y-8'
           data-aos='flip-up'
@@ -481,27 +477,25 @@ const HomePage: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6'>
+          <h2 className='mb-6 text-3xl font-bold text-black sm:text-4xl md:text-5xl'>
             Why <span className='text-primary'>Choose</span> Insight?
           </h2>
-          <p className='text-black text-lg leading-relaxed py-2 mb-6'>
-            We don’t just <span className='text-primary font-semibold'>teach English</span> – we
+          <p className='py-2 mb-6 text-lg leading-relaxed text-black'>
+            We don’t just <span className='font-semibold text-primary'>teach English</span> – we
             help you build
-            <span className='text-primary font-semibold'> real-world communication skills</span>,
-            boost your <span className='text-primary font-semibold'>confidence</span>, and prepare
+            <span className='font-semibold text-primary'> real-world communication skills</span>,
+            boost your <span className='font-semibold text-primary'>confidence</span>, and prepare
             for
-            <span className='text-primary font-semibold'> global opportunities</span>.
+            <span className='font-semibold text-primary'> global opportunities</span>.
           </p>
 
-          <p className='text-black text-lg leading-relaxed mb-6'>
+          <p className='mb-6 text-lg leading-relaxed text-black'>
             Whether you're aiming for{' '}
-            <span className='text-primary font-semibold'>test success</span> or
-            <span className='text-primary font-semibold'> everyday fluency</span>,{' '}
-            <span className='text-primary font-extrabold glow-text'>Insight</span> is here to guide
+            <span className='font-semibold text-primary'>test success</span> or
+            <span className='font-semibold text-primary'> everyday fluency</span>,{' '}
+            <span className='font-extrabold text-primary glow-text'>Insight</span> is here to guide
             you every step of the way.
           </p>
-
-          <Button className='text-white'>Get Started</Button>
         </motion.div>
       </section>
     </div>
