@@ -24,8 +24,8 @@ function LogoExp() {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
+            start: 'center center',
+            end: 'bottom center',
             scrub: true,
             pin: true,
           },
