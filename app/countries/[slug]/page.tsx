@@ -1,7 +1,15 @@
 import { Metadata } from 'next';
 import CountryClientPage from './CountryClientPage';
 
-export const generateMetadata = ({ params }: { params: { slug: string } }): Metadata => {
+export type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const slugKey = (await params).slug.toLowerCase();
+
   const metaMap: Record<string, { title: string; description: string }> = {
     uk: {
       title: 'Study in the UK—World-Class Education Awaits',
@@ -105,17 +113,19 @@ export const generateMetadata = ({ params }: { params: { slug: string } }): Meta
     },
   };
 
-  const slug = params.slug.toLowerCase();
-  const meta = metaMap[slug];
+  const meta = metaMap[slugKey] ?? {
+    title: 'Top Study Abroad Destinations | Insight',
+    description:
+      'Discover top countries to study abroad with insights on admissions, visas, and loans. Plan your global education journey with Insight.',
+  };
 
   return {
-    title: meta?.title ?? 'Top Study Abroad Destinations | Insight abroad services',
-    description:
-      meta?.description ??
-      'Discover top countries to study abroad with insights on admissions, visas, and loans. Plan your global education journey with Insight abroad services',
+    title: meta.title,
+    description: meta.description,
   };
-};
+}
 
-export default function Page() {
-  return <CountryClientPage />;
+export default async function Page({ params }: PageProps) {
+  const slug = (await params).slug; // now safe
+  return <CountryClientPage slug={slug} />;
 }

@@ -285,29 +285,29 @@ const suggestionMap: Record<string, string[]> = {
   uzbekistan: ['armenia', 'georgia', 'finland'],
 };
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
+type Props = {
+  slug: string;
 };
 
-export default function CountryPage() {
+export default function CountryClientPage({ slug }: Props) {
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
-  const params = useParams(); // ✅ Correct way in client components
-  const slug = params.slug;
-  const [selectedSlug, setSelectedSlug] = useState(slug as string);
+  // const params = useParams() as { slug: string }; // ✅ Correct way in client components
+  // const slugs = params.slug;
+  // const [selectedSlug, setSelectedSlug] = useState(slug as string);
+  const selectedSlug = slug;
+
   const [statusMessage, setStatusMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
-  const country = countries.find((c) => c.slug === params.slug);
+  const country = countries.find((c) => c.slug === slug);
   if (!country) notFound();
 
-  const countryContents = countryData.filter((c) => c.country.toLowerCase() === params.slug);
+  const countryContents = countryData.filter((c) => c.country.toLowerCase() === slug);
 
   const selectedSuggestions = suggestionMap[selectedSlug] || []; // Fallback to an empty array
   const suggestedCards = countries.filter((c) => selectedSuggestions.includes(c.slug));

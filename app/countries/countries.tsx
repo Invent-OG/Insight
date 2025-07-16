@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
 const countries = [
-  { title: 'adasd', image: '/assets/country/UK (1).png', slug: 'sample' },
+  { title: 'UK', image: '/assets/country/UK (1).png', slug: 'australi' },
   { title: 'Study in UK', image: '/assets/country/UK.webp', slug: 'uk' },
   { title: 'Study in USA', image: '/assets/country/USA (1).webp', slug: 'usa' },
   {
