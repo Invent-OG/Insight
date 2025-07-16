@@ -1,12 +1,10 @@
-import React from "react";
-import HomePage from "./englishprograms";
+import React from 'react';
+import HomePage from './englishprograms';
 
 export const metadata = {
-  title: "Top Courses to Study Abroad | Business, Tech,Medicine & More",
+  title: 'One-on-One English & IELTS Coaching | Insight abroad services',
   description:
-    "Explore the best courses to study abroad in 12+ countries – from business and tech to healthcare, law, and design.",
-  keywords:
-    "study abroad, overseas education consultants, IELTS coaching Coimbatore, international education, student visa support",
+    'Expert training for IELTS, PTE, Duolingo & more. Build confident English skills to secure admissions and thrive in universities worldwide.',
 };
 
 const englishprogram = () => {
