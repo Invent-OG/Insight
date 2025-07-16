@@ -1,19 +1,15 @@
+'use client';
 
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Edit2, Plus, Trash2, Youtube } from "lucide-react";
-import {
-  useTestimonials,
-  useDeleteTestimonial,
-} from "@/lib/queries/testimonials";
-import { Pagination } from "@/components/ui/pagination";
-import TestimonialForm from "./TestimonialForm";
-import { DeleteConfirmation } from "./DeleteConfirmation";
-import { toast } from "sonner";
+import { useState } from 'react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Edit2, Plus, Trash2, Youtube } from 'lucide-react';
+import { useTestimonials, useDeleteTestimonial } from '@/lib/queries/testimonials';
+import { Pagination } from '@/components/ui/pagination';
+import TestimonialForm from './TestimonialForm';
+import { DeleteConfirmation } from './DeleteConfirmation';
+import { toast } from 'sonner';
 
 interface TestimonialGridProps {
   searchTerm: string;
@@ -23,9 +19,7 @@ const ITEMS_PER_PAGE = 9;
 
 export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [editingTestimonial, setEditingTestimonial] = useState<any | null>(
-    null
-  );
+  const [editingTestimonial, setEditingTestimonial] = useState<any | null>(null);
   const [formVisible, setFormVisible] = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectAll, setSelectAll] = useState(false);
@@ -36,22 +30,20 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
   const handleDelete = async (id: string) => {
     try {
       await deleteTestimonialMutation.mutateAsync(id);
-      toast.success("Testimonial deleted successfully");
+      toast.success('Testimonial deleted successfully');
     } catch (error) {
-      toast.error("Failed to delete testimonial");
+      toast.error('Failed to delete testimonial');
     }
   };
 
   const handleBulkDelete = async () => {
     try {
-      await Promise.all(
-        selectedIds.map((id) => deleteTestimonialMutation.mutateAsync(id))
-      );
-      toast.success("Selected testimonials deleted successfully");
+      await Promise.all(selectedIds.map((id) => deleteTestimonialMutation.mutateAsync(id)));
+      toast.success('Selected testimonials deleted successfully');
       setSelectedIds([]);
       setSelectAll(false);
     } catch (error) {
-      toast.error("Failed to delete selected testimonials");
+      toast.error('Failed to delete selected testimonials');
     }
   };
 
@@ -91,7 +83,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
   };
 
   if (isLoading) {
-    return <div className="text-center py-8">Loading testimonials...</div>;
+    return <div className='text-center py-8'>Loading testimonials...</div>;
   }
 
   const testimonials = data?.testimonials || [];
@@ -109,22 +101,24 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
     currentPage * ITEMS_PER_PAGE
   );
 
+  console.log(testimonials, 'Testimonials Data');
+
   return (
     <div>
       {/* Top Action Bar */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-        <Button onClick={openAddForm} className="flex items-center gap-2">
-          <Plus className="w-4 h-4" />
+      <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4'>
+        <Button onClick={openAddForm} className='flex items-center gap-2'>
+          <Plus className='w-4 h-4' />
           Add Testimonial
         </Button>
 
         {selectedIds.length > 0 && (
           <Button
-            variant="destructive"
+            variant='destructive'
             onClick={handleBulkDelete}
-            className="flex items-center gap-2"
+            className='flex items-center gap-2'
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash2 className='w-4 h-4' />
             Delete Selected ({selectedIds.length})
           </Button>
         )}
@@ -132,89 +126,78 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
 
       {/* Select All Toggle */}
       {paginatedTestimonials.length > 0 && (
-        <div className="flex items-center gap-2 mb-2">
+        <div className='flex items-center gap-2 mb-2'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectAll}
             onChange={toggleSelectAll}
-            className="w-4 h-4"
+            className='w-4 h-4'
           />
-          <label className="text-sm">Select All on This Page</label>
+          <label className='text-sm'>Select All on This Page</label>
         </div>
       )}
 
       {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {paginatedTestimonials.map((testimonial) => (
-          <Card
-            key={testimonial.id}
-            className="relative flex flex-col h-full max-h-[450px]"
-          >
-            <div className="absolute top-4 left-4">
+          <Card key={testimonial.id} className='relative flex flex-col h-full max-h-[450px]'>
+            <div className='absolute top-4 left-4'>
               <input
-                type="checkbox"
+                type='checkbox'
                 checked={selectedIds.includes(testimonial.id)}
                 onChange={() => toggleSelect(testimonial.id)}
-                className="w-4 h-4"
+                className='w-4 h-4'
               />
             </div>
 
-            <div className="p-6 flex flex-col justify-between h-full">
+            <div className='p-6 flex flex-col justify-between h-full'>
               <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="relative h-16 w-16 rounded-full overflow-hidden">
-                    {testimonial.imageUrl?.startsWith("http") ? (
+                <div className='flex items-center gap-4 mb-4'>
+                  <div className='relative h-16 w-16 rounded-full overflow-hidden'>
+                    {testimonial.imageUrl ? (
                       <Image
                         src={testimonial.imageUrl}
                         alt={testimonial.name}
                         fill
-                        className="object-cover"
+                        className='object-cover'
                       />
                     ) : (
                       <Image
-                        src="/default-avatar.png"
-                        alt="Default"
+                        src='/default-avatar.png'
+                        alt='Default'
                         fill
-                        className="object-cover"
+                        className='object-cover'
                       />
                     )}
                   </div>
                   <div>
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.role}
-                    </p>
+                    <h3 className='font-semibold'>{testimonial.name}</h3>
+                    <p className='text-sm text-muted-foreground'>{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4 line-clamp-5">
-                  {testimonial.content}
-                </p>
+                <p className='text-muted-foreground mb-4 line-clamp-5'>{testimonial.content}</p>
               </div>
-              <div className="flex justify-between items-center mt-auto">
+              <div className='flex justify-between items-center mt-auto'>
                 <div>
                   {testimonial.youtubeUrl && (
                     <a
                       href={testimonial.youtubeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-red-500 hover:text-red-600"
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-red-500 hover:text-red-600'
                     >
-                      <Youtube className="h-5 w-5" />
+                      <Youtube className='h-5 w-5' />
                     </a>
                   )}
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => openEditForm(testimonial)}
-                  >
-                    <Edit2 className="h-4 w-4" />
+                <div className='flex gap-2'>
+                  <Button variant='ghost' size='icon' onClick={() => openEditForm(testimonial)}>
+                    <Edit2 className='h-4 w-4' />
                   </Button>
                   <DeleteConfirmation
                     onDelete={() => handleDelete(testimonial.id)}
-                    title="Delete Testimonial"
-                    description="Are you sure you want to delete this testimonial? This action cannot be undone."
+                    title='Delete Testimonial'
+                    description='Are you sure you want to delete this testimonial? This action cannot be undone.'
                   />
                 </div>
               </div>
@@ -225,7 +208,7 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="mt-8">
+        <div className='mt-8'>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -236,8 +219,8 @@ export default function TestimonialGrid({ searchTerm }: TestimonialGridProps) {
 
       {/* Testimonial Form Modal */}
       {formVisible && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-          <div className="bg-background rounded-lg w-full max-w-xl mx-auto shadow-lg p-6">
+        <div className='fixed inset-0 bg-black/50 z-50 flex items-center justify-center'>
+          <div className='bg-background rounded-lg w-full max-w-xl mx-auto shadow-lg p-6'>
             <TestimonialForm
               onClose={closeForm}
               initialData={editingTestimonial || undefined}
