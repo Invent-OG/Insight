@@ -1,52 +1,190 @@
-"use client";
+// 'use client';
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+// import Image from 'next/image';
+// import { useEffect, useState } from 'react';
+// import 'aos/dist/aos.css';
+
+// const universities = [
+//   {
+//     name: 'RWTH Aachen University',
+//     images: ['/assets/univercites/RWTH AACHEN UNIVERSITY.webp'],
+//   },
+//   {
+//     name: 'Arizona State University',
+//     images: ['/assets/univercites/Arizona state university.webp'],
+//   },
+//   {
+//     name: 'University of Twente',
+//     images: ['/assets/univercites/univeresity of twente.webp'],
+//   },
+//   {
+//     name: 'Radboud University',
+//     images: ['/assets/univercites/Radboud university.webp'],
+//   },
+//   {
+//     name: 'RMIT University',
+//     images: ['/assets/univercites/RMIT university.webp'],
+//   },
+//   {
+//     name: 'Drexel University',
+//     images: ['/assets/univercites/Drexel university.webp'],
+//   },
+//   {
+//     name: 'University of Oxford',
+//     images: ['/assets/univercites/University of oxford.webp'],
+//   },
+//   {
+//     name: 'University of Cambridge',
+//     images: ['/assets/univercites/University of Cambridge.webp'],
+//   },
+//   {
+//     name: 'University of Tech Sydney',
+//     images: ['/assets/univercites/Tech sydney.webp'],
+//   },
+// ];
+
+// export default function UniversitiesSection() {
+//   const [slideIndex, setSlideIndex] = useState(0);
+//   const [imageIndex, setImageIndex] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setImageIndex((prev) => prev + 1);
+//       setSlideIndex((prev) => (prev + 1) % 3);
+//     }, 4000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   const currentUniversities = universities.slice(slideIndex * 3, slideIndex * 3 + 3);
+
+//   return (
+//     <div className='relative'>
+//       <section className='relative text-black px-4 py-12 md:py-11 lg:py-4 overflow-hidden'>
+//         {/* Mobile-only Background */}
+//         <div
+//           className='absolute inset-0 z-0 block md:hidden'
+//           style={{
+//             backgroundImage: "url('/assets/textures/university2.jpg')",
+//             backgroundRepeat: 'no-repeat',
+//             backgroundSize: 'cover',
+//             backgroundPosition: 'center', // 👈 this is the key fix
+//             backgroundAttachment: 'scroll',
+//             opacity: 0.6,
+//           }}
+//         />
+
+//         {/* Desktop Background */}
+//         <div
+//           className='absolute inset-0 z-0 hidden md:block'
+//           style={{
+//             backgroundImage: "url('/assets/textures/university2.jpg')",
+//             backgroundRepeat: 'no-repeat',
+//             backgroundSize: 'cover',
+//             backgroundPosition: 'center',
+//             backgroundAttachment: 'fixed',
+//             opacity: 0.5,
+//           }}
+//         />
+//         <div className='relative z-10 container mx-auto max-w-7xl  md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2'>
+//           <div className='text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4'>
+//             <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
+//               — Universities —
+//             </h4>
+//             <h2 className='lg:text-4xl md:text-4xl text-3xl font-bold'>
+//               Unlock New <span className='text-primary'>Opportunities</span> With{' '}
+//               <span className='text-primary'>Insights</span>
+//             </h2>
+//           </div>
+//           <div className='w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:py-4 py-6'>
+//             {currentUniversities.map((uni, index) => (
+//               <div
+//                 key={index}
+//                 className='relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]'
+//               >
+//                 <div className='relative w-full h-60 sm:h-64 md:h-72'>
+//                   {uni.images.length > 1 ? (
+//                     uni.images.map((img, imgIndex) => (
+//                       <Image
+//                         key={imgIndex}
+//                         src={img}
+//                         alt={`${uni.name} Image ${imgIndex + 1}`}
+//                         fill
+//                         className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+//                           imgIndex === imageIndex % uni.images.length ? 'opacity-100' : 'opacity-0'
+//                         }`}
+//                       />
+//                     ))
+//                   ) : (
+//                     <Image
+//                       src={uni.images[0]}
+//                       alt={uni.name}
+//                       fill
+//                       className='object-cover w-full h-full'
+//                     />
+//                   )}
+//                 </div>
+//                 <div className='absolute inset-0 bg-black bg-opacity-40 flex items-end p-4'>
+//                   <h3 className='text-white text-lg font-bold uppercase tracking-wide'>
+//                     {uni.name}
+//                   </h3>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }
+'use client';
+
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
 
 const universities = [
   {
-    name: "RWTH Aachen University",
-    images: ["/assets/univercites/RWTH AACHEN UNIVERSITY.webp"],
+    name: 'RWTH Aachen University',
+    images: ['/assets/univercites/RWTH AACHEN UNIVERSITY.webp'],
   },
   {
-    name: "Arizona State University",
-    images: ["/assets/univercites/Arizona state university.webp"],
+    name: 'Arizona State University',
+    images: ['/assets/univercites/Arizona state university.webp'],
   },
   {
-    name: "University of Twente",
-    images: ["/assets/univercites/univeresity of twente.webp"],
+    name: 'University of Twente',
+    images: ['/assets/univercites/univeresity of twente.webp'],
   },
   {
-    name: "Radboud University",
-    images: ["/assets/univercites/Radboud university.webp"],
+    name: 'Radboud University',
+    images: ['/assets/univercites/Radboud university.webp'],
   },
   {
-    name: "RMIT University",
-    images: ["/assets/univercites/RMIT university.webp"],
+    name: 'RMIT University',
+    images: ['/assets/univercites/RMIT university.webp'],
   },
   {
-    name: "Drexel University",
-    images: ["/assets/univercites/Drexel university.webp"],
+    name: 'Drexel University',
+    images: ['/assets/univercites/Drexel university.webp'],
   },
   {
-    name: "University of Oxford",
-    images: ["/assets/univercites/University of oxford.webp"],
+    name: 'University of Oxford',
+    images: ['/assets/univercites/University of oxford.webp'],
   },
   {
-    name: "University of Cambridge",
-    images: ["/assets/univercites/University of Cambridge.webp"],
+    name: 'University of Cambridge',
+    images: ['/assets/univercites/University of Cambridge.webp'],
   },
   {
-    name: "University of Tech Sydney",
-    images: ["/assets/univercites/Tech sydney.webp"],
+    name: 'University of Tech Sydney',
+    images: ['/assets/univercites/Tech sydney.webp'],
   },
 ];
 
 export default function UniversitiesSection() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,63 +195,79 @@ export default function UniversitiesSection() {
   }, []);
 
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      offset: 100,
-      once: true,
-    });
-  }, []);
+    const ctx = gsap.context(() => {
+      if (!cardRefs.current) return;
 
-  const currentUniversities = universities.slice(
-    slideIndex * 3,
-    slideIndex * 3 + 3
-  );
+      gsap.set(cardRefs.current, { autoAlpha: 0, y: 30, scale: 0.95 });
+
+      gsap.to(cardRefs.current, {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        stagger: {
+          each: 0.25,
+          from: 'start',
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, [slideIndex]);
+
+  const currentUniversities = universities.slice(slideIndex * 3, slideIndex * 3 + 3);
 
   return (
-    <div className="relative">
-      <section className="relative text-black px-4 py-12 md:py-11 lg:py-4 overflow-hidden">
-        {/* Mobile-only Background */}
+    <div className='relative'>
+      <section className='relative text-black px-4 py-12 md:py-11 lg:py-4 overflow-hidden'>
+        {/* Mobile Background */}
         <div
-          className="absolute inset-0 z-0 block md:hidden"
+          className='absolute inset-0 z-0 block md:hidden'
           style={{
             backgroundImage: "url('/assets/textures/university2.jpg')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center", // 👈 this is the key fix
-            backgroundAttachment: "scroll",
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'scroll',
             opacity: 0.6,
           }}
         />
 
         {/* Desktop Background */}
         <div
-          className="absolute inset-0 z-0 hidden md:block"
+          className='absolute inset-0 z-0 hidden md:block'
           style={{
             backgroundImage: "url('/assets/textures/university2.jpg')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
             opacity: 0.5,
           }}
         />
-        <div className="relative z-10 container mx-auto max-w-7xl  md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2">
-          <div className="text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4">
-            <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
+
+        <div className='relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2'>
+          <div className='text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4'>
+            <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
               — Universities —
             </h4>
-            <h2 className="lg:text-4xl md:text-4xl text-3xl font-bold">
-              Unlock New <span className="text-primary">Opportunities</span>{" "}
-              With <span className="text-primary">Insights</span>
+            <h2 className='lg:text-4xl md:text-4xl text-3xl font-bold'>
+              Unlock New <span className='text-primary'>Opportunities</span> With{' '}
+              <span className='text-primary'>Insights</span>
             </h2>
           </div>
-          <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:py-4 py-6">
+
+          <div className='w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:py-4 py-6'>
             {currentUniversities.map((uni, index) => (
               <div
                 key={index}
-                className="relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]"
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className='relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]'
               >
-                <div className="relative w-full h-60 sm:h-64 md:h-72">
+                <div className='relative w-full h-60 sm:h-64 md:h-72'>
                   {uni.images.length > 1 ? (
                     uni.images.map((img, imgIndex) => (
                       <Image
@@ -122,9 +276,7 @@ export default function UniversitiesSection() {
                         alt={`${uni.name} Image ${imgIndex + 1}`}
                         fill
                         className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
-                          imgIndex === imageIndex % uni.images.length
-                            ? "opacity-100"
-                            : "opacity-0"
+                          imgIndex === imageIndex % uni.images.length ? 'opacity-100' : 'opacity-0'
                         }`}
                       />
                     ))
@@ -133,12 +285,12 @@ export default function UniversitiesSection() {
                       src={uni.images[0]}
                       alt={uni.name}
                       fill
-                      className="object-cover w-full h-full"
+                      className='object-cover w-full h-full'
                     />
                   )}
                 </div>
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
-                  <h3 className="text-white text-lg font-bold uppercase tracking-wide">
+                <div className='absolute inset-0 bg-black bg-opacity-40 flex items-end p-4'>
+                  <h3 className='text-white text-lg font-bold uppercase tracking-wide'>
                     {uni.name}
                   </h3>
                 </div>

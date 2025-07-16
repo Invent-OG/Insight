@@ -6,7 +6,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/navigation';
 import { ContainerScroll, CardSticky } from '@/components/cards-stack';
 import { Button } from '../ui/button';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaArrowRight } from 'react-icons/fa';
 
@@ -46,14 +45,6 @@ export default function ServicesSection() {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + '...';
   };
-
-  useEffect(() => {
-    AOS.init({
-      duration: 400,
-      offset: 100,
-      once: true,
-    });
-  }, []);
 
   return (
     <>
@@ -141,7 +132,7 @@ export default function ServicesSection() {
                               </div>
 
                               {/* Description */}
-                              <div className='border-l-4 text-start border-r-4  border-primary pl-4 bg-[#f4f6f8] p-3 rounded text-[#374151] text-sm sm:text-base leading-snug flex-grow'>
+                              <div className='border-l-4 border-r-4  border-primary pl-4 bg-[#f4f6f8] p-3 rounded text-[#374151] text-sm sm:text-base leading-snug flex-grow'>
                                 {displayedText}
                               </div>
 
