@@ -55,7 +55,7 @@ export default function Contact() {
 
         {/* Left Side: Heading + Contact Info */}
         <div className='flex flex-col justify-start space-y-10 z-40'>
-          <div data-aos='fade-down'>
+          <div>
             <h1 className='text-4xl font-bold text-gray-900 mt-16'>
               <span className='text-red-600'>Plan smarter</span>, go further.
             </h1>
@@ -65,7 +65,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className='text-gray-700 text-sm space-y-5 ' data-aos='fade-up'>
+          <div className='text-gray-700 text-sm space-y-5 '>
             <div className='flex items-center gap-2'>
               <Phone className='text-red-600 w-4 h-4' />
               <span>
@@ -169,7 +169,6 @@ export default function Contact() {
             backgroundColor: '#fafafa',
             backgroundSize: 'auto',
           }}
-          data-aos='zoom-in'
         >
           <h2 className='text-2xl font-semibold text-gray-800 mb-4 text-center'>Get in Touch</h2>
           <form onSubmit={handleSubmit} className='space-y-5'>
@@ -249,7 +248,7 @@ export default function Contact() {
       </div>
 
       {/* MAP SECTION (without background image) */}
-      <div className='mt-16 w-full px-6' data-aos='fade-up'>
+      <div className='mt-16 w-full px-6'>
         <iframe
           title='Office Location'
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9077654242126!2d76.96380507414076!3d11.005547654938608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859b3ef09fd9f%3A0xe1783cf1c2033a9e!2sTharani%20Complex%2C%208th%20St%2C%20Gandhipuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641012!5e0!3m2!1sen!2sin!4v1718727760000!5m2!1sen!2sin'

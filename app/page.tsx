@@ -23,27 +23,32 @@ export default function Home() {
           className='relative z-10 hidden object-cover w-full h-screen lg:block'
           autoPlay
           muted
-          preload='auto'
           playsInline
           disableRemotePlayback
-          poster='/images/placeholder.jpg'
         >
-          <source src='/videos/bannerS.mp4' type='video/mp4' />
+          <source
+            src='https://res.cloudinary.com/ds0phxytc/video/upload/f_auto,q_auto/banner_ym2ltg.mp4'
+            type='video/mp4'
+          />
         </video>
+
         <FaAngleDown className='absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce' />
       </div>
       <div className='relative w-full'>
         <video
-          className='block object-cover w-full h-screen lg:hidden'
+          className='block z-10 object-cover w-full h-screen lg:hidden'
           autoPlay
           muted
-          preload='auto'
+          loop
           playsInline
           disableRemotePlayback
-          poster='/images/placeholder.jpg'
         >
-          <source src='/videos/banner M.mp4' type='video/mp4' />
+          <source
+            src='https://res.cloudinary.com/ds0phxytc/video/upload/f_auto,q_auto/banner_M_1_1_1_p0iysu.mp4'
+            type='video/mp4'
+          />
         </video>
+
         <FaAngleDown className='absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce' />
       </div>
 

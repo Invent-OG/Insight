@@ -6,7 +6,14 @@ const nextConfig = {
     typescript: {
     ignoreBuildErrors: true, // ✅ This disables type checking during build
   },
+  
   images: {
+      remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
     domains: [
       'images.pexels.com', 
       'images.unsplash.com', 
