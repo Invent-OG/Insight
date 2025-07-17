@@ -5,104 +5,105 @@ import Image from 'next/image';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { CldImage } from 'next-cloudinary';
 
 const countries = [
-  { title: 'UK', image: '/assets/country/UK (1).png', slug: 'australi' },
-  { title: 'Study in UK', image: '/assets/country/UK.webp', slug: 'uk' },
-  { title: 'Study in USA', image: '/assets/country/USA (1).webp', slug: 'usa' },
+  { title: 'UK', image: 'UK_jyybhv', slug: 'australi' },
+  { title: 'Study in UK', image: 'UK_jyybhv', slug: 'uk' },
+  { title: 'Study in USA', image: 'USA_1_gw8rlk', slug: 'usa' },
   {
     title: 'Study in Ireland',
-    image: '/assets/country/Ireland.webp',
+    image: 'Ireland_oyog0w',
     slug: 'ireland',
   },
   {
     title: 'Study in Canada',
-    image: '/assets/country/Canada (1).webp',
+    image: 'Canada_1_yxn9jo',
     slug: 'canada',
   },
   {
     title: 'Study in Australia',
-    image: '/assets/country/Australia.webp',
+    image: 'Australia_sjbomj',
     slug: 'australia',
   },
   {
     title: 'Study in New Zealand',
-    image: '/assets/country/New zealand (1).webp',
+    image: 'New_zealand_1_t8nmqw',
     slug: 'new-zealand',
   },
   {
     title: 'Study in France',
-    image: '/assets/country/France.webp',
+    image: 'France_ia7wdh',
     slug: 'france',
   },
   {
     title: 'Study in Germany',
-    image: '/assets/country/Germany (1).webp',
+    image: 'Germany_1_zxx8hu',
     slug: 'germany',
   },
   {
     title: 'Study in  UAE',
-    image: '/assets/country/UAE.webp',
+    image: 'UAE_fgvysx',
     slug: 'uae',
   },
   {
     title: 'Study in Singapore',
-    image: '/assets/country/singapore.webp',
+    image: 'singapore_xj4aie',
     slug: 'singapore',
   },
   {
     title: 'Study in Malaysia',
-    image: '/assets/country/malaysia.webp',
+    image: 'malaysia_imjp7t',
     slug: 'malaysia',
   },
   {
     title: 'Study in Poland',
-    image: '/assets/country/poland.webp',
+    image: 'poland_sy7baq',
     slug: 'poland',
   },
   {
     title: 'Study in Sweden',
-    image: '/assets/country/swedan.webp',
+    image: 'swedan_g0b6di',
     slug: 'sweden',
   },
   {
     title: 'Study in Latvia',
-    image: '/assets/country/Latvia.webp',
+    image: 'Latvia_yik0er',
     slug: 'latvia',
   },
   {
     title: 'Study in Lithuania',
-    image: '/assets/country/Lithuania.webp',
+    image: 'Lithuania_xdd2mi',
     slug: 'lithuania',
   },
   {
     title: 'Study in Malta',
-    image: '/assets/country/malta.jpg',
+    image: 'malta_xcvhl5',
     slug: 'malta',
   },
   {
     title: 'Study in Netherlands',
-    image: '/assets/country/Netherland.jpg',
+    image: 'Netherland_hoponi',
     slug: 'netherlands',
   },
   {
     title: 'Study in Finland',
-    image: '/assets/country/Finland.jpg',
+    image: 'Finland_inxqoe',
     slug: 'finland',
   },
   {
     title: 'Study in Armenia',
-    image: '/assets/country/Armenia.webp',
+    image: 'Armenia_qqasz6',
     slug: 'armenia',
   },
   {
     title: 'Study in Georgia',
-    image: '/assets/country/Georgia.webp',
+    image: 'Georgia_u3butg',
     slug: 'georgia',
   },
   {
     title: 'Study in Uzbekistan',
-    image: '/assets/country/Uzbekistan.webp',
+    image: 'Uzbekistan_ove2ok',
     slug: 'uzbekistan',
   },
 ];
@@ -265,15 +266,15 @@ export default function Countries() {
         >
           <div className='relative w-full h-full overflow-hidden outer'>
             <div className='absolute inset-0 z-0 background'>
-              <Image
+              <CldImage
                 src={country.image}
                 alt={country.title}
                 fill
                 className='object-cover object-center'
                 priority
+                sizes='100vw'
               />
             </div>
-
             <div className='relative z-10 flex items-end justify-center w-full h-full inner'>
               <div className='absolute flex flex-col items-center justify-center w-full gap-5 px-4 py-6 lg:bottom-0 bottom-1/4 lg:bg-gradient-to-t from-black via-black/50 to-transparent'>
                 <h1 className='flex gap-3 text-4xl font-bold text-center section-title md:text-6xl'>

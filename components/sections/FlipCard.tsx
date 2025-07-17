@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
+import { CldImage } from 'next-cloudinary';
 
 type FlipContextType = {
   flippedId: string | null;
@@ -24,7 +24,7 @@ export const FlipProvider = ({ children }: { children: React.ReactNode }) => {
 
 interface FlipCardProps {
   id: string;
-  imageSrc: string;
+  imageSrc: string; // Cloudinary public ID
   title: string;
   backDescription: string;
 }
@@ -56,14 +56,13 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
   }, []);
 
   const router = useRouter();
+  const flipped = flippedId === id;
 
   const handleClick = () => {
     if (isMobile) {
-      setFlippedId(flippedId === id ? null : id);
+      setFlippedId(flipped ? null : id);
     }
   };
-
-  const flipped = flippedId === id;
 
   return (
     <>
@@ -78,20 +77,25 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
             isMobile && flipped ? 'rotate-y-180' : ''
           } ${!isMobile ? 'hover:rotate-y-180' : ''}`}
         >
-          <div className='flip-card-front absolute w-full h-full backface-hidden rounded-lg overflow-hidden shadow-lg flex justify-center items-center'>
-            <Image
-              src={imageSrc}
+          {/* Front */}
+          <div className='flip-card-front absolute w-full h-full backface-hidden rounded-lg overflow-hidden shadow-lg flex justify-center items-center relative'>
+            <CldImage
+              src={imageSrc} // ✅ Cloudinary public ID only (e.g., "UK_jyybhv")
               alt={`Image of ${title}`}
               width={500}
               height={300}
+              crop='fill'
+              gravity='auto'
               className='w-full h-full object-cover filter brightness-80 transition-transform duration-500 hover:scale-110'
               priority
             />
-            <div className='absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40'></div>
-            <div className='absolute bottom-0 w-full bg-gradient-to-b from-black/5 h-10 to-black text-white text-lg font-semibold drop-shadow-md'>
+            <div className='absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40' />
+            <div className='absolute bottom-0 w-full bg-gradient-to-b from-black/5 h-10 to-black text-white text-lg font-semibold drop-shadow-md flex items-center justify-center px-2'>
               {title}
             </div>
           </div>
+
+          {/* Back */}
           <div className='flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-black/60 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-xl flex flex-col justify-center items-center text-center text-white overflow-hidden'>
             <div className='relative z-10 w-full h-full flex flex-col gap-8 justify-center'>
               <p
@@ -116,7 +120,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ id, imageSrc, title, backDescriptio
                       setShowFullDesc(false);
                     }
                   }}
-                  className='mt-6 bg-primary hover:bg-transparent hover:border hover:border-black hover:text-white  font-semibold px-5 py-2 rounded-md  focus:outline-none focus:ring-2 transition-colors duration-300 select-none'
+                  className='mt-6 bg-primary hover:bg-transparent hover:border hover:border-black hover:text-white font-semibold px-5 py-2 rounded-md focus:outline-none focus:ring-2 transition-colors duration-300 select-none'
                   aria-label={showFullDesc ? 'Show less' : 'Read more'}
                   style={{ wordSpacing: '0.15em' }}
                 >

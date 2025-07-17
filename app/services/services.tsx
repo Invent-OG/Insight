@@ -7,12 +7,14 @@ import { IoDocumentText } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import ServicesHero from '@/components/sections/ServicesHero';
+import { CldImage } from 'next-cloudinary'; // ensure this is imported
+
 import 'aos/dist/aos.css';
 
 const services = [
   {
     icon: <MdSupportAgent />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'counselling_program_discovery_hc0ill',
     tabTitle: 'Counselling',
     title: 'Counselling & Program Discovery',
     description:
@@ -20,7 +22,7 @@ const services = [
   },
   {
     icon: <MdSchool />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'IELTS_training_gkioj1',
     tabTitle: 'IELTS Training',
     title: 'IELTS, Duolingo, & PTE Training',
     description:
@@ -29,7 +31,7 @@ const services = [
   },
   {
     icon: <IoDocumentText />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'SOP_writing_vopuz0',
     tabTitle: 'SOP Writing',
     title: 'SOP Writing',
     description:
@@ -37,7 +39,7 @@ const services = [
   },
   {
     icon: <MdAttachMoney />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'Financial_Guidance_Documents_vtlk3m',
     tabTitle: 'Financial Guidance',
     title: 'Financial & Loan Guidance',
     description:
@@ -46,7 +48,7 @@ const services = [
   },
   {
     icon: <GiDiploma />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'Visa_assistance_pyx8qd',
     tabTitle: 'Visa Assistance',
     title: 'Visa Process Assistance',
     description:
@@ -54,7 +56,7 @@ const services = [
   },
   {
     icon: <MdFlight />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'flight_booking_p3qnqp',
     tabTitle: 'Flight Booking',
     title: 'Flight Ticket Booking',
     description:
@@ -62,7 +64,7 @@ const services = [
   },
   {
     icon: <GiGraduateCap />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'pre_depature_rd1chz',
     tabTitle: 'Pre-Departure',
     title: 'Pre-Departure & Transition Support',
     description:
@@ -70,7 +72,7 @@ const services = [
   },
   {
     icon: <MdHome />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'accomodation_grw6zn',
     tabTitle: 'Accommodation',
     title: 'Accommodation Arrangements',
     description:
@@ -78,7 +80,7 @@ const services = [
   },
   {
     icon: <MdWork />,
-    image: '/assets/services/SOP writing.webp',
+    image: 'part_time_jhofex',
     tabTitle: 'Part-Time Jobs',
     title: 'Part-Time Job Guidance',
     description:
@@ -177,15 +179,19 @@ export default function Services() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className='relative grid md:grid-cols-2 rounded-2xl overflow-hidden max-w-6xl mx-auto shadow-2xl bg-white'
+            className='relative grid md:grid-cols-2  overflow-hidden max-w-6xl mx-auto shadow-2xl bg-white'
           >
             {/* Left - Diagonal Image Box */}
-            <div className='relative h-72 md:h-auto w-full overflow-hidden'>
-              <div className='clip-diagonal w-full h-full'>
-                <img
-                  src={services[activeIndex].image}
+            <div className='relative  h-72 md:h-auto w-full overflow-hidden'>
+              {/* rounded-tr-xl rounded-br-xl */}
+              <div className=' w-full h-full relative'>
+                <CldImage
+                  src={services[activeIndex].image} // Cloudinary public ID
                   alt={services[activeIndex].title}
-                  className='w-full h-full object-cover scale-105'
+                  fill
+                  className='object-cover scale-105'
+                  sizes='100vw'
+                  loading='lazy'
                 />
               </div>
             </div>

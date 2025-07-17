@@ -3,43 +3,44 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import 'aos/dist/aos.css';
+import { CldImage } from 'next-cloudinary';
 
 const universities = [
   {
     name: 'RWTH Aachen University',
-    images: ['/assets/univercites/RWTH AACHEN UNIVERSITY.webp'],
+    images: ['RWTH_AACHEN_UNIVERSITY_atfcuz'],
   },
   {
     name: 'Arizona State University',
-    images: ['/assets/univercites/Arizona state university.webp'],
+    images: ['Arizona_state_university_gqvufg'],
   },
   {
     name: 'University of Twente',
-    images: ['/assets/univercites/univeresity of twente.webp'],
+    images: ['univeresity_of_twente_rqqihm'],
   },
   {
     name: 'Radboud University',
-    images: ['/assets/univercites/Radboud university.webp'],
+    images: ['Radboud_university_vut6ly'],
   },
   {
     name: 'RMIT University',
-    images: ['/assets/univercites/RMIT university.webp'],
+    images: ['RMIT_university_ytqjax'],
   },
   {
     name: 'Drexel University',
-    images: ['/assets/univercites/Drexel university.webp'],
+    images: ['Drexel_university_cy3ggh'],
   },
   {
     name: 'University of Oxford',
-    images: ['/assets/univercites/University of oxford.webp'],
+    images: ['University_of_oxford_rl7pe2'],
   },
   {
     name: 'University of Cambridge',
-    images: ['/assets/univercites/University of Cambridge.webp'],
+    images: ['University_of_Cambridge_gyghv2'],
   },
   {
     name: 'University of Tech Sydney',
-    images: ['/assets/univercites/Tech sydney.webp'],
+    images: ['Tech_sydney_ewkdlo'],
   },
 ];
 
@@ -115,10 +116,12 @@ export default function UniversitiesSection() {
                       />
                     ))
                   ) : (
-                    <Image
+                    <CldImage
                       src={uni.images[0]}
                       alt={uni.name}
                       fill
+                      crop='fill'
+                      gravity='auto'
                       className='object-cover w-full h-full'
                     />
                   )}

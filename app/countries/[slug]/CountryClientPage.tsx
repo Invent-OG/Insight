@@ -4,6 +4,7 @@ import { notFound, useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useCreateLead } from '@/lib/queries/leads'; // adjust path if needed
 import toast, { Toaster } from 'react-hot-toast';
+import { CldImage } from 'next-cloudinary';
 
 import { Fragment, useState } from 'react';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ type Country = {
 const countries: Country[] = [
   {
     title: 'Study in UK',
-    image: '/assets/country/UK.webp',
+    image: 'UK_jyybhv',
     slug: 'uk',
     description: `Home to renowned institutions like Oxford and Cambridge, the UK
 offers rigorous programs, short duration courses, and a strong
@@ -32,7 +33,7 @@ the UK is ideal for career-focused learners.`,
   },
   {
     title: 'Study in the USA',
-    image: '/assets/country/USA (1).webp',
+    image: 'USA_1_gw8rlk',
     slug: 'usa',
     description: `The U.S. is a top destination for international students, offering
 prestigious universities like Harvard and MIT, a flexible education
@@ -45,7 +46,7 @@ extensions`,
   },
   {
     title: 'Study in Ireland',
-    image: '/assets/country/Ireland.webp',
+    image: 'Ireland_oyog0w',
     slug: 'ireland',
     description: `Ireland is home to prestigious universities like Trinity College Dublin
 and University College Dublin, known for academic excellence. With
@@ -57,7 +58,7 @@ long-term career and settlement opportunities.
   },
   {
     title: 'Study in Canada',
-    image: '/assets/country/Canada (1).webp',
+    image: 'Canada_1_yxn9jo',
     slug: 'canada',
     description: `Canada stands out for its world-class universities like the University
 of Toronto and McGill, inclusive society, and high standard of living.
@@ -68,7 +69,7 @@ long-term settlement.`,
   },
   {
     title: 'Study in Australia',
-    image: '/assets/country/Australia.webp',
+    image: 'Australia_sjbomj',
     slug: 'australia',
     description: `Australia offers globally ranked universities, practical learning, and
 vibrant student life in cities like Sydney and Melbourne. Students
@@ -80,7 +81,7 @@ lifestyle.
   },
   {
     title: 'Study in New Zealand',
-    image: '/assets/country/New zealand (1).webp',
+    image: 'New_zealand_1_t8nmqw',
     slug: 'new-zealand',
     description: `New Zealand provides a peaceful and research-driven education
 experience at institutions like the University of Auckland. With its
@@ -91,7 +92,7 @@ personal growth.`,
   },
   {
     title: 'Study in France',
-    image: '/assets/country/France.webp',
+    image: 'France_ia7wdh',
     slug: 'france',
     description: `With top-ranked universities, affordable tuition, and diverse English
 and French-taught programs, France welcomes international
@@ -106,7 +107,7 @@ apart.
   },
   {
     title: 'Study in Germany',
-    image: '/assets/country/Germany (1).webp',
+    image: 'Germany_1_zxx8hu',
     slug: 'germany',
     description: `Germany is known for top public universities like TUM and
 Heidelberg that offer tuition-free or low-cost education in
@@ -120,7 +121,7 @@ EU Blue Card residency.
   },
   {
     title: 'Study in the UAE',
-    image: '/assets/country/UAE (2).webp',
+    image: 'UAE_fgvysx',
     slug: 'uae',
     description: `The UAE offers international-standard education in a safe,
 multicultural setting with campuses in Dubai and Abu Dhabi. With
@@ -130,7 +131,7 @@ income, and strong career prospects make it a dynamic choice.`,
   },
   {
     title: 'Study in Singapore',
-    image: '/assets/country/singapore.webp',
+    image: 'singapore_xj4aie',
     slug: 'singapore',
     description: `Singapore is Asia’s leading education hub, home to world-class
 institutions like NUS and NTU. It offers cutting-edge programs in
@@ -142,7 +143,7 @@ Asia-Pacific region.
   },
   {
     title: 'Study in Malaysia',
-    image: '/assets/country/malaysia.webp',
+    image: 'malaysia_imjp7t',
     slug: 'malaysia',
     description: `Malaysia offers globally recognized degrees at lower costs, with
 English widely spoken and vibrant multicultural campuses.
@@ -152,7 +153,7 @@ welcoming environment make it a great gateway to careers in Asia.`,
   },
   {
     title: 'Study in Poland',
-    image: '/assets/country/poland.webp',
+    image: 'poland_sy7baq',
     slug: 'poland',
     description: `Poland combines affordable living with top universities
 offering strong programs in various fields. Known for its
@@ -162,7 +163,7 @@ destination for international students.
   },
   {
     title: 'Study in Sweden',
-    image: '/assets/country/swedan.webp',
+    image: 'swedan_g0b6di',
     slug: 'sweden',
     description: `Sweden is renowned for its world-class education,
 innovation, and sustainability focus. With English widely
@@ -174,7 +175,7 @@ ideal for future innovators and researchers.
   },
   {
     title: 'Study in Latvia',
-    image: '/assets/country/Latvia.webp',
+    image: 'Latvia_yik0er',
     slug: 'latvia',
     description: `Latvia offers a range of quality, affordable education
 options, especially in fields like engineering, IT, and
@@ -184,7 +185,7 @@ experience and a growing international student community.
   },
   {
     title: 'Study in Lithuania',
-    image: '/assets/country/Lithuania.webp',
+    image: 'Lithuania_xdd2mi',
     slug: 'lithuania',
     description: `Lithuania offers high-quality, low-cost education in a
 vibrant, historical setting. Known for strong academic
@@ -193,7 +194,7 @@ hidden gem for international students.`,
   },
   {
     title: 'Study in Malta',
-    image: '/assets/country/malta.jpg',
+    image: 'malta_xcvhl5',
     slug: 'malta',
     description: `Malta offers top-quality education in English, with a
 Mediterranean lifestyle that combines rich history, vibrant
@@ -203,7 +204,7 @@ location.`,
   },
   {
     title: 'Study in Netherlands',
-    image: '/assets/country/Netherland.jpg',
+    image: 'Netherland_hoponi',
     slug: 'netherlands',
     description: `The Netherlands is famous for its innovation and top-tier
 universities, many of which offer English-taught programs.
@@ -213,7 +214,7 @@ destination for career-focused students.
   },
   {
     title: 'Study in Finland',
-    image: '/assets/country/Finland.jpg',
+    image: 'Finland_inxqoe',
     slug: 'finland',
     description: `Finland is known for its innovative education system,
 offering excellent universities with a focus on research and
@@ -224,7 +225,7 @@ international students.
   },
   {
     title: 'Study in Armenia',
-    image: '/assets/country/Armenia.webp',
+    image: 'Armenia_qqasz6',
     slug: 'armenia',
     description: `Armenia offers affordable, high-quality education with growing international
 recognition. Universities in Yerevan and other cities provide a mix of theoretical
@@ -237,7 +238,7 @@ destination for international students.
   },
   {
     title: 'Study in Georgia',
-    image: '/assets/country/Georgia.webp',
+    image: 'Georgia_u3butg',
     slug: 'georgia',
     description: `Georgia is becoming an increasingly popular destination for international
 students, offering a wide range of English-medium programs in fields like
@@ -250,7 +251,7 @@ lifestyle and growing career prospects.
   },
   {
     title: 'Study in Uzbekistan',
-    image: '/assets/country/Uzbekistan.webp',
+    image: 'Uzbekistan_ove2ok',
     slug: 'uzbekistan',
     description: `Uzbekistan is rapidly developing as a study destination with government-backed
 reforms in higher education. Cities like Tashkent and Samarkand host institutions
@@ -356,10 +357,18 @@ export default function CountryClientPage({ slug }: Props) {
           <h2 className='text-xl font-semibold'>Find Your Ideal Course & Country</h2>
 
           {/* Image with overlay */}
-          <div className='relative w-full h-72 rounded-xl overflow-hidden shadow-lg'>
-            <Image src={country.image} alt={country.title} fill className='object-cover' />
-            <div className='absolute inset-0 bg-black/50 flex items-center justify-center'>
-              <span className='text-xl text-white font-semibold'>{country.title}</span>
+          <div className='relative w-full h-[500px] overflow-hidden'>
+            <CldImage
+              src={country.image}
+              alt={country.title}
+              fill
+              className='object-cover object-center z-0'
+              sizes='100vw'
+              priority
+            />
+
+            <div className='absolute inset-0 z-10 bg-black/40 flex items-center justify-center'>
+              <h2 className='text-white text-3xl font-bold'>{country.title}</h2>
             </div>
           </div>
 
@@ -640,10 +649,17 @@ export default function CountryClientPage({ slug }: Props) {
                 <Link href={`/countries/${c.slug}`} key={c.slug}>
                   <div
                     className={`cursor-pointer rounded-2xl overflow-hidden border transition-all duration-300
-            bg-gray-600 text-white  hover:bg-gray-900`}
+            bg-gray-600 text-white hover:bg-gray-900`}
                   >
                     <div className='relative w-full h-36 md:h-32'>
-                      <Image src={c.image} alt={c.title} fill className='object-cover' />
+                      <CldImage
+                        src={c.image}
+                        alt={c.title}
+                        fill
+                        className='object-cover'
+                        sizes='100vw'
+                        priority
+                      />
                     </div>
                     <div className='text-center py-3'>
                       <span className='text-sm sm:text-base font-semibold'>

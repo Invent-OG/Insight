@@ -8,27 +8,28 @@ import { ContainerScroll, CardSticky } from '@/components/cards-stack';
 import { Button } from '../ui/button';
 import 'aos/dist/aos.css';
 import { FaArrowRight } from 'react-icons/fa';
+import { CldImage } from 'next-cloudinary';
 
 const services = [
   {
     title: 'Counselling & Program Discovery',
     description:
       'Having trouble deciding on a course or country? We’ll help you explore your options based on your interests, background, and future goals. Our experienced team will guide you in finding the academic path that suits you best.',
-    image: '/assets/services/counselling & program discovery.webp',
+    image: 'counselling_program_discovery_hc0ill',
     icon: '/icons/counseling.svg',
   },
   {
     title: 'IELTS, Duolingo, PTE & English Speaking Training',
     description:
       'We offer personalized training for IELTS, Duolingo, and PTE exams to help students meet language proficiency requirements with confidence. Many universities in countries like the UK, Canada, and the USA accept IELTS waivers based on medium of instruction (MOI) or alternative tests like Duolingo or Pearson Test of English (PTE). We help you identify such universities and streamline the documentation process for eligibility.',
-    image: '/assets/services/IELTS training.webp',
+    image: 'IELTS_training_gkioj1',
     icon: '/icons/selection.svg',
   },
   {
     title: 'SOP Writing',
     description:
       'Your Statement of Purpose is your story — and we help you tell it well. Our team works with you to write a compelling, authentic SOP that highlights your goals, strengths, and personality. It’s not about using templates — it’s about helping your voice stand out and make an impact.',
-    image: '/assets/services/SOP writing.webp',
+    image: 'SOP_writing_vopuz0',
     icon: '/icons/processing.svg',
   },
 ];
@@ -110,11 +111,14 @@ export default function ServicesSection() {
                         <div className='relative w-full flex flex-col sm:flex-row h-auto sm:h-[270px]'>
                           {/* Image */}
                           <div className='relative w-full sm:w-1/2 h-[200px] sm:h-full'>
-                            <Image
-                              src={service.image}
+                            <CldImage
+                              src={service.image} // e.g., 'counselling_program_discovery_hc0ill'
                               alt={service.title}
-                              fill
-                              className='object-cover transition duration-300 hover:brightness-110'
+                              width={500}
+                              height={300}
+                              crop='fill'
+                              gravity='auto'
+                              className='object-cover transition duration-300 hover:brightness-110 w-full h-full'
                             />
                           </div>
 

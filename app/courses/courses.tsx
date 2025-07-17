@@ -1,22 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
+import { CldImage } from 'next-cloudinary'; // ensure this is imported
 import WhyTheseCountries from '@/components/sections/WhyTheseCountries';
-import firimg from '@/public/assets/course/Business management course.webp';
-import secimg from '@/public/assets/course/engineeering & technology.webp';
-import thiimg from '@/public/assets/course/data science and aritificial intelligence.webp';
-import fouimg from '@/public/assets/course/health and medical science.webp';
-import fivimg from '@/public/assets/course/social science & humanities.webp';
-import siximg from '@/public/assets/course/creative arts and design.webp';
-import sevimg from '@/public/assets/course/law_compressed.webp';
-import eigimg from '@/public/assets/course/education.webp';
-import ninimg from '@/public/assets/course/architecture and built environment.webp';
-import tenimg from '@/public/assets/course/logistics & supply chain management.webp';
-import eleimg from '@/public/assets/course/science and technology.webp';
-import tweimg from '@/public/assets/course/hospitality & tourism.webp';
-import thirimg from '@/public/assets/course/library & information science.webp';
-import fourimg from '@/public/assets/course/media, journalism and communication.webp';
-import fiftimg from '@/public/assets/course/philosophy, politics & economics.webp';
-import sixtimg from '@/public/assets/course/mbbs.webp';
 import {
   FaBriefcase,
   FaCog,
@@ -137,7 +122,7 @@ export const CoursesPage = () => {
             {[
               {
                 category: 'Business Management Courses Abroad',
-                image: firimg,
+                image: 'Business_management_course_syxhse',
                 description:
                   'Unlock global business opportunities with world-class business education. Business management courses abroad offer cutting-edge curriculum, internship programs, and international exposure.',
                 undergraduate: [
@@ -162,7 +147,7 @@ export const CoursesPage = () => {
 
               {
                 category: 'Engineering and Technology Programs',
-                image: secimg,
+                image: 'engineeering_technology_zpydnw',
                 description:
                   'Shape the future with innovative engineering and tech degrees. These programs combine theoretical foundations with hands-on training and research opportunities.',
                 undergraduate: [
@@ -186,7 +171,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Data Science and Artificial Intelligence',
-                image: thiimg,
+                image: 'data_science_and_aritificial_intelligence_btvrl1',
                 description:
                   'Harness the power of data and intelligent systems with future-ready degrees. Learn to analyze, model, and innovate using AI tools across real-world scenarios.',
                 undergraduate: [
@@ -207,7 +192,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Health and Medical Sciences',
-                image: fouimg,
+                image: 'health_and_medical_science_j0sr8b',
                 description:
                   'Build a career in healthcare through programs that blend academic knowledge with clinical practice. Study with experts and contribute to advancing medical care.',
                 undergraduate: [
@@ -231,7 +216,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Social Sciences and Humanities',
-                image: fivimg,
+                image: 'social_science_humanities_ii82wa',
                 description:
                   'Examine society, culture, and behavior through interdisciplinary learning. These degrees foster critical insight and prepare you for diverse global roles.',
                 undergraduate: [
@@ -257,7 +242,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Creative Arts and Design',
-                image: siximg,
+                image: 'creative_arts_and_design_hpxgeu',
                 description:
                   'Turn your creativity into a profession with immersive training in art, design, and digital production. Develop your portfolio and collaborate on real projects.',
                 undergraduate: [
@@ -280,7 +265,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Law',
-                image: sevimg,
+                image: 'law_compressed_z4q6st',
                 description:
                   'Develop a strong legal foundation through theory, casework, and practice. Study how laws shape society and gain skills for a global legal career.',
                 undergraduate: ['LLB (Bachelor of Law)'],
@@ -296,7 +281,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Education',
-                image: eigimg,
+                image: 'education_jv3u9j',
                 description:
                   'Prepare to lead and inspire in the classroom with a focus on pedagogy, child development, and hands-on teaching experience.',
                 undergraduate: [
@@ -316,7 +301,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Architecture and Built Environment',
-                image: ninimg,
+                image: 'architecture_and_built_environment_ejnjqx',
                 description:
                   'Learn to create sustainable, functional spaces through architecture and design. These programs blend creativity, environmental awareness, and structural skills.',
                 undergraduate: [
@@ -335,7 +320,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Logistics and Supply Chain Management',
-                image: tenimg,
+                image: 'logistics_supply_chain_management_etphxk',
                 description:
                   'Gain expertise in managing global supply systems and operations. Study logistics, procurement, and strategic planning for thriving business environments.',
                 undergraduate: [
@@ -353,7 +338,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Science and Technology',
-                image: eleimg,
+                image: 'science_and_technology_l1k1be',
                 description:
                   'Delve into innovation through science and tech-based learning. Engage with lab work, experimentation, and modern challenges in a tech-driven world.',
                 undergraduate: [
@@ -375,7 +360,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Hospitality and Tourism',
-                image: tweimg,
+                image: 'hospitality_tourism_d7rpvr',
                 description:
                   'Get ready for a career in global service industries with practical training in hospitality, tourism, and management, built on real-world applications.',
                 undergraduate: [
@@ -392,7 +377,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Library and Information Science',
-                image: thirimg,
+                image: 'library_information_science_wblwzh',
                 description:
                   'Explore how knowledge is collected, organized, and shared in digital and physical formats. Develop skills to manage libraries, databases, and archives.',
                 undergraduate: [],
@@ -406,7 +391,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Media, Journalism, and Communication',
-                image: fourimg,
+                image: 'media_journalism_and_communication_weqnrl',
                 description:
                   'Learn to craft compelling stories and navigate the modern media landscape. Develop communication skills for careers in journalism, PR, and digital content.',
                 undergraduate: [
@@ -426,7 +411,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'Philosophy, Politics, and Economics (PPE)',
-                image: fiftimg,
+                image: 'philosophy_politics_economics_cmcuc1',
                 description:
                   'Study the intersection of ideas, governance, and economics. This interdisciplinary program equips you with tools to understand and influence complex systems.',
                 undergraduate: ['Philosophy', 'Politics', 'Economics'],
@@ -439,7 +424,7 @@ export const CoursesPage = () => {
               },
               {
                 category: 'MBBS Courses Abroad',
-                image: sixtimg,
+                image: 'mbbs_vc9yyh',
                 description: `"Pursue a globally recognized medical degree and unlock a world of healthcare
 opportunities. MBBS courses abroad offer high-quality education, state-of-the-art
 facilities, clinical exposure, and international recognition."`,
@@ -494,12 +479,14 @@ facilities, clinical exposure, and international recognition."`,
                 </summary>
 
                 {/* 🔥 Image first */}
-                <div className='w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md h-[400px]'>
-                  <Image
-                    src={image}
+                <div className='w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md h-[400px] relative'>
+                  <CldImage
+                    src={image} // this is your public ID
                     alt={category}
-                    className='object-contain w-full h-full'
+                    fill
+                    className='object-contain'
                     loading='lazy'
+                    sizes='100vw'
                   />
                 </div>
 
