@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import FlipCard from './FlipCard';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 interface Country {

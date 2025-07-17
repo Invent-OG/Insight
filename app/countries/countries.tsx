@@ -42,7 +42,7 @@ const countries = [
   },
   {
     title: 'Study in  UAE',
-    image: '/assets/country/UAE (2).webp',
+    image: '/assets/country/UAE.webp',
     slug: 'uae',
   },
   {
