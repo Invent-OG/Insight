@@ -8,9 +8,9 @@ import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 
 const slides = [
-  'https://resonance.bestlooker.pro/images/full-width-images/section-bg-7.jpg',
-  // "https://resonance.bestlooker.pro/images/full-width-images/section-bg-8.jpg",
-  'https://resonance.bestlooker.pro/images/full-width-images/section-bg-9.jpg',
+  '/assets/services/hero2.jpg',
+  '/assets/services/hero3.jpg',
+  '/assets/services/hero1.jpg',
 ];
 
 interface ServicesHeroProps {
@@ -28,7 +28,7 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
           modules={[Autoplay, EffectFade]}
           effect='fade'
           loop
-          autoplay={{ delay: 10000, disableOnInteraction: false }}
+          autoplay={{ delay: 6000, disableOnInteraction: false }}
           speed={1000}
           className='w-full h-full'
         >
@@ -55,7 +55,11 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
             Your Journey, Fully Supported Every Step of the Way!
           </h2>
           <div className='flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0 blur-md animate-fade-in-up animation-delay-700'>
-            <Button onClick={scrollToCards} variant={'outline'}>
+            <Button
+              className='text-black border border-black hover:text-white hover:border-white'
+              onClick={scrollToCards}
+              variant={'outline'}
+            >
               Learn More
             </Button>
             <Button onClick={() => router.push('/contact')}>Get In Touch</Button>
