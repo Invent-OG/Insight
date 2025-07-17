@@ -45,14 +45,6 @@ const CountriesCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      offset: 100,
-      once: true,
-    });
-  }, []);
-
   return (
     <div className='relative overflow-hidden lg:py-5 py-6 lg:min-h-screen'>
       {/* ✅ Mobile-Only Parallax Background */}
@@ -74,13 +66,7 @@ const CountriesCarousel: React.FC = () => {
       ></div>
 
       {/* Main Content */}
-      <div
-        data-aos='fade-up'
-        data-aos-duration='1000'
-        data-aos-delay='100'
-        data-aos-anchor-placement='top-bottom'
-        className='relative z-10 bg-transparent flex flex-col  justify-center items-center text-white'
-      >
+      <div className='relative z-10 bg-transparent flex flex-col  justify-center items-center text-white'>
         <h4 className='uppercase lg:text-base text-sm lg:py-5 py-6  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
           — Dream Destinations—
         </h4>

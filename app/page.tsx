@@ -22,7 +22,6 @@ export default function Home() {
         <video
           className='relative z-10 hidden object-cover w-full h-screen lg:block'
           autoPlay
-          loop
           muted
           preload='auto'
           playsInline
@@ -37,7 +36,6 @@ export default function Home() {
         <video
           className='block object-cover w-full h-screen lg:hidden'
           autoPlay
-          loop
           muted
           preload='auto'
           playsInline

@@ -172,7 +172,7 @@ const Layout2 = () => {
                 {visibleContent.map((para, idx) => (
                   <motion.p
                     key={idx}
-                    className={`text-xl md:text-lg leading-normal tracking-wide flex gap-2 items-start ${
+                    className={`text-base md:text-lg  leading-normal tracking-wide flex gap-2 items-start ${
                       showFull ? 'text-black/85 text-justify' : 'text-black/90  md:text-left'
                     }`}
                     variants={textVariants}
