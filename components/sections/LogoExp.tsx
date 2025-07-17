@@ -135,47 +135,52 @@ function LogoExp() {
     const isMobile = window.innerWidth <= 768;
 
     const ctx = gsap.context(() => {
-      // Logo zoom out + blur to sharp (responsive values)
-      gsap.fromTo(
-        imageRef.current,
-        {
-          scale: isMobile ? 3 : 6,
-          filter: isMobile ? 'blur(10px)' : 'blur(20px)',
-          opacity: 0,
-        },
-        {
-          scale: 1,
-          filter: 'blur(0px)',
-          opacity: 1,
+      // Pin & Animate Logo
+      gsap
+        .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'center top',
+            start: 'top top',
+            end: '+=100%',
             scrub: true,
+            pin: true,
           },
-        }
-      );
+        })
+        .fromTo(
+          imageRef.current,
+          {
+            scale: isMobile ? 2 : 4,
+            filter: isMobile ? 'blur(10px)' : 'blur(20px)',
+            opacity: 0,
+          },
+          {
+            scale: 1,
+            filter: 'blur(0px)',
+            opacity: 1,
+            ease: 'power2.out',
+          }
+        );
 
-      // Fade in "More About the Logo"
+      // Fade in About Section
       gsap.from(aboutRef.current, {
         opacity: 0,
-        y: 40,
-        duration: 2,
+        y: 20,
+        duration: 1.5,
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: isMobile ? 'top 95%' : 'top 80%',
+          start: isMobile ? 'top 90%' : 'top 85%',
           toggleActions: 'play none none reverse',
         },
       });
 
-      // Fade in "Our Mission"
+      // Fade in Mission Section
       gsap.from(missionRef.current, {
         opacity: 0,
-        y: 50,
+        y: 20,
         duration: 2,
         scrollTrigger: {
           trigger: missionRef.current,
-          start: isMobile ? 'top 95%' : 'top 90%',
+          start: isMobile ? 'top 90%' : 'top 85%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -191,6 +196,9 @@ function LogoExp() {
         ref={sectionRef}
         className='relative flex items-center justify-center w-full h-screen bg-black overflow-hidden'
       >
+        {/* Extra spacing before scroll takes over */}
+        <div className='absolute top-0 w-full h-[200vh]'></div>
+
         <div ref={imageRef} className='z-20 will-change-transform'>
           <Image
             alt='logoexplaining'
