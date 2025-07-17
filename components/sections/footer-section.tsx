@@ -74,13 +74,13 @@ export function Footer() {
       ref={footerRef}
       className='relative z-50 flex flex-col items-center justify-center w-full lg:h-[60vh] px-6 py-12 text-white bg-black'
     >
-      <div className='absolute bottom-0 right-0 bg-white'>
+      <div className='fixed bottom-4 right-4 z-50'>
         <Image
           src='/assets/mavenlogo.webp'
-          height={100}
-          width={100}
           alt='Footer Image'
-          className='w-full h-20'
+          width={200}
+          height={200}
+          className='w-24 sm:w-28 md:w-32 lg:w-36 xl:w-40 h-auto'
         />
       </div>
 
