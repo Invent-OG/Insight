@@ -75,7 +75,7 @@ export default function AboutPage() {
 
         {/* Hero  sub content */}
         <section
-          className='hero flex items-center min-h-screen filter brightness-95 bg-center bg-cover px-8 relative overflow-hidden'
+          className='hero flex items-center min-h-screen filter brightness-95 bg-center bg-cover px-8 relative overflow-hidden bg-white'
           style={{
             backgroundImage: `url('https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg')`, // Replace with your preferred texture
             backgroundAttachment: 'fixed', // Key for parallax
@@ -207,7 +207,7 @@ export default function AboutPage() {
             >
               <div className='relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-8 border-red-600/70 shadow-xl flex-shrink-0'>
                 <Image
-                  src='https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg'
+                  src='/assets/about/founder.jpeg'
                   alt='Founder Neshika'
                   width={240}
                   height={240}

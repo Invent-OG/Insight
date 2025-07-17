@@ -132,13 +132,15 @@ function LogoExp() {
   const missionRef = useRef(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     const ctx = gsap.context(() => {
-      // Logo zoom out + blur to sharp
+      // Logo zoom out + blur to sharp (responsive values)
       gsap.fromTo(
         imageRef.current,
         {
-          scale: 2,
-          filter: 'blur(10px)',
+          scale: isMobile ? 3 : 6,
+          filter: isMobile ? 'blur(10px)' : 'blur(20px)',
           opacity: 0,
         },
         {
@@ -147,8 +149,8 @@ function LogoExp() {
           opacity: 1,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top center',
-            end: 'bottom center',
+            start: 'top bottom',
+            end: 'center top',
             scrub: true,
           },
         }
@@ -157,11 +159,11 @@ function LogoExp() {
       // Fade in "More About the Logo"
       gsap.from(aboutRef.current, {
         opacity: 0,
-        y: 50,
-        duration: 1,
+        y: 40,
+        duration: 2,
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: 'top 80%',
+          start: isMobile ? 'top 95%' : 'top 80%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -170,10 +172,10 @@ function LogoExp() {
       gsap.from(missionRef.current, {
         opacity: 0,
         y: 50,
-        duration: 1,
+        duration: 2,
         scrollTrigger: {
           trigger: missionRef.current,
-          start: 'top 80%',
+          start: isMobile ? 'top 95%' : 'top 90%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -189,7 +191,7 @@ function LogoExp() {
         ref={sectionRef}
         className='relative flex items-center justify-center w-full h-screen bg-black overflow-hidden'
       >
-        <div ref={imageRef} className='z-20'>
+        <div ref={imageRef} className='z-20 will-change-transform'>
           <Image
             alt='logoexplaining'
             src='/assets/whitelogo.png'
