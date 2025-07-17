@@ -50,21 +50,8 @@ export default function Contact() {
   return (
     <main className=' '>
       {/* CONTACT FORM SECTION (With background) */}
-      {/* <section
-        className="relative min-h-screen  lg:py-16 py-16 px-6 "
-        style={{
-          backgroundImage: "url('/assets/contact.jpg')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          // backgroundPositionY: "90%",
-          backgroundPosition: "50% 100% ",
-        }}
-      >
-     
-      </section> */}
-
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-between lg:px-[10%] px-[5%] lg:py-[5%] py-[10%] w-full h-screen relative'>
-        <div className="absolute inset-0 bg-[url('/assets/contact.jpg')] bg-cover bg-center opacity-20 z-0"></div>
+        <div className="absolute inset-0 bg-[url('/assets/contact/contact.jpg')] bg-cover bg-center opacity-20 z-0"></div>
 
         {/* Left Side: Heading + Contact Info */}
         <div className='flex flex-col justify-start space-y-10 z-40'>
@@ -178,7 +165,7 @@ export default function Contact() {
         <div
           className='rounded-2xl shadow-xl p-10 flex flex-col justify-between border z-40 border-gray-100'
           style={{
-            backgroundImage: `url('https://www.transparenttextures.com/patterns/tiny-grid.png')`,
+            backgroundImage: `url('/assets/contact/tiny-grid.png')`,
             backgroundColor: '#fafafa',
             backgroundSize: 'auto',
           }}

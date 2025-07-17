@@ -244,7 +244,7 @@ const HomePage: React.FC = () => {
           <div className='flex flex-col items-stretch gap-12 lg:flex-row '>
             <div className='flex items-center justify-center w-full lg:w-1/2'>
               <img
-                src='https://www.vinsys.com/static/media/training/course/banner/vinsysBannerimage_ac1BtCc.svg'
+                src='/assets/englishprogram/training.svg'
                 alt='Online Training Illustration'
                 className='w-full max-w-[500px] h-auto object-contain'
               />
