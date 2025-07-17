@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import herocontentimage from '@/public/assets/herocontentimage.webp';
 import { Button } from '../ui/button';
 import { CircleDot } from 'lucide-react';
+import { CldImage } from 'next-cloudinary';
 
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -125,11 +125,11 @@ const Layout2 = () => {
                   ease: 'easeInOut',
                 }}
               >
-                <Image
-                  src={herocontentimage}
-                  alt='Study Abroad Illustration'
-                  className='w-full h-auto object-cover'
-                  priority
+                <CldImage
+                  src='herocontentimage_ystu7u' // Only the public_id, no extension
+                  width={800}
+                  height={600}
+                  alt='Example Cloudinary Image'
                 />
               </motion.div>
             </div>
