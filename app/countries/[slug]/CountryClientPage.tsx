@@ -306,7 +306,10 @@ export default function CountryClientPage({ slug }: Props) {
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
   const country = countries.find((c) => c.slug === slug);
-  if (!country) notFound();
+  if (!country) {
+    console.warn(`No country found for slug: ${slug}`);
+    return <div>Country not found</div>;
+  }
 
   const countryContents = countryData.filter((c) => c.country.toLowerCase() === slug);
 

@@ -1,4 +1,5 @@
 export interface CountryInfo {
+  slug: string;
   country: string;
   tuitionFeeRange: string;
   livingCosts: string;
@@ -33,6 +34,8 @@ export interface CountryInfo {
 export const countryData: CountryInfo[] = [
   {
     country: "UAE",
+        slug: 'uae',
+
     tuitionFeeRange: "AED 30,000 – AED 80,000 per year",
     livingCosts: "AED 40,000 – AED 60,000 per year",
     durationOfCourses: "Undergraduate: 3–4 years; Postgraduate: 1–2 years",
@@ -73,6 +76,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Singapore",
+        slug: 'singapore',
+
     tuitionFeeRange: "SGD 17,000 – SGD 90,000 per year",
     livingCosts: "SGD 1,000 – SGD 1,400 per month",
     durationOfCourses: "Undergraduate: 3–4 years; Postgraduate: 1–2 years",
@@ -115,6 +120,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "UK",
+        slug: 'uk',
+
     tuitionFeeRange:
       "£10,000 – £38,000 per year depending on course and university",
     livingCosts: "£800 – £1,200 per month depending on location",
@@ -159,6 +166,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "USA",
+        slug: 'usa',
+
     tuitionFeeRange:
       "$10,000 – $55,000 per year depending on course and university",
     livingCosts: "$1,000 – $2,500 per month based on location and lifestyle",
@@ -200,6 +209,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Ireland",
+        slug: 'ireland',
+
     tuitionFeeRange:
       "€10,000 – €25,000 per year depending on course and institution",
     livingCosts: "€7,000 – €12,000 per year depending on city",
@@ -240,6 +251,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Canada",
+        slug: 'canada',
+
     tuitionFeeRange:
       "CAD 15,000 – CAD 35,000 per year depending on course and university",
     livingCosts: "CAD 10,000 – CAD 15,000 per year",
@@ -279,6 +292,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Australia",
+        slug: 'australia',
+
     tuitionFeeRange:
       "AUD 20,000 – AUD 45,000 per year depending on course and institution",
     livingCosts: "AUD 21,041 per year as required by visa regulations",
@@ -320,6 +335,7 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "New Zealand",
+     slug: "new-zealand",
     tuitionFeeRange:
       "NZD 22,000 – NZD 32,000 per year for undergraduates; NZD 26,000 – NZD 37,000 for postgraduates",
     livingCosts: "NZD 20,000 per year (proof required for visa)",
@@ -356,6 +372,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "France",
+        slug: 'france',
+
     tuitionFeeRange:
       "€2,770 per year for Bachelor’s; €3,770 for Master’s at public universities; private institutions may charge more (€10,000 – €30,000)",
     livingCosts: "€600 – €1,200 per month depending on city",
@@ -395,6 +413,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Germany",
+        slug: 'germany',
+
     tuitionFeeRange:
       "Free at public universities for most programs; some Master’s may charge €1,500 – €5,000/year",
     livingCosts: "€850 – €1,100 per month",
@@ -436,6 +456,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Malaysia",
+        slug: 'malaysia',
+
     tuitionFeeRange:
       "MYR 7,000 – MYR 25,000 per year for most undergraduate and postgraduate courses",
     livingCosts:
@@ -482,6 +504,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Latvia",
+        slug: 'latvia',
+
     tuitionFeeRange:
       "€1,500 – €6,000 per year depending on program and institution",
     livingCosts: "€400 – €700 per month including housing, food, and transport",
@@ -520,6 +544,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Lithuania",
+        slug: 'lithuania',
+
     tuitionFeeRange:
       "€1,000 – €5,000 per year for Bachelor's; €2,000 – €6,000 for Master's; €2,500 – €7,000 for Ph.D.; €10,000+ for Medical programs",
     livingCosts:
@@ -562,6 +588,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Armenia",
+        slug: 'armenia',
+
     tuitionFeeRange: "975,000 – 1,755,000 per year (Armenian Dram – AMD)",
     livingCosts: "78,000 – 156,000 per month",
     durationOfCourses:
@@ -597,6 +625,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Georgia",
+        slug: 'georgia',
+
     tuitionFeeRange: "₾8,100 – ₾16,200 per year (Georgian Lari – GEL)",
     livingCosts: "₾675 – ₾1,350 per month",
     durationOfCourses:
@@ -631,6 +661,8 @@ export const countryData: CountryInfo[] = [
   },
   {
     country: "Uzbekistan",
+        slug: 'uzbekistan',
+
     tuitionFeeRange:
       "сўм25,000,000 – сўм45,000,000 per year (Uzbekistani Som – UZS)",
     livingCosts: "сўм1,250,000 – сўм2,500,000 per month",
@@ -668,4 +700,169 @@ export const countryData: CountryInfo[] = [
     intakes: "Main intake: September",
     popularCities: "Tashkent, Samarkand, Bukhara",
   },
+  {
+  country: "Poland",
+      slug: 'poland',
+
+  tuitionFeeRange: "PLN 9,000 – PLN 45,000 per year",
+  livingCosts: "PLN 20,000 – PLN 35,000 per year",
+  durationOfCourses: "Undergraduate: 3–4 years; Postgraduate: 1–2 years",
+  academicRequirements: "Minimum 60% in previous qualifications; program-specific requirements may apply",
+  languageProficiency: "IELTS, TOEFL, or equivalent English proficiency test required",
+  ieltsWaiverAvailability: "Yes – possible for students with prior education in English or from select countries",
+  acceptedAcademicGaps: "Gaps accepted with valid justification; ideally under 3–5 years",
+  workExperienceProof: "Experience letter, Offer letter, Payslips, or Company letter (if applicable)",
+  fundsRequiredForVisa: "Tuition fees + minimum PLN 38,000 for living expenses",
+  acceptableFinancialSources: "Education Loan, Personal Savings, Sponsor's bank statements",
+  eligibleSponsors: "Parents, Siblings, Relatives, Legal Guardians – up to 3 allowed",
+  minimumFamilyIncome: "Not specifically required; must meet visa financial requirements",
+  visaType: "National Type D Student Visa",
+  visaProcessingTime: "Usually 15–30 working days",
+  partTimeWorkLimit: "20 hours per week during term; full-time allowed during holidays",
+  averagePartTimeWages: "PLN 20 – PLN 30 per hour based on job role and location",
+  internshipOptions: "Available through university programs and Erasmus+",
+  postStudyWorkOptions: "Graduates can apply for a temporary residence permit to seek employment",
+  permanentResidencyPathway: "Possible after 5 years of legal stay and employment",
+  spouseDependentVisa: "Allowed; spouse may work with appropriate permit",
+  dependentConditions: "Separate visa application; additional financial proof required",
+  scholarshipOpportunities: "NAWA Scholarships, Erasmus+, University-specific scholarships",
+  healthcareAccess: "Private health insurance required; EU citizens can use EHIC",
+  climateWeather: "Warm summers (20–30°C); cold winters (−5°C to −20°C); varies by region",
+  culturalEnvironment: "Historically rich, diverse, and student-friendly",
+  currency: "Polish Złoty (PLN)",
+  intakes: "Major intakes: September and February",
+  popularCities: "Warsaw, Kraków, Wrocław, Gdańsk, Poznań"
+},
+{
+  country: "Sweden",
+      slug: 'sweden',
+
+  tuitionFeeRange: "SEK 80,000 – 295,000 per year for non‑EU/EEA students; EU/EEA students free",
+  livingCosts: "SEK 96,000 – 162,000 per year (≈ SEK 8,000–13,500/month)",
+  durationOfCourses: "Undergraduate: 3 years; Postgraduate: 1–2 years",
+  academicRequirements: "Usually ≥ 55 % (GPA convert equivalent) + relevant background",
+  languageProficiency: "IELTS, TOEFL, or Swedish + English sufficient for English‐taught programs",
+  ieltsWaiverAvailability: "Rare; university-specific case-by-case",
+  acceptedAcademicGaps: "Accepted with explanation; typically < 3 years",
+  workExperienceProof: "Occasionally requested, especially for specialized MSc",
+  fundsRequiredForVisa: "Show approx. SEK 10,584/month × 12 months ≈ SEK 127,000",
+  acceptableFinancialSources: "Bank statements, loan/savings, scholarship letters",
+  eligibleSponsors: "Parents, relatives; up to three listed",
+  minimumFamilyIncome: "Not mandated; funds must meet monthly requirement",
+  visaType: "Swedish residence permit for studies",
+  visaProcessingTime: "~2–3 weeks after application submission",
+  partTimeWorkLimit: "No fixed limit—but must not affect studies",
+  averagePartTimeWages: "Typically SEK 120–150/hour",
+  internshipOptions: "Often available via university/co‑op programs",
+  postStudyWorkOptions: "Up to 1 year permit after studies if employed; can extend as needed",
+  permanentResidencyPathway: "After 5 years with continuous legal residence",
+  spouseDependentVisa: "Allowed; spouse may work full-time",
+  dependentConditions: "Separate application; show additional funds",
+  scholarshipOpportunities: "Swedish Institute & university-specific scholarships",
+  healthcareAccess: "Private insurance required; free after permit and registration after ~1 year",
+  climateWeather: "Cold winters, mild summers; variation by north/south",
+  culturalEnvironment: "Inclusive, high quality of life, active student initiatives",
+  currency: "Swedish Krona (SEK)",
+  intakes: "Mostly August/September; some January/February",
+  popularCities: "Stockholm, Lund, Uppsala, Gothenburg (Gothenburg, Lund etc.)"
+},
+{
+  country: "Malta",
+      slug: 'malta',
+
+  tuitionFeeRange: "€6,000 – €12,000 per year (public/private non‑EU)",
+  livingCosts: "€700 – 1,200 per month (≈ €8,400–14,400/year)",
+  durationOfCourses: "Undergraduate: 3–4 years; Postgraduate: 1–2 years",
+  academicRequirements: "Minimum 55–60 % plus program‑specific entry tests",
+  languageProficiency: "IELTS/TOEFL in most English-taught programs",
+  ieltsWaiverAvailability: "Rare; some EU cases or prior study in English medium",
+  acceptedAcademicGaps: "Acceptable if justified; typically ≤ 3 years",
+  workExperienceProof: "For postgraduate professional programs (e.g. health)",
+  fundsRequiredForVisa: "Tuition + first year living costs (~€8,400+)",
+  acceptableFinancialSources: "Personal savings, loan, sponsor documents",
+  eligibleSponsors: "Parents, relatives, legal guardians",
+  minimumFamilyIncome: "Not mandated but adequate funds required",
+  visaType: "National long-stay student visa (type D)",
+  visaProcessingTime: "~15–30 working days",
+  partTimeWorkLimit: "Up to 20 hours/week during term",
+  averagePartTimeWages: "€5–7/hour typical for hospitality/retail",
+  internshipOptions: "Available in hospitality, tourism, healthcare courses",
+  postStudyWorkOptions: "One-year permit to stay and work after graduation",
+  permanentResidencyPathway: "After long-term legal stay + employment",
+  spouseDependentVisa: "Possible for full-degree programs >12 months",
+  dependentConditions: "Additional funds proof required",
+  scholarshipOpportunities: "University and government scholarships available",
+  healthcareAccess: "Private health insurance (~€300‑600/year) required",
+  climateWeather: "Mediterranean: hot summers, mild winters",
+  culturalEnvironment: "English-speaking, multicultural student base",
+  currency: "Euro (€)",
+  intakes: "September, sometimes January/February",
+  popularCities: "Valletta, Sliema, St. Julian’s"
+},
+{
+  country: "Netherlands",
+      slug: 'netherlands',
+
+  tuitionFeeRange: "Public: €6,000–15,000 (Bachelor), €8,000–20,000 (Master) for non‑EU",
+  livingCosts: "€10,000–15,000/year (approx. €800–1,250/month)",
+  durationOfCourses: "Undergraduate: 3 years; Postgraduate: 1–2 years",
+  academicRequirements: "≥ 60 % or equivalent; additional tests possible",
+  languageProficiency: "IELTS/TOEFL mandatory for English-taught programs",
+  ieltsWaiverAvailability: "Uncommon; some conditional on prior study in English",
+  acceptedAcademicGaps: "Gaps permitted with justification (e.g., employment, travel)",
+  workExperienceProof: "Occasionally asked for MBA or technical postgraduate",
+  fundsRequiredForVisa: "Tuition + living costs for first year",
+  acceptableFinancialSources: "Education loan, sponsor bank statements",
+  eligibleSponsors: "Parents or legal guardians",
+  minimumFamilyIncome: "Not mandated; sufficient proof required",
+  visaType: "Dutch MVV/residence permit for study",
+  visaProcessingTime: "~4–12 weeks depending on embassy",
+  partTimeWorkLimit: "16 hours/week or full-time during holidays",
+  averagePartTimeWages: "€12–15/hour depending on sector",
+  internshipOptions: "Strong via university-industry links",
+  postStudyWorkOptions: "One‑year orientation year residence permit post-graduation",
+  permanentResidencyPathway: "After 5 years legal residence and work",
+  spouseDependentVisa: "Allowed; spouse may work full-time",
+  dependentConditions: "Separate documentation + funds required",
+  scholarshipOpportunities: "Government (e.g., Orange Tulip), university‑based",
+  healthcareAccess: "Mandatory health insurance (~€90–110/month) if working/long stay",
+  climateWeather: "Mild maritime climate; rainy winters and mild summers",
+  culturalEnvironment: "International student‑friendly, English proficiency high",
+  currency: "Euro (€)",
+  intakes: "September/October and sometimes February",
+  popularCities: "Amsterdam, Rotterdam, Utrecht, Groningen, Maastricht"
+},
+{
+  country: "Finland",
+      slug: 'finland',
+
+  tuitionFeeRange: "€8,000–20,000/year for non‑EU student programs; doctoral free",
+  livingCosts: "€9,600–12,000/year (~€800–1,000/month); inclusive living cost estimate €700–1,500/month",
+  durationOfCourses: "Undergraduate: 3–4 years; Postgraduate: 1–2 years",
+  academicRequirements: "Min. ~55–60 %, program-specific criteria",
+  languageProficiency: "IELTS, TOEFL required for English‑taught programs",
+  ieltsWaiverAvailability: "Rare; occasionally for prior English-medium degrees",
+  acceptedAcademicGaps: "Gaps accepted with valid justification",
+  workExperienceProof: "May be requested for professional or vocational degrees",
+  fundsRequiredForVisa: "Living cost proof of ~€9,600/year, plus tuition",
+  acceptableFinancialSources: "Bank savings, loan, scholarship award letters",
+  eligibleSponsors: "Parents, relatives, legal guardians",
+  minimumFamilyIncome: "Not mandated; sufficient proof required",
+  visaType: "Finland residence permit for studies (type D)",
+  visaProcessingTime: "~4–12 weeks depending on application completeness",
+  partTimeWorkLimit: "Non‑EU/EEA students: up to 25 hrs/week; full-time holidays",
+  averagePartTimeWages: "€10–15/hour depending on region and job",
+  internshipOptions: "Available via universities; limited without Finnish",
+  postStudyWorkOptions: "After studies can apply for residence permit extension for employment",
+  permanentResidencyPathway: "After 4 years of continuous residence and work",
+  spouseDependentVisa: "Allowed; spouse may apply to work",
+  dependentConditions: "Additional financial proof, separate application",
+  scholarshipOpportunities: "Finland Scholarships and university-specific grants",
+  healthcareAccess: "Must have valid health insurance; after one year, public healthcare may apply",
+  climateWeather: "Cold winters, mild summers; variation by region",
+  culturalEnvironment: "High quality, safe, international student friendly",
+  currency: "Euro (€)",
+  intakes: "August/September & sometimes January",
+  popularCities: "Helsinki, Tampere, Turku, Oulu"
+}
 ];
