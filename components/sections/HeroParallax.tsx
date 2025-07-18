@@ -236,218 +236,218 @@
 //     </div>
 //   );
 // }
-"use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import React, { useRef } from "react";
+// "use client";
+// import { motion, useScroll, useTransform } from "framer-motion";
+// import Image from "next/image";
+// import React, { useRef } from "react";
 
-import plane from "@/public/assets/heroimages/Plane.webp";
-import cloud from "@/public/assets/heroimages/cloud.webp";
-import sky from "@/public/assets/heroimages/moon.webp";
-import globe1 from "@/public/assets/heroimages/night earth.webp";
-import logo from "@/public/assets/logo.png";
+// import plane from "@/public/assets/heroimages/Plane.webp";
+// import cloud from "@/public/assets/heroimages/cloud.webp";
+// import sky from "@/public/assets/heroimages/moon.webp";
+// import globe1 from "@/public/assets/heroimages/night earth.webp";
+// import logo from "@/public/assets/logo.png";
 
-export default function MultiLayerParallax() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+// export default function MultiLayerParallax() {
+//   const ref = useRef(null);
+//   const { scrollYProgress } = useScroll({
+//     target: ref,
+//     offset: ["start start", "end start"],
+//   });
 
-  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+//   const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+//   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+//   const planeY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
+//   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
-  // Flare diagonal movement
-  const flareX1 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
-  const flareY1 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+//   // Flare diagonal movement
+//   const flareX1 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+//   const flareY1 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
-  const flareX2 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
-  const flareY2 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+//   const flareX2 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+//   const flareY2 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
-  return (
-    <div ref={ref} className="parallax-container">
-      {/* 🌌 Sky Background */}
-      <motion.div
-        style={{ willChange: "transform", y: skyY }}
-        className="sky-bg"
-      >
-        <Image src={sky} alt="Sky" fill priority className="sky-img" />
-      </motion.div>
+//   return (
+//     <div ref={ref} className="parallax-container">
+//       {/* 🌌 Sky Background */}
+//       <motion.div
+//         style={{ willChange: "transform", y: skyY }}
+//         className="sky-bg"
+//       >
+//         <Image src={sky} alt="Sky" fill priority className="sky-img" />
+//       </motion.div>
 
-      {/* Earth - curved bottom */}
-      <div>
-        <Image
-          src="/assets/earth.png"
-          alt="Globe"
-          width={800}
-          height={800}
-          priority
-          className="absolute w-full h-full bottom-0 sm:-bottom-48 z-40 object-cover lg:md:top-44 top-56 object-bottom sm:object-fill"
-        />
+//       {/* Earth - curved bottom */}
+//       <div>
+//         <Image
+//           src="/assets/earth.png"
+//           alt="Globe"
+//           width={800}
+//           height={800}
+//           priority
+//           className="absolute w-full h-full bottom-0 sm:-bottom-48 z-40 object-cover lg:md:top-44 top-56 object-bottom sm:object-fill"
+//         />
 
-        {/* Flare - light overlay near top of Earth */}
-        <motion.div
-          style={{ x: flareX1, y: flareY1 }}
-          className="object-contain h-full w-full absolute lg:top-36 top-28 z-30 bg-opacity-60 opacity-60 pointer-events-none"
-        >
-          <Image
-            src="/assets/flare.png"
-            alt="flare"
-            priority
-            width={800}
-            height={800}
-            className="object-contain h-full w-full"
-          />
-        </motion.div>
+//         {/* Flare - light overlay near top of Earth */}
+//         <motion.div
+//           style={{ x: flareX1, y: flareY1 }}
+//           className="object-contain h-full w-full absolute lg:top-36 top-28 z-30 bg-opacity-60 opacity-60 pointer-events-none"
+//         >
+//           <Image
+//             src="/assets/flare.png"
+//             alt="flare"
+//             priority
+//             width={800}
+//             height={800}
+//             className="object-contain h-full w-full"
+//           />
+//         </motion.div>
 
-        <motion.div
-          style={{ x: flareX2, y: flareY2 }}
-          className="object-contain h-full w-full absolute lg:top-20 top-10 z-40 opacity-70 pointer-events-none"
-        >
-          <Image
-            src="/assets/flare.png"
-            alt="flare"
-            priority
-            width={800}
-            height={800}
-            className="object-contain h-full w-full"
-          />
-        </motion.div>
-      </div>
+//         <motion.div
+//           style={{ x: flareX2, y: flareY2 }}
+//           className="object-contain h-full w-full absolute lg:top-20 top-10 z-40 opacity-70 pointer-events-none"
+//         >
+//           <Image
+//             src="/assets/flare.png"
+//             alt="flare"
+//             priority
+//             width={800}
+//             height={800}
+//             className="object-contain h-full w-full"
+//           />
+//         </motion.div>
+//       </div>
 
-      <motion.div style={{ y: textY }} className="center-text ">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
-          className="font-bold text-2xl text-primary text-opacity-100 z-50"
-        >
-          Beyond borders better
-        </motion.p>
+//       <motion.div style={{ y: textY }} className="center-text ">
+//         <motion.p
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ duration: 1, delay: 1.3 }}
+//           className="font-bold text-2xl text-primary text-opacity-100 z-50"
+//         >
+//           Beyond borders better
+//         </motion.p>
 
-        <motion.h1
-          initial={{ y: 30, opacity: 0, filter: "blur(10px)" }}
-          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.2 }}
-          className="font-extrabold lg:text-8xl text-7xl font-eurostile lg:font-extrabold text-primary text-opacity-100 z-50"
-        >
-          Insight
-        </motion.h1>
-      </motion.div>
+//         <motion.h1
+//           initial={{ y: 30, opacity: 0, filter: "blur(10px)" }}
+//           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+//           transition={{ duration: 1.2 }}
+//           className="font-extrabold lg:text-8xl text-7xl font-eurostile lg:font-extrabold text-primary text-opacity-100 z-50"
+//         >
+//           Insight
+//         </motion.h1>
+//       </motion.div>
 
-      {/* Logo */}
-      <motion.div
-        initial={{ y: -300, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.2 }}
-        className="logo-wrap"
-      >
-        <motion.div style={{ y: logoY }}>
-          <Image src={logo} alt="Logo" priority className="logo-img" />
-        </motion.div>
-      </motion.div>
+//       {/* Logo */}
+//       <motion.div
+//         initial={{ y: -300, opacity: 0 }}
+//         animate={{ y: 0, opacity: 1 }}
+//         transition={{ duration: 1.2 }}
+//         className="logo-wrap"
+//       >
+//         <motion.div style={{ y: logoY }}>
+//           <Image src={logo} alt="Logo" priority className="logo-img" />
+//         </motion.div>
+//       </motion.div>
 
-      {/* Plane - Desktop */}
-      <motion.div
-        initial={{ x: "-100%", y: "60%" }}
-        animate={{ x: 0, y: -80 }}
-        transition={{ duration: 2.5, ease: [0.25, 1, 0.5, 1] }}
-        className="plane-desktop"
-      >
-        <motion.div style={{ y: planeY }}>
-          <Image src={plane} alt="Plane" className="plane-img-desktop" />
-        </motion.div>
-      </motion.div>
+//       {/* Plane - Desktop */}
+//       <motion.div
+//         initial={{ x: "-100%", y: "60%" }}
+//         animate={{ x: 0, y: -80 }}
+//         transition={{ duration: 2.5, ease: [0.25, 1, 0.5, 1] }}
+//         className="plane-desktop"
+//       >
+//         <motion.div style={{ y: planeY }}>
+//           <Image src={plane} alt="Plane" className="plane-img-desktop" />
+//         </motion.div>
+//       </motion.div>
 
-      {/* Plane - Mobile */}
-      <motion.div
-        initial={{ x: "-250%", y: "60%" }}
-        animate={{ x: 0, y: -100 }}
-        transition={{ duration: 3.2, ease: "easeInOut" }}
-        className="plane-mobile"
-      >
-        <motion.div style={{ y: planeY }}>
-          <Image src={plane} alt="Plane" className="plane-img-mobile" />
-        </motion.div>
-      </motion.div>
+//       {/* Plane - Mobile */}
+//       <motion.div
+//         initial={{ x: "-250%", y: "60%" }}
+//         animate={{ x: 0, y: -100 }}
+//         transition={{ duration: 3.2, ease: "easeInOut" }}
+//         className="plane-mobile"
+//       >
+//         <motion.div style={{ y: planeY }}>
+//           <Image src={plane} alt="Plane" className="plane-img-mobile" />
+//         </motion.div>
+//       </motion.div>
 
-      {/* Clouds */}
-      {[1, 2, 3, 4].map((id) => (
-        <motion.div
-          key={id}
-          initial={cloudVariants[id - 1].initial}
-          animate={cloudVariants[id - 1].animate}
-          transition={cloudVariants[id - 1].transition}
-          className="cloud"
-        >
-          <Image src={cloud} alt={`Cloud ${id}`} className="cloud-img" />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+//       {/* Clouds */}
+//       {[1, 2, 3, 4].map((id) => (
+//         <motion.div
+//           key={id}
+//           initial={cloudVariants[id - 1].initial}
+//           animate={cloudVariants[id - 1].animate}
+//           transition={cloudVariants[id - 1].transition}
+//           className="cloud"
+//         >
+//           <Image src={cloud} alt={`Cloud ${id}`} className="cloud-img" />
+//         </motion.div>
+//       ))}
+//     </div>
+//   );
+// }
 
-const cloudVariants = [
-  {
-    initial: { x: "-100%", y: "50%", scale: 1.5, opacity: 50 },
-    animate: {
-      x: ["-20%", "100%"],
-      y: ["50%", "50%"],
-      scale: [1.5, 1],
-      opacity: [0, 1],
-    },
-    transition: {
-      times: [0, 0.6, 1],
-      duration: 18,
-      ease: "easeInOut",
-      repeat: Infinity,
-    },
-  },
-  {
-    initial: { x: "100%", y: "-40%", scale: 1.5, opacity: 40 },
-    animate: {
-      x: ["50%", "-100%"],
-      y: ["-40%", "50%"],
-      scale: [1.5, 1],
-      opacity: [0, 1],
-    },
-    transition: {
-      times: [0, 0.6, 1],
-      duration: 24,
-      ease: "easeInOut",
-      repeat: Infinity,
-    },
-  },
-  {
-    initial: { x: "-120%", y: "-30%", scale: 1.3, opacity: 30 },
-    animate: {
-      x: ["-50%", "100%"],
-      y: ["-30%", "0%"],
-      scale: [1.3, 1],
-      opacity: [0, 1],
-    },
-    transition: {
-      times: [0, 0.5, 1],
-      duration: 30,
-      ease: "easeInOut",
-      repeat: Infinity,
-    },
-  },
-  {
-    initial: { x: "100%", y: "50%", scale: 1.2, opacity: 20 },
-    animate: {
-      x: ["60%", "-120%"],
-      y: ["50%", "-20%"],
-      scale: [1.2, 1],
-      opacity: [0, 1],
-    },
-    transition: {
-      times: [0, 0.4, 1],
-      duration: 14,
-      ease: "easeInOut",
-      repeat: Infinity,
-    },
-  },
-];
+// const cloudVariants = [
+//   {
+//     initial: { x: "-100%", y: "50%", scale: 1.5, opacity: 50 },
+//     animate: {
+//       x: ["-20%", "100%"],
+//       y: ["50%", "50%"],
+//       scale: [1.5, 1],
+//       opacity: [0, 1],
+//     },
+//     transition: {
+//       times: [0, 0.6, 1],
+//       duration: 18,
+//       ease: "easeInOut",
+//       repeat: Infinity,
+//     },
+//   },
+//   {
+//     initial: { x: "100%", y: "-40%", scale: 1.5, opacity: 40 },
+//     animate: {
+//       x: ["50%", "-100%"],
+//       y: ["-40%", "50%"],
+//       scale: [1.5, 1],
+//       opacity: [0, 1],
+//     },
+//     transition: {
+//       times: [0, 0.6, 1],
+//       duration: 24,
+//       ease: "easeInOut",
+//       repeat: Infinity,
+//     },
+//   },
+//   {
+//     initial: { x: "-120%", y: "-30%", scale: 1.3, opacity: 30 },
+//     animate: {
+//       x: ["-50%", "100%"],
+//       y: ["-30%", "0%"],
+//       scale: [1.3, 1],
+//       opacity: [0, 1],
+//     },
+//     transition: {
+//       times: [0, 0.5, 1],
+//       duration: 30,
+//       ease: "easeInOut",
+//       repeat: Infinity,
+//     },
+//   },
+//   {
+//     initial: { x: "100%", y: "50%", scale: 1.2, opacity: 20 },
+//     animate: {
+//       x: ["60%", "-120%"],
+//       y: ["50%", "-20%"],
+//       scale: [1.2, 1],
+//       opacity: [0, 1],
+//     },
+//     transition: {
+//       times: [0, 0.4, 1],
+//       duration: 14,
+//       ease: "easeInOut",
+//       repeat: Infinity,
+//     },
+//   },
+// ];

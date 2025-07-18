@@ -114,6 +114,8 @@ const Nav: React.FC<Props> = ({ isLoading }) => {
           width={85}
           height={85}
           className='object-cover hover:cursor-pointer'
+          priority
+          fetchPriority='high'
         />
 
         {/* Hamburger */}
