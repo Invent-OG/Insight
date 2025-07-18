@@ -42,7 +42,7 @@ export default function BlogsPage() {
         <div className='w-full flex flex-col items-center gap-16 px-0'>
           {/* Section Heading */}
           <div className='text-center max-w-5xl mx-auto px-4'>
-            <h2 className='text-3xl md:text-4xl lg:text-5xl py-6 font-bold'>
+            <h2 className='tg:text-4xl md:text-4xl text-3xl py-6 font-bold'>
               Latest <span className='text-primary'>Blog</span> Posts
             </h2>
             <p className='mb-4 text-gray-600 font-semibold md:text-base lg:text-lg'>

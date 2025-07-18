@@ -77,8 +77,8 @@ export default function ServicesSection() {
                       'radial-gradient(circle at center,rgba(255, 0, 0, 0.2), transparent 95%)',
                   }}
                 ></div>
-                <h2 className='lg:text-5xl md:text-4xl text-3xl  text-black font-bold'>
-                  Your Journey, <span className='text-primary'>Fully Supported</span>
+                <h2 className='lg:text-4xl md:text-4xl text-3xl  text-black font-bold'>
+                  Your Journey, <br /> <span className='text-primary'>Fully Supported</span>
                 </h2>
               </div>
 

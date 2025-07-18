@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { FaPhoneAlt } from "react-icons/fa";
-import { Button } from "../ui/button";
-import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { useCreateLead } from "@/lib/queries/leads"; // ✅ Import the hook
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
+import { FaPhoneAlt } from 'react-icons/fa';
+import { Button } from '../ui/button';
+import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { useCreateLead } from '@/lib/queries/leads'; // ✅ Import the hook
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
   });
 
   const [loading, setLoading] = useState(false);
@@ -21,9 +21,7 @@ export default function ContactSection() {
 
   const createLead = useCreateLead(); // ✅ Use the mutation hook
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -40,12 +38,12 @@ export default function ContactSection() {
         interest: formData.message,
       });
 
-      toast.success("Message sent successfully!");
+      toast.success('Message sent successfully!');
       setSuccess(true);
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("Failed to send message. Please try again.");
+      console.error('Submission error:', error);
+      toast.error('Failed to send message. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -53,95 +51,93 @@ export default function ContactSection() {
 
   return (
     <section
-      className="bg-white text-black py-12 md:py-16 lg:py-10 px-6 flex justify-center flex-col gap-10"
-      id="contact"
+      className='bg-white text-black py-12 md:py-16 lg:py-10 px-6 flex justify-center flex-col gap-10'
+      id='contact'
     >
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position='top-right' reverseOrder={false} />
 
       {/* Centered Heading */}
-      <div className="text-center max-w-2xl mx-auto">
-        <h4 className="uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm">
+      <div className='text-center max-w-2xl mx-auto'>
+        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
           — Say Hello —
         </h4>
-        <h2 className="lg:text-4xl md:text-4xl text-3xl py-4 font-bold leading-tight lg:text-wrap text-nowrap">
+        <h2 className='lg:text-4xl md:text-4xl text-3xl py-4 font-bold leading-tight lg:text-wrap text-nowrap'>
           Let Us Know Your Concern
-          <br /> We Are <span className="text-primary">Always Ready.</span>
+          <br /> We Are <span className='text-primary'>Always Ready.</span>
         </h2>
       </div>
 
       {/* Grid Section */}
       <div
-        data-aos="fade-right"
-        data-aos-duration="1000"
-        data-aos-delay="100"
-        className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center"
+        data-aos='fade-right'
+        data-aos-duration='1000'
+        data-aos-delay='100'
+        className='max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center'
       >
         {/* Left Side - Form */}
         <div>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className='space-y-4' onSubmit={handleSubmit}>
             <Input
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your name"
+              placeholder='Enter your name'
               required
             />
-            <div className="flex gap-4">
+            <div className='flex gap-4'>
               <Input
-                type="email"
-                name="email"
+                type='email'
+                name='email'
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Enter your email"
+                placeholder='Enter your email'
                 required
               />
               <Input
-                type="tel"
-                name="phone"
+                type='tel'
+                name='phone'
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="Enter your Phone"
+                placeholder='Enter your Phone'
                 required
               />
             </div>
             <Textarea
-              name="message"
+              name='message'
               value={formData.message}
               onChange={handleChange}
-              placeholder="Your message"
+              placeholder='Your message'
               rows={5}
               required
             />
             <Button
-              className="bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold text-white"
-              type="submit"
+              className='bg-primary hover:bg-transparent hover:border hover:border-black hover:text-black  font-semibold text-white'
+              type='submit'
               disabled={loading}
             >
-              {loading ? "Sending..." : "— Contact Now —"}
+              {loading ? 'Sending...' : '— Contact Now —'}
             </Button>
-            {success && (
-              <p className="text-green-600 mt-2">Message sent successfully!</p>
-            )}
+            {success && <p className='text-green-600 mt-2'>Message sent successfully!</p>}
           </form>
         </div>
 
         {/* Right Side - Info */}
-        <div className="flex flex-col justify-center">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
-            Let’s Talk
+        <div className='flex flex-col justify-center'>
+          <h3 className='text-3xl md:text-4xl lg:text-4xl font-medium mb-2'>
+            Let’s <span className='text-primary'>Talk</span>
           </h3>
-          <p className="text-black mb-6">
+          <p className='text-black mb-6'>
             Schedule a consultation to discuss your study abroad goals
           </p>
 
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-full border border-primary text-primary">
+          <div className='flex items-center gap-4'>
+            <div className='p-3 rounded-full border border-primary text-primary'>
               <FaPhoneAlt size={20} />
             </div>
             <div>
-              <span className="text-sm text-black">Phone</span>
-              <p className="text-lg font-medium text-primary">+91 8270883451</p>
+              <span className='text-sm text-black'>Phone</span>
+              <p className='text-lg font-medium text-primary'>+91 8270883451</p>
             </div>
           </div>
         </div>
