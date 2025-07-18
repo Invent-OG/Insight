@@ -20,9 +20,9 @@ export default function Loading() {
       </div>
 
       {/* Company Name with gradient shimmer */}
-      <h1 className='mt-6 text-xl leading-relaxed font-medium text-transparent bg-black bg-clip-text animate-pulse'>
+      <p className='mt-6 text-xl leading-relaxed font-medium text-transparent bg-black bg-clip-text animate-pulse'>
         Loading...
-      </h1>
+      </p>
     </div>
   );
 }
