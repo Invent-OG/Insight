@@ -38,12 +38,14 @@
 .animate-fade-in-up {
   animation: fade-in-up 1s forwards;
 }
-
-
-
-.animation-delay-300 {
-  animation-delay: 0.3s;
+.animate-fade-in-right {
+  animation: fade-in-right 1s forwards;
 }
+
+
+/* .animation-delay-300 {
+  animation-delay: 0.3s;
+} */
 .animation-delay-500 {
   animation-delay: 0.5s;
 }

@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export default function AboutHero() {
   const router = useRouter();
@@ -18,23 +17,17 @@ export default function AboutHero() {
             <div className='leading-tight text-nowrap'>Insight Educator &</div>
             <div className='mt-1 text-primary font-semibold leading-tight'>Abroad Services</div>
           </h1>
-          <h2 className='text-[#000000] lg:text-xl text-xl sm:text-lg font-semibold leading-[1.5] mb-6'>
+          <h2 className='text-[#000000]  lg:text-xl text-xl sm:text-lg font-semibold leading-[1.5] mb-6'>
             We provide expert guidance to help students explore global education opportunities with
             clarity, confidence, and care.
           </h2>
           <div className='mt-8'>
             <Button
               onClick={() => router.push('/contact')}
-              className='text-base sm:text-lg font-semibold text-white hover:bg-transparent hover:text-black border hover:border-black'
+              className='text-base  sm:text-lg font-semibold text-white hover:bg-transparent hover:text-black border hover:border-black'
             >
               Get Free Consultation
             </Button>
-            {/* <a
-              className='text-base sm:text-lg font-semibold text-white hover:bg-transparent hover:text-black border hover:border-black'
-              href={'/contact'}
-            >
-              click
-            </a> */}
           </div>
         </div>
       </div>

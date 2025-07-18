@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
 import gsap from 'gsap';
@@ -28,7 +28,6 @@ const footerLinks = [
       { title: 'Contact Us', href: '/contact' },
       { title: 'Countries ', href: '/countries' },
       { title: 'Courses ', href: '/courses' },
-
       { title: 'Admin Login', href: '/admin/login' },
     ],
   },
@@ -54,13 +53,13 @@ export function Footer() {
         {
           y: 0,
           opacity: 1,
-          duration: 2,
+          duration: 1,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: footerRef.current,
-            start: 'top bottom', // when footer enters view
+            start: 'top bottom',
             end: 'top top+=400',
-            scrub: true, // parallax-like effect
+            scrub: true,
           },
         }
       );
@@ -72,8 +71,9 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className='relative z-50 flex flex-col items-center justify-center w-full lg:h-[60vh] px-6 py-12 text-white bg-black'
+      className='relative z-50 flex flex-col items-center justify-center w-full px-6 py-12 text-white bg-black'
     >
+      {/* Fixed logo at bottom right */}
       <div className='fixed bottom-4 right-4 z-50'>
         <Image
           src='/assets/mavenlogo.webp'
@@ -85,37 +85,39 @@ export function Footer() {
       </div>
 
       {/* Footer Content */}
-      <div className='relative z-20 grid w-full gap-8 xl:grid-cols-3 xl:gap-8'>
-        {/* Logo and copyright */}
-        <div className='space-y-4'>
-          <Image src={logo} alt='Company Logo' className='w-40 h-40' />
-          <p className='mt-8 text-sm text-gray-300 md:mt-0'>
-            © {new Date().getFullYear()} Insight. All rights reserved.
-          </p>
-        </div>
+      <div className='relative z-20 w-full max-w-7xl'>
+        <div className='grid gap-12 md:grid-cols-2 xl:grid-cols-3'>
+          {/* Logo and copyright */}
+          <div className='flex flex-col items-start space-y-4'>
+            <Image src={logo} alt='Company Logo' className='w-32 sm:w-36 md:w-40 h-auto' />
+            <p className='text-sm text-gray-300'>
+              © {new Date().getFullYear()} Insight. All rights reserved.
+            </p>
+          </div>
 
-        {/* Links */}
-        <div className='grid grid-cols-2 gap-8 mt-10 md:grid-cols-4 xl:col-span-2 xl:mt-0'>
-          {footerLinks.map((section) => (
-            <div key={section.label}>
-              <h3 className='text-xs font-semibold tracking-wide uppercase'>{section.label}</h3>
-              <ul className='mt-4 space-y-2 text-sm text-gray-300'>
-                {section.links.map((link, i) => (
-                  <li key={i}>
-                    <a
-                      href={link.href}
-                      className='inline-flex items-center transition-all duration-300 hover:text-white'
-                    >
-                      {'icon' in link && link.icon && (
-                        <link.icon className='w-4 h-4 me-1' aria-hidden='true' />
-                      )}
-                      {link.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Footer Links */}
+          <div className='md:col-span-1 xl:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8'>
+            {footerLinks.map((section) => (
+              <div key={section.label}>
+                <h3 className='text-xs font-semibold tracking-wide uppercase'>{section.label}</h3>
+                <ul className='mt-4 space-y-2 text-sm text-gray-300'>
+                  {section.links.map((link, i) => (
+                    <li key={i}>
+                      <a
+                        href={link.href}
+                        className='inline-flex items-center transition-all duration-300 hover:text-white'
+                      >
+                        {'icon' in link && link.icon && (
+                          <link.icon className='w-4 h-4 me-1' aria-hidden='true' />
+                        )}
+                        {link.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

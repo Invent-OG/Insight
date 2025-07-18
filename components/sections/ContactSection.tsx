@@ -2,9 +2,9 @@
 
 import { FaPhoneAlt } from 'react-icons/fa';
 import { Button } from '../ui/button';
-import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useCreateLead } from '@/lib/queries/leads'; // ✅ Import the hook
+import { useState } from 'react';
+import { useCreateLead } from '@/lib/queries/leads';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 
@@ -19,7 +19,7 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const createLead = useCreateLead(); // ✅ Use the mutation hook
+  const createLead = useCreateLead();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

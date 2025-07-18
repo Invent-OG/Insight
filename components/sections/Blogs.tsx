@@ -83,7 +83,7 @@ export default function BlogsPage() {
                 </Link>
 
                 {/* Card Content Wrapper */}
-                <div className='flex flex-col justify-between flex-1'>
+                <div className='flex flex-col justify-between flex-1 h-full'>
                   {/* Title + Date */}
                   <CardHeader className='flex flex-col gap-1 px-4 pt-4 pb-2'>
                     <h3 className='text-lg font-semibold hover:underline line-clamp-2'>

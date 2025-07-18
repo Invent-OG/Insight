@@ -1,4 +1,7 @@
 'use client';
+
+import Image from 'next/image';
+
 const teamMembers = [
   {
     name: 'Adam John',
@@ -79,10 +82,13 @@ export default function OurTeam() {
             className='team-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group will-change-transform'
           >
             <div className='relative overflow-hidden'>
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
+                width={800} // Approximate width for quality rendering
+                height={320} // h-80 = 320px
                 className='w-full h-80 object-cover transform group-hover:scale-105 transition duration-500 will-change-transform'
+                style={{ width: '100%', height: '320px' }} // Ensures exact match to Tailwind's h-80
               />
               <div className='absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md'>
                 <h3 className='text-lg font-semibold text-gray-900'>{member.name}</h3>

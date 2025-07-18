@@ -5,7 +5,6 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
 
 const slides = [
   '/assets/services/hero2.jpg',
@@ -18,8 +17,6 @@ interface ServicesHeroProps {
 }
 
 export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
-  const router = useRouter();
-
   return (
     <section className='relative w-full h-screen overflow-hidden'>
       {/* Swiper Background */}
@@ -62,13 +59,15 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
             >
               Learn More
             </Button>
-            <Button onClick={() => router.push('/contact')}>Get In Touch</Button>
+            <Button asChild>
+              <a href='/contact'>Get In Touch</a>
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Status */}
-      <div className='absolute font-mono font-extralight bottom-6 left-6 text-black border-l-2 pl-3 text-sm sm:text-base hidden lg:block opacity-0 blur-md animate-fade-in-right animation-delay-500'>
+      <div className='absolute font-mono  bottom-6 left-6 text-black border-l-2 pl-3 text-sm sm:text-base hidden lg:block opacity-0 blur-md animate-fade-in-right animation-delay-500'>
         Shaping Futures with Personalized Support & Care
       </div>
     </section>

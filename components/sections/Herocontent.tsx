@@ -1,8 +1,6 @@
 'use client';
-
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '../ui/button';
 import { CircleDot } from 'lucide-react';
 import { CldImage } from 'next-cloudinary';
@@ -59,8 +57,6 @@ const Layout2 = () => {
   return (
     <div>
       <section className='relative  min-w-full flex justify-center text-black py-20 lg:py-10   overflow-hidden'>
-        {/* ✅ Mobile-only Parallax Texture */}
-        {/* ✅ Mobile-only Zoom In/Out Effect */}
         <div className='absolute uppercase lg:text-base text-sm top-0 lg:py-8 py-8 tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
           — Dream. Plan. Go. —
         </div>

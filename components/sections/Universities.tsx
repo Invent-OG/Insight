@@ -1,8 +1,6 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import 'aos/dist/aos.css';
 import { CldImage } from 'next-cloudinary';
 
 const universities = [
@@ -68,7 +66,7 @@ export default function UniversitiesSection() {
             backgroundImage: "url('/assets/textures/university2.jpg')",
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            backgroundPosition: 'center', // 👈 this is the key fix
+            backgroundPosition: 'center',
             backgroundAttachment: 'scroll',
             opacity: 0.6,
           }}
@@ -86,7 +84,7 @@ export default function UniversitiesSection() {
             opacity: 0.5,
           }}
         />
-        <div className='relative z-10 container mx-auto max-w-7xl  md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2'>
+        <div className='relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2'>
           <div className='text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4'>
             <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
               — Universities —
@@ -103,28 +101,14 @@ export default function UniversitiesSection() {
                 className='relative rounded-xl overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-300 bg-[#111111]'
               >
                 <div className='relative w-full h-60 sm:h-64 md:h-72'>
-                  {uni.images.length > 1 ? (
-                    uni.images.map((img, imgIndex) => (
-                      <Image
-                        key={imgIndex}
-                        src={img}
-                        alt={`${uni.name} Image ${imgIndex + 1}`}
-                        fill
-                        className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
-                          imgIndex === imageIndex % uni.images.length ? 'opacity-100' : 'opacity-0'
-                        }`}
-                      />
-                    ))
-                  ) : (
-                    <CldImage
-                      src={uni.images[0]}
-                      alt={uni.name}
-                      fill
-                      crop='fill'
-                      gravity='auto'
-                      className='object-cover w-full h-full'
-                    />
-                  )}
+                  <CldImage
+                    src={uni.images[0]}
+                    alt={uni.name}
+                    fill
+                    crop='fill'
+                    gravity='auto'
+                    className='object-cover w-full h-full'
+                  />
                 </div>
                 <div className='absolute inset-0 bg-black bg-opacity-40 flex items-end p-4'>
                   <h3 className='text-white text-lg font-bold uppercase tracking-wide'>

@@ -1,12 +1,9 @@
 'use client';
-
-import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/navigation';
 import { ContainerScroll, CardSticky } from '@/components/cards-stack';
 import { Button } from '../ui/button';
-import 'aos/dist/aos.css';
 import { FaArrowRight } from 'react-icons/fa';
 import { CldImage } from 'next-cloudinary';
 
@@ -35,12 +32,7 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const router = useRouter();
-
-  const toggleExpand = (index: number) => {
-    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
-  };
 
   const truncateText = (text: string, maxLength = 120) => {
     if (text.length <= maxLength) return text;
@@ -95,10 +87,7 @@ export default function ServicesSection() {
             <div className='flex-1 w-full'>
               <ContainerScroll className='py-4 space-y-8'>
                 {services.map((service, index) => {
-                  const isExpanded = expanded[index] || false;
-                  const displayedText = isExpanded
-                    ? service.description
-                    : truncateText(service.description, 120);
+                  const displayedText = truncateText(service.description, 120);
 
                   return (
                     <React.Fragment key={index}>
@@ -112,7 +101,7 @@ export default function ServicesSection() {
                           {/* Image */}
                           <div className='relative w-full sm:w-1/2 h-[200px] sm:h-full'>
                             <CldImage
-                              src={service.image} // e.g., 'counselling_program_discovery_hc0ill'
+                              src={service.image}
                               alt={service.title}
                               width={500}
                               height={300}

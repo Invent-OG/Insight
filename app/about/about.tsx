@@ -75,10 +75,10 @@ export default function AboutPage() {
 
         {/* Hero  sub content */}
         <section
-          className='hero flex items-center min-h-screen filter brightness-95 bg-center bg-cover px-8 relative overflow-hidden bg-white'
+          className='hero flex items-center min-h-screen filter brightness-95 bg-center bg-cover px-6 md:px-12 relative overflow-hidden bg-white'
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg')`, // Replace with your preferred texture
-            backgroundAttachment: 'fixed', // Key for parallax
+            backgroundImage: `url('https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg')`,
+            backgroundAttachment: 'fixed',
             backgroundSize: 'contain',
             backgroundPosition: 'top center',
           }}
@@ -86,13 +86,13 @@ export default function AboutPage() {
           <style jsx>{`
             @media (min-width: 1024px) {
               .hero {
-                min-height: 100vh; /* taller parallax for desktop */
+                min-height: 100vh;
               }
             }
           `}</style>
 
           <motion.div
-            className='max-w-6xl flex flex-col md:flex-row gap-12 items-center relative z-10'
+            className='max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center relative z-10'
             initial='hidden'
             animate='visible'
             variants={{
@@ -103,9 +103,9 @@ export default function AboutPage() {
               },
             }}
           >
-            {/* Left: Image fades + scales */}
+            {/* Left: Image animation */}
             <motion.div
-              className='flex-shrink-0 w-full md:w-1/2 flex justify-center'
+              className='w-full md:w-1/2 flex justify-center'
               variants={{
                 hidden: { opacity: 0, scale: 0.8 },
                 visible: {
@@ -115,14 +115,17 @@ export default function AboutPage() {
                 },
               }}
             >
-              <img
+              <Image
                 src='/assets/about/Pathway to international education (about page).webp'
                 alt='International education'
+                width={384} // md:w-96 = 384px
+                height={384} // md:h-96 = 384px
                 className='object-cover rounded-lg w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 shadow-lg'
+                priority // Optional: for above-the-fold image optimization
               />
             </motion.div>
 
-            {/* Right: Text slides in from left */}
+            {/* Right: Text animation */}
             <motion.div
               className='w-full md:w-1/2 text-white flex flex-col items-start'
               variants={{
@@ -134,27 +137,26 @@ export default function AboutPage() {
                 },
               }}
             >
-              <div className='lg:text-4xl md:text-4xl text-3xl font-bold mb-6 leading-snug text-left'>
+              <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-snug text-left'>
                 Your pathway to{' '}
                 <span className='text-primary text-nowrap'>international education</span>
-              </div>
+              </h2>
 
               <motion.p
-                className='text-xl sm:text-lg lg:text-xl text-white leading-relaxed max-w-lg text-left'
+                className='text-xl sm:text-lg lg:text-xl text-white leading-snug max-w-xl text-left'
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                At Insight Educator & Abroad Services, we believe in “Insight” - The ability to see
-                beyond the obvious, understand deeply, and make informed decisions which is the
-                foundation of success. Guided by this principle, we offer comprehensive study abroad
-                consultancy services to students in Coimbatore and beyond, empowering them to
-                achieve their global education dreams.
+                At Insight Educator & Abroad Services, we believe in “Insight” — the ability to see
+                beyond the obvious, understand deeply, and make informed decisions. Guided by this
+                principle, we offer comprehensive study abroad consultancy services to students in
+                Coimbatore and beyond, empowering them to achieve their global education dreams.
               </motion.p>
             </motion.div>
           </motion.div>
 
-          {/* Semi-transparent overlay */}
+          {/* Overlay */}
           <div className='absolute inset-0 bg-black bg-opacity-40 z-0'></div>
         </section>
 
