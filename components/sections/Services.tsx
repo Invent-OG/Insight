@@ -69,12 +69,14 @@ export default function ServicesSection() {
                       'radial-gradient(circle at center,rgba(255, 0, 0, 0.2), transparent 95%)',
                   }}
                 ></div>
-                <h2 className='lg:text-4xl md:text-4xl text-3xl  text-black font-bold'>
+                <h2 className='lg:text-4xl md:text-4xl text-2xl  text-black font-bold'>
                   Your Journey, <br /> <span className='text-primary'>Fully Supported</span>
                 </h2>
               </div>
 
-              <p className='text-black lg:py-4 py-0 font-medium'>Every Step of the Way!</p>
+              <p className='text-black lg:py-4 py-0 font-extralight text-sm'>
+                Every Step of the Way!
+              </p>
 
               <div className='hidden lg:block'>
                 <Button variant={'default'} onClick={() => router.push('/services')}>
@@ -118,7 +120,7 @@ export default function ServicesSection() {
                               <div>
                                 <div className='flex items-center gap-2 mb-1'>
                                   <FaArrowRight className='text-primary text-sm sm:text-base flex-shrink-0' />
-                                  <h3 className='text-xl sm:text-2xl font-bold text-[#111827]'>
+                                  <h3 className='text-xl sm:text-2xl lg:font-bold font-semibold  text-[#111827]'>
                                     {service.title}
                                   </h3>
                                 </div>

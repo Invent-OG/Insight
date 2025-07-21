@@ -8,7 +8,6 @@ import 'aos/dist/aos.css';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function BlogsPage() {
   const { data, isLoading, isError, error } = useBlogs();
@@ -43,7 +42,7 @@ export default function BlogsPage() {
         <div className='w-full flex flex-col items-center gap-16 px-0'>
           {/* Section Heading */}
           <div className='text-center max-w-5xl mx-auto px-4'>
-            <h2 className='tg:text-4xl md:text-4xl text-3xl py-6 font-bold'>
+            <h2 className='tg:text-4xl md:text-4xl text-2xl py-6 font-bold'>
               Latest <span className='text-primary'>Blog</span> Posts
             </h2>
             <p className='mb-4 text-gray-600 font-semibold md:text-base lg:text-lg'>
@@ -71,7 +70,7 @@ export default function BlogsPage() {
                 {/* Image */}
                 <Link href={`/blogs/${post.id}`} className='relative w-full aspect-[16/9]'>
                   {post.imageUrl ? (
-                    <Image
+                    <img
                       src={post.imageUrl}
                       alt={post.title}
                       className='w-full h-full object-cover'

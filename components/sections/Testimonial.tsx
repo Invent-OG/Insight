@@ -51,8 +51,9 @@ export default function Testimonials() {
             <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
               — Testimonials —
             </h4>
-            <h2 className='lg:text-5xl md:text-4xl py-6 text-3xl lg:font-bold font-bold'>
-              See what our <span className='text-primary'>customers have to</span> say about us.
+            <h2 className='lg:text-5xl md:text-4xl py-6 text-2xl lg:font-bold font-bold'>
+              See what ourcustomers have <br /> to say{' '}
+              <span className='text-primary'>about us.</span>
             </h2>
           </div>
         </motion.div>

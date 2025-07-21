@@ -61,7 +61,7 @@ export default function ContactSection() {
         <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
           — Say Hello —
         </h4>
-        <h2 className='lg:text-4xl md:text-4xl text-3xl py-4 font-bold leading-tight lg:text-wrap text-nowrap'>
+        <h2 className='lg:text-4xl md:text-4xl text-2xl py-4 font-bold leading-tight lg:text-wrap text-nowrap'>
           Let Us Know Your Concern
           <br /> We Are <span className='text-primary'>Always Ready.</span>
         </h2>

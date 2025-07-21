@@ -135,7 +135,7 @@ const Layout2 = () => {
 
           <div className={`w-full ${showFull ? 'md:w-full mt-4' : 'md:w-1/2'} space-y-4`}>
             <motion.h1
-              className='lg:text-4xl md:text-4xl text-3xl lg:font-bold font-bold lg:text-nowrap text-nowrap text-black text-start md:text-left mb-6'
+              className='lg:text-4xl md:text-4xl text-2xl lg:font-bold font-bold lg:text-nowrap text-nowrap text-black text-start md:text-left mb-6'
               initial='hidden'
               whileInView='visible'
               viewport={{ once: false, amount: 0.5 }}
