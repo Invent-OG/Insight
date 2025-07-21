@@ -18,6 +18,7 @@ import { useCreateBlog, useUpdateBlog } from '@/lib/queries/blogs';
 import { toast } from 'sonner';
 import { supabase } from '@/lib/supabase/client';
 import { Textarea } from '../ui/textarea';
+import Image from 'next/image';
 
 const blogSchema = z.object({
   title: z.string().min(2, 'Title must be at least 2 characters'),
@@ -197,7 +198,7 @@ export default function BlogForm({ onClose, initialData }: BlogFormProps) {
               />
             </FormControl>
             {form.watch('imageUrl') && (
-              <img
+              <Image
                 src={form.watch('imageUrl')}
                 alt='Preview'
                 className='mt-4 w-full max-h-48 object-cover rounded-md'

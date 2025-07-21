@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,17 +13,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
-import {
-  useCreateTestimonial,
-  useUpdateTestimonial,
-} from "@/lib/queries/testimonials";
-import { toast } from "sonner";
-import { supabase } from "@/lib/supabase/client";
-import { testimonialSchema } from "@/lib/types/testimonials";
+import { useCreateTestimonial, useUpdateTestimonial } from '@/lib/queries/testimonials';
+import { toast } from 'sonner';
+import { supabase } from '@/lib/supabase/client';
+import { testimonialSchema } from '@/lib/types/testimonials';
+import Image from 'next/image';
 
 type TestimonialFormData = z.infer<typeof testimonialSchema>;
 
@@ -33,11 +31,7 @@ interface TestimonialFormProps {
   onSuccess?: () => void;
 }
 
-export default function TestimonialForm({
-  onClose,
-  initialData,
-  onSuccess,
-}: TestimonialFormProps) {
+export default function TestimonialForm({ onClose, initialData, onSuccess }: TestimonialFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [fileToUpload, setFileToUpload] = useState<File | null>(null);
@@ -48,11 +42,11 @@ export default function TestimonialForm({
   const form = useForm<TestimonialFormData>({
     resolver: zodResolver(testimonialSchema),
     defaultValues: {
-      name: initialData?.name ?? "",
-      role: initialData?.role ?? "",
-      content: initialData?.content ?? "",
-      youtubeUrl: initialData?.youtubeUrl ?? "",
-      imageUrl: initialData?.imageUrl ?? "",
+      name: initialData?.name ?? '',
+      role: initialData?.role ?? '',
+      content: initialData?.content ?? '',
+      youtubeUrl: initialData?.youtubeUrl ?? '',
+      imageUrl: initialData?.imageUrl ?? '',
     },
   });
 
@@ -70,26 +64,24 @@ export default function TestimonialForm({
       // Upload image if selected
       if (fileToUpload) {
         setUploading(true);
-        const fileExt = fileToUpload.name.split(".").pop();
+        const fileExt = fileToUpload.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExt}`;
         const filePath = `testimonials/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
-          .from("images")
+          .from('images')
           .upload(filePath, fileToUpload);
 
         if (uploadError) {
-          toast.error("Image upload failed");
+          toast.error('Image upload failed');
           throw uploadError;
         }
 
-        const { data: publicUrlData } = supabase.storage
-          .from("images")
-          .getPublicUrl(filePath);
+        const { data: publicUrlData } = supabase.storage.from('images').getPublicUrl(filePath);
 
         if (!publicUrlData?.publicUrl) {
-          toast.error("Failed to get public image URL");
-          throw new Error("No public URL found");
+          toast.error('Failed to get public image URL');
+          throw new Error('No public URL found');
         }
 
         imageUrl = publicUrlData.publicUrl;
@@ -98,7 +90,7 @@ export default function TestimonialForm({
 
       // Build payload without `id`
       const { id, ...rest } = initialData || {};
-      const payload: Omit<TestimonialFormData, "id"> = {
+      const payload: Omit<TestimonialFormData, 'id'> = {
         ...data,
         imageUrl,
         // ...(rest._id ? { _id: rest._id } : {}),
@@ -112,49 +104,45 @@ export default function TestimonialForm({
           id: docId,
           data: payload,
         });
-        toast.success("Testimonial updated successfully");
+        toast.success('Testimonial updated successfully');
       } else {
         // Create
         await createTestimonialMutation.mutateAsync(payload);
-        toast.success("Testimonial created successfully");
+        toast.success('Testimonial created successfully');
       }
 
       form.reset();
       setFileToUpload(null);
       onSuccess ? onSuccess() : onClose();
     } catch (error) {
-      toast.error(
-        initialData
-          ? "Failed to update testimonial"
-          : "Failed to create testimonial"
-      );
+      toast.error(initialData ? 'Failed to update testimonial' : 'Failed to create testimonial');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="bg-card rounded-lg p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">
-          {initialData ? "Edit Testimonial" : "Add New Testimonial"}
+    <div className='bg-card rounded-lg p-6'>
+      <div className='flex justify-between items-center mb-6'>
+        <h2 className='text-xl font-semibold'>
+          {initialData ? 'Edit Testimonial' : 'Add New Testimonial'}
         </h2>
-        <Button variant="ghost" onClick={onClose}>
+        <Button variant='ghost' onClick={onClose}>
           Cancel
         </Button>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
           {/* Name */}
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Enter name" />
+                  <Input {...field} placeholder='Enter name' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -164,12 +152,12 @@ export default function TestimonialForm({
           {/* Role */}
           <FormField
             control={form.control}
-            name="role"
+            name='role'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Role</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Enter role" />
+                  <Input {...field} placeholder='Enter role' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -179,15 +167,15 @@ export default function TestimonialForm({
           {/* Content */}
           <FormField
             control={form.control}
-            name="content"
+            name='content'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Content</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
-                    placeholder="Enter testimonial content"
-                    className="min-h-[100px]"
+                    placeholder='Enter testimonial content'
+                    className='min-h-[100px]'
                   />
                 </FormControl>
                 <FormMessage />
@@ -200,42 +188,42 @@ export default function TestimonialForm({
             <FormLabel>Upload Image</FormLabel>
             <FormControl>
               <Input
-                type="file"
-                accept="image/*"
+                type='file'
+                accept='image/*'
                 onChange={handleFileChange}
                 disabled={uploading || isSubmitting}
               />
             </FormControl>
-            {uploading && <p className="text-sm text-muted">Uploading...</p>}
+            {uploading && <p className='text-sm text-muted'>Uploading...</p>}
             {fileToUpload && (
-              <img
+              <Image
                 src={URL.createObjectURL(fileToUpload)}
-                alt="Preview"
-                className="h-20 w-20 object-cover rounded-md mt-2"
+                alt='Preview'
+                className='h-20 w-20 object-cover rounded-md mt-2'
               />
             )}
-            {!fileToUpload && form.watch("imageUrl") && (
+            {!fileToUpload && form.watch('imageUrl') && (
               <img
-                src={form.watch("imageUrl")}
-                alt="Uploaded"
-                className="h-20 w-20 object-cover rounded-md mt-2"
+                src={form.watch('imageUrl')}
+                alt='Uploaded'
+                className='h-20 w-20 object-cover rounded-md mt-2'
               />
             )}
             <FormMessage />
           </FormItem>
 
           {/* Hidden input for imageUrl */}
-          <input type="hidden" {...form.register("imageUrl")} />
+          <input type='hidden' {...form.register('imageUrl')} />
 
           {/* YouTube URL */}
           <FormField
             control={form.control}
-            name="youtubeUrl"
+            name='youtubeUrl'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>YouTube URL (Optional)</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Enter YouTube video URL" />
+                  <Input {...field} placeholder='Enter YouTube video URL' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -243,9 +231,9 @@ export default function TestimonialForm({
           />
 
           {/* Submit Button */}
-          <div className="flex justify-end gap-4">
+          <div className='flex justify-end gap-4'>
             <Button
-              type="submit"
+              type='submit'
               disabled={
                 isSubmitting ||
                 uploading ||
@@ -253,11 +241,7 @@ export default function TestimonialForm({
                 updateTestimonialMutation.isPending
               }
             >
-              {isSubmitting
-                ? "Saving..."
-                : initialData
-                ? "Update Testimonial"
-                : "Add Testimonial"}
+              {isSubmitting ? 'Saving...' : initialData ? 'Update Testimonial' : 'Add Testimonial'}
             </Button>
           </div>
         </form>

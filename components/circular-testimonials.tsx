@@ -188,7 +188,7 @@
 //         {/* Images */}
 //         <div className="image-container" ref={imageContainerRef}>
 //           {testimonials.map((testimonial, index) => (
-//             <img
+//             <Image
 //               key={testimonial.src}
 //               src={testimonial.src}
 //               alt={testimonial.name}

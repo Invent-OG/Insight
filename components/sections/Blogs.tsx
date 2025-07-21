@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function BlogsPage() {
   const { data, isLoading, isError, error } = useBlogs();
@@ -70,7 +71,7 @@ export default function BlogsPage() {
                 {/* Image */}
                 <Link href={`/blogs/${post.id}`} className='relative w-full aspect-[16/9]'>
                   {post.imageUrl ? (
-                    <img
+                    <Image
                       src={post.imageUrl}
                       alt={post.title}
                       className='w-full h-full object-cover'

@@ -13,6 +13,7 @@ import { Lightbulb, Target, Rocket, Users, ShieldCheck, Star } from 'lucide-reac
 import { Volume2, FileText, BookOpen, Presentation, Mic, Activity } from 'lucide-react';
 import { CalendarCheck, UserCheck, Eye } from 'lucide-react';
 import EnglishProgramHero from '@/components/sections/EnglishProgramHero';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -243,7 +244,7 @@ const HomePage: React.FC = () => {
 
           <div className='flex flex-col items-stretch gap-12 lg:flex-row '>
             <div className='flex items-center justify-center w-full lg:w-1/2'>
-              <img
+              <Image
                 src='/assets/englishprogram/training.svg'
                 alt='Online Training Illustration'
                 className='w-full max-w-[500px] h-auto object-contain'

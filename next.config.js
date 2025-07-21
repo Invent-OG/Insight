@@ -8,12 +8,12 @@ const nextConfig = {
   },
   
   images: {
-      remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-    ],
+    //   remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'res.cloudinary.com',
+    //   },
+    // ],
     domains: [
       'images.pexels.com', 
       'images.unsplash.com', 
