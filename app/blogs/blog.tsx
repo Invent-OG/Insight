@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-
 export default function BlogsPage() {
   const { data, isLoading, isError, error } = useBlogs();
   const [page, setPage] = useState(1);
