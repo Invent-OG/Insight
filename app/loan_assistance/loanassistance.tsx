@@ -110,7 +110,8 @@ export default function LoanAssistancePage() {
               <Image
                 src='/assets/services/SOP writing.webp'
                 alt='Insight Loan Background'
-                className='w-full h-full object-cover'
+                fill
+                className='object-cover'
               />
             </div>
 
@@ -178,7 +179,8 @@ export default function LoanAssistancePage() {
               <Image
                 src='/assets/services/SOP writing.webp'
                 alt='Expenses Covered'
-                className='w-full h-full object-cover'
+                fill
+                className='object-cover'
               />
               <div className='absolute inset-0 bg-white bg-opacity-50' />
             </div>
@@ -194,19 +196,37 @@ export default function LoanAssistancePage() {
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                   {[
-                    'Tuition fees',
-                    'Living expenses (rent, food)',
-                    'Travel and flights',
-                    'Visa & insurance',
-                    'Books, supplies, and laptop',
-                    'Pre & post departure costs',
+                    {
+                      label: 'Tuition fees',
+                      icon: <FaUniversity size={22} className='text-primary mt-1' />,
+                    },
+                    {
+                      label: 'Living expenses (rent, food)',
+                      icon: <GiWallet size={22} className='text-primary mt-1' />,
+                    },
+                    {
+                      label: 'Travel and flights',
+                      icon: <MdEmojiTransportation size={22} className='text-primary mt-1' />,
+                    },
+                    {
+                      label: 'Visa & insurance',
+                      icon: <FaGlobeAsia size={22} className='text-primary mt-1' />,
+                    },
+                    {
+                      label: 'Books, supplies, and laptop',
+                      icon: <MdChecklist size={22} className='text-primary mt-1' />,
+                    },
+                    {
+                      label: 'Pre & post departure costs',
+                      icon: <FaHandHoldingUsd size={22} className='text-primary mt-1' />,
+                    },
                   ].map((item, i) => (
                     <div
                       key={i}
                       className='flex items-start gap-3 p-5 bg-white border border-gray-100 rounded-lg shadow-md hover:shadow-lg transition'
                     >
-                      <MdChecklist size={22} className='text-primary mt-1' />
-                      <p className='text-gray-700 text-base leading-relaxed'>{item}</p>
+                      {item.icon}
+                      <p className='text-gray-700 text-base leading-relaxed'>{item.label}</p>
                     </div>
                   ))}
                 </div>
@@ -227,9 +247,18 @@ export default function LoanAssistancePage() {
 
               <div className='relative border-l-2 border-dashed border-primary/30 pl-6 space-y-10'>
                 {[
-                  'Indian citizen with confirmed admission or planning to apply.',
-                  'Co-applicant (parent/guardian) with a steady income.',
-                  'Basic documents: KYC, admission letter/proof, fee structure, income proof.',
+                  {
+                    text: 'Indian citizen with confirmed admission or planning to apply.',
+                    icon: <FaUserCheck className='text-primary mt-1' size={24} />,
+                  },
+                  {
+                    text: 'Co-applicant (parent/guardian) with a steady income.',
+                    icon: <FaHandHoldingUsd className='text-primary mt-1' size={24} />,
+                  },
+                  {
+                    text: 'Basic documents: KYC, admission letter/proof, fee structure, income proof.',
+                    icon: <GiWallet className='text-primary mt-1' size={24} />,
+                  },
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -238,15 +267,15 @@ export default function LoanAssistancePage() {
                     <div className='absolute -left-6 top-3 w-6 h-6 bg-primary text-white text-sm font-semibold flex items-center justify-center rounded-full shadow-md'>
                       {index + 1}
                     </div>
-                    <MdChecklist className='text-primary mt-1' size={24} />
-                    <p className='text-gray-700 text-base leading-relaxed'>{item}</p>
+                    {item.icon}
+                    <p className='text-gray-700 text-base leading-relaxed'>{item.text}</p>
                   </div>
                 ))}
               </div>
 
               <div className='bg-white border border-gray-200 rounded-xl p-6 shadow-sm'>
                 <div className='flex gap-3 items-start'>
-                  <MdChecklist className='text-primary mt-1' size={24} />
+                  <FaUniversity className='text-primary mt-1' size={24} />
                   <p className='text-gray-700 leading-relaxed text-base'>
                     We also provide guidance for other bank loans like{' '}
                     <strong className='text-gray-800 font-medium'>SBI, Indian Overseas</strong> and
@@ -271,7 +300,9 @@ export default function LoanAssistancePage() {
           <Image
             src='/assets/services/SOP writing.webp'
             alt='Education Loan Background'
-            className='w-full h-full object-cover object-center'
+            fill
+            className='object-cover object-center'
+            priority
           />
           <div className='absolute inset-0 bg-black/60' />
         </div>

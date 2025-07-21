@@ -57,7 +57,7 @@ const Layout2 = () => {
   return (
     <div>
       <section className='relative  min-w-full flex justify-center text-black py-20 lg:py-10   overflow-hidden'>
-        <div className='absolute uppercase lg:text-base text-sm top-0 lg:py-8 py-8 tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+        <div className='absolute uppercase lg:text-base text-sm top-0 lg:py-8 py-8 tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
           — Dream. Plan. Go. —
         </div>
         <motion.div

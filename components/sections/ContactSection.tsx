@@ -58,7 +58,7 @@ export default function ContactSection() {
 
       {/* Centered Heading */}
       <div className='text-center max-w-2xl mx-auto'>
-        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
+        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-medium text-shadow-sm'>
           — Say Hello —
         </h4>
         <h2 className='lg:text-4xl md:text-4xl text-2xl py-4 font-bold leading-tight lg:text-wrap text-nowrap'>

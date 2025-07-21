@@ -137,13 +137,13 @@ export default function AboutPage() {
                 },
               }}
             >
-              <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-snug text-left'>
+              <h2 className='lg:text-4xl md:text-4xl text-2xl font-bold mb-6 leading-snug text-left'>
                 Your pathway to{' '}
                 <span className='text-primary text-nowrap'>international education</span>
               </h2>
 
               <motion.p
-                className='text-xl sm:text-lg lg:text-xl text-white leading-snug max-w-xl text-left'
+                className='text-lg sm:text-lg lg:text-xl text-white leading-snug max-w-xl text-left'
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -162,7 +162,7 @@ export default function AboutPage() {
 
         {/* Founder Section */}
         <div className='lg:py-10 py-8'>
-          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
             — founder —
           </h4>
 

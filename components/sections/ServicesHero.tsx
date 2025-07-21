@@ -31,11 +31,13 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
         >
           {slides.map((src, index) => (
             <SwiperSlide key={index}>
-              <div
-                className='w-full h-full bg-cover bg-center relative'
-                style={{ backgroundImage: `url(${src})` }}
-              >
-                <div className='absolute inset-0 bg-white bg-opacity-60' />
+              <div className='w-full h-full overflow-hidden'>
+                <div
+                  className='w-full h-full bg-cover bg-center'
+                  style={{ backgroundImage: `url(${src})` }}
+                >
+                  <div className='absolute inset-0 bg-white bg-opacity-60' />
+                </div>
               </div>
             </SwiperSlide>
           ))}
@@ -48,8 +50,9 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
           <h1 className='text-lg sm:text-xl md:text-2xl uppercase tracking-wide font-medium text-black opacity-0 blur-md animate-fade-in-up animation-delay-300'>
             Insight Services | Supporting Your Global Journey
           </h1>
-          <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold text-black leading-tight mt-4 mb-8 opacity-0 blur-md animate-fade-in-up animation-delay-500'>
-            Your Journey, Fully Supported Every Step of the Way!
+          <h2 className='text-4xl sm:text-5xl md:text-5xl font-bold text-black leading-tight mt-4 mb-8 opacity-0 blur-md animate-fade-in-up animation-delay-500'>
+            Your Journey, <span className='text-primary'>Fully Supported</span> Every Step of the
+            Way!
           </h2>
           <div className='flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0 blur-md animate-fade-in-up animation-delay-700'>
             <Button

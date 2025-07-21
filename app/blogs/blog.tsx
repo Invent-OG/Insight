@@ -95,9 +95,12 @@ export default function BlogsPage() {
                     <Image
                       src={featuredBlog.imageUrl}
                       alt={featuredBlog.title}
+                      width={800}
+                      height={400}
                       className='w-full h-full object-cover'
                     />
                   </div>
+
                   <div className='p-6 flex flex-col justify-center md:w-1/2 w-full'>
                     <h2 className='text-2xl font-bold text-gray-600 hover:text-primary transition'>
                       <Link href={`/blogs/${featuredBlog.id}`}>{featuredBlog.title}</Link>
@@ -250,6 +253,8 @@ function BlogGrid({ posts, actualBlogs, searchQuery }: any) {
               <Image
                 src={post.imageUrl}
                 alt={post.title}
+                width={400}
+                height={300}
                 className='w-full h-full object-cover object-center'
               />
             </Link>

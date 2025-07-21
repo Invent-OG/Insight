@@ -67,7 +67,7 @@ const CountriesCarousel: React.FC = () => {
 
       {/* Main Content */}
       <div className='relative z-10 bg-transparent flex flex-col  justify-center items-center text-white'>
-        <h4 className='uppercase lg:text-base text-sm lg:py-5 py-6  tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+        <h4 className='uppercase lg:text-base font-medium text-sm lg:py-5 py-6  tracking-[0.20em] text-primary text-center text-shadow-sm'>
           — Dream Destinations—
         </h4>
         <div className='lg:text-4xl md:text-4xl text-2xl text-black  lg:pb-10 pb:8 lg:py-0 py-2 font-bold text-center '>

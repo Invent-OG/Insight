@@ -28,7 +28,6 @@ module.exports = {
           "100%": { backgroundPosition: "0% 100%" },
         }, // ✅ Added
       },
-      
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

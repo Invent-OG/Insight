@@ -86,7 +86,7 @@ export default function UniversitiesSection() {
         />
         <div className='relative z-10 container mx-auto max-w-7xl md:py-8 md:mb-4 lg:mt-6 mt-0 py-0 lg:py-2'>
           <div className='text-center max-w-4xl mx-auto lg:mb-12 mb-4 lg:space-y-8 space-y-4'>
-            <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
+            <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-medium text-shadow-sm'>
               — Universities —
             </h4>
             <h2 className='lg:text-4xl md:text-4xl text-2xl font-bold'>

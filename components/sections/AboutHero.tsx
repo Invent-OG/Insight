@@ -13,11 +13,11 @@ export default function AboutHero() {
 
       <div className='relative z-10 min-h-screen max-w-[990px] w-full px-6 sm:px-8 py-20 lg:ml-[10%] flex items-center'>
         <div className='mt-0 max-w-full sm:max-w-[450px]'>
-          <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold text-black leading-tight mt-4 mb-8 opacity-0 blur-md animate-fade-in-up animation-delay-500'>
+          <h1 className='text-4xl sm:text-5xl md:text-5xl font-extrabold text-black leading-tight mt-4 mb-8 opacity-0 blur-md animate-fade-in-up animation-delay-500'>
             <div className='leading-tight text-nowrap'>Insight Educator &</div>
             <div className='mt-1 text-primary font-semibold leading-tight'>Abroad Services</div>
           </h1>
-          <h2 className='text-[#000000]  lg:text-xl text-xl sm:text-lg font-semibold leading-[1.5] mb-6'>
+          <h2 className='text-[#000000]  lg:text-xl text-xl sm:text-lg font-medium leading-[1.5] mb-6'>
             We provide expert guidance to help students explore global education opportunities with
             clarity, confidence, and care.
           </h2>

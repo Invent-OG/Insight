@@ -110,10 +110,10 @@ export const CoursesPage = () => {
           data-aos-delay='100'
           className='max-w-4xl px-4 py-10 mx-auto mb-16 rounded-lg sm:px-6 md:px-12'
         >
-          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
             — courses —
           </h4>
-          <h2 className='py-4 mb-4 text-3xl font-bold tracking-wide text-center text-black sm:text-4xl md:text-5xl lg:mb-14'>
+          <h2 className='py-4 mb-4 lg:text-4xl md:text-4xl text-2xl font-bold tracking-wide text-center text-black sm:text-4xl  lg:mb-14'>
             Explore <span className='text-primary'>Top Courses Abroad</span>
           </h2>
 

@@ -128,11 +128,11 @@ const HomePage: React.FC = () => {
         // data-aos-duration='2000'
         className='relative flex flex-col justify-center px-4 py-10 mx-auto overflow-hidden bg-gray-50'
       >
-        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
           — test prep —
         </h4>
         <motion.h2
-          className='relative z-10 py-2 mb-16 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl'
+          className='relative z-10 py-2 mb-16  font-bold text-center text-black lg:text-4xl md:text-4xl text-2xl'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -233,11 +233,11 @@ const HomePage: React.FC = () => {
         data-aos-duration='1000'
         className='relative py-10 overflow-hidden bg-white'
       >
-        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
           — Our training —
         </h4>
         <div className='relative z-10 max-w-6xl px-4 py-2 mx-auto'>
-          <h2 className='mb-16 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl'>
+          <h2 className='mb-16 font-bold text-center text-black lg:text-4xl md:text-4xl text-2xl'>
             What <span className='text-primary'>Makes</span> Our Training{' '}
             <span className='text-primary'>Different?</span>
           </h2>
@@ -247,6 +247,8 @@ const HomePage: React.FC = () => {
               <Image
                 src='/assets/englishprogram/training.svg'
                 alt='Online Training Illustration'
+                width={500}
+                height={400}
                 className='w-full max-w-[500px] h-auto object-contain'
               />
             </div>
@@ -287,7 +289,7 @@ const HomePage: React.FC = () => {
         <div className='absolute inset-0 bg-black/85 '></div>
 
         <div className='relative z-10 max-w-6xl px-4 mx-auto'>
-          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
             — english classes —
           </h4>
           <motion.h2
@@ -295,7 +297,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='py-2 mb-16 text-3xl font-bold text-center text-white sm:text-4xl md:text-5xl'
+            className='py-2 mb-16  font-bold text-center text-white lg:text-4xl md:text-4xl text-2xl'
           >
             English <span className='text-primary'>Communication</span> Classes
           </motion.h2>
@@ -405,7 +407,7 @@ const HomePage: React.FC = () => {
 
         {/* Centered Content */}
         <div className='relative z-10 max-w-6xl p-6 mx-auto bg-transparent rounded-2xl sm:p-10'>
-          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
             — join us —
           </h4>
           <motion.h2
@@ -413,7 +415,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='py-2 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl lg:py-0 mb-14'
+            className='py-2 font-bold text-center text-black lg:text-4xl md:text-4xl text-2xl lg:py-0 mb-14'
           >
             Who Can <span className='text-primary'>Join?</span>
           </motion.h2>
@@ -478,7 +480,7 @@ const HomePage: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h2 className='mb-6 text-3xl font-bold text-black sm:text-4xl md:text-5xl'>
+          <h2 className='mb-6  font-bold text-black lg:text-4xl md:text-4xl text-2xl'>
             Why <span className='text-primary'>Choose</span> Insight?
           </h2>
           <p className='py-2 mb-6 text-lg leading-relaxed text-black'>

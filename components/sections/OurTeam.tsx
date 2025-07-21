@@ -65,10 +65,10 @@ export default function OurTeam() {
 
       {/* === Header === */}
       <div className='text-center relative z-10 lg:mb-12 mb-6 team-header'>
-        <h4 className='uppercase lg:mb-0 mb-2 text-sm lg:text-base tracking-[0.20em] text-primary text-center  font-bold text-shadow-sm'>
+        <h4 className='uppercase lg:mb-0 mb-2 text-sm lg:text-base tracking-[0.20em] text-primary text-center  font-medium text-shadow-sm'>
           — our teams —
         </h4>
-        <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900'>
+        <h2 className='lg:text-4xl md:text-4xl text-2xl font-bold text-gray-900'>
           The <span className='text-primary'>Dream</span> Team
         </h2>
         <p className='mt-3 text-lg lg:py-2 text-red-600'>Meet the talent that powers us forward</p>

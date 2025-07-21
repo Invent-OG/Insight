@@ -37,7 +37,7 @@ export default function CoursesHero({ scrollToCards }: CoursesHeroProps) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className='text-4xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl'
+          className='text-4xl sm:text-5xl md:text-5xl font-bold leading-tight text-gray-900'
         >
           Top Courses to <span className='text-primary'>Study Abroad</span>
         </motion.h1>

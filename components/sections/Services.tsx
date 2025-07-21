@@ -55,7 +55,7 @@ export default function ServicesSection() {
           <div className='container flex flex-col gap-10 px-8 py-8 md:py-10 lg:py-12 lg:flex-row lg:items-start'>
             {/* Left Side - Sticky */}
             <div className='flex-1 flex flex-col gap-4 rounded-xl items-center justify-center text-center lg:sticky top-20 lg:self-start lg:h-[calc(100vh-10rem)]'>
-              <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-bold text-shadow-sm'>
+              <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary font-medium text-shadow-sm'>
                 — Services —
               </h4>
 

@@ -118,7 +118,7 @@ export default function Services() {
       <section ref={cardsRef} className={` relative min-h-screen flex items-center justify-center`}>
         {/* Section Content */}
         <div className='relative z-10 px-4 sm:px-6 md:px-12 py-10 max-w-7xl w-full  mx-auto'>
-          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em]  text-primary text-center font-bold text-shadow-sm'>
+          <h4 className='uppercase text-sm lg:text-base tracking-[0.20em]  text-primary text-center font-medium text-shadow-sm'>
             — Services —
           </h4>
           <h2 className='lg:text-4xl md:text-4xl text-3xl py-6 font-bold text-center text-black leading-tight'>

@@ -35,7 +35,7 @@ export default function BlogsPage() {
         data-aos-anchor-placement='top-center'
         className='lg:py-10 py-10 bg-gray-100'
       >
-        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-bold text-shadow-sm'>
+        <h4 className='uppercase text-sm lg:text-base tracking-[0.20em] text-primary text-center font-medium text-shadow-sm'>
           — Blogs —
         </h4>
 
