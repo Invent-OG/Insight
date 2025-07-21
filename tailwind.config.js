@@ -28,9 +28,7 @@ module.exports = {
           "100%": { backgroundPosition: "0% 100%" },
         }, // ✅ Added
       },
-      fontFamily: {
-        eurostile: ["Eurostile", "sans-serif"], // ✅ Added
-      },
+      
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
