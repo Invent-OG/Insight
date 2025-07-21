@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import 'aos/dist/aos.css';
-import Roadmap, { RoadmapSection } from '@/components/sections/OurCoreValues';
+import { RoadmapSection } from '@/components/sections/OurCoreValues';
 import OurServicesInfo from '@/components/sections/OurServicesInfo';
 import OurTeam from '@/components/sections/OurTeam';
 import AboutHero from '@/components/sections/AboutHero';

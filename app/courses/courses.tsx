@@ -40,23 +40,21 @@ const categoryIcons = {
   'MBBS Courses Abroad': <FaHeartbeat className='w-6 h-6 text-red-600' />,
 };
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CountriesCarousel from '@/components/sections/CountriesCarousel';
 import CoursesHero from '@/components/sections/CoursesHero';
 
 // Animation variants for framer-motion
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 40 },
+//   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+// };
 
 export const CoursesPage = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
-  const [showContent, setShowContent] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  // const [showContent, setShowContent] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
 
   const scrollToCards = () => {
     if (cardsRef.current) {
@@ -66,28 +64,28 @@ export const CoursesPage = () => {
     }
   };
 
-  useEffect(() => {
-    function onScroll() {
-      // Show content after user scrolls down 100px (adjust as needed)
-      if (window.scrollY > 100) {
-        setShowContent(true);
-      } else {
-        setShowContent(false);
-      }
-    }
+  // useEffect(() => {
+  //   function onScroll() {
+  //     // Show content after user scrolls down 100px (adjust as needed)
+  //     if (window.scrollY > 100) {
+  //       setShowContent(true);
+  //     } else {
+  //       setShowContent(false);
+  //     }
+  //   }
 
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  //   window.addEventListener('scroll', onScroll);
+  //   return () => window.removeEventListener('scroll', onScroll);
+  // }, []);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const checkMobile = () => setIsMobile(window.innerWidth < 640);
-      checkMobile();
-      window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const checkMobile = () => setIsMobile(window.innerWidth < 640);
+  //     checkMobile();
+  //     window.addEventListener('resize', checkMobile);
+  //     return () => window.removeEventListener('resize', checkMobile);
+  //   }
+  // }, []);
 
   useEffect(() => {
     AOS.init({

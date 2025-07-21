@@ -16,8 +16,6 @@ const Nav: React.FC<Props> = ({ isLoading }) => {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith('/admin');
 
-  console.log(pathname);
-
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 

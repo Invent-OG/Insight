@@ -70,7 +70,11 @@ export default function Contact() {
               <Phone className='text-red-600 w-4 h-4' />
               <span>
                 <strong className='text-gray-900'>Phone:</strong>{' '}
-                <a href='tel:+918270883451' className='text-red-600'>
+                <a
+                  href='tel:+918270883451'
+                  className='text-red-600'
+                  aria-label='Call phone number +91 82708 83451'
+                >
                   +91 82708 83451
                 </a>
               </span>
