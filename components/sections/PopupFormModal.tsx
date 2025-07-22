@@ -229,18 +229,21 @@ export default function PopupFormModal() {
       </div>
 
       {isOpen && (
-        <div className='fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[9999] px-4'>
+        <div className='fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center px-4'>
           <div
             ref={modalRef}
-            className='backdrop-blur-md text-gray-800 rounded-2xl p-8 w-full max-w-lg relative shadow-2xl'
+            className='bg-white text-gray-800 rounded-2xl p-8 w-full max-w-lg relative shadow-2xl'
           >
             <button
               onClick={() => setIsOpen(false)}
-              className='absolute top-4 right-5 text-gray-600 text-xl font-bold hover:text-red-500'
+              className='absolute top-4 right-5 text-gray-600 text-2xl font-bold hover:text-red-600'
+              aria-label='Close modal'
             >
               &times;
             </button>
-            <h2 className='text-3xl font-bold mb-6 text-center text-red-600'>Chat with Us</h2>
+
+            <h2 className='text-3xl font-bold mb-6 text-center text-primary'>Chat with Us</h2>
+
             {isSuccess ? (
               <div className='text-green-600 text-center font-medium text-lg'>
                 ✅ Thank you! We’ll contact you soon.
@@ -253,7 +256,7 @@ export default function PopupFormModal() {
                   placeholder='Name'
                   value={formData.name}
                   onChange={handleChange}
-                  className='w-full text-gray-400 rounded border border-gray-900 bg-transparent px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
+                  className='w-full rounded border border-gray-300 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500'
                   required
                 />
                 <input
@@ -262,7 +265,7 @@ export default function PopupFormModal() {
                   placeholder='Email'
                   value={formData.email}
                   onChange={handleChange}
-                  className='w-full text-gray-400 rounded border border-gray-900 bg-transparent px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
+                  className='w-full rounded border border-gray-300 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500'
                   required
                 />
                 <input
@@ -271,7 +274,7 @@ export default function PopupFormModal() {
                   placeholder='Phone'
                   value={formData.phone}
                   onChange={handleChange}
-                  className='w-full text-gray-400 rounded border border-gray-900 bg-transparent px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
+                  className='w-full rounded border border-gray-300 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500'
                   required
                 />
                 <input
@@ -280,18 +283,14 @@ export default function PopupFormModal() {
                   placeholder='Your Interest / Service'
                   value={formData.interest}
                   onChange={handleChange}
-                  className='w-full text-gray-400 rounded border border-gray-900 bg-transparent px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
+                  className='w-full rounded border border-gray-300 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500'
                   required
                 />
-                <Button
-                  type='submit'
-                  disabled={isPending}
-                  className='w-full py-3 text-white font-semibold bg-red-600 hover:bg-red-700 rounded transition'
-                >
+                <Button type='submit' disabled={isPending} className='w-full py-3   transition'>
                   {isPending ? 'Submitting...' : 'Submit'}
                 </Button>
                 {isError && (
-                  <p className='text-red-500 text-sm text-center'>
+                  <p className='text-primary text-sm text-center'>
                     Something went wrong. Please try again.
                   </p>
                 )}

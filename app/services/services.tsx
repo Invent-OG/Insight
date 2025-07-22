@@ -18,7 +18,7 @@ const services = [
     tabTitle: 'Counselling',
     title: 'Counselling & Program Discovery',
     description:
-      'Having trouble deciding on a course or country? We’ll help you explore your options based on your interests, background, and future goals. Our experienced team will guide you in finding the academic path that suits you best.',
+      'Having trouble deciding on a course or country? We’ll help you explore your options based on your interests, background, and future goals. Our experienced in finding the academic path that suits you best.',
   },
   {
     icon: <MdSchool />,
