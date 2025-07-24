@@ -11,6 +11,7 @@ import AboutHero from '@/components/sections/AboutHero';
 import LogoExp from '@/components/sections/LogoExp';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import LogoDetails from '@/components/sections/LogoDetails';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
@@ -68,7 +69,7 @@ export default function AboutPage() {
   return (
     <>
       <main className=' text-white min-h-screen relative'>
-        <div className='relative h-screen w-screen '>
+        <div className='relative h-screen w-full '>
           {/* <LampDemo /> */}
           <AboutHero />
         </div>
@@ -241,6 +242,9 @@ export default function AboutPage() {
         {/* logo explain section   */}
         <>
           <LogoExp />
+        </>
+        <>
+          <LogoDetails />
         </>
       </main>
     </>
