@@ -170,7 +170,7 @@ export default function WhyTheseCountries() {
       {/* CTA Button */}
       <div className='mt-8 text-center'>
         <Button
-          onClick={() => router.push('/contact/')}
+          onClick={() => router.push('/form')}
           className='hover:border hover:border-white hover:text-white'
         >
           Get Course Recommendations

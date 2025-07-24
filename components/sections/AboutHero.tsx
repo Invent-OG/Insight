@@ -23,7 +23,7 @@ export default function AboutHero() {
           </h2>
           <div className='mt-8'>
             <Button
-              onClick={() => router.push('/contact')}
+              onClick={() => router.push('/form')}
               className='text-base  sm:text-lg font-semibold text-white hover:bg-transparent hover:text-black border hover:border-black'
             >
               Get Free Consultation

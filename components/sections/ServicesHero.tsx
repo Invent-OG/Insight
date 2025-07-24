@@ -55,15 +55,8 @@ export default function ServicesHero({ scrollToCards }: ServicesHeroProps) {
             Way!
           </h2>
           <div className='flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0 blur-md animate-fade-in-up animation-delay-700'>
-            <Button
-              className='text-black border border-black hover:text-white hover:border-white'
-              onClick={scrollToCards}
-              variant={'outline'}
-            >
-              Learn More
-            </Button>
             <Button asChild>
-              <a href='/contact'>Get In Touch</a>
+              <a href='/form'>Get In Touch</a>
             </Button>
           </div>
         </div>
