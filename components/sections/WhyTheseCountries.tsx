@@ -166,7 +166,6 @@ export default function WhyTheseCountries() {
           </details>
         ))}
       </div>
-
       {/* CTA Button */}
       <div className='mt-8 text-center'>
         <Button
