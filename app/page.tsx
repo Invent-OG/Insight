@@ -53,9 +53,6 @@ export default function Home() {
         <FaAngleDown className='absolute bottom-0 z-50 w-10 h-10 text-primary left-1/2 animate-bounce' />
       </div>
 
-      {/* <VideoScrollSection /> */}
-      {/* <MultiLayerParallax /> */}
-
       <LogoExp />
       <Herocontent />
       <CountriesCarousel />
