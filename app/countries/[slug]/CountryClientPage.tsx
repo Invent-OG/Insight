@@ -10,6 +10,9 @@ import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import { countryData, CountryInfo } from '@/app/data/countryData';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useForm } from 'react-hook-form';
+import PhoneInputWithFlag from '@/components/ui/PhoneInputWithFlag';
 
 type Country = {
   title: string;
@@ -82,7 +85,7 @@ lifestyle.
   {
     title: 'Study in New Zealand',
     image: 'New_zealand_1_t8nmqw',
-    slug: 'new-zealand',
+    slug: 'newzealand',
     description: `New Zealand provides a peaceful and research-driven education
 experience at institutions like the University of Auckland. With its
 stunning scenery and friendly, diverse communities, it offers a
@@ -264,12 +267,12 @@ Uzbekistan offers both quality education and cultural richness.
 ];
 const suggestionMap: Record<string, string[]> = {
   uk: ['singapore', 'latvia', 'poland'],
-  usa: ['france', 'new-zealand', 'poland'],
+  usa: ['france', 'newzealand', 'poland'],
   ireland: ['singapore', 'france', 'sweden'],
   canada: ['poland', 'uae', 'uk'],
   australia: ['malta', 'netherlands', 'finland'],
-  'new-zealand': ['singapore', 'finland', 'sweden'],
-  france: ['singapore', 'finland', 'new-zealand'],
+  newzealand: ['singapore', 'finland', 'sweden'],
+  france: ['singapore', 'finland', 'newzealand'],
   germany: ['netherlands', 'singapore', 'australia'],
   uae: ['latvia', 'usa', 'lithuania'],
   singapore: ['malaysia', 'germany', 'uae'],
@@ -277,7 +280,7 @@ const suggestionMap: Record<string, string[]> = {
   poland: ['latvia', 'netherlands', 'malta'],
   sweden: ['malaysia', 'germany', 'uae'],
   latvia: ['uae', 'lithuania', 'netherlands'],
-  lithuania: ['finland', 'australia', 'new-zealand'],
+  lithuania: ['finland', 'australia', 'newzealand'],
   malta: ['ireland', 'finland', 'germany'],
   netherlands: ['germany', 'usa', 'poland'],
   finland: ['canada', 'usa', 'sweden'],
@@ -290,16 +293,14 @@ type Props = {
   slug: string;
 };
 
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
 export default function CountryClientPage({ slug }: Props) {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  // const params = useParams() as { slug: string }; // ✅ Correct way in client components
-  // const slugs = params.slug;
-  // const [selectedSlug, setSelectedSlug] = useState(slug as string);
   const selectedSlug = slug;
 
   const [statusMessage, setStatusMessage] = useState('');
@@ -311,30 +312,34 @@ export default function CountryClientPage({ slug }: Props) {
     return <div>Country not found</div>;
   }
 
-  const countryContents = countryData.filter((c) => c.country.toLowerCase() === slug);
+  const countryContents = countryData.filter((c) => c.slug === slug);
 
   const selectedSuggestions = suggestionMap[selectedSlug] || []; // Fallback to an empty array
   const suggestedCards = countries.filter((c) => selectedSuggestions.includes(c.slug));
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>();
 
   const { mutate: createLead, isPending } = useCreateLead();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (data: FormData) => {
+    console.log(data);
     createLead(
       {
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        interest: form.message,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        interest: data.message,
       },
       {
         onSuccess: () => {
-          setForm({ name: '', email: '', phone: '', message: '' });
-          toast.success('Lead submitted successfully!');
+          reset();
+          toast.success('Submitted Successfully');
         },
         onError: (error) => {
           console.error('Error creating lead:', error);
@@ -570,78 +575,71 @@ export default function CountryClientPage({ slug }: Props) {
 
         {/* Right Column - Form + Suggestions */}
         <div className='w-full lg:w-[30%] flex flex-col'>
-          {/* ✅ Add Toaster Here */}
-          <Toaster position='top-right' reverseOrder={false} />
           {/* Form */}
-          <motion.form
-            onSubmit={handleSubmit}
+          {/* <motion.form
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className='min-h-[450px] bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 flex flex-col justify-between'
-          >
-            <div>
-              <h3 className='text-xl font-bold text-primary text-center mb-2'>Let’s Get Started</h3>
-              <p className='text-center text-sm text-gray-700 mb-4'>
-                Submit your details for expert guidance
-              </p>
-            </div>
+          > */}
+          <h3 className='text-xl font-bold text-primary text-center mb-2'>Let’s Get Started</h3>
+          <p className='text-center text-sm text-gray-700 mb-4'>
+            Submit your details for expert guidance
+          </p>
 
-            <div className='flex-1 overflow-y-auto scrollbar-hide space-y-7 pr-1 py-4 text-black'>
-              <input
+          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+            <div className='flex flex-col gap-5'>
+              <Input
                 type='text'
-                name='name'
                 placeholder='Full Name'
-                value={form.name}
-                onChange={handleChange}
-                required
-                className='w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary'
+                {...register('name', { required: 'Name is required' })}
+                className='px-4 py-2 border rounded'
+                disabled={isSubmitting}
               />
-              <input
+              {errors.name && <p className='text-red-500 text-sm'>{errors.name.message}</p>}
+
+              <Input
                 type='email'
-                name='email'
                 placeholder='Email Address'
-                value={form.email}
-                onChange={handleChange}
-                required
-                className='w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary'
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: 'Enter a valid email address',
+                  },
+                })}
+                className='px-4 py-2 border rounded'
+                disabled={isSubmitting}
               />
-              <input
-                type='tel'
-                name='phone'
-                placeholder='Phone Number'
-                value={form.phone}
-                onChange={handleChange}
-                required
-                className='w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary'
-              />
-              <input
+              {errors.email && <p className='text-red-500 text-sm'>{errors.email.message}</p>}
+
+              <PhoneInputWithFlag name='phone' control={control} disabled={isSubmitting} />
+
+              <Input
                 type='text'
-                name='message'
                 placeholder='Interest'
-                value={form.message}
-                onChange={handleChange}
-                required
-                className='w-full bg-transparent border border-gray-600 px-4 py-2 rounded-md text-sm text-black placeholder-gray-400 focus:outline-none focus:border-primary'
+                {...register('message', { required: 'Interest is required' })}
+                className='px-4 py-2 border rounded'
+                disabled={isSubmitting}
               />
+              {errors.message && <p className='text-red-500 text-sm'>{errors.message.message}</p>}
             </div>
 
-            <div>
-              {/* ✅ Added status message here */}
-              <div className='h-5 mb-2 text-center text-sm font-medium'>
-                {statusMessage && (
-                  <p className={isSuccess ? 'text-green-400' : 'text-red-400'}>{statusMessage}</p>
-                )}
-              </div>
+            <Button
+              type='submit'
+              disabled={isSubmitting}
+              className='w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition'
+            >
+              {isPending ? 'Submitting...' : 'Submit'}
+            </Button>
+          </form>
 
-              <Button
-                type='submit'
-                className='w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:bg-primary/90 transition'
-              >
-                Submit
-              </Button>
-            </div>
-          </motion.form>
+          <div className='h-5 mb-2 text-center text-sm font-medium'>
+            {statusMessage && (
+              <p className={isSuccess ? 'text-green-400' : 'text-red-400'}>{statusMessage}</p>
+            )}
+          </div>
+          {/* </motion.form> */}
 
           {/* Suggested Countries */}
           <div className='mt-4'>

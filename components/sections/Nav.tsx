@@ -128,26 +128,17 @@ const Nav: React.FC<Props> = ({ isLoading }) => {
           >
             <span
               className={cn(
-                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300',
-                (pathname === '/services' || pathname === '/contact') && !isScrolled
-                  ? 'bg-black'
-                  : 'bg-[#faf9f9]'
+                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300 bg-primary'
               )}
             />
             <span
               className={cn(
-                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300',
-                (pathname === '/services' || pathname === '/contact') && !isScrolled
-                  ? 'bg-black'
-                  : 'bg-[#faf9f9]'
+                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300 bg-primary'
               )}
             />
             <span
               className={cn(
-                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300',
-                (pathname === '/services' || pathname === '/contact') && !isScrolled
-                  ? 'bg-black'
-                  : 'bg-[#faf9f9]'
+                'w-[20px] h-[3px]  rounded-sm mb-[3px] transition-all duration-300 bg-primary'
               )}
             />
           </div>

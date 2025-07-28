@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description:
         'Australia has top universities, post-study work opportunities, and an excellent lifestyle. See why international students choose it as their study destination.',
     },
-    'new-zealand': {
+    newzealand: {
       title: 'Study in New Zealand—Safe, Scenic & Smart',
       description:
         'Why choose New Zealand? We guide you through top universities, course selection, and admissions to help you study in this safe and student-friendly country.',

@@ -1,25 +1,20 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import z from "zod";
+import { LeadType } from "../types/leads";
 
-// ✅ Correct Lead type
-export interface Lead {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  interest: string;
-  createdAt: string;
-}
+
+
 
 // ✅ Fetch all leads
-const fetchLeads = async (): Promise<{ leads: Lead[] }> => {
+const fetchLeads = async (): Promise<{ leads: LeadType[] }> => {
   const response = await fetch("/api/leads");
   if (!response.ok) throw new Error("Failed to fetch leads");
   return response.json();
 };
 
 const createLead = async (
-  data: Omit<Lead, "id" | "createdAt">
-): Promise<Lead> => {
+  data: Omit<LeadType, "id" | "createdAt">
+): Promise<LeadType> => {
   // 1. Save to Supabase (your existing API)
   const response = await fetch("/api/leads", {
     method: "POST",

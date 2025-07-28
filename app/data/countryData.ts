@@ -333,43 +333,7 @@ export const countryData: CountryInfo[] = [
     intakes: "February and July main intakes; November minor intake",
     popularCities: "Sydney, Melbourne, Brisbane, Perth",
   },
-  {
-    country: "New Zealand",
-     slug: "new-zealand",
-    tuitionFeeRange:
-      "NZD 22,000 – NZD 32,000 per year for undergraduates; NZD 26,000 – NZD 37,000 for postgraduates",
-    livingCosts: "NZD 20,000 per year (proof required for visa)",
-    durationOfCourses:
-      "Bachelor’s: 3 years; Master’s: 1–2 years; Ph.D.: 3–4 years",
-    academicRequirements: "Minimum 60% in academics; varies by institution",
-    languageProficiency: "IELTS, TOEFL, PTE accepted",
-    ieltsWaiverAvailability: "Yes – with MOI or select universities",
-    acceptedAcademicGaps: "Accepted with proper justification",
-    workExperienceProof: "Offer letter, experience letter, payslips",
-    fundsRequiredForVisa: "NZD 20,000 per year + tuition fees",
-    acceptableFinancialSources: "Savings, loans, fixed deposits",
-    eligibleSponsors: "Parents, relatives, legal guardians",
-    minimumFamilyIncome: "Not mandatory; financial capacity must be shown",
-    visaType: "Fee Paying Student Visa",
-    visaProcessingTime: "4 – 6 weeks on average",
-    partTimeWorkLimit: "20 hours/week during term; full-time during breaks",
-    averagePartTimeWages: "NZD 18 – NZD 22 per hour",
-    internshipOptions:
-      "Available for various programs via university career services",
-    postStudyWorkOptions: "Up to 3 years based on course level and location",
-    permanentResidencyPathway: "Through skilled migration after study and work",
-    spouseDependentVisa: "Allowed for Master’s/Ph.D. students in skilled lists",
-    dependentConditions:
-      "Spouse may work full-time; additional financial proof required",
-    scholarshipOpportunities: "NZ Scholarships, university scholarships",
-    healthcareAccess: "Insurance is mandatory for international students",
-    climateWeather: "Mild and temperate; cool winters and warm summers",
-    culturalEnvironment:
-      "Welcoming, diverse, with strong Māori cultural influence",
-    currency: "New Zealand Dollar (NZD)",
-    intakes: "February and July major intakes",
-    popularCities: "Auckland, Wellington, Christchurch, Dunedin",
-  },
+  
   {
     country: "France",
         slug: 'france',
@@ -864,5 +828,44 @@ export const countryData: CountryInfo[] = [
   currency: "Euro (€)",
   intakes: "August/September & sometimes January",
   popularCities: "Helsinki, Tampere, Turku, Oulu"
-}
+},
+{
+    country: "New Zealand",
+     slug: "newzealand",
+    tuitionFeeRange:
+      "NZD 22,000 – NZD 32,000 per year for undergraduates; NZD 26,000 – NZD 37,000 for postgraduates",
+    livingCosts: "NZD 20,000 per year (proof required for visa)",
+    durationOfCourses:
+      "Bachelor’s: 3 years; Master’s: 1–2 years; Ph.D.: 3–4 years",
+    academicRequirements: "Minimum 60% in academics; varies by institution",
+    languageProficiency: "IELTS, TOEFL, PTE accepted",
+    ieltsWaiverAvailability: "Yes – with MOI or select universities",
+    acceptedAcademicGaps: "Accepted with proper justification",
+    workExperienceProof: "Offer letter, experience letter, payslips",
+    fundsRequiredForVisa: "NZD 20,000 per year + tuition fees",
+    acceptableFinancialSources: "Savings, loans, fixed deposits",
+    eligibleSponsors: "Parents, relatives, legal guardians",
+    minimumFamilyIncome: "Not mandatory; financial capacity must be shown",
+    visaType: "Fee Paying Student Visa",
+    visaProcessingTime: "4 – 6 weeks on average",
+    partTimeWorkLimit: "20 hours/week during term; full-time during breaks",
+    averagePartTimeWages: "NZD 18 – NZD 22 per hour",
+    internshipOptions:
+      "Available for various programs via university career services",
+    postStudyWorkOptions: "Up to 3 years based on course level and location",
+    permanentResidencyPathway: "Through skilled migration after study and work",
+    spouseDependentVisa: "Allowed for Master’s/Ph.D. students in skilled lists",
+    dependentConditions:
+      "Spouse may work full-time; additional financial proof required",
+    scholarshipOpportunities: "NZ Scholarships, university scholarships",
+    healthcareAccess: "Insurance is mandatory for international students",
+    climateWeather: "Mild and temperate; cool winters and warm summers",
+    culturalEnvironment:
+      "Welcoming, diverse, with strong Māori cultural influence",
+    currency: "New Zealand Dollar (NZD)",
+    intakes: "February and July major intakes",
+    popularCities: "Auckland, Wellington, Christchurch, Dunedin",
+  },
+
+
 ];

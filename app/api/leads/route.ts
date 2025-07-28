@@ -5,20 +5,16 @@ import { leads } from "@/lib/db/schema";
 import { eq, asc } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
 import { sendContactEmails } from "@/lib/email";
+import { Lead } from "@/lib/types/leads";
 
 // Zod validation schema for input
-const leadSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().regex(/^[6-9]\d{9}$/), // Indian phone number pattern example
-  interest: z.string().min(2),
-});
+
 
 // POST - Create a new lead
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const data = leadSchema.parse(body);
+    const data = Lead.parse(body);
 
     const newLead = {
       id: uuidv4(),

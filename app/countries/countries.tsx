@@ -29,7 +29,7 @@ const countries = [
   {
     title: 'Study in New Zealand',
     image: 'New_zealand_1_t8nmqw',
-    slug: 'new-zealand',
+    slug: 'newzealand',
   },
   {
     title: 'Study in France',
