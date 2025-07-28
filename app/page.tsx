@@ -7,6 +7,7 @@ import Blogs from '@/components/sections/Blogs';
 import Testimonial from '@/components/sections/Testimonial';
 import { FaAngleDown } from 'react-icons/fa6';
 import LogoExp from '@/components/sections/LogoExp';
+import { log } from 'node:console';
 
 export const metadata = {
   title: 'Insight | Expert Study Abroad Consultants for Global Education',
@@ -17,6 +18,7 @@ export const metadata = {
 };
 
 export default function Home() {
+  console.log('object');
   return (
     <main className='w-full'>
       <div className='relative w-full'>
