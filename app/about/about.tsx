@@ -240,12 +240,13 @@ export default function AboutPage() {
           <RoadmapSection />
         </>
         {/* logo explain section   */}
-        <>
-          <LogoExp />
-        </>
+
         <>
           <LogoDetails />
         </>
+        {/* <>
+          <LogoExp />
+        </> */}
       </main>
     </>
   );

@@ -93,7 +93,7 @@ function LogoExp() {
         </div>
       </section>
 
-      {/* Content Block 1: More About the Logo */}
+      {/* Content Block 1: More About the Logo
       <section ref={aboutRef} className='px-4 py-20 text-white bg-black text-center md:px-6'>
         <h2 className='mb-6 text-3xl font-semibold'>More About the Logo</h2>
         <p className='max-w-3xl mx-auto text-base leading-7 md:text-lg md:leading-8'>
@@ -102,14 +102,14 @@ function LogoExp() {
         </p>
       </section>
 
-      {/* Content Block 2: Our Mission */}
+      Content Block 2: Our Mission
       <section ref={missionRef} className='px-4 py-20 text-black bg-white text-center md:px-6'>
         <h2 className='mb-6 text-3xl font-semibold'>Our Mission</h2>
         <p className='max-w-3xl mx-auto text-base leading-7 md:text-lg md:leading-8'>
           We aim to empower students with vision, purpose, and clarity. Our unique blend of empathy
           and expertise helps individuals thrive globally through education and transformation.
         </p>
-      </section>
+      </section> */}
     </div>
   );
 }

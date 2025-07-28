@@ -6,6 +6,7 @@ import ContactSection from '@/components/sections/ContactSection';
 import Blogs from '@/components/sections/Blogs';
 import Testimonial from '@/components/sections/Testimonial';
 import { FaAngleDown } from 'react-icons/fa6';
+import LogoExp from '@/components/sections/LogoExp';
 
 export const metadata = {
   title: 'Insight | Expert Study Abroad Consultants for Global Education',
@@ -54,6 +55,8 @@ export default function Home() {
 
       {/* <VideoScrollSection /> */}
       {/* <MultiLayerParallax /> */}
+
+      <LogoExp />
       <Herocontent />
       <CountriesCarousel />
       <ServicesSection />

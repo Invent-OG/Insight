@@ -91,29 +91,33 @@ import gsap from 'gsap';
 
 const sections = [
   {
-    image: '/assets/logos/logo1.webp',
-    content:
-      'We collaborate with globally recognized institutions that offer high academic standards, ensuring you get the best education.',
-  },
-  {
     image: '/assets/logos/logo2.webp',
+    title: 'The Central Figure',
     content:
-      'Choose from a wide range of programs tailored to match your passion and career goals.',
+      'The central figure symbolizes “I”, with the cap and bulb representing knowledge and growth.',
   },
   {
     image: '/assets/logos/logo3.webp',
+    title: 'Butterfly Symbolism',
     content:
-      'Experience the culture and networks of international education while boosting your global career prospects.',
+      'Its wings feature the book for educational knowledge, pillar for a strong foundation, money symbol for financial independence, and phoenix for resilience and overcoming challenges.',
   },
   {
     image: '/assets/logos/logo4.webp',
+    title: 'Global Dome',
     content:
-      'Our team helps you every step of the way—from application to visa—ensuring a smooth transition.',
+      'Symbolizes our international presence and expertise in guiding students toward global education opportunities.',
   },
   {
     image: '/assets/logos/logo5.webp',
+    title: 'Surrounding Stars',
+    content: 'Represents excellence, guidance, and global opportunities.',
+  },
+  {
+    image: '/assets/logos/logo1.webp',
+    title: 'Overall',
     content:
-      'Get continuous support even after admission—from settling abroad to handling queries with ease.',
+      "The INSIGHT logo represents a student's journey of growth and transformation into a confident, knowledgeable, and globally empowered achiever — supported by freedom, education, resilience, and international opportunities.",
   },
 ];
 
@@ -169,7 +173,7 @@ export default function LogoDetails() {
       {/* Sticky Section */}
       <div className='sticky top-0 h-screen flex flex-col items-center justify-center px-6 md:px-20 text-white text-center overflow-hidden'>
         {/* Logo */}
-        <div ref={logoRef} className='w-[300px] h-[300px] relative will-change-transform'>
+        <div className='w-[300px] h-[300px] relative transition-opacity duration-500'>
           <Image
             src={sections[currentIndex].image}
             alt={`Logo ${currentIndex + 1}`}
@@ -181,7 +185,9 @@ export default function LogoDetails() {
 
         {/* Content */}
         <div ref={contentRef} className='max-w-3xl will-change-transform'>
-          <h2 className='text-3xl md:text-4xl font-semibold mb-4'>Why Choose Us?</h2>
+          <h2 className='text-3xl md:text-4xl font-semibold mb-4'>
+            {sections[currentIndex].title}
+          </h2>
           <p className='text-lg md:text-xl leading-relaxed text-white/90'>
             {sections[currentIndex].content}
           </p>
