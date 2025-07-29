@@ -105,18 +105,18 @@ export default function BlogDetailPage() {
           }}
         />
 
-        <div className='relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto px-4 py-16'>
-          {/* Blog Content */}
-          <article className='col-span-1 md:col-span-3 order-2 md:order-1' data-aos='fade-up'>
+        {/* <div className='relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto px-4 py-16'>
+          <article
+            className='col-span-1 md:col-span-3 order-2 md:order-1 text-justify'
+            data-aos='fade-up'
+          >
             <div
               className='prose prose-lg md:prose-xl max-w-none prose-neutral prose-headings:text-black prose-p:text-gray-800 prose-a:text-red-600 prose-a:underline prose-img:rounded-lg prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic whitespace-pre-line'
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </article>
 
-          {/* Sidebar */}
-          <aside className='col-span-1 order-1 md:order-2' data-aos='fade-left'>
-            {/* Back to Blogs Button (top position) */}
+          <aside className='col-span-1 order-1 md:order-2 ' data-aos='fade-left'>
             <Link
               href='/blogs'
               className='inline-block mb-6 relative text-sm font-semibold text-primary dark:text-primary border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md group transition-all duration-300'
@@ -129,7 +129,59 @@ export default function BlogDetailPage() {
                   Back to Blogs
                 </span>
               </span>
-              {/* Optional subtle background effect on hover */}
+              <span className='absolute inset-0 bg-gray-100/40 dark:bg-white/10 opacity-0 group-hover:opacity-100 transition duration-300 rounded-md z-0' />
+            </Link>
+
+            <div className='sticky top-20 space-y-4 text-sm text-gray-600'>
+              <p>
+                <strong>Published:</strong>
+                <br />
+                {new Date(blog.createdAt).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Category:</strong>
+                <br />
+                <span className='text-red-600 font-semibold'>{blog.category}</span>
+              </p>
+            </div>
+          </aside>
+        </div> */}
+
+        <div className='relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto px-4 py-16 overflow-x-hidden'>
+          {/* Blog Content */}
+          <article
+            className='col-span-1 md:col-span-3 order-2 md:order-1 text-justify max-w-full'
+            data-aos='fade-up'
+          >
+            <div className='w-full overflow-x-auto'>
+              <div
+                className='prose prose-lg md:prose-xl max-w-none prose-neutral 
+                   prose-headings:text-black prose-p:text-gray-800 
+                   prose-a:text-red-600 prose-a:underline 
+                   prose-img:rounded-lg 
+                   prose-blockquote:border-l-4 prose-blockquote:border-red-500 
+                   prose-blockquote:pl-4 prose-blockquote:italic 
+                   whitespace-pre-line break-words [&_img]:max-w-full [&_table]:max-w-full [&_pre]:overflow-auto'
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+              />
+            </div>
+          </article>
+
+          {/* Sidebar */}
+          <aside className='col-span-1 order-1 md:order-2' data-aos='fade-left'>
+            {/* Back to Blogs Button */}
+            <Link
+              href='/blogs'
+              className='inline-block mb-6 relative text-sm font-semibold text-primary dark:text-primary border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md group transition-all duration-300'
+            >
+              <span className='flex items-center gap-1'>
+                <span className='relative z-10 group-hover:-translate-x-1 transition-transform duration-300'>
+                  ←
+                </span>
+                <span className='relative z-10 group-hover:translate-x-1 transition-transform duration-300'>
+                  Back to Blogs
+                </span>
+              </span>
               <span className='absolute inset-0 bg-gray-100/40 dark:bg-white/10 opacity-0 group-hover:opacity-100 transition duration-300 rounded-md z-0' />
             </Link>
 
@@ -189,6 +241,8 @@ export default function BlogDetailPage() {
                       <Image
                         src={item.imageUrl}
                         alt={item.title}
+                        height={100}
+                        width={100}
                         className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
                       />
 
