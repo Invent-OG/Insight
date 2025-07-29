@@ -15,13 +15,10 @@ export default function TestimonialsPage() {
     <div>
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-bold'>Testimonials Management</h1>
-        {/* <Button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2"
-        >
-          <Plus className="h-4 w-4" />
+        <Button onClick={() => setShowForm(true)}>
+          <Plus className='h-4 w-4 mr-2' />
           Add New Testimonial
-        </Button> */}
+        </Button>
       </div>
 
       <div className='mb-6'>
@@ -36,14 +33,10 @@ export default function TestimonialsPage() {
         </div>
       </div>
 
-      <TestimonialGrid searchTerm={searchTerm} />
-
-      {showForm && (
-        <div className='fixed inset-0 bg-black/50 z-50 flex items-center justify-center'>
-          <div className='bg-background rounded-lg w-full max-w-xl mx-auto shadow-lg p-6'>
-            <TestimonialForm onClose={() => setShowForm(false)} />
-          </div>
-        </div>
+      {showForm ? (
+        <TestimonialForm onClose={() => setShowForm(false)} />
+      ) : (
+        <TestimonialGrid searchTerm={searchTerm} />
       )}
     </div>
   );

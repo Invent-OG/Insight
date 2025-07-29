@@ -49,6 +49,7 @@ const nextConfig = {
       'images.pexels.com',
       'images.unsplash.com',
       'assets.aceternity.com',
+      "img.youtube.com",
       'turbifycdn.com',
       'avatars.githubusercontent.com',
       'wallpapers.com',
