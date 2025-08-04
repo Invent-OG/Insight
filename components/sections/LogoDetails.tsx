@@ -62,19 +62,31 @@
 //     return () => window.removeEventListener('scroll', handleScroll);
 //   }, [currentIndex]);
 
-//   // Animate on currentIndex change
+//   // Animate logo and content on currentIndex change
 //   useEffect(() => {
 //     if (logoRef.current && contentRef.current) {
-//       gsap.fromTo(
-//         logoRef.current,
-//         { opacity: 0, scale: 0.8, y: 50 },
-//         { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out' }
-//       );
+//       const tl = gsap.timeline();
 
-//       gsap.fromTo(
+//       tl.fromTo(
+//         logoRef.current,
+//         { opacity: 0, scale: 0.8, y: 40 },
+//         {
+//           opacity: 1,
+//           scale: 1,
+//           y: 0,
+//           duration: 0.7,
+//           ease: 'power3.out',
+//         }
+//       ).fromTo(
 //         contentRef.current,
-//         { opacity: 0, y: 40 },
-//         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.1 }
+//         { opacity: 0, y: 30 },
+//         {
+//           opacity: 1,
+//           y: 0,
+//           duration: 0.7,
+//           ease: 'power2.out',
+//         },
+//         '-=0.4' // overlap animation
 //       );
 //     }
 //   }, [currentIndex]);
@@ -88,7 +100,7 @@
 //       {/* Sticky Section */}
 //       <div className='sticky top-0 h-screen flex flex-col items-center justify-center px-6 md:px-20 text-white text-center overflow-hidden'>
 //         {/* Logo */}
-//         <div className='w-[300px] h-[300px] relative transition-opacity duration-500'>
+//         <div ref={logoRef} className='w-[300px] h-[300px] relative transition-opacity duration-500'>
 //           <Image
 //             src={sections[currentIndex].image}
 //             alt={`Logo ${currentIndex + 1}`}
@@ -160,13 +172,16 @@ export default function LogoDetails() {
     const handleScroll = () => {
       if (!containerRef.current) return;
 
-      const containerTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
+      const containerTop = containerRef.current.offsetTop;
       const scrollTop = window.scrollY;
       const offset = scrollTop - containerTop;
       const sectionHeight = window.innerHeight;
-      const index = Math.floor(offset / sectionHeight);
+      let index = Math.floor(offset / sectionHeight);
 
-      if (index >= 0 && index < sections.length && index !== currentIndex) {
+      // Clamp index to valid range
+      index = Math.max(0, Math.min(index, sections.length - 1));
+
+      if (index !== currentIndex) {
         setCurrentIndex(index);
       }
     };
@@ -175,31 +190,31 @@ export default function LogoDetails() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentIndex]);
 
-  // Animate logo and content on currentIndex change
+  // Animate on currentIndex change
   useEffect(() => {
     if (logoRef.current && contentRef.current) {
       const tl = gsap.timeline();
 
       tl.fromTo(
         logoRef.current,
-        { opacity: 0, scale: 0.8, y: 40 },
+        { opacity: 0, scale: 0.9, y: 30 },
         {
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.6,
           ease: 'power3.out',
         }
       ).fromTo(
         contentRef.current,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.6,
           ease: 'power2.out',
         },
-        '-=0.4' // overlap animation
+        '-=0.4'
       );
     }
   }, [currentIndex]);
@@ -208,9 +223,8 @@ export default function LogoDetails() {
     <div
       ref={containerRef}
       className='relative bg-black'
-      style={{ height: `${sections.length * 100}vh` }}
+      style={{ height: `${(sections.length + 1) * 100}vh` }} // Add +1 to allow last card to stay sticky
     >
-      {/* Sticky Section */}
       <div className='sticky top-0 h-screen flex flex-col items-center justify-center px-6 md:px-20 text-white text-center overflow-hidden'>
         {/* Logo */}
         <div ref={logoRef} className='w-[300px] h-[300px] relative transition-opacity duration-500'>
@@ -224,7 +238,7 @@ export default function LogoDetails() {
         </div>
 
         {/* Content */}
-        <div ref={contentRef} className='max-w-3xl will-change-transform'>
+        <div ref={contentRef} className='max-w-3xl will-change-transform mt-4'>
           <h2 className='text-3xl md:text-4xl font-semibold mb-4'>
             {sections[currentIndex].title}
           </h2>
