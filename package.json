@@ -47,6 +47,8 @@
     "drizzle-orm": "^0.29.5",
     "framer-motion": "^11.18.2",
     "gsap": "^3.13.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
     "lucide-react": "^0.510.0",
     "motion": "^12.16.0",
     "next": "^15.3.5",
