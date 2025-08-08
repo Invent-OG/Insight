@@ -12,10 +12,7 @@ import {
   ChevronDown,
   ChevronUp,
   RefreshCcw,
-  Download,
 } from 'lucide-react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const terms = [
   {
@@ -94,31 +91,6 @@ export default function TermsOfServicePage() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const handleDownload = async () => {
-    const input = document.getElementById('terms-pdf');
-    if (!input) return;
-
-    const canvas = await html2canvas(input);
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pageHeight = 295;
-    const imgHeight = (canvas.height * 210) / canvas.width;
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    pdf.addImage(imgData, 'PNG', 0, position, 210, imgHeight);
-    heightLeft -= pageHeight;
-
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, position, 210, imgHeight);
-      heightLeft -= pageHeight;
-    }
-
-    pdf.save('terms-of-service.pdf');
-  };
-
   return (
     <div className='bg-gradient-to-br from-gray-50 to-white min-h-screen py-28 px-4 sm:px-6 lg:px-32'>
       <div className='max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-10 border border-gray-200'>
@@ -126,15 +98,6 @@ export default function TermsOfServicePage() {
           <h1 className='text-3xl sm:text-4xl font-extrabold text-gray-900 text-center sm:text-left mb-4'>
             Terms of Service
           </h1>
-          <div className='flex justify-center sm:justify-end'>
-            <button
-              onClick={handleDownload}
-              className='w-full sm:w-auto flex items-center justify-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition'
-            >
-              <Download className='w-5 h-5' />
-              <span>Download</span>
-            </button>
-          </div>
         </div>
 
         <div id='terms-pdf'>
