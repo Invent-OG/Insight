@@ -22,17 +22,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en' className={bokorFont.className}>
       <link rel='icon' href='/favicon.ico' />
 
-      <GoogleTagManager gtmId='GTM-WKPZBCCS' />
+      <GoogleTagManager gtmId='GTM-K2PCJ27X' />
 
       <body>
         {/* GTM NoScript */}
         <noscript>
           <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-WKPZBCCS'
+            src='https://www.googletagmanager.com/ns.html?id=GTM-K2PCJ27X'
             height='0'
             width='0'
             style={{ display: 'none', visibility: 'hidden' }}
-          />
+          ></iframe>
         </noscript>
 
         <Providers>
