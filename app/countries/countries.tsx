@@ -112,7 +112,6 @@ export default function Countries() {
   const [activeIndex, setActiveIndex] = useState(0);
   const gotoRef = useRef<(index: number, dir: number) => void>(() => {});
   const router = useRouter();
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -277,9 +276,14 @@ export default function Countries() {
             </div>
             <div className='relative z-10 flex items-end justify-center w-full h-full inner'>
               <div className='absolute flex flex-col items-center justify-center w-full gap-5 px-4 py-6 lg:bottom-0 bottom-1/4 lg:bg-gradient-to-t from-black via-black/50 to-transparent'>
-                <h1 className='flex gap-3 text-4xl font-bold text-center section-title md:text-6xl'>
+                {/* <h1 className='flex gap-3 text-4xl font-bold text-center section-title md:text-6xl'>
                   {country.title}
-                </h1>
+                </h1> */}
+                <div className='bg-black/30 px-4 py-2 rounded-lg inline-block'>
+                  <h1 className='text-4xl md:text-6xl font-bold text-center text-white'>
+                    {country.title}
+                  </h1>
+                </div>
                 <Button
                   onClick={() => router.push(`/countries/${country.slug}`)}
                   className='transition-colors duration-300 bg-black border rounded-full border-primary hover:bg-red-600'
@@ -294,8 +298,8 @@ export default function Countries() {
       ))}
 
       {/* Left Vertical Number Nav */}
-      <header className='fixed top-1/2 left-2 -translate-y-1/2 z-[999]'>
-        <nav className='flex flex-col gap-1 max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-transparent'>
+      <header className='fixed  top-1/2 left-2 -translate-y-1/2 z-[999]'>
+        <nav className='flex  flex-col gap-1 max-h-[90vh]  overflow-y-auto scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-transparent'>
           {countries.slice(1).map((country, i) => {
             const actualIndex = i + 1; // Since we're slicing from 1, adjust index
             return (
@@ -305,11 +309,11 @@ export default function Countries() {
                   const dir = actualIndex > activeIndex ? 1 : -1;
                   gotoRef.current?.(actualIndex, dir);
                 }}
-                className={`w-6 h-6 text-[10px] sm:w-8 sm:h-8 sm:text-sm backdrop-blur-md   border border-white/20 rounded-md shadow-md transition-transform 
+                className={`w-6  h-6 text-[10px] sm:w-8 sm:h-8 sm:text-sm backdrop-blur-md   border border-white/20 rounded-md shadow-md transition-transform 
             ${
               actualIndex === activeIndex
-                ? '  font-bold text-black bg-white/40'
-                : 'hover:bg-white/50 bg-white/10 text-white'
+                ? '  font-bold bg-primary text-black '
+                : 'hover:bg-black/30 bg-black/50 text-white'
             }`}
               >
                 {actualIndex}

@@ -81,7 +81,6 @@ export default function Home() {
           className='block z-10 object-cover w-full h-screen lg:hidden'
           autoPlay
           muted
-          loop
           playsInline
           disableRemotePlayback
         >
