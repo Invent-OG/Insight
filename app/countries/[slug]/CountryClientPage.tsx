@@ -359,10 +359,12 @@ export default function CountryClientPage({ slug }: Props) {
           transition={{ duration: 0.6 }}
           className='w-full lg:w-[70%] space-y-6'
         >
-          <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-primary'>
-            Take the First Step Toward Your Global Education!
+          <h1 className='text-3xl sm:text-4xl md:text-5xl pt-[5%] font-bold text-black'>
+            Take the First Step Toward Your Global <span className='text-primary'> Education!</span>
           </h1>
-          <h2 className='text-xl font-semibold'>Find Your Ideal Course & Country</h2>
+          <h2 className='text-xl font-medium'>
+            Find Your Ideal <span className='text-primary'>Course & Country</span>
+          </h2>
 
           {/* Image with overlay */}
           <div className='relative w-full h-[500px] overflow-hidden'>
@@ -582,7 +584,7 @@ export default function CountryClientPage({ slug }: Props) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className='min-h-[450px] bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 flex flex-col justify-between'
           > */}
-          <h3 className='text-xl font-bold text-primary text-center mb-2'>Let’s Get Started</h3>
+          <h3 className='text-xl font-bold text-black text-center mb-2'>Let’s Get Started</h3>
           <p className='text-center text-sm text-gray-700 mb-4'>
             Submit your details for expert guidance
           </p>
