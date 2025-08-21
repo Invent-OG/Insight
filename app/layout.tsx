@@ -74,12 +74,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel='icon' href='/favicon.ico' />
       </head>
 
-      <GoogleTagManager gtmId='GTM-K2PCJ27X' />
+      <GoogleTagManager gtmId='GTM-WK6DHPTZ' />
 
       <body>
         <noscript>
           <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-K2PCJ27X'
+            src='https://www.googletagmanager.com/ns.html?id=GTM-WK6DHPTZ'
             height='0'
             width='0'
             style={{ display: 'none', visibility: 'hidden' }}
