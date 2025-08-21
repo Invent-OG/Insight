@@ -47,53 +47,88 @@
 //     </html>
 //   );
 // }
-'use client';
+// 'use client';
 
+// import './globals.css';
+// import { Providers } from './providers';
+// import { LenisProvider } from '@/components/LenisProvider';
+// import Nav from '@/components/sections/Nav';
+// import FloatingContactButtons from '@/components/sections/FloatingContactButtons';
+// import { Toaster } from 'react-hot-toast';
+// import { Footer } from '@/components/sections/footer-section';
+// import { Parkinsans } from 'next/font/google';
+// import { GoogleTagManager } from '@next/third-parties/google';
+// import { usePathname } from 'next/navigation';
+
+// const bokorFont = Parkinsans({
+//   subsets: ['latin'],
+// });
+
+// export default function RootLayout({ children }: { children: React.ReactNode }) {
+//   const pathname = usePathname();
+//   const hideFooter = pathname?.startsWith('/countries'); // 👈 Hides footer on country pages
+
+//   return (
+//     <html lang='en' className={bokorFont.className}>
+//       <head>
+//         <link rel='icon' href='/favicon.ico' />
+//       </head>
+
+//       <GoogleTagManager gtmId='GTM-WK6DHPTZ' />
+
+//       <body>
+//         <noscript>
+//           <iframe
+//             src='https://www.googletagmanager.com/ns.html?id=GTM-WK6DHPTZ'
+//             height='0'
+//             width='0'
+//             style={{ display: 'none', visibility: 'hidden' }}
+//           ></iframe>
+//         </noscript>
+
+//         <Providers>
+//           <Toaster />
+//           <LenisProvider />
+//           <Nav isLoading={false} />
+//           <main>{children}</main>
+//           {!hideFooter && <Footer />} {/* 👈 Footer hidden only on /countries */}
+//           <FloatingContactButtons />
+//         </Providers>
+//       </body>
+//     </html>
+//   );
+// }
+// app/layout.tsx  (SERVER component – no "use client" here)
 import './globals.css';
+import { GoogleTagManager } from '@next/third-parties/google';
+import { Parkinsans } from 'next/font/google';
 import { Providers } from './providers';
 import { LenisProvider } from '@/components/LenisProvider';
 import Nav from '@/components/sections/Nav';
 import FloatingContactButtons from '@/components/sections/FloatingContactButtons';
-import { Toaster } from 'react-hot-toast';
-import { Footer } from '@/components/sections/footer-section';
-import { Parkinsans } from 'next/font/google';
-import { GoogleTagManager } from '@next/third-parties/google';
-import { usePathname } from 'next/navigation';
+import FooterSwitch from '@/components/sections/FooterSwitch'; // <-- client helper
+import GTMRouteListener from '@/components/sections/GTMRouteListener'; // <-- client helper
 
-const bokorFont = Parkinsans({
-  subsets: ['latin'],
-});
+const font = Parkinsans({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const hideFooter = pathname?.startsWith('/countries'); // 👈 Hides footer on country pages
-
   return (
-    <html lang='en' className={bokorFont.className}>
+    <html lang='en' className={font.className}>
       <head>
         <link rel='icon' href='/favicon.ico' />
+        <GoogleTagManager gtmId='GTM-WK6DHPTZ' />
       </head>
-
-      <GoogleTagManager gtmId='GTM-WK6DHPTZ' />
-
       <body>
-        <noscript>
-          <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-WK6DHPTZ'
-            height='0'
-            width='0'
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
-
         <Providers>
-          <Toaster />
           <LenisProvider />
           <Nav isLoading={false} />
           <main>{children}</main>
-          {!hideFooter && <Footer />} {/* 👈 Footer hidden only on /countries */}
+          <FooterSwitch />
           <FloatingContactButtons />
         </Providers>
+
+        {/* Push pageview on SPA route changes */}
+        <GTMRouteListener />
       </body>
     </html>
   );
