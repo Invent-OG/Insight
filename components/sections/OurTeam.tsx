@@ -4,34 +4,19 @@ import Image from 'next/image';
 
 const teamMembers = [
   {
-    name: 'Adam John',
-    role: 'Stack Developer',
-    image: '/assets/teams/teams1.jpg',
+    name: 'Varun',
+    role: 'marketing and operations head',
+    image: '/assets/teams/team1.jpg',
   },
   {
-    name: 'Ann Richmond',
-    role: 'Creative Leader',
-    image: '/assets/teams/teams2.jpg',
+    name: 'Balaram',
+    role: 'Co founder',
+    image: '/assets/teams/team1.jpg',
   },
   {
-    name: 'Alex Grinfield',
-    role: 'Programming Guru',
-    image: '/assets/teams/teams3.jpg',
-  },
-  {
-    name: 'Jeffrey Brown',
-    role: 'Manager',
-    image: '/assets/teams/teams4.jpg',
-  },
-  {
-    name: 'Sophie Turner',
-    role: 'UI/UX Designer',
-    image: '/assets/teams/teams5.jpg',
-  },
-  {
-    name: 'Mark Zhao',
-    role: 'DevOps Engineer',
-    image: '/assets/teams/teams6.jpg',
+    name: 'Ranjana',
+    role: 'trainer',
+    image: '/assets/teams/team1.jpg',
   },
 ];
 
