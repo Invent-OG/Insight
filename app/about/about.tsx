@@ -221,7 +221,7 @@ export default function AboutPage() {
 
               {/* Founder name on mobile */}
               <span className='mt-4 text-red-600 font-semibold not-italic md:hidden'>
-                — Founder Neshika
+                — Founder and CEO Neshika. K
               </span>
             </div>
           </section>
