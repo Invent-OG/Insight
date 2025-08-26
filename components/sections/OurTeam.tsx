@@ -4,18 +4,18 @@ import Image from 'next/image';
 
 const teamMembers = [
   {
-    name: 'Varun',
-    role: 'marketing and operations head',
+    name: 'Varun Raj. B',
+    role: 'Marketing and Operations Head',
     image: '/assets/teams/team1.jpg',
   },
   {
-    name: 'Balaram',
-    role: 'Co founder',
+    name: 'Balaram. G',
+    role: 'Co-Founder ',
     image: '/assets/teams/team1.jpg',
   },
   {
-    name: 'Ranjana',
-    role: 'trainer',
+    name: 'Ranjana. N',
+    role: 'Trainer',
     image: '/assets/teams/team1.jpg',
   },
 ];

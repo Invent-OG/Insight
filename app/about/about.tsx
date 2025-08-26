@@ -190,7 +190,8 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className='relative text-black italic text-lg border-l-4 border-red-600 pl-6 md:w-2/3 z-10'
             >
-              “Our founder, <span className='text-red-600 font-semibold not-italic'>Neshika</span>
+              “Our founder,{' '}
+              <span className='text-red-600 font-semibold not-italic'>Neshika. K </span>
               , brings a wealth of personal and professional experience to the table. Having pursued
               her education in the UK and being an IELTS-certified trainer from Trinity University,
               she understands firsthand the challenges and opportunities international students
@@ -199,7 +200,7 @@ export default function AboutPage() {
               <br />
               <br />
               <span className='hidden md:inline text-red-600 font-semibold not-italic'>
-                — Founder Neshika
+                — Founder and CEO Neshika. K
               </span>
             </motion.blockquote>
 
