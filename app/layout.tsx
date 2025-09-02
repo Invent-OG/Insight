@@ -72,6 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en' className={bokorFont.className}>
       <head>
         <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='google-site-verification'
+          content='fax6ROAq7ANlxL45nobfqs3cSWPtyFf7rC88Kq6qBzw'
+        />
       </head>
 
       <GoogleTagManager gtmId='GTM-WK6DHPTZ' />
