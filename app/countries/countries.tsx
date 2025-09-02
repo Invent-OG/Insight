@@ -269,6 +269,7 @@ export default function Countries() {
                 src={country.image}
                 alt={country.title}
                 fill
+                crop='fit'
                 className='object-cover object-center'
                 priority
                 sizes='100vw'
