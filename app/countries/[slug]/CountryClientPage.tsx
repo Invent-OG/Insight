@@ -24,7 +24,7 @@ type Country = {
 const countries: Country[] = [
   {
     title: 'Study in UK',
-    image: 'UK_jyybhv',
+    image: 'UK_elrzto',
     slug: 'uk',
     description: `Home to renowned institutions like Oxford and Cambridge, the UK
 offers rigorous programs, short duration courses, and a strong
@@ -49,7 +49,7 @@ extensions`,
   },
   {
     title: 'Study in Ireland',
-    image: 'Ireland_oyog0w',
+    image: 'ireland_ig6tu6',
     slug: 'ireland',
     description: `Ireland is home to prestigious universities like Trinity College Dublin
 and University College Dublin, known for academic excellence. With
@@ -61,7 +61,7 @@ long-term career and settlement opportunities.
   },
   {
     title: 'Study in Canada',
-    image: 'Canada_1_yxn9jo',
+    image: 'canada_dttcwy',
     slug: 'canada',
     description: `Canada stands out for its world-class universities like the University
 of Toronto and McGill, inclusive society, and high standard of living.
@@ -72,7 +72,7 @@ long-term settlement.`,
   },
   {
     title: 'Study in Australia',
-    image: 'Australia_sjbomj',
+    image: 'Australia_wnuqfy',
     slug: 'australia',
     description: `Australia offers globally ranked universities, practical learning, and
 vibrant student life in cities like Sydney and Melbourne. Students
@@ -95,7 +95,7 @@ personal growth.`,
   },
   {
     title: 'Study in France',
-    image: 'France_ia7wdh',
+    image: 'France_mvwukh',
     slug: 'france',
     description: `With top-ranked universities, affordable tuition, and diverse English
 and French-taught programs, France welcomes international
@@ -110,7 +110,7 @@ apart.
   },
   {
     title: 'Study in Germany',
-    image: 'Germany_1_zxx8hu',
+    image: 'Germany_tz8s7i',
     slug: 'germany',
     description: `Germany is known for top public universities like TUM and
 Heidelberg that offer tuition-free or low-cost education in
@@ -124,7 +124,7 @@ EU Blue Card residency.
   },
   {
     title: 'Study in the UAE',
-    image: 'UAE_fgvysx',
+    image: 'UAE_sfmc3w',
     slug: 'uae',
     description: `The UAE offers international-standard education in a safe,
 multicultural setting with campuses in Dubai and Abu Dhabi. With
@@ -156,7 +156,7 @@ welcoming environment make it a great gateway to careers in Asia.`,
   },
   {
     title: 'Study in Poland',
-    image: 'poland_sy7baq',
+    image: 'poland__umasxp',
     slug: 'poland',
     description: `Poland combines affordable living with top universities
 offering strong programs in various fields. Known for its
@@ -166,7 +166,7 @@ destination for international students.
   },
   {
     title: 'Study in Sweden',
-    image: 'swedan_g0b6di',
+    image: 'sweden_xwzi3m',
     slug: 'sweden',
     description: `Sweden is renowned for its world-class education,
 innovation, and sustainability focus. With English widely
@@ -197,7 +197,7 @@ hidden gem for international students.`,
   },
   {
     title: 'Study in Malta',
-    image: 'malta_xcvhl5',
+    image: 'Malta_jsgtxo',
     slug: 'malta',
     description: `Malta offers top-quality education in English, with a
 Mediterranean lifestyle that combines rich history, vibrant
@@ -207,7 +207,7 @@ location.`,
   },
   {
     title: 'Study in Netherlands',
-    image: 'Netherland_hoponi',
+    image: 'netherlands_pfqv1c',
     slug: 'netherlands',
     description: `The Netherlands is famous for its innovation and top-tier
 universities, many of which offer English-taught programs.
@@ -217,7 +217,7 @@ destination for career-focused students.
   },
   {
     title: 'Study in Finland',
-    image: 'Finland_inxqoe',
+    image: 'Finland_qfpm8g',
     slug: 'finland',
     description: `Finland is known for its innovative education system,
 offering excellent universities with a focus on research and

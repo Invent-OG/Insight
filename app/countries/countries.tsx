@@ -8,22 +8,22 @@ import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 const countries = [
-  { title: 'UK', image: 'UK_jyybhv', slug: 'australi' },
-  { title: 'Study in UK', image: 'UK_jyybhv', slug: 'uk' },
+  { title: 'UK', image: 'UK_elrzto', slug: 'australi' },
+  { title: 'Study in UK', image: 'UK_elrzto', slug: 'uk' },
   { title: 'Study in USA', image: 'USA_1_gw8rlk', slug: 'usa' },
   {
     title: 'Study in Ireland',
-    image: 'Ireland_oyog0w',
+    image: 'ireland_ig6tu6',
     slug: 'ireland',
   },
   {
     title: 'Study in Canada',
-    image: 'Canada_1_yxn9jo',
+    image: 'canada_dttcwy',
     slug: 'canada',
   },
   {
     title: 'Study in Australia',
-    image: 'Australia_sjbomj',
+    image: 'Australia_wnuqfy',
     slug: 'australia',
   },
   {
@@ -33,17 +33,17 @@ const countries = [
   },
   {
     title: 'Study in France',
-    image: 'France_ia7wdh',
+    image: 'France_mvwukh',
     slug: 'france',
   },
   {
     title: 'Study in Germany',
-    image: 'Germany_1_zxx8hu',
+    image: 'Germany_tz8s7i',
     slug: 'germany',
   },
   {
     title: 'Study in  UAE',
-    image: 'UAE_fgvysx',
+    image: 'UAE_sfmc3w',
     slug: 'uae',
   },
   {
@@ -58,12 +58,12 @@ const countries = [
   },
   {
     title: 'Study in Poland',
-    image: 'poland_sy7baq',
+    image: 'poland__umasxp',
     slug: 'poland',
   },
   {
     title: 'Study in Sweden',
-    image: 'swedan_g0b6di',
+    image: 'sweden_xwzi3m',
     slug: 'sweden',
   },
   {
@@ -78,17 +78,17 @@ const countries = [
   },
   {
     title: 'Study in Malta',
-    image: 'malta_xcvhl5',
+    image: 'Malta_jsgtxo',
     slug: 'malta',
   },
   {
     title: 'Study in Netherlands',
-    image: 'Netherland_hoponi',
+    image: 'netherlands_pfqv1c',
     slug: 'netherlands',
   },
   {
     title: 'Study in Finland',
-    image: 'Finland_inxqoe',
+    image: 'Finland_qfpm8g',
     slug: 'finland',
   },
   {

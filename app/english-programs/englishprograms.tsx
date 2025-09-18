@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
           opacity: 1,
           filter: 'blur(0px)',
           y: 0,
-          duration: 1.8,
+          duration: 0.1,
           delay: index * 0.1,
           ease: 'power2.out',
           scrollTrigger: {

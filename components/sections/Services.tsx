@@ -12,7 +12,7 @@ const services = [
     title: 'Counselling & Program Discovery',
     description:
       'Having trouble deciding on a course or country? We’ll help you explore your options based on your interests, background, and future goals. Our experienced team will guide you in finding the academic path that suits you best.',
-    image: 'counselling_program_discovery_hc0ill',
+    image: 'Counselling_and_program_discovery_wbn4aw',
     icon: '/icons/counseling.svg',
   },
   {
@@ -107,7 +107,7 @@ export default function ServicesSection() {
                               alt={service.title}
                               width={500}
                               height={300}
-                              crop='fill'
+                              crop='fit'
                               gravity='auto'
                               className='object-cover transition duration-300 hover:brightness-110 w-full h-full'
                             />

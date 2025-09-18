@@ -19,7 +19,7 @@ export const countries: Country[] = [
     id: 'card1',
     title: 'Study in UK',
     description: `Home to renowned institutions like Oxford and Cambridge, the UK offers rigorous programs, short duration courses, and a strong academic tradition. Cities in the UK offer a student-friendly atmosphere, blending culture and connectivity. They offer a 1-year master’s degree with no compromise on academic standards, along with a 2-year stay-back option. With part-time work opportunities, the UK is ideal for career-focused learners.`,
-    image: 'UK_jyybhv',
+    image: 'UK_elrzto',
   },
   {
     id: 'card2',
@@ -31,13 +31,13 @@ export const countries: Country[] = [
     id: 'card3',
     title: 'Study in Ireland',
     description: `Ireland is home to prestigious universities like Trinity College Dublin and University College Dublin, known for academic excellence. With vibrant cities, affordable tuition, and a welcoming atmosphere, it offers an exceptional student experience. Ireland also provides Post-Graduation Work Permits, making it a great choice for long-term career and settlement opportunities.`,
-    image: 'Ireland_oyog0w',
+    image: 'ireland_ig6tu6',
   },
   {
     id: 'card4',
     title: 'Study in Canada',
     description: `Canada stands out for its world-class universities like the University of Toronto and McGill, inclusive society, and high standard of living. Affordable tuition, multicultural cities, and a welcoming environment make it a top choice. Post-Graduation Work Permits (up to 3 years) and clear Permanent Residency pathways support long-term settlement.`,
-    image: 'Canada_1_yxn9jo',
+    image: 'canada_dttcwy',
   },
 ];
 

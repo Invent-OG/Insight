@@ -12,7 +12,7 @@ import { CldImage } from 'next-cloudinary';
 const services = [
   {
     icon: <MdSupportAgent />,
-    image: 'counselling_program_discovery_hc0ill',
+    image: 'Counselling_and_program_discovery_wbn4aw',
     tabTitle: 'Counselling',
     title: 'Counselling & Program Discovery',
     description:
@@ -166,6 +166,7 @@ export default function ServicesSection() {
                 src={services[activeIndex].image}
                 alt={services[activeIndex].title}
                 fill
+                crop='fit'
                 className='object-cover scale-105'
                 sizes='100vw'
                 loading='lazy'
